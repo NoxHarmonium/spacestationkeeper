@@ -17,20 +17,16 @@
 using namespace cinder::app;
 using namespace cinder::cairo;
 
-class GuiManager
-{
+class GuiManager {
 public:
-  GuiManager(AppNative* app);
+  GuiManager(AppNative *app);
   void Update();
   void Draw();
   void Reset();
-  
+
 private:
-  AppNative* parentApp;
-  SurfaceImage* _cairoSurface;
-
-  
+  AppNative *parentApp;
+  SurfaceImage *_cairoSurface;
 };
-
 
 #endif
