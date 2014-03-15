@@ -13,19 +13,19 @@
 #include "cinder/gl/gl.h"
 #include "Cairo.h"
 #include "cinder/gl/Texture.h"
+#include "GameComponent.h"
 
 using namespace cinder::app;
 using namespace cinder::cairo;
 
-class GuiManager {
+class GuiManager : public GameComponent {
 public:
-  GuiManager(AppNative *app);
-  void Update();
-  void Draw();
-  void Reset();
+  GuiManager(AppNative *parent);
+  void setup();
+  void update();
+  void draw();
 
 private:
-  AppNative *parentApp;
   SurfaceImage *_cairoSurface;
 };
 

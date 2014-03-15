@@ -12,7 +12,7 @@ using namespace cinder;
 using namespace cinder::app;
 using namespace cinder::cairo;
 
-void GuiManager::Update() {
+void GuiManager::update() {
   DisplayRef dispRef = parentApp->getDisplay();
 
   cairo::Context ctx = cairo::Context(*_cairoSurface);
@@ -25,20 +25,19 @@ void GuiManager::Update() {
   ctx.fill();
 }
 
-void GuiManager::Draw() {
+void GuiManager::draw() {
   gl::Texture texture = gl::Texture(_cairoSurface->getSurface());
   gl::draw(texture);
 }
 
-void GuiManager::Reset() {
+void GuiManager::setup() {
   DisplayRef dispRef = parentApp->getDisplay();
 
   _cairoSurface =
       new SurfaceImage(dispRef->getWidth(), dispRef->getHeight(), true);
 }
 
-GuiManager::GuiManager(AppNative *app) {
-  parentApp = app;
+GuiManager::GuiManager(AppNative *app) : GameComponent(app) {
   DisplayRef dispRef = parentApp->getDisplay();
 
   _cairoSurface =

@@ -24,16 +24,16 @@ private:
 
 void SpaceStationKeeperApp::setup() { _guiManager = new GuiManager(this); }
 
-void SpaceStationKeeperApp::resize() { _guiManager->Reset(); }
+void SpaceStationKeeperApp::resize() { _guiManager->setup(); }
 
 void SpaceStationKeeperApp::mouseDown(MouseEvent event) {}
 
-void SpaceStationKeeperApp::update() { _guiManager->Update(); }
+void SpaceStationKeeperApp::update() { _guiManager->update(); }
 
 void SpaceStationKeeperApp::draw() {
   // clear out the window with black
   gl::clear(Color(0, 0, 0));
-  _guiManager->Draw();
+  //_guiManager->Draw();
 }
 
 CINDER_APP_NATIVE(SpaceStationKeeperApp, RendererGl)
