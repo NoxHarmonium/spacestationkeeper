@@ -19,6 +19,7 @@
 		8C08550A160647279CE5BCF2 /* SpaceStationKeeperApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 48844111FF804C239BF69347 /* SpaceStationKeeperApp.cpp */; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		9E92628F18D48232001AB5D6 /* GameComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E92628E18D48232001AB5D6 /* GameComponent.cpp */; };
+		9E92629218D4EDA0001AB5D6 /* ComponentDrivenApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E92629118D4EDA0001AB5D6 /* ComponentDrivenApp.cpp */; };
 		9E94D8EB18D122BE0032FDC3 /* GuiManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E94D8EA18D122BE0032FDC3 /* GuiManager.cpp */; };
 		F6A27D521F144FE2BE32FA8A /* libfmodex.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 196E2B05CC274906BAD04564 /* libfmodex.dylib */; };
 /* End PBXBuildFile section */
@@ -55,6 +56,8 @@
 		9E8647A618D26265006BF520 /* GameGrid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameGrid.h; sourceTree = "<group>"; };
 		9E92628D18D47FA7001AB5D6 /* GameComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameComponent.h; sourceTree = "<group>"; };
 		9E92628E18D48232001AB5D6 /* GameComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameComponent.cpp; sourceTree = "<group>"; };
+		9E92629018D4EC71001AB5D6 /* ComponentDrivenApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComponentDrivenApp.h; sourceTree = "<group>"; };
+		9E92629118D4EDA0001AB5D6 /* ComponentDrivenApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ComponentDrivenApp.cpp; sourceTree = "<group>"; };
 		9E94D8E918D122320032FDC3 /* GuiManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuiManager.h; sourceTree = "<group>"; };
 		9E94D8EA18D122BE0032FDC3 /* GuiManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GuiManager.cpp; sourceTree = "<group>"; };
 		9FED8CDFB3D642F28A974FC9 /* Resources.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Resources.h; path = ../include/Resources.h; sourceTree = "<group>"; };
@@ -98,6 +101,8 @@
 				9E8647A518D2622A006BF520 /* GameElements */,
 				9E94D8E818D121720032FDC3 /* Gui */,
 				48844111FF804C239BF69347 /* SpaceStationKeeperApp.cpp */,
+				9E92629018D4EC71001AB5D6 /* ComponentDrivenApp.h */,
+				9E92629118D4EDA0001AB5D6 /* ComponentDrivenApp.cpp */,
 			);
 			name = Source;
 			path = ../src;
@@ -336,6 +341,7 @@
 				8C08550A160647279CE5BCF2 /* SpaceStationKeeperApp.cpp in Sources */,
 				72ABDE3F9B0F42038A135447 /* Cairo.cpp in Sources */,
 				9E92628F18D48232001AB5D6 /* GameComponent.cpp in Sources */,
+				9E92629218D4EDA0001AB5D6 /* ComponentDrivenApp.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

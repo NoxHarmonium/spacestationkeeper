@@ -24,9 +24,15 @@ public:
   void setup();
   void update();
   void draw();
+  void resize();
+  void cleanUp();
 
 private:
-  SurfaceImage *_cairoSurface;
+  SurfaceImage *_cairoSurface = NULL;
+  string _currentText = "Test text.";
+  string _prevText = "";
+  gl::Texture _currentTexture;
+  FontOptions *_currentFontOptions;
 };
 
 #endif

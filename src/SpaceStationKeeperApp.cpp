@@ -3,37 +3,38 @@
 #include "Cairo.h"
 #include "cinder/gl/Texture.h"
 #include "GuiManager.h"
+#include "ComponentDrivenApp.h"
 
 using namespace ci;
 using namespace ci::app;
 using namespace std;
 using namespace cinder::cairo;
 
-class SpaceStationKeeperApp : public AppNative {
+class SpaceStationKeeperApp : public ComponentDrivenApp {
 
 public:
   void setup();
-  void mouseDown(MouseEvent event);
-  void update();
   void draw();
-  void resize();
 
 private:
   GuiManager *_guiManager;
 };
 
-void SpaceStationKeeperApp::setup() { _guiManager = new GuiManager(this); }
+void SpaceStationKeeperApp::setup() {
+  // Register all the components that will be sent app events
+  _guiManager = new GuiManager(this);
+  RegisterComponent(_guiManager);
 
-void SpaceStationKeeperApp::resize() { _guiManager->setup(); }
-
-void SpaceStationKeeperApp::mouseDown(MouseEvent event) {}
-
-void SpaceStationKeeperApp::update() { _guiManager->update(); }
+  // Make sure that components get setup
+  ComponentDrivenApp::setup();
+}
 
 void SpaceStationKeeperApp::draw() {
   // clear out the window with black
   gl::clear(Color(0, 0, 0));
-  //_guiManager->Draw();
+
+  // Make sure that the components get drawn
+  ComponentDrivenApp::draw();
 }
 
 CINDER_APP_NATIVE(SpaceStationKeeperApp, RendererGl)
