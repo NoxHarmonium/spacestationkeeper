@@ -1,9 +1,10 @@
 #include "cinder/app/AppNative.h"
 #include "cinder/gl/gl.h"
-#include "Cairo.h"
 #include "cinder/gl/Texture.h"
+#include "Cairo.h"
 #include "GuiManager.h"
 #include "ComponentDrivenApp.h"
+#include "GameGrid.h"
 
 using namespace ci;
 using namespace ci::app;
@@ -18,11 +19,15 @@ public:
 
 private:
   GuiManager *_guiManager;
+  GameGrid *_gameGrid;
 };
 
 void SpaceStationKeeperApp::setup() {
   // Register all the components that will be sent app events
+  _gameGrid = new GameGrid(this);
   _guiManager = new GuiManager(this);
+
+  RegisterComponent(_gameGrid);
   RegisterComponent(_guiManager);
 
   // Make sure that components get setup
