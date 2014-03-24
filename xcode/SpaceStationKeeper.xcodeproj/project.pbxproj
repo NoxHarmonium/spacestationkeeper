@@ -57,7 +57,7 @@
 		5323E6B50EAFCA7E003A9687 /* QTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QTKit.framework; path = /System/Library/Frameworks/QTKit.framework; sourceTree = "<absolute>"; };
 		8D1107320486CEB800E47090 /* SpaceStationKeeper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpaceStationKeeper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E21C4B118DA086700E927D6 /* TextureDef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextureDef.h; sourceTree = "<group>"; };
-		9E21C4B218DA14DE00E927D6 /* libyaml-cpp.0.5.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libyaml-cpp.0.5.1.dylib"; path = "../libs/libyaml-cpp.0.5.1.dylib"; sourceTree = "<group>"; };
+		9E21C4B218DA14DE00E927D6 /* libyaml-cpp.0.5.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = "libyaml-cpp.0.5.1.dylib"; sourceTree = "<group>"; };
 		9E8647A618D26265006BF520 /* GameGrid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameGrid.h; sourceTree = "<group>"; };
 		9E92628D18D47FA7001AB5D6 /* GameComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameComponent.h; sourceTree = "<group>"; };
 		9E92628E18D48232001AB5D6 /* GameComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameComponent.cpp; sourceTree = "<group>"; };
@@ -217,7 +217,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				9E21C4B218DA14DE00E927D6 /* libyaml-cpp.0.5.1.dylib */,
+				9E645D4718E0F2D20032E7A7 /* Libs */,
 				1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */,
 				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
 			);
@@ -247,6 +247,15 @@
 				0DA8B34D61B142C2AD42F19F /* cairo */,
 			);
 			name = cinder;
+			sourceTree = "<group>";
+		};
+		9E645D4718E0F2D20032E7A7 /* Libs */ = {
+			isa = PBXGroup;
+			children = (
+				9E21C4B218DA14DE00E927D6 /* libyaml-cpp.0.5.1.dylib */,
+			);
+			name = Libs;
+			path = ../libs;
 			sourceTree = "<group>";
 		};
 		9E92628C18D47F87001AB5D6 /* Components */ = {
