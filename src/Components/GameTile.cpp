@@ -15,6 +15,13 @@ using namespace cinder::gl;
 GameTile::GameTile(TextureDef textureDef, int tileIndex) {
   _textureDef = textureDef;
   _tileIndex = tileIndex;
+  _offset = Vec3f();
+}
+
+GameTile::GameTile(TextureDef textureDef, int tileIndex, Vec3f offset) {
+  _textureDef = textureDef;
+  _tileIndex = tileIndex;
+  _offset = offset;
 }
 
 Rectf GameTile::getFrameRect() {
@@ -36,13 +43,14 @@ void GameTile::setup() {
 
   TriMesh mesh;
 
-  mesh.appendVertex(Vec3f(0, 0, 0)); // appends the vertex
+  mesh.appendVertex(Vec3f(0, 0, 0) + _offset); // appends the vertex
   mesh.appendTexCoord(Vec2f(frameRect.x1, frameRect.y1));
-  mesh.appendVertex(Vec3f(0, _textureDef.height, 0)); // appends the next vertex
+  mesh.appendVertex(Vec3f(0, _textureDef.height, 0) +
+                    _offset); // appends the next vertex
   mesh.appendTexCoord(Vec2f(frameRect.x1, frameRect.y2));
-  mesh.appendVertex(Vec3f(_textureDef.width, _textureDef.height, 0));
+  mesh.appendVertex(Vec3f(_textureDef.width, _textureDef.height, 0) + _offset);
   mesh.appendTexCoord(Vec2f(frameRect.x2, frameRect.y2));
-  mesh.appendVertex(Vec3f(_textureDef.width, 0, 0));
+  mesh.appendVertex(Vec3f(_textureDef.width, 0, 0) + _offset);
   mesh.appendTexCoord(Vec2f(frameRect.x2, frameRect.y1));
 
   // get the index of the vertex. not necessary with this example, but good

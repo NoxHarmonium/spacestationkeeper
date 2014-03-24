@@ -20,6 +20,7 @@ using namespace cinder::gl;
 class GameTile {
 public:
   GameTile(TextureDef textureDef, int tileIndex);
+  GameTile(TextureDef textureDef, int tileIndex, Vec3f offset);
   void setup();
   void draw();
 
@@ -29,6 +30,7 @@ private:
   TriMesh *_currentMesh;
   TextureDef _textureDef;
   int _tileIndex;
+  Vec3f _offset;
 };
 
 #endif

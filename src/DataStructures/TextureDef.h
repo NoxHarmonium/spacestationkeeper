@@ -15,6 +15,8 @@ struct TextureDef {
   int frameHeight;
   int frameWidth;
   std::string source;
+
+  static TextureDef loadFromPath(std::string path) {}
 };
 
 #endif
