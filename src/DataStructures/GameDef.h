@@ -28,10 +28,24 @@ struct GameDef {
     GameDef def = GameDef();
     def.width = 20;
     def.height = 20;
-    def.tileTexture = (TextureDef **)calloc(20 * 20, sizeof(TextureDef));
-    def.tileType = (TileType **)calloc(20 * 20, sizeof(TileType));
+    def.tileTexture = (TextureDef **)calloc(def.width, sizeof(TextureDef *));
+    def.tileType = (TileType **)calloc(def.width, sizeof(TileType *));
     def.tileOrientaion =
-        (TileOrientaion **)calloc(20 * 20, sizeof(TileOrientaion));
+        (TileOrientaion **)calloc(def.width, sizeof(TileOrientaion *));
+
+    for (int i = 0; i < def.width; i++) {
+      def.tileTexture[i] = (TextureDef *)calloc(def.height, sizeof(TextureDef));
+      def.tileType[i] = (TileType *)calloc(def.height, sizeof(TileType));
+      def.tileOrientaion[i] =
+          (TileOrientaion *)calloc(def.height, sizeof(TileOrientaion));
+
+      for (int j = 0; j < def.height; j++) {
+        def.tileTexture[i][j] = td;
+        def.tileType[i][j] = TileType::Sides0;
+        def.tileOrientaion[i][j] = TileOrientaion::Up;
+      }
+    }
+
     return def;
   };
 };
