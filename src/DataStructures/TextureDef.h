@@ -10,10 +10,13 @@
 #define SpaceStationKeeper_TextureDef_h
 
 #include "yaml.h"
+#include "cinder/gl/gl.h"
+#include "cinder/gl/Texture.h"
 #include <iostream>
 #include <fstream>
 
-struct TextureDef {
+class TextureDef {
+public:
   int width;
   int height;
   int frameHeight;

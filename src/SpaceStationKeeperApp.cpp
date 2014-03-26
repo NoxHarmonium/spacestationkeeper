@@ -5,6 +5,7 @@
 #include "GuiManager.h"
 #include "ComponentDrivenApp.h"
 #include "GameGrid.h"
+#include "GameCamera.h"
 
 using namespace ci;
 using namespace ci::app;
@@ -20,13 +21,16 @@ public:
 private:
   GuiManager *_guiManager;
   GameGrid *_gameGrid;
+  GameCamera *_camera;
 };
 
 void SpaceStationKeeperApp::setup() {
   // Register all the components that will be sent app events
   _gameGrid = new GameGrid(this);
   _guiManager = new GuiManager(this);
+  _camera = new GameCamera(this);
 
+  RegisterComponent(_camera);
   RegisterComponent(_gameGrid);
   RegisterComponent(_guiManager);
 
@@ -37,7 +41,7 @@ void SpaceStationKeeperApp::setup() {
 void SpaceStationKeeperApp::draw() {
   // clear out the window with black
   gl::clear(Color(0, 0, 0));
-
+  gl::enableAlphaBlending();
   // Make sure that the components get drawn
   ComponentDrivenApp::draw();
 }

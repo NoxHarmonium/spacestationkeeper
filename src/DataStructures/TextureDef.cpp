@@ -16,6 +16,7 @@ TextureDef TextureDef::loadFromPath(std::string path) {
     YAML::Node node = YAML::Load(ifs);
     ifs.close();
     TextureDef td = node.as<TextureDef>();
+
     return td;
   } else {
     // Load error

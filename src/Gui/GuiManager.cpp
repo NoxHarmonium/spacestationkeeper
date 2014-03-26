@@ -20,10 +20,15 @@ void GuiManager::update() {
     // nested GUI components at some point
     cairo::Context ctx = cairo::Context(*_cairoSurface);
 
+    ctx.rectangle(0.0, 0.0, _cairoSurface->getWidth(),
+                  _cairoSurface->getHeight());
+    ctx.setSource(ColorA(0.0f, 0.0f, 0.0f, 0.0f));
+    ctx.fill();
+
     ctx.setFontSize(40.0);
     ctx.moveTo(5.0, 35.0);
     ctx.textPath(_currentText);
-    ctx.setSource(Color(1.0f, 0.0f, 0.0f));
+    ctx.setSource(ColorA(1.0f, 0.0f, 0.0f, 1.0f));
     ctx.fill();
 
     _prevText = _currentText;

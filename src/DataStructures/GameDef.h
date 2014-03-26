@@ -23,7 +23,11 @@ struct GameDef {
   int height;
 
   static GameDef GetTestBoard() {
-    TextureDef td = TextureDef::loadFromPath("Resources/texturedef.yaml");
+    TextureDef td = TextureDef::loadFromPath(
+        "/Users/seandawson/Development/spacestationkeeper/xcode/build/Debug/"
+        "SpaceStationKeeper.app/Contents/Resources/texturedef.yaml");
+
+    cout << "TD address: " << (uint) & td;
 
     GameDef def = GameDef();
     def.width = 20;

@@ -27,7 +27,7 @@ public:
 private:
   Rectf getFrameRect();
 
-  TriMesh *_currentMesh;
+  TriMesh _currentMesh;
   TextureDef _textureDef;
   int _tileIndex;
   Vec3f _offset;

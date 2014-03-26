@@ -18,7 +18,7 @@ void GameGrid::setup() {
   for (int i = 0; i < _gameDef.width; i++) {
     for (int j = 0; j < _gameDef.height; j++) {
       Vec3f offset = Vec3f(i * _gameDef.tileTexture[i][j].frameWidth,
-                           i * _gameDef.tileTexture[i][j].frameHeight, 0.0f);
+                           j * _gameDef.tileTexture[i][j].frameHeight, -0.1f);
       GameTile *t = new GameTile(_gameDef.tileTexture[i][j],
                                  (int)_gameDef.tileType[i][j], offset);
       t->setup();
@@ -28,7 +28,9 @@ void GameGrid::setup() {
 }
 
 void GameGrid::draw() {
+  glPushMatrix();
   for (auto &tile : _tileComponents) {
     tile->draw();
   }
+  glPopMatrix();
 }

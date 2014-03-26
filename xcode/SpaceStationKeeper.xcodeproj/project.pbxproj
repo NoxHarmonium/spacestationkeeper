@@ -27,6 +27,7 @@
 		9EA4A77F18E26CCF005D069F /* TextureDef.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EA4A77E18E26CCF005D069F /* TextureDef.cpp */; };
 		9EA4A78718E27CB7005D069F /* texturedef.yaml in Resources */ = {isa = PBXBuildFile; fileRef = 9EA4A78518E27CB7005D069F /* texturedef.yaml */; };
 		9EA4A78818E27CB7005D069F /* tileset_corridor.png in Resources */ = {isa = PBXBuildFile; fileRef = 9EA4A78618E27CB7005D069F /* tileset_corridor.png */; };
+		9EE7AED618E2F262008A9C83 /* GameCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EE7AED418E2F262008A9C83 /* GameCamera.cpp */; };
 		F6A27D521F144FE2BE32FA8A /* libfmodex.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 196E2B05CC274906BAD04564 /* libfmodex.dylib */; };
 /* End PBXBuildFile section */
 
@@ -111,6 +112,8 @@
 		9EA4A77E18E26CCF005D069F /* TextureDef.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TextureDef.cpp; sourceTree = "<group>"; };
 		9EA4A78518E27CB7005D069F /* texturedef.yaml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = texturedef.yaml; sourceTree = "<group>"; };
 		9EA4A78618E27CB7005D069F /* tileset_corridor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tileset_corridor.png; sourceTree = "<group>"; };
+		9EE7AED418E2F262008A9C83 /* GameCamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameCamera.cpp; sourceTree = "<group>"; };
+		9EE7AED518E2F262008A9C83 /* GameCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameCamera.h; sourceTree = "<group>"; };
 		9FED8CDFB3D642F28A974FC9 /* Resources.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Resources.h; path = ../include/Resources.h; sourceTree = "<group>"; };
 		AA6A5E27DFFB4DB6A1077928 /* Cairo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Cairo.h; path = ../../cinder_0.8.5_mac/blocks/Cairo/include/cinder/cairo/Cairo.h; sourceTree = "<group>"; };
 		D756B7AFE4AB4AE4873DFF67 /* CinderApp.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = CinderApp.icns; path = ../resources/CinderApp.icns; sourceTree = "<group>"; };
@@ -311,6 +314,8 @@
 				9E92629318D4F8B2001AB5D6 /* GameGrid.cpp */,
 				9E92629818D50113001AB5D6 /* GameTile.h */,
 				9E92629918D50164001AB5D6 /* GameTile.cpp */,
+				9EE7AED418E2F262008A9C83 /* GameCamera.cpp */,
+				9EE7AED518E2F262008A9C83 /* GameCamera.h */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -497,6 +502,7 @@
 				8C08550A160647279CE5BCF2 /* SpaceStationKeeperApp.cpp in Sources */,
 				72ABDE3F9B0F42038A135447 /* Cairo.cpp in Sources */,
 				9E92629418D4F8B2001AB5D6 /* GameGrid.cpp in Sources */,
+				9EE7AED618E2F262008A9C83 /* GameCamera.cpp in Sources */,
 				9E92629A18D50164001AB5D6 /* GameTile.cpp in Sources */,
 				9E92628F18D48232001AB5D6 /* GameComponent.cpp in Sources */,
 				9E92629218D4EDA0001AB5D6 /* ComponentDrivenApp.cpp in Sources */,

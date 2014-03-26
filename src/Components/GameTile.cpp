@@ -27,8 +27,8 @@ GameTile::GameTile(TextureDef textureDef, int tileIndex, Vec3f offset) {
 Rectf GameTile::getFrameRect() {
   int tileXCount = (_textureDef.width / _textureDef.frameWidth);
   int tileYCount = (_textureDef.height / _textureDef.frameHeight);
-  int xIndex = tileXCount % _tileIndex;
-  int yIndex = tileYCount / _tileIndex;
+  int xIndex = _tileIndex % tileXCount;
+  int yIndex = _tileIndex / tileYCount;
   Rectf r;
   r.x1 = xIndex / (float)tileXCount;
   r.x2 = (xIndex + 1) / (float)tileXCount;
@@ -42,31 +42,34 @@ void GameTile::setup() {
   Rectf frameRect = getFrameRect();
 
   TriMesh mesh;
+  mesh.clear();
 
   mesh.appendVertex(Vec3f(0, 0, 0) + _offset); // appends the vertex
+  mesh.appendColorRgb(Color(1.0f, 1.0f, 1.0f));
   mesh.appendTexCoord(Vec2f(frameRect.x1, frameRect.y1));
   mesh.appendVertex(Vec3f(0, _textureDef.height, 0) +
                     _offset); // appends the next vertex
+  mesh.appendColorRgb(Color(1.0f, 1.0f, 1.0f));
   mesh.appendTexCoord(Vec2f(frameRect.x1, frameRect.y2));
   mesh.appendVertex(Vec3f(_textureDef.width, _textureDef.height, 0) + _offset);
+  mesh.appendColorRgb(Color(1.0f, 1.0f, 1.0f));
   mesh.appendTexCoord(Vec2f(frameRect.x2, frameRect.y2));
   mesh.appendVertex(Vec3f(_textureDef.width, 0, 0) + _offset);
+  mesh.appendColorRgb(Color(1.0f, 1.0f, 1.0f));
   mesh.appendTexCoord(Vec2f(frameRect.x2, frameRect.y1));
 
-  // get the index of the vertex. not necessary with this example, but good
-  // practice
-  int vIdx0 = mesh.getNumVertices() - 4;
-  int vIdx1 = mesh.getNumVertices() - 3;
-  int vIdx2 = mesh.getNumVertices() - 2;
-  int vIdx3 = mesh.getNumVertices() - 1;
+  int vert0 = mesh.getNumVertices() - 4;
+  int vert1 = mesh.getNumVertices() - 1;
+  int vert2 = mesh.getNumVertices() - 2;
+  int vert3 = mesh.getNumVertices() - 3;
 
-  // now create the triangles from the vertices
-  mesh.appendTriangle(vIdx0, vIdx1, vIdx2);
-  mesh.appendTriangle(vIdx0, vIdx2, vIdx3);
+  mesh.appendTriangle(vert0, vert1, vert3);
+  mesh.appendTriangle(vert3, vert1, vert2);
 
   mesh.recalculateNormals();
+  mesh.calcBoundingBox();
 
-  _currentMesh = &mesh;
+  _currentMesh = mesh;
 }
 
-void GameTile::draw() { gl::draw(*_currentMesh); }
+void GameTile::draw() { gl::draw(_currentMesh); }
