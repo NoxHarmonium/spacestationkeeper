@@ -27,7 +27,7 @@ struct GameDef {
         "/Users/seandawson/Development/spacestationkeeper/xcode/build/Debug/"
         "SpaceStationKeeper.app/Contents/Resources/texturedef.yaml");
 
-    cout << "TD address: " << (uint) & td;
+    // cout << "TD address: " << (uint) & td;
 
     GameDef def = GameDef();
     def.width = 20;
