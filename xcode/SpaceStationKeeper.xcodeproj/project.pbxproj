@@ -24,6 +24,9 @@
 		9E92629418D4F8B2001AB5D6 /* GameGrid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E92629318D4F8B2001AB5D6 /* GameGrid.cpp */; };
 		9E92629A18D50164001AB5D6 /* GameTile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E92629918D50164001AB5D6 /* GameTile.cpp */; };
 		9E94D8EB18D122BE0032FDC3 /* GuiManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E94D8EA18D122BE0032FDC3 /* GuiManager.cpp */; };
+		9EA4A77F18E26CCF005D069F /* TextureDef.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EA4A77E18E26CCF005D069F /* TextureDef.cpp */; };
+		9EA4A78718E27CB7005D069F /* texturedef.yaml in Resources */ = {isa = PBXBuildFile; fileRef = 9EA4A78518E27CB7005D069F /* texturedef.yaml */; };
+		9EA4A78818E27CB7005D069F /* tileset_corridor.png in Resources */ = {isa = PBXBuildFile; fileRef = 9EA4A78618E27CB7005D069F /* tileset_corridor.png */; };
 		F6A27D521F144FE2BE32FA8A /* libfmodex.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 196E2B05CC274906BAD04564 /* libfmodex.dylib */; };
 /* End PBXBuildFile section */
 
@@ -69,6 +72,45 @@
 		9E92629918D50164001AB5D6 /* GameTile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameTile.cpp; sourceTree = "<group>"; };
 		9E94D8E918D122320032FDC3 /* GuiManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuiManager.h; sourceTree = "<group>"; };
 		9E94D8EA18D122BE0032FDC3 /* GuiManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GuiManager.cpp; sourceTree = "<group>"; };
+		9EA4A75718E26CB0005D069F /* anchor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = anchor.h; sourceTree = "<group>"; };
+		9EA4A75818E26CB0005D069F /* binary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = binary.h; sourceTree = "<group>"; };
+		9EA4A75A18E26CB0005D069F /* anchordict.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = anchordict.h; sourceTree = "<group>"; };
+		9EA4A75B18E26CB0005D069F /* graphbuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = graphbuilder.h; sourceTree = "<group>"; };
+		9EA4A75C18E26CB0005D069F /* dll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dll.h; sourceTree = "<group>"; };
+		9EA4A75D18E26CB0005D069F /* emitfromevents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = emitfromevents.h; sourceTree = "<group>"; };
+		9EA4A75E18E26CB0005D069F /* emitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = emitter.h; sourceTree = "<group>"; };
+		9EA4A75F18E26CB0005D069F /* emitterdef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = emitterdef.h; sourceTree = "<group>"; };
+		9EA4A76018E26CB0005D069F /* emittermanip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = emittermanip.h; sourceTree = "<group>"; };
+		9EA4A76118E26CB0005D069F /* eventhandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eventhandler.h; sourceTree = "<group>"; };
+		9EA4A76218E26CB0005D069F /* exceptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = exceptions.h; sourceTree = "<group>"; };
+		9EA4A76318E26CB0005D069F /* mark.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mark.h; sourceTree = "<group>"; };
+		9EA4A76518E26CB0005D069F /* convert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = convert.h; sourceTree = "<group>"; };
+		9EA4A76718E26CB0005D069F /* bool_type.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bool_type.h; sourceTree = "<group>"; };
+		9EA4A76818E26CB0005D069F /* impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = impl.h; sourceTree = "<group>"; };
+		9EA4A76918E26CB0005D069F /* iterator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iterator.h; sourceTree = "<group>"; };
+		9EA4A76A18E26CB0005D069F /* iterator_fwd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iterator_fwd.h; sourceTree = "<group>"; };
+		9EA4A76B18E26CB0005D069F /* memory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = memory.h; sourceTree = "<group>"; };
+		9EA4A76C18E26CB0005D069F /* node.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = node.h; sourceTree = "<group>"; };
+		9EA4A76D18E26CB0005D069F /* node_data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = node_data.h; sourceTree = "<group>"; };
+		9EA4A76E18E26CB0005D069F /* node_iterator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = node_iterator.h; sourceTree = "<group>"; };
+		9EA4A76F18E26CB0005D069F /* node_ref.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = node_ref.h; sourceTree = "<group>"; };
+		9EA4A77018E26CB0005D069F /* emit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = emit.h; sourceTree = "<group>"; };
+		9EA4A77118E26CB0005D069F /* impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = impl.h; sourceTree = "<group>"; };
+		9EA4A77218E26CB0005D069F /* iterator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iterator.h; sourceTree = "<group>"; };
+		9EA4A77318E26CB0005D069F /* node.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = node.h; sourceTree = "<group>"; };
+		9EA4A77418E26CB0005D069F /* parse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = parse.h; sourceTree = "<group>"; };
+		9EA4A77518E26CB0005D069F /* ptr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ptr.h; sourceTree = "<group>"; };
+		9EA4A77618E26CB0005D069F /* type.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = type.h; sourceTree = "<group>"; };
+		9EA4A77718E26CB0005D069F /* noncopyable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = noncopyable.h; sourceTree = "<group>"; };
+		9EA4A77818E26CB0005D069F /* null.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = null.h; sourceTree = "<group>"; };
+		9EA4A77918E26CB0005D069F /* ostream_wrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ostream_wrapper.h; sourceTree = "<group>"; };
+		9EA4A77A18E26CB0005D069F /* parser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = parser.h; sourceTree = "<group>"; };
+		9EA4A77B18E26CB0005D069F /* stlemitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stlemitter.h; sourceTree = "<group>"; };
+		9EA4A77C18E26CB0005D069F /* traits.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = traits.h; sourceTree = "<group>"; };
+		9EA4A77D18E26CB0005D069F /* yaml.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = yaml.h; sourceTree = "<group>"; };
+		9EA4A77E18E26CCF005D069F /* TextureDef.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TextureDef.cpp; sourceTree = "<group>"; };
+		9EA4A78518E27CB7005D069F /* texturedef.yaml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = texturedef.yaml; sourceTree = "<group>"; };
+		9EA4A78618E27CB7005D069F /* tileset_corridor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tileset_corridor.png; sourceTree = "<group>"; };
 		9FED8CDFB3D642F28A974FC9 /* Resources.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Resources.h; path = ../include/Resources.h; sourceTree = "<group>"; };
 		AA6A5E27DFFB4DB6A1077928 /* Cairo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Cairo.h; path = ../../cinder_0.8.5_mac/blocks/Cairo/include/cinder/cairo/Cairo.h; sourceTree = "<group>"; };
 		D756B7AFE4AB4AE4873DFF67 /* CinderApp.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = CinderApp.icns; path = ../resources/CinderApp.icns; sourceTree = "<group>"; };
@@ -185,6 +227,7 @@
 		29B97314FDCFA39411CA2CEA /* SpaceStationKeeper */ = {
 			isa = PBXGroup;
 			children = (
+				9EA4A78318E27CB7005D069F /* assets */,
 				01B97315FEAEA392516A2CEA /* Blocks */,
 				29B97315FDCFA39411CA2CEA /* Headers */,
 				080E96DDFE201D6D7F000001 /* Source */,
@@ -198,6 +241,7 @@
 		29B97315FDCFA39411CA2CEA /* Headers */ = {
 			isa = PBXGroup;
 			children = (
+				9EA4A75618E26C51005D069F /* yaml-cpp */,
 				9FED8CDFB3D642F28A974FC9 /* Resources.h */,
 				EFED7241AD0D4FD2818B887F /* SpaceStationKeeper_Prefix.pch */,
 			);
@@ -276,6 +320,7 @@
 			children = (
 				9E92629618D4F959001AB5D6 /* GameDef.h */,
 				9E21C4B118DA086700E927D6 /* TextureDef.h */,
+				9EA4A77E18E26CCF005D069F /* TextureDef.cpp */,
 			);
 			path = DataStructures;
 			sourceTree = "<group>";
@@ -288,6 +333,90 @@
 			);
 			name = Gui;
 			path = ../src/Gui;
+			sourceTree = "<group>";
+		};
+		9EA4A75618E26C51005D069F /* yaml-cpp */ = {
+			isa = PBXGroup;
+			children = (
+				9EA4A75718E26CB0005D069F /* anchor.h */,
+				9EA4A75818E26CB0005D069F /* binary.h */,
+				9EA4A75918E26CB0005D069F /* contrib */,
+				9EA4A75C18E26CB0005D069F /* dll.h */,
+				9EA4A75D18E26CB0005D069F /* emitfromevents.h */,
+				9EA4A75E18E26CB0005D069F /* emitter.h */,
+				9EA4A75F18E26CB0005D069F /* emitterdef.h */,
+				9EA4A76018E26CB0005D069F /* emittermanip.h */,
+				9EA4A76118E26CB0005D069F /* eventhandler.h */,
+				9EA4A76218E26CB0005D069F /* exceptions.h */,
+				9EA4A76318E26CB0005D069F /* mark.h */,
+				9EA4A76418E26CB0005D069F /* node */,
+				9EA4A77718E26CB0005D069F /* noncopyable.h */,
+				9EA4A77818E26CB0005D069F /* null.h */,
+				9EA4A77918E26CB0005D069F /* ostream_wrapper.h */,
+				9EA4A77A18E26CB0005D069F /* parser.h */,
+				9EA4A77B18E26CB0005D069F /* stlemitter.h */,
+				9EA4A77C18E26CB0005D069F /* traits.h */,
+				9EA4A77D18E26CB0005D069F /* yaml.h */,
+			);
+			path = "yaml-cpp";
+			sourceTree = "<group>";
+		};
+		9EA4A75918E26CB0005D069F /* contrib */ = {
+			isa = PBXGroup;
+			children = (
+				9EA4A75A18E26CB0005D069F /* anchordict.h */,
+				9EA4A75B18E26CB0005D069F /* graphbuilder.h */,
+			);
+			path = contrib;
+			sourceTree = "<group>";
+		};
+		9EA4A76418E26CB0005D069F /* node */ = {
+			isa = PBXGroup;
+			children = (
+				9EA4A76518E26CB0005D069F /* convert.h */,
+				9EA4A76618E26CB0005D069F /* detail */,
+				9EA4A77018E26CB0005D069F /* emit.h */,
+				9EA4A77118E26CB0005D069F /* impl.h */,
+				9EA4A77218E26CB0005D069F /* iterator.h */,
+				9EA4A77318E26CB0005D069F /* node.h */,
+				9EA4A77418E26CB0005D069F /* parse.h */,
+				9EA4A77518E26CB0005D069F /* ptr.h */,
+				9EA4A77618E26CB0005D069F /* type.h */,
+			);
+			path = node;
+			sourceTree = "<group>";
+		};
+		9EA4A76618E26CB0005D069F /* detail */ = {
+			isa = PBXGroup;
+			children = (
+				9EA4A76718E26CB0005D069F /* bool_type.h */,
+				9EA4A76818E26CB0005D069F /* impl.h */,
+				9EA4A76918E26CB0005D069F /* iterator.h */,
+				9EA4A76A18E26CB0005D069F /* iterator_fwd.h */,
+				9EA4A76B18E26CB0005D069F /* memory.h */,
+				9EA4A76C18E26CB0005D069F /* node.h */,
+				9EA4A76D18E26CB0005D069F /* node_data.h */,
+				9EA4A76E18E26CB0005D069F /* node_iterator.h */,
+				9EA4A76F18E26CB0005D069F /* node_ref.h */,
+			);
+			path = detail;
+			sourceTree = "<group>";
+		};
+		9EA4A78318E27CB7005D069F /* assets */ = {
+			isa = PBXGroup;
+			children = (
+				9EA4A78418E27CB7005D069F /* TileSets */,
+			);
+			path = assets;
+			sourceTree = "<group>";
+		};
+		9EA4A78418E27CB7005D069F /* TileSets */ = {
+			isa = PBXGroup;
+			children = (
+				9EA4A78518E27CB7005D069F /* texturedef.yaml */,
+				9EA4A78618E27CB7005D069F /* tileset_corridor.png */,
+			);
+			path = TileSets;
 			sourceTree = "<group>";
 		};
 		D9E862710DE448818340000D /* include */ = {
@@ -351,6 +480,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9EA4A78818E27CB7005D069F /* tileset_corridor.png in Resources */,
+				9EA4A78718E27CB7005D069F /* texturedef.yaml in Resources */,
 				51C21CD6D341426891EE6300 /* CinderApp.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -369,6 +500,7 @@
 				9E92629A18D50164001AB5D6 /* GameTile.cpp in Sources */,
 				9E92628F18D48232001AB5D6 /* GameComponent.cpp in Sources */,
 				9E92629218D4EDA0001AB5D6 /* ComponentDrivenApp.cpp in Sources */,
+				9EA4A77F18E26CCF005D069F /* TextureDef.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -378,6 +510,7 @@
 		C01FCF4B08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = YES;
@@ -413,6 +546,7 @@
 		C01FCF4C08A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";

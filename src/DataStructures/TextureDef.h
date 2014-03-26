@@ -9,6 +9,10 @@
 #ifndef SpaceStationKeeper_TextureDef_h
 #define SpaceStationKeeper_TextureDef_h
 
+#include "yaml.h"
+#include <iostream>
+#include <fstream>
+
 struct TextureDef {
   int width;
   int height;
@@ -16,7 +20,7 @@ struct TextureDef {
   int frameWidth;
   std::string source;
 
-  static TextureDef loadFromPath(std::string path) {}
+  static TextureDef loadFromPath(std::string path);
 };
 
 #endif

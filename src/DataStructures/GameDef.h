@@ -23,6 +23,8 @@ struct GameDef {
   int height;
 
   static GameDef GetTestBoard() {
+    TextureDef td = TextureDef::loadFromPath("Resources/texturedef.yaml");
+
     GameDef def = GameDef();
     def.width = 20;
     def.height = 20;

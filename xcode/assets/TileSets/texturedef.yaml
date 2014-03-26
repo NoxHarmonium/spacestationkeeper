@@ -1,0 +1,6 @@
+--- # Texture Def
+width:          256
+height:         256
+frameHeight:    64
+frameWidth:     64
+source:         "tileset_corridor.png"
