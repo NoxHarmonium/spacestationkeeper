@@ -12,21 +12,21 @@ using namespace ci;
 using namespace std;
 using namespace cinder::gl;
 
-GameTile::GameTile(TextureDef textureDef, int tileIndex) {
+GameTile::GameTile(TextureDef *textureDef, int tileIndex) {
   _textureDef = textureDef;
   _tileIndex = tileIndex;
   _offset = Vec3f();
 }
 
-GameTile::GameTile(TextureDef textureDef, int tileIndex, Vec3f offset) {
+GameTile::GameTile(TextureDef *textureDef, int tileIndex, Vec3f offset) {
   _textureDef = textureDef;
   _tileIndex = tileIndex;
   _offset = offset;
 }
 
 Rectf GameTile::getFrameRect() {
-  int tileXCount = (_textureDef.width / _textureDef.frameWidth);
-  int tileYCount = (_textureDef.height / _textureDef.frameHeight);
+  int tileXCount = (_textureDef->getWidth() / _textureDef->getFrameWidth());
+  int tileYCount = (_textureDef->getHeight() / _textureDef->getFrameHeight());
   int xIndex = _tileIndex % tileXCount;
   int yIndex = _tileIndex / tileYCount;
   Rectf r;
@@ -44,17 +44,18 @@ void GameTile::setup() {
   TriMesh mesh;
   mesh.clear();
 
-  mesh.appendVertex(Vec3f(0, 0, 0) + _offset); // appends the vertex
+  mesh.appendVertex(Vec3f(0, 0, 0)); // appends the vertex
   mesh.appendColorRgb(Color(1.0f, 1.0f, 1.0f));
   mesh.appendTexCoord(Vec2f(frameRect.x1, frameRect.y1));
-  mesh.appendVertex(Vec3f(0, _textureDef.height, 0) +
-                    _offset); // appends the next vertex
+  mesh.appendVertex(
+      Vec3f(0, _textureDef->getHeight(), 0)); // appends the next vertex
   mesh.appendColorRgb(Color(1.0f, 1.0f, 1.0f));
   mesh.appendTexCoord(Vec2f(frameRect.x1, frameRect.y2));
-  mesh.appendVertex(Vec3f(_textureDef.width, _textureDef.height, 0) + _offset);
+  mesh.appendVertex(
+      Vec3f(_textureDef->getWidth(), _textureDef->getHeight(), 0));
   mesh.appendColorRgb(Color(1.0f, 1.0f, 1.0f));
   mesh.appendTexCoord(Vec2f(frameRect.x2, frameRect.y2));
-  mesh.appendVertex(Vec3f(_textureDef.width, 0, 0) + _offset);
+  mesh.appendVertex(Vec3f(_textureDef->getWidth(), 0, 0));
   mesh.appendColorRgb(Color(1.0f, 1.0f, 1.0f));
   mesh.appendTexCoord(Vec2f(frameRect.x2, frameRect.y1));
 
@@ -72,4 +73,13 @@ void GameTile::setup() {
   _currentMesh = mesh;
 }
 
-void GameTile::draw() { gl::draw(_currentMesh); }
+void GameTile::draw() {
+  gl::pushMatrices();
+  gl::Texture tex = _textureDef->useTexture();
+  tex.enableAndBind();
+  gl::translate(_offset);
+  gl::draw(_currentMesh);
+  tex.unbind();
+  _textureDef->releaseTexture();
+  gl::popMatrices();
+}

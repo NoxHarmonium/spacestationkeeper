@@ -12,6 +12,7 @@
 #include "GameComponent.h"
 #include "GameDef.h"
 #include "GameTile.h"
+#include "Utils.h"
 
 using namespace std;
 

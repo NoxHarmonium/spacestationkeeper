@@ -12,18 +12,46 @@
 #include "yaml.h"
 #include "cinder/gl/gl.h"
 #include "cinder/gl/Texture.h"
+#include "AssetDefBase.h"
 #include <iostream>
 #include <fstream>
 
-class TextureDef {
-public:
-  int width;
-  int height;
-  int frameHeight;
-  int frameWidth;
-  std::string source;
+using namespace std;
+using namespace ci;
 
-  static TextureDef loadFromPath(std::string path);
+class TextureDef : public AssetDefBase {
+public:
+  TextureDef();
+  TextureDef(int width, int height, int frameHeight, int frameWidth,
+             string source);
+
+  void setValues(int width, int height, int frameHeight, int frameWidth,
+                 string source);
+  int getWidth();
+  int getHeight();
+  int getFrameHeight();
+  int getFrameWidth();
+  string getSource();
+  gl::Texture useTexture();
+  void releaseTexture();
+  void setPath(filesystem::path path);
+  filesystem::path getPath();
+
+  int getFrameCount();
+
+  // conversion from A (constructor):
+  TextureDef(const AssetDefBase &x) {}
+  // conversion from A (assignment):
+  TextureDef &operator=(const AssetDefBase &x) { return *this; }
+
+private:
+  int _width;
+  int _height;
+  int _frameHeight;
+  int _frameWidth;
+  string _source;
+  filesystem::path _path;
+  gl::Texture *_texture = nullptr;
 };
 
 #endif

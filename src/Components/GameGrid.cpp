@@ -7,20 +7,27 @@
 //
 
 #include "GameGrid.h"
+#include "FileAssetLoader.h"
 
 using namespace std;
 
 GameGrid::GameGrid(AppNative *parent) : GameComponent(parent) {}
 
 void GameGrid::setup() {
+
+  cout << "GameGrid::setup()";
+
   vector<GameTile *> tiles;
-  _gameDef = GameDef::GetTestBoard();
-  for (int i = 0; i < _gameDef.width; i++) {
-    for (int j = 0; j < _gameDef.height; j++) {
-      Vec3f offset = Vec3f(i * _gameDef.tileTexture[i][j].frameWidth,
-                           j * _gameDef.tileTexture[i][j].frameHeight, -0.1f);
-      GameTile *t = new GameTile(_gameDef.tileTexture[i][j],
-                                 (int)_gameDef.tileType[i][j], offset);
+  FileAssetLoader *assetLoader = new FileAssetLoader(Utils::getResourcesPath());
+
+  _gameDef = GameDef::GetTestBoard(assetLoader, 20, 20);
+
+  for (int i = 0; i < _gameDef.getWidth(); i++) {
+    for (int j = 0; j < _gameDef.getHeight(); j++) {
+      // Vec3f offset =
+      //   Vec3f(i * _gameDef.tileTexture[i][j]->getFrameWidth(),
+      //         j * _gameDef.tileTexture[i][j]->getFrameHeight(), -0.1f);
+      GameTile *t = _gameDef.getTile(i, j);
       t->setup();
       _tileComponents.push_back(t);
     }

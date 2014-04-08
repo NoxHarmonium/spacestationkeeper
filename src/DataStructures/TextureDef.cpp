@@ -9,48 +9,53 @@
 #include "TextureDef.h"
 using namespace std;
 
-TextureDef TextureDef::loadFromPath(std::string path) {
-  ifstream ifs;
-  ifs.open(path);
-  if (ifs.is_open()) {
-    YAML::Node node = YAML::Load(ifs);
-    ifs.close();
-    TextureDef td = node.as<TextureDef>();
-
-    return td;
-  } else {
-    // Load error
-    throw new std::exception();
-  }
-}
-
-namespace YAML {
-using namespace std;
-
-template <> struct convert<TextureDef> {
-  static Node encode(const TextureDef &textureDef) {
-    throw new std::exception(); // Not implemented
-  }
-
-  static bool decode(const Node &node, TextureDef &textureDef) {
-    /* Example format
-     --- # Texture Def
-     width:          256
-     height:         256
-     frameHeight:    64
-     frameWidth:     64
-     source:         "tileset_corridor.png"
-     */
-
-    // TODO: Validate and return false if invalid.
-
-    textureDef.width = node["width"].as<int>();
-    textureDef.height = node["height"].as<int>();
-    textureDef.frameHeight = node["frameHeight"].as<int>();
-    textureDef.frameWidth = node["frameWidth"].as<int>();
-    textureDef.source = node["source"].as<string>();
-
-    return true;
-  }
+TextureDef::TextureDef() {};
+TextureDef::TextureDef(int width, int height, int frameHeight, int frameWidth,
+                       string source) {
+  setValues(width, height, frameHeight, frameWidth, source);
 };
+void TextureDef::setValues(int width, int height, int frameHeight,
+                           int frameWidth, string source) {
+  _width = width;
+  _height = height;
+  _frameHeight = frameHeight;
+  _frameWidth = frameWidth;
+  _source = source;
+};
+
+int TextureDef::getWidth() {
+  return _width;
+};
+int TextureDef::getHeight() {
+  return _height;
+};
+int TextureDef::getFrameHeight() {
+  return _frameHeight;
+};
+int TextureDef::getFrameWidth() {
+  return _frameWidth;
+};
+std::string TextureDef::getSource() {
+  return _source;
+};
+gl::Texture TextureDef::useTexture() {
+
+  if (_texture == nullptr) {
+    filesystem::path texPath = _path / _source;
+    cout << "Loading texture: " << texPath;
+    static gl::Texture newTex = gl::Texture(loadImage(texPath));
+    _texture = &newTex;
+  }
+
+  _refCount++;
+  return *_texture;
+};
+void TextureDef::releaseTexture() { _refCount--; }
+void TextureDef::setPath(filesystem::path path) { _path = path; }
+filesystem::path TextureDef::getPath() { return _path; }
+
+int TextureDef::getFrameCount() {
+  int xFrames = _width / _frameWidth;
+  int yFrames = _height / _frameHeight;
+  return xFrames * yFrames;
 }

@@ -8,7 +8,9 @@
 
 #include "Utils.h"
 
-std::string Utils::getCurrentExecutablePath() {
+using namespace boost;
+
+filesystem::path Utils::getCurrentExecutablePath() {
 #if defined __APPLE__ && __MACH__
   // Thanks: http://stackoverflow.com/a/8149380/1153203
 
@@ -23,13 +25,21 @@ std::string Utils::getCurrentExecutablePath() {
     fprintf(stderr, "    %s\n", strerror(errno));
     throw new std::exception(); // Error getting path
   } else {
-    return std::string(pathbuf);
+    return filesystem::path(pathbuf);
   }
 
 #else
-
   // TODO: Implement other OS
   throw new std::exception();
+#endif
+}
 
+filesystem::path Utils::getResourcesPath() {
+#if defined __APPLE__ && __MACH__
+  return getCurrentExecutablePath().parent_path() /
+         filesystem::path(OSX_RESOURCE_DIR);
+#else
+  // TODO: Implement other OS
+  throw new std::exception();
 #endif
 }

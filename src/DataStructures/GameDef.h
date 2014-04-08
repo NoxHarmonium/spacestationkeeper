@@ -10,48 +10,56 @@
 #define SpaceStationKeeper_GameDef_h
 
 #include "TextureDef.h"
+#include "filesystem.hpp"
+#include <stdlib.h>
+#include <map>
+#include <iostream>
+#include "MapPoint.h"
+#include "GameTile.h"
+
+using namespace std;
+using namespace boost;
 
 enum TileType { Sides0 = 0, Sides1 = 1, Sides2 = 2, Sides3 = 3, Sides4 = 4 };
 
 enum TileOrientaion { Left = 0, Up = 1, Right = 2, Down = 4 };
 
-struct GameDef {
-  TextureDef **tileTexture;
-  TileType **tileType;
-  TileOrientaion **tileOrientaion;
-  int width;
-  int height;
+class GameDef {
 
-  static GameDef GetTestBoard() {
-    TextureDef td = TextureDef::loadFromPath(
-        "/Users/seandawson/Development/spacestationkeeper/xcode/build/Debug/"
-        "SpaceStationKeeper.app/Contents/Resources/texturedef.yaml");
+public:
+  int getWidth() { return _width; }
+  int getHeight() { return _height; }
+  GameTile *getTile(int x, int y) { return _gameMap[MapPoint(x, y)]; }
+
+  static GameDef GetTestBoard(AssetLoaderBase *assetLoader, int width,
+                              int height) {
+    cout << "GameDef::GetTestBoard";
+    TextureDef *td = (TextureDef *)assetLoader->LoadAsset("tilesets/corridor");
+
+    int frameCount = td->getFrameCount();
 
     // cout << "TD address: " << (uint) & td;
 
     GameDef def = GameDef();
-    def.width = 20;
-    def.height = 20;
-    def.tileTexture = (TextureDef **)calloc(def.width, sizeof(TextureDef *));
-    def.tileType = (TileType **)calloc(def.width, sizeof(TileType *));
-    def.tileOrientaion =
-        (TileOrientaion **)calloc(def.width, sizeof(TileOrientaion *));
-
-    for (int i = 0; i < def.width; i++) {
-      def.tileTexture[i] = (TextureDef *)calloc(def.height, sizeof(TextureDef));
-      def.tileType[i] = (TileType *)calloc(def.height, sizeof(TileType));
-      def.tileOrientaion[i] =
-          (TileOrientaion *)calloc(def.height, sizeof(TileOrientaion));
-
-      for (int j = 0; j < def.height; j++) {
-        def.tileTexture[i][j] = td;
-        def.tileType[i][j] = TileType::Sides0;
-        def.tileOrientaion[i][j] = TileOrientaion::Up;
+    def._width = width;
+    def._height = height;
+    for (int i = 0; i < width; i++) {
+      for (int j = 0; j < height; j++) {
+        int frameIndex = ((i * height) + j) % frameCount;
+        Vec3f offset =
+            Vec3f(i * td->getFrameWidth(), j * td->getFrameHeight(), -1);
+        GameTile *t = new GameTile(td, frameIndex, offset);
+        def._gameMap[MapPoint(i, j)] = t;
       }
     }
 
     return def;
   };
+
+private:
+  int _width;
+  int _height;
+  map<MapPoint, GameTile *> _gameMap;
 };
 
 #endif

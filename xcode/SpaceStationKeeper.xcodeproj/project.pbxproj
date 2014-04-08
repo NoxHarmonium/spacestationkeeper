@@ -18,6 +18,7 @@
 		72ABDE3F9B0F42038A135447 /* Cairo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5269D5A9A57F40DC830099CF /* Cairo.cpp */; };
 		8C08550A160647279CE5BCF2 /* SpaceStationKeeperApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 48844111FF804C239BF69347 /* SpaceStationKeeperApp.cpp */; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		9E10054B18EA355F00EC5213 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = 9E10054A18EA355F00EC5213 /* assets */; };
 		9E21C4B318DA14DE00E927D6 /* libyaml-cpp.0.5.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E21C4B218DA14DE00E927D6 /* libyaml-cpp.0.5.1.dylib */; };
 		9E92628F18D48232001AB5D6 /* GameComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E92628E18D48232001AB5D6 /* GameComponent.cpp */; };
 		9E92629218D4EDA0001AB5D6 /* ComponentDrivenApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E92629118D4EDA0001AB5D6 /* ComponentDrivenApp.cpp */; };
@@ -25,15 +26,14 @@
 		9E92629A18D50164001AB5D6 /* GameTile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E92629918D50164001AB5D6 /* GameTile.cpp */; };
 		9E94D8EB18D122BE0032FDC3 /* GuiManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E94D8EA18D122BE0032FDC3 /* GuiManager.cpp */; };
 		9EA4A77F18E26CCF005D069F /* TextureDef.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EA4A77E18E26CCF005D069F /* TextureDef.cpp */; };
-		9EA4A78718E27CB7005D069F /* texturedef.yaml in Resources */ = {isa = PBXBuildFile; fileRef = 9EA4A78518E27CB7005D069F /* texturedef.yaml */; };
-		9EA4A78818E27CB7005D069F /* tileset_corridor.png in Resources */ = {isa = PBXBuildFile; fileRef = 9EA4A78618E27CB7005D069F /* tileset_corridor.png */; };
 		9EE7AED618E2F262008A9C83 /* GameCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EE7AED418E2F262008A9C83 /* GameCamera.cpp */; };
-		9EE7AEDA18E2FCB7008A9C83 /* AssetManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EE7AED818E2FCB7008A9C83 /* AssetManager.cpp */; };
 		9EE7AEEF18E36737008A9C83 /* Utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EE7AEED18E36737008A9C83 /* Utils.cpp */; };
 		9EE7AF0218E37281008A9C83 /* libboost_filesystem.1.55.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EE7AEFF18E37281008A9C83 /* libboost_filesystem.1.55.0.a */; };
 		9EE7AF0318E37281008A9C83 /* libcairo.1.12.16.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EE7AF0018E37281008A9C83 /* libcairo.1.12.16.a */; };
 		9EE7AF0418E37281008A9C83 /* libpng.1.5.17.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EE7AF0118E37281008A9C83 /* libpng.1.5.17.a */; };
 		9EE7AF0618E372AB008A9C83 /* libpixman.0.32.4.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EE7AF0518E372AB008A9C83 /* libpixman.0.32.4.a */; };
+		9EEE83E218E8FAEB006F2B49 /* FileAssetLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EEE83E018E8FAEB006F2B49 /* FileAssetLoader.cpp */; };
+		9EEE83E518E912E9006F2B49 /* AssetDefConverters.h in Sources */ = {isa = PBXBuildFile; fileRef = 9EEE83E318E912E9006F2B49 /* AssetDefConverters.h */; };
 		F6A27D521F144FE2BE32FA8A /* libfmodex.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 196E2B05CC274906BAD04564 /* libfmodex.dylib */; };
 /* End PBXBuildFile section */
 
@@ -66,7 +66,10 @@
 		5323E6B10EAFCA74003A9687 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = /System/Library/Frameworks/CoreVideo.framework; sourceTree = "<absolute>"; };
 		5323E6B50EAFCA7E003A9687 /* QTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QTKit.framework; path = /System/Library/Frameworks/QTKit.framework; sourceTree = "<absolute>"; };
 		8D1107320486CEB800E47090 /* SpaceStationKeeper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpaceStationKeeper.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		9E21C4B118DA086700E927D6 /* TextureDef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextureDef.h; sourceTree = "<group>"; };
+		9E10054718EA2B3400EC5213 /* AssetType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AssetType.h; sourceTree = "<group>"; };
+		9E10054A18EA355F00EC5213 /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; name = assets; path = ../assets; sourceTree = "<group>"; };
+		9E10055018F451C400EC5213 /* MapPoint.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MapPoint.h; sourceTree = "<group>"; };
+		9E21C4B118DA086700E927D6 /* TextureDef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TextureDef.h; path = ../DataStructures/TextureDef.h; sourceTree = "<group>"; };
 		9E21C4B218DA14DE00E927D6 /* libyaml-cpp.0.5.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = "libyaml-cpp.0.5.1.dylib"; sourceTree = "<group>"; };
 		9E8647A618D26265006BF520 /* GameGrid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameGrid.h; sourceTree = "<group>"; };
 		9E92628D18D47FA7001AB5D6 /* GameComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameComponent.h; sourceTree = "<group>"; };
@@ -115,13 +118,9 @@
 		9EA4A77B18E26CB0005D069F /* stlemitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stlemitter.h; sourceTree = "<group>"; };
 		9EA4A77C18E26CB0005D069F /* traits.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = traits.h; sourceTree = "<group>"; };
 		9EA4A77D18E26CB0005D069F /* yaml.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = yaml.h; sourceTree = "<group>"; };
-		9EA4A77E18E26CCF005D069F /* TextureDef.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TextureDef.cpp; sourceTree = "<group>"; };
-		9EA4A78518E27CB7005D069F /* texturedef.yaml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = texturedef.yaml; sourceTree = "<group>"; };
-		9EA4A78618E27CB7005D069F /* tileset_corridor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tileset_corridor.png; sourceTree = "<group>"; };
+		9EA4A77E18E26CCF005D069F /* TextureDef.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TextureDef.cpp; path = ../DataStructures/TextureDef.cpp; sourceTree = "<group>"; };
 		9EE7AED418E2F262008A9C83 /* GameCamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameCamera.cpp; sourceTree = "<group>"; };
 		9EE7AED518E2F262008A9C83 /* GameCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameCamera.h; sourceTree = "<group>"; };
-		9EE7AED818E2FCB7008A9C83 /* AssetManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AssetManager.cpp; sourceTree = "<group>"; };
-		9EE7AED918E2FCB7008A9C83 /* AssetManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetManager.h; sourceTree = "<group>"; };
 		9EE7AEED18E36737008A9C83 /* Utils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Utils.cpp; sourceTree = "<group>"; };
 		9EE7AEEE18E36737008A9C83 /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
 		9EE7AEF118E36A37008A9C83 /* config.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = config.hpp; sourceTree = "<group>"; };
@@ -137,6 +136,11 @@
 		9EE7AF0018E37281008A9C83 /* libcairo.1.12.16.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcairo.1.12.16.a; sourceTree = "<group>"; };
 		9EE7AF0118E37281008A9C83 /* libpng.1.5.17.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libpng.1.5.17.a; sourceTree = "<group>"; };
 		9EE7AF0518E372AB008A9C83 /* libpixman.0.32.4.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libpixman.0.32.4.a; sourceTree = "<group>"; };
+		9EEE83DD18E8F8F5006F2B49 /* AssetLoaderBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetLoaderBase.h; sourceTree = "<group>"; };
+		9EEE83DF18E8FA07006F2B49 /* AssetDefBase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AssetDefBase.h; sourceTree = "<group>"; };
+		9EEE83E018E8FAEB006F2B49 /* FileAssetLoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FileAssetLoader.cpp; sourceTree = "<group>"; };
+		9EEE83E118E8FAEB006F2B49 /* FileAssetLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileAssetLoader.h; sourceTree = "<group>"; };
+		9EEE83E318E912E9006F2B49 /* AssetDefConverters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetDefConverters.h; sourceTree = "<group>"; };
 		9FED8CDFB3D642F28A974FC9 /* Resources.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Resources.h; path = ../include/Resources.h; sourceTree = "<group>"; };
 		AA6A5E27DFFB4DB6A1077928 /* Cairo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Cairo.h; path = ../../cinder_0.8.5_mac/blocks/Cairo/include/cinder/cairo/Cairo.h; sourceTree = "<group>"; };
 		D756B7AFE4AB4AE4873DFF67 /* CinderApp.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = CinderApp.icns; path = ../resources/CinderApp.icns; sourceTree = "<group>"; };
@@ -179,6 +183,7 @@
 		080E96DDFE201D6D7F000001 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				9EEE83DB18E8F8CB006F2B49 /* AssetManagement */,
 				9EE7AED718E2FC9E008A9C83 /* Utils */,
 				9E92629518D4F915001AB5D6 /* DataStructures */,
 				9E92628C18D47F87001AB5D6 /* Components */,
@@ -258,7 +263,7 @@
 		29B97314FDCFA39411CA2CEA /* SpaceStationKeeper */ = {
 			isa = PBXGroup;
 			children = (
-				9EA4A78318E27CB7005D069F /* assets */,
+				9E10054A18EA355F00EC5213 /* assets */,
 				01B97315FEAEA392516A2CEA /* Blocks */,
 				29B97315FDCFA39411CA2CEA /* Headers */,
 				080E96DDFE201D6D7F000001 /* Source */,
@@ -357,8 +362,6 @@
 			isa = PBXGroup;
 			children = (
 				9E92629618D4F959001AB5D6 /* GameDef.h */,
-				9E21C4B118DA086700E927D6 /* TextureDef.h */,
-				9EA4A77E18E26CCF005D069F /* TextureDef.cpp */,
 			);
 			path = DataStructures;
 			sourceTree = "<group>";
@@ -440,30 +443,12 @@
 			path = detail;
 			sourceTree = "<group>";
 		};
-		9EA4A78318E27CB7005D069F /* assets */ = {
-			isa = PBXGroup;
-			children = (
-				9EA4A78418E27CB7005D069F /* TileSets */,
-			);
-			path = assets;
-			sourceTree = "<group>";
-		};
-		9EA4A78418E27CB7005D069F /* TileSets */ = {
-			isa = PBXGroup;
-			children = (
-				9EA4A78518E27CB7005D069F /* texturedef.yaml */,
-				9EA4A78618E27CB7005D069F /* tileset_corridor.png */,
-			);
-			path = TileSets;
-			sourceTree = "<group>";
-		};
 		9EE7AED718E2FC9E008A9C83 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				9EE7AED818E2FCB7008A9C83 /* AssetManager.cpp */,
-				9EE7AED918E2FCB7008A9C83 /* AssetManager.h */,
 				9EE7AEED18E36737008A9C83 /* Utils.cpp */,
 				9EE7AEEE18E36737008A9C83 /* Utils.h */,
+				9E10055018F451C400EC5213 /* MapPoint.h */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -498,6 +483,21 @@
 				9EE7AEF418E36A37008A9C83 /* utf8_codecvt_facet.hpp */,
 			);
 			path = detail;
+			sourceTree = "<group>";
+		};
+		9EEE83DB18E8F8CB006F2B49 /* AssetManagement */ = {
+			isa = PBXGroup;
+			children = (
+				9E21C4B118DA086700E927D6 /* TextureDef.h */,
+				9EA4A77E18E26CCF005D069F /* TextureDef.cpp */,
+				9EEE83DD18E8F8F5006F2B49 /* AssetLoaderBase.h */,
+				9EEE83DF18E8FA07006F2B49 /* AssetDefBase.h */,
+				9EEE83E018E8FAEB006F2B49 /* FileAssetLoader.cpp */,
+				9EEE83E118E8FAEB006F2B49 /* FileAssetLoader.h */,
+				9EEE83E318E912E9006F2B49 /* AssetDefConverters.h */,
+				9E10054718EA2B3400EC5213 /* AssetType.h */,
+			);
+			path = AssetManagement;
 			sourceTree = "<group>";
 		};
 		D9E862710DE448818340000D /* include */ = {
@@ -561,9 +561,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9EA4A78818E27CB7005D069F /* tileset_corridor.png in Resources */,
-				9EA4A78718E27CB7005D069F /* texturedef.yaml in Resources */,
 				51C21CD6D341426891EE6300 /* CinderApp.icns in Resources */,
+				9E10054B18EA355F00EC5213 /* assets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -579,12 +578,13 @@
 				72ABDE3F9B0F42038A135447 /* Cairo.cpp in Sources */,
 				9E92629418D4F8B2001AB5D6 /* GameGrid.cpp in Sources */,
 				9EE7AED618E2F262008A9C83 /* GameCamera.cpp in Sources */,
+				9EEE83E518E912E9006F2B49 /* AssetDefConverters.h in Sources */,
 				9E92629A18D50164001AB5D6 /* GameTile.cpp in Sources */,
-				9EE7AEDA18E2FCB7008A9C83 /* AssetManager.cpp in Sources */,
 				9E92628F18D48232001AB5D6 /* GameComponent.cpp in Sources */,
 				9EE7AEEF18E36737008A9C83 /* Utils.cpp in Sources */,
 				9E92629218D4EDA0001AB5D6 /* ComponentDrivenApp.cpp in Sources */,
 				9EA4A77F18E26CCF005D069F /* TextureDef.cpp in Sources */,
+				9EEE83E218E8FAEB006F2B49 /* FileAssetLoader.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -611,6 +611,12 @@
 				HEADER_SEARCH_PATHS = (
 					"\"$(CINDER_PATH)/boost\"",
 					../../cinder_0.8.5_mac/blocks/Cairo/include/macosx,
+					"/usr/local/include/**",
+				);
+				"HEADER_SEARCH_PATHS[arch=*]" = (
+					"\"$(CINDER_PATH)/boost\"",
+					../../cinder_0.8.5_mac/blocks/Cairo/include/macosx,
+					"../include/**",
 				);
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
@@ -626,6 +632,7 @@
 				);
 				PRODUCT_NAME = SpaceStationKeeper;
 				SYMROOT = ./build;
+				USER_HEADER_SEARCH_PATHS = "\"$(CINDER_PATH)/include\" ../include ../../cinder_0.8.5_mac/blocks/Cairo/include ../blocks/FMOD/include";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -647,6 +654,7 @@
 				HEADER_SEARCH_PATHS = (
 					"\"$(CINDER_PATH)/boost\"",
 					../../cinder_0.8.5_mac/blocks/Cairo/include/macosx,
+					"../include/**",
 				);
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
@@ -663,6 +671,7 @@
 				PRODUCT_NAME = SpaceStationKeeper;
 				STRIP_INSTALLED_PRODUCT = YES;
 				SYMROOT = ./build;
+				USER_HEADER_SEARCH_PATHS = "\"$(CINDER_PATH)/include\" ../include ../../cinder_0.8.5_mac/blocks/Cairo/include ../blocks/FMOD/include";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
