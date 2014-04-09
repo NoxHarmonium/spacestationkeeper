@@ -9,17 +9,17 @@
 #ifndef SpaceStationKeeper_MapPoint_h
 #define SpaceStationKeeper_MapPoint_h
 
-class MapPoint {
+struct MapPoint {
   // Thanks: http://stackoverflow.com/a/4311/1153203
-public:
-  MapPoint(int x, int y) {
-    this->x = x;
-    this->y = y;
-  }
+  MapPoint(int x, int y) : x(x), y(y) {}
   int x;
   int y;
   bool operator<(const MapPoint &other) const {
-    return (x < other.x && y < other.y);
+    return std::tie(x, y) < std::tie(other.x, other.y);
+  }
+
+  bool operator==(const MapPoint &other) const {
+    return (x == other.x && y == other.y);
   }
 };
 

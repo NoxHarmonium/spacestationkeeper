@@ -35,9 +35,10 @@ void GameGrid::setup() {
 }
 
 void GameGrid::draw() {
-  glPushMatrix();
+
   for (auto &tile : _tileComponents) {
+    glPushMatrix();
     tile->draw();
+    glPopMatrix();
   }
-  glPopMatrix();
 }

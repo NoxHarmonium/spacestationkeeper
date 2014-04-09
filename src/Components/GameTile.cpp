@@ -74,12 +74,12 @@ void GameTile::setup() {
 }
 
 void GameTile::draw() {
-  gl::pushMatrices();
+  // gl::pushMatrices();
   gl::Texture tex = _textureDef->useTexture();
   tex.enableAndBind();
   gl::translate(_offset);
   gl::draw(_currentMesh);
   tex.unbind();
   _textureDef->releaseTexture();
-  gl::popMatrices();
+  // gl::popMatrices();
 }
