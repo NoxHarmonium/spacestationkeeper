@@ -47,9 +47,10 @@ public:
       for (int j = 0; j < height; j++) {
         int frameIndex = ((i * height) + j) % frameCount;
         Vec3f offset =
-            Vec3f(i * td->getFrameWidth(), j * td->getFrameHeight(), -1);
+            Vec3f(i * td->getFrameWidth(), j * td->getFrameHeight(), 0);
         GameTile *t = new GameTile(td, frameIndex, offset);
         def._gameMap[MapPoint(i, j)] = t;
+        // cout << "create: (" << i << "," << j << "): " << t << endl;
       }
     }
 

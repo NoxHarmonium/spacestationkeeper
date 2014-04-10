@@ -16,12 +16,12 @@
 class GameCamera : public GameComponent {
 public:
   GameCamera(AppNative *parent);
-  void Setup();
-  void Update();
-  void Draw();
+  void setup();
+  void update();
+  void draw();
 
 private:
-  ci::CameraOrtho _currentCam;
+  ci::CameraOrtho _camera;
 };
 
 #endif /* defined(__SpaceStationKeeper__Camera__) */

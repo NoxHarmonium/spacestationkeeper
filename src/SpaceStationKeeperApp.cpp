@@ -15,8 +15,10 @@ using namespace cinder::cairo;
 class SpaceStationKeeperApp : public ComponentDrivenApp {
 
 public:
+  void prepareSettings(Settings *settings);
   void setup();
   void draw();
+  void resize();
 
 private:
   GuiManager *_guiManager;
@@ -24,15 +26,26 @@ private:
   GameCamera *_camera;
 };
 
+void SpaceStationKeeperApp::prepareSettings(Settings *settings) {
+  settings->setFrameRate(60);
+}
+
+void SpaceStationKeeperApp::resize() {
+  // setup(); // reset app
+  ComponentDrivenApp::resize();
+}
+
 void SpaceStationKeeperApp::setup() {
   // Register all the components that will be sent app events
+  _camera = new GameCamera(this);
   _gameGrid = new GameGrid(this);
   _guiManager = new GuiManager(this);
-  _camera = new GameCamera(this);
 
   RegisterComponent(_camera);
   RegisterComponent(_gameGrid);
   RegisterComponent(_guiManager);
+
+  gl::enableAlphaBlending();
 
   // Make sure that components get setup
   ComponentDrivenApp::setup();
@@ -40,8 +53,10 @@ void SpaceStationKeeperApp::setup() {
 
 void SpaceStationKeeperApp::draw() {
   // clear out the window with black
-  gl::clear(Color(0, 0, 0));
-  gl::enableAlphaBlending();
+  gl::clear(Color(0, 0, 0), true);
+
+  gl::enableDepthRead();
+  gl::enableDepthWrite();
   // Make sure that the components get drawn
   ComponentDrivenApp::draw();
 }

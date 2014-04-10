@@ -48,14 +48,14 @@ void GameTile::setup() {
   mesh.appendColorRgb(Color(1.0f, 1.0f, 1.0f));
   mesh.appendTexCoord(Vec2f(frameRect.x1, frameRect.y1));
   mesh.appendVertex(
-      Vec3f(0, _textureDef->getHeight(), 0)); // appends the next vertex
+      Vec3f(0, _textureDef->getFrameHeight(), 0)); // appends the next vertex
   mesh.appendColorRgb(Color(1.0f, 1.0f, 1.0f));
   mesh.appendTexCoord(Vec2f(frameRect.x1, frameRect.y2));
   mesh.appendVertex(
-      Vec3f(_textureDef->getWidth(), _textureDef->getHeight(), 0));
+      Vec3f(_textureDef->getFrameWidth(), _textureDef->getFrameHeight(), 0));
   mesh.appendColorRgb(Color(1.0f, 1.0f, 1.0f));
   mesh.appendTexCoord(Vec2f(frameRect.x2, frameRect.y2));
-  mesh.appendVertex(Vec3f(_textureDef->getWidth(), 0, 0));
+  mesh.appendVertex(Vec3f(_textureDef->getFrameWidth(), 0, 0));
   mesh.appendColorRgb(Color(1.0f, 1.0f, 1.0f));
   mesh.appendTexCoord(Vec2f(frameRect.x2, frameRect.y1));
 
