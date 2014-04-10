@@ -15,6 +15,7 @@
 #include "AssetDefBase.h"
 #include <iostream>
 #include <fstream>
+#include "Passibility.h"
 
 using namespace std;
 using namespace ci;
@@ -36,6 +37,8 @@ public:
   void releaseTexture();
   void setPath(filesystem::path path);
   filesystem::path getPath();
+  Passibility getPassiblity(int frameNumber);
+  void setPassiblity(int frameNumber, Passibility passability);
 
   int getFrameCount();
 
@@ -52,6 +55,7 @@ private:
   string _source;
   filesystem::path _path;
   gl::Texture *_texture = nullptr;
+  Passibility *_passibilities;
 };
 
 #endif

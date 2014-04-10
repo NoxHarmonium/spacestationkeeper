@@ -82,6 +82,7 @@
 		9E92629918D50164001AB5D6 /* GameTile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameTile.cpp; sourceTree = "<group>"; };
 		9E94D8E918D122320032FDC3 /* GuiManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuiManager.h; sourceTree = "<group>"; };
 		9E94D8EA18D122BE0032FDC3 /* GuiManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GuiManager.cpp; sourceTree = "<group>"; };
+		9EA476C718F648D300C6BD1D /* Passibility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Passibility.h; sourceTree = "<group>"; };
 		9EA4A75718E26CB0005D069F /* anchor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = anchor.h; sourceTree = "<group>"; };
 		9EA4A75818E26CB0005D069F /* binary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = binary.h; sourceTree = "<group>"; };
 		9EA4A75A18E26CB0005D069F /* anchordict.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = anchordict.h; sourceTree = "<group>"; };
@@ -183,6 +184,7 @@
 		080E96DDFE201D6D7F000001 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				9EA476C618F648B700C6BD1D /* GameCore */,
 				9EEE83DB18E8F8CB006F2B49 /* AssetManagement */,
 				9EE7AED718E2FC9E008A9C83 /* Utils */,
 				9E92629518D4F915001AB5D6 /* DataStructures */,
@@ -374,6 +376,14 @@
 			);
 			name = Gui;
 			path = ../src/Gui;
+			sourceTree = "<group>";
+		};
+		9EA476C618F648B700C6BD1D /* GameCore */ = {
+			isa = PBXGroup;
+			children = (
+				9EA476C718F648D300C6BD1D /* Passibility.h */,
+			);
+			path = GameCore;
 			sourceTree = "<group>";
 		};
 		9EA4A75618E26C51005D069F /* yaml-cpp */ = {

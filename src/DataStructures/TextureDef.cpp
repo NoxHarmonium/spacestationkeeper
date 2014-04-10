@@ -21,6 +21,9 @@ void TextureDef::setValues(int width, int height, int frameHeight,
   _frameHeight = frameHeight;
   _frameWidth = frameWidth;
   _source = source;
+  _passibilities = (Passibility *)calloc(
+      sizeof(Passibility),
+      getFrameCount()); // TODO: better c++ dynamic array? Also destructor
 };
 
 int TextureDef::getWidth() {
@@ -58,4 +61,17 @@ int TextureDef::getFrameCount() {
   int xFrames = _width / _frameWidth;
   int yFrames = _height / _frameHeight;
   return xFrames * yFrames;
+}
+
+Passibility TextureDef::getPassiblity(int frameNumber) {
+  if (frameNumber < 0 || frameNumber >= getFrameCount() - 1) {
+    throw new std::exception(); // Out of bounds
+  }
+  return _passibilities[frameNumber];
+}
+void TextureDef::setPassiblity(int frameNumber, Passibility passability) {
+  if (frameNumber < 0 || frameNumber >= getFrameCount() - 1) {
+    throw new std::exception(); // Out of bounds
+  }
+  _passibilities[frameNumber] = passability;
 }

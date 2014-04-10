@@ -9,6 +9,7 @@
 #include "yaml.h"
 #include "TextureDef.h"
 #include "AssetType.h"
+#include "Passibility.h"
 
 namespace YAML {
 using namespace std;
@@ -33,6 +34,11 @@ template <> struct convert<TextureDef> {
     int frameHeight = node["frameHeight"].as<int>();
     int frameWidth = node["frameWidth"].as<int>();
     string source = node["source"].as<string>();
+    if (node["passibility"]) {
+      for (auto &pRef : node["passibility"]) {
+        // TODO: Code to parse passibility
+      }
+    }
     // gl::Texture texture = loadImage(source);
 
     // cout << "Deserialising TextureDef..." << endl;
