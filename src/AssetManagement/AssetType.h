@@ -9,10 +9,10 @@
 #ifndef SpaceStationKeeper_AssetType_h
 #define SpaceStationKeeper_AssetType_h
 
-#define ASSET_TEXTURE   "Texture"
-#define ASSET_AUDIO     "Audio"
-#define ASSET_UNKNOWN   "Unknown"
+#define ASSET_TEXTURE "Texture"
+#define ASSET_AUDIO "Audio"
+#define ASSET_UNKNOWN "Unknown"
 
-enum AssetType { Texture, Audio, Unknown };
+enum AssetType { Unknown, Texture, Audio };
 
 #endif

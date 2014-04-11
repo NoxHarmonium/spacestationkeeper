@@ -6,20 +6,20 @@ height:         256
 frameHeight:    64
 frameWidth:     64
 source:         tileset_corridor.png
-passability:
-    0: NESW
-    1: NSW
-    2: ESW
-    3: NES
-    4: NEW
-    5: NS
-    6: EW
-    7: W
-    8: N
-    9: E
-    10: S
-    11: -
-    12: -
-    13: -
-    14: -
-    15: -
+passibility:
+    0: "NESW"
+    1: "NSW"
+    2: "ESW"
+    3: "NES"
+    4: "NEW"
+    5: "NS"
+    6: "EW"
+    7: "W"
+    8: "N"
+    9: "E"
+    10: "S"
+    11: "-"
+    12: "-"
+    13: "-"
+    14: "-"
+    15: "-"

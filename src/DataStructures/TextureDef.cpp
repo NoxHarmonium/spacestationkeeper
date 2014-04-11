@@ -64,13 +64,13 @@ int TextureDef::getFrameCount() {
 }
 
 Passibility TextureDef::getPassiblity(int frameNumber) {
-  if (frameNumber < 0 || frameNumber >= getFrameCount() - 1) {
+  if (frameNumber < 0 || frameNumber >= getFrameCount()) {
     throw new std::exception(); // Out of bounds
   }
   return _passibilities[frameNumber];
 }
 void TextureDef::setPassiblity(int frameNumber, Passibility passability) {
-  if (frameNumber < 0 || frameNumber >= getFrameCount() - 1) {
+  if (frameNumber < 0 || frameNumber >= getFrameCount()) {
     throw new std::exception(); // Out of bounds
   }
   _passibilities[frameNumber] = passability;

@@ -43,3 +43,15 @@ filesystem::path Utils::getResourcesPath() {
   throw new std::exception();
 #endif
 }
+
+std::string Utils::strToUpper(std::string inputString) {
+  std::string s = std::string(inputString);
+  for (auto &c : s)
+    c = toupper(c);
+  return s;
+}
+
+BOOL Utils::existsIn(std::string sourceString, std::string searchString) {
+  return strToUpper(sourceString).find(strToUpper(searchString)) !=
+         std::string::npos;
+}

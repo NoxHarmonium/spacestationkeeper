@@ -22,6 +22,8 @@ class Utils {
 public:
   static filesystem::path getCurrentExecutablePath();
   static filesystem::path getResourcesPath();
+  static BOOL existsIn(std::string sourceString, std::string searchString);
+  static std::string strToUpper(std::string inputString);
 };
 
 #endif /* defined(__SpaceStationKeeper__Utils__) */

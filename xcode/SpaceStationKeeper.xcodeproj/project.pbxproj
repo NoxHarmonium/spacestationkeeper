@@ -25,6 +25,7 @@
 		9E92629418D4F8B2001AB5D6 /* GameGrid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E92629318D4F8B2001AB5D6 /* GameGrid.cpp */; };
 		9E92629A18D50164001AB5D6 /* GameTile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E92629918D50164001AB5D6 /* GameTile.cpp */; };
 		9E94D8EB18D122BE0032FDC3 /* GuiManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E94D8EA18D122BE0032FDC3 /* GuiManager.cpp */; };
+		9EA476CA18F7589A00C6BD1D /* EnumHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EA476C818F7589A00C6BD1D /* EnumHelper.cpp */; };
 		9EA4A77F18E26CCF005D069F /* TextureDef.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EA4A77E18E26CCF005D069F /* TextureDef.cpp */; };
 		9EE7AED618E2F262008A9C83 /* GameCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EE7AED418E2F262008A9C83 /* GameCamera.cpp */; };
 		9EE7AEEF18E36737008A9C83 /* Utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EE7AEED18E36737008A9C83 /* Utils.cpp */; };
@@ -83,6 +84,8 @@
 		9E94D8E918D122320032FDC3 /* GuiManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuiManager.h; sourceTree = "<group>"; };
 		9E94D8EA18D122BE0032FDC3 /* GuiManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GuiManager.cpp; sourceTree = "<group>"; };
 		9EA476C718F648D300C6BD1D /* Passibility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Passibility.h; sourceTree = "<group>"; };
+		9EA476C818F7589A00C6BD1D /* EnumHelper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EnumHelper.cpp; sourceTree = "<group>"; };
+		9EA476C918F7589A00C6BD1D /* EnumHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnumHelper.h; sourceTree = "<group>"; };
 		9EA4A75718E26CB0005D069F /* anchor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = anchor.h; sourceTree = "<group>"; };
 		9EA4A75818E26CB0005D069F /* binary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = binary.h; sourceTree = "<group>"; };
 		9EA4A75A18E26CB0005D069F /* anchordict.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = anchordict.h; sourceTree = "<group>"; };
@@ -459,6 +462,8 @@
 				9EE7AEED18E36737008A9C83 /* Utils.cpp */,
 				9EE7AEEE18E36737008A9C83 /* Utils.h */,
 				9E10055018F451C400EC5213 /* MapPoint.h */,
+				9EA476C818F7589A00C6BD1D /* EnumHelper.cpp */,
+				9EA476C918F7589A00C6BD1D /* EnumHelper.h */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -588,6 +593,7 @@
 				72ABDE3F9B0F42038A135447 /* Cairo.cpp in Sources */,
 				9E92629418D4F8B2001AB5D6 /* GameGrid.cpp in Sources */,
 				9EE7AED618E2F262008A9C83 /* GameCamera.cpp in Sources */,
+				9EA476CA18F7589A00C6BD1D /* EnumHelper.cpp in Sources */,
 				9EEE83E518E912E9006F2B49 /* AssetDefConverters.h in Sources */,
 				9E92629A18D50164001AB5D6 /* GameTile.cpp in Sources */,
 				9E92628F18D48232001AB5D6 /* GameComponent.cpp in Sources */,

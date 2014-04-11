@@ -10,6 +10,7 @@
 #include "TextureDef.h"
 #include "AssetType.h"
 #include "Passibility.h"
+#include "Utils.h"
 
 namespace YAML {
 using namespace std;
@@ -34,14 +35,9 @@ template <> struct convert<TextureDef> {
     int frameHeight = node["frameHeight"].as<int>();
     int frameWidth = node["frameWidth"].as<int>();
     string source = node["source"].as<string>();
-    if (node["passibility"]) {
-      for (auto &pRef : node["passibility"]) {
-        // TODO: Code to parse passibility
-      }
-    }
     // gl::Texture texture = loadImage(source);
 
-    // cout << "Deserialising TextureDef..." << endl;
+    cout << "Deserialising TextureDef..." << endl;
     // cout << "width: " << width << endl;
     // cout << "height: " << height << endl;
     // cout << "frameHeight: " << frameHeight << endl;
@@ -50,6 +46,21 @@ template <> struct convert<TextureDef> {
 
     // TODO: Validate and return false if invalid.
     textureDef.setValues(width, height, frameHeight, frameWidth, source);
+
+    if (node["passibility"]) {
+      cout << "passibility node detected..." << endl;
+      Node pRef = node["passibility"];
+      // cout << "pRef: " << pRef << endl;
+      // TODO: Code to parse passibility
+      for (int i = 0; i < textureDef.getFrameCount(); i++) {
+        if (pRef[i]) {
+          Passibility p = pRef[i].as<Passibility>();
+          textureDef.setPassiblity(i, p);
+          cout << "Passibility: (" << i << "): " << p << endl;
+        }
+      }
+    }
+
     /*
         textureDef.width = node["width"].as<int>();
         textureDef.height = node["height"].as<int>();
@@ -77,6 +88,43 @@ template <> struct convert<AssetType> {
     } else {
       assetType = AssetType::Unknown;
     }
+
+    return true;
+  }
+};
+template <> struct convert<Passibility> {
+  static Node encode(const AssetType &assetType) {
+    throw new std::exception(); // Not implemented
+  }
+
+  static bool decode(const Node &node, Passibility &passibility) {
+    string passString = node.as<string>();
+
+    cout << "passString: " << passString << " ";
+
+    if (Utils::existsIn(passString, "-")) {
+      // Skip
+      cout << "-";
+      return true;
+    }
+    if (Utils::existsIn(passString, "n")) {
+      passibility.setFlag(E_Passibility::North);
+      cout << "n";
+    }
+    if (Utils::existsIn(passString, "e")) {
+      passibility.setFlag(E_Passibility::East);
+      cout << "e";
+    }
+    if (Utils::existsIn(passString, "s")) {
+      passibility.setFlag(E_Passibility::South);
+      cout << "s";
+    }
+    if (Utils::existsIn(passString, "w")) {
+      passibility.setFlag(E_Passibility::West);
+      cout << "w";
+    }
+
+    cout << " " << passibility << endl;
 
     return true;
   }
