@@ -1,0 +1,25 @@
+--- # Texture Def
+type:           Texture
+subtype:        Sprite
+width:          256
+height:         256
+frameHeight:    64
+frameWidth:     64
+source:         tileset_asteroid.png
+passibility:
+    0: "-"
+    1: "-"
+    2: "-"
+    3: "-"
+    4: "-"
+    5: "-"
+    6: "-"
+    7: "-"
+    8: "-"
+    9: "-"
+    10: "-"
+    11: "-"
+    12: "-"
+    13: "-"
+    14: "-"
+    15: "-"
