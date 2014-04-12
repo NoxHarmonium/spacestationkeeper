@@ -30,7 +30,7 @@ public:
 
   static GameDef GetTestBoard(AssetLoaderBase *assetLoader, int width,
                               int height) {
-    cout << "GameDef::GetTestBoard";
+    cout << "GameDef::GetTestBoard()" << endl;
 
     // cout << "TD address: " << (uint) & td;
 

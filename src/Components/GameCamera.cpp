@@ -8,11 +8,9 @@
 
 #include "GameCamera.h"
 
-GameCamera::GameCamera(AppNative *parent) : GameComponent(parent) {
-  cout << "--->Camera construct..." << endl;
-}
+GameCamera::GameCamera(AppNative *parent) : GameComponent(parent) {}
 
-void GameCamera::setup() { cout << "--->Camera setup..." << endl; }
+void GameCamera::setup() {}
 
 void GameCamera::update() {
   _camera.setOrtho(getWindowWidth(), 0, 0, getWindowHeight(), -1, 1);

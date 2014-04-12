@@ -48,7 +48,7 @@ template <> struct convert<TextureDef> {
     textureDef.setValues(id, width, height, frameHeight, frameWidth, source);
 
     if (node["passibility"]) {
-      cout << "passibility node detected..." << endl;
+      // cout << "passibility node detected..." << endl;
       Node pRef = node["passibility"];
       // cout << "pRef: " << pRef << endl;
       // TODO: Code to parse passibility
@@ -56,7 +56,7 @@ template <> struct convert<TextureDef> {
         if (pRef[i]) {
           Passibility p = pRef[i].as<Passibility>();
           textureDef.setPassiblity(i, p);
-          cout << "Passibility: (" << i << "): " << p << endl;
+          // cout << "Passibility: (" << i << "): " << p << endl;
         }
       }
     }
@@ -100,7 +100,7 @@ template <> struct convert<Passibility> {
   static bool decode(const Node &node, Passibility &passibility) {
     string passString = node.as<string>();
 
-    cout << "passString: " << passString << " ";
+    // cout << "passString: " << passString << " ";
 
     if (Utils::existsIn(passString, "-")) {
       // Skip
@@ -109,22 +109,18 @@ template <> struct convert<Passibility> {
     }
     if (Utils::existsIn(passString, "n")) {
       passibility.setFlag(E_Passibility::North);
-      cout << "n";
     }
     if (Utils::existsIn(passString, "e")) {
       passibility.setFlag(E_Passibility::East);
-      cout << "e";
     }
     if (Utils::existsIn(passString, "s")) {
       passibility.setFlag(E_Passibility::South);
-      cout << "s";
     }
     if (Utils::existsIn(passString, "w")) {
       passibility.setFlag(E_Passibility::West);
-      cout << "w";
     }
 
-    cout << " " << passibility << endl;
+    //    cout << " " << passibility << endl;
 
     return true;
   }

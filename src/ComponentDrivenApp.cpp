@@ -17,8 +17,6 @@ void ComponentDrivenApp::RegisterComponent(GameComponent *component) {
 // renderer has been initialized.
 void ComponentDrivenApp::setup() {
   for (auto &comp : _registeredComponents) {
-    cout << "Setup comp: " << comp << endl;
-
     comp->setup();
   }
 }

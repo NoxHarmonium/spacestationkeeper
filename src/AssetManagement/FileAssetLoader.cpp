@@ -20,7 +20,7 @@ filesystem::path FileAssetLoader::getAssetRoot() {
 }
 
 AssetDefBase *FileAssetLoader::LoadAsset(string assetRef) {
-  cout << "FileAssetLoader::LoadAsset()";
+  cout << "FileAssetLoader::LoadAsset()" << endl;
 
   filesystem::ifstream ifs;
   filesystem::path path = getAssetRoot() / filesystem::path(assetRef) /
@@ -34,7 +34,7 @@ AssetDefBase *FileAssetLoader::LoadAsset(string assetRef) {
     YAML::Node node = YAML::Load(ifs);
     ifs.close();
 
-    cout << "Yaml dump: " << YAML::Dump(node) << endl;
+    // cout << "Yaml dump: " << YAML::Dump(node) << endl;
 
     AssetType assetType = node["type"].as<AssetType>();
     switch (assetType) {
