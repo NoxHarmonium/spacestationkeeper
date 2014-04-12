@@ -8,6 +8,6 @@
 
 #include "GameComponent.h"
 
-GameComponent::GameComponent(AppNative *app) {
+GameComponent::GameComponent(ComponentDrivenApp *app) {
   parentApp = app;
 };

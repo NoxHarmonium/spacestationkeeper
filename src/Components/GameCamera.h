@@ -15,10 +15,12 @@
 
 class GameCamera : public GameComponent {
 public:
-  GameCamera(AppNative *parent);
+  GameCamera(ComponentDrivenApp *parent);
   void setup();
   void update();
   void draw();
+  void mouseMove(MouseEvent event);
+  void mouseDown(MouseEvent event);
 
 private:
   ci::CameraOrtho _camera;

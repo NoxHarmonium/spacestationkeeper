@@ -58,7 +58,7 @@ void GuiManager::cleanUp() {
   }
 }
 
-GuiManager::GuiManager(AppNative *app) : GameComponent(app) {
+GuiManager::GuiManager(ComponentDrivenApp *app) : GameComponent(app) {
   DisplayRef dispRef = parentApp->getDisplay();
 
   _cairoSurface =

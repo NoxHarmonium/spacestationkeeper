@@ -7,6 +7,7 @@
 //
 
 #include "ComponentDrivenApp.h"
+#include "GameComponent.h"
 
 //! Registers a component to receive app events
 void ComponentDrivenApp::RegisterComponent(GameComponent *component) {

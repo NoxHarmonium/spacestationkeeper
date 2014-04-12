@@ -10,11 +10,12 @@
 #define SpaceStationKeeper_ComponentManager_h
 
 #include "cinder/app/AppNative.h"
-#include "GameComponent.h"
 
 using namespace ci;
 using namespace ci::app;
 using namespace std;
+
+class GameComponent;
 
 class ComponentDrivenApp : public AppNative {
 

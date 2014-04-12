@@ -8,7 +8,7 @@
 
 #include "GameCamera.h"
 
-GameCamera::GameCamera(AppNative *parent) : GameComponent(parent) {}
+GameCamera::GameCamera(ComponentDrivenApp *parent) : GameComponent(parent) {}
 
 void GameCamera::setup() {}
 
@@ -19,3 +19,7 @@ void GameCamera::update() {
 }
 
 void GameCamera::draw() {}
+
+void GameCamera::mouseMove(MouseEvent event) {}
+
+void GameCamera::mouseDown(MouseEvent event) {}

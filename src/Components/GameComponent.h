@@ -9,7 +9,8 @@
 #ifndef SpaceStationKeeper_GameComponent_h
 #define SpaceStationKeeper_GameComponent_h
 
-#include "cinder/app/AppNative.h"
+#include "ComponentDrivenApp.h"
+#include "GameComponent.h"
 
 using namespace ci;
 using namespace ci::app;
@@ -20,7 +21,7 @@ using namespace std;
 class GameComponent {
 public:
   //! Construct a new GameComponent
-  GameComponent(AppNative *parent);
+  GameComponent(ComponentDrivenApp *parent);
 
   //! Setup the component
   virtual void setup() {}
@@ -61,7 +62,7 @@ public:
   virtual void fileDrop(FileDropEvent event) {}
 
 protected:
-  AppNative *parentApp;
+  ComponentDrivenApp *parentApp;
 };
 
 #endif

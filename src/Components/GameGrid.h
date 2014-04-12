@@ -20,7 +20,7 @@ class GameGrid : public GameComponent {
 public:
   void setup();
   void draw();
-  GameGrid(AppNative *parent);
+  GameGrid(ComponentDrivenApp *parent);
   GameTile *getTile(int x, int y) { return _gameMap[MapPoint(x, y)]; }
 
 private:

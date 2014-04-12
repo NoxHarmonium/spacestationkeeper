@@ -11,7 +11,7 @@
 
 using namespace std;
 
-GameGrid::GameGrid(AppNative *parent) : GameComponent(parent) {}
+GameGrid::GameGrid(ComponentDrivenApp *parent) : GameComponent(parent) {}
 
 void GameGrid::setup() {
 
