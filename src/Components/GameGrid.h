@@ -21,10 +21,12 @@ public:
   void setup();
   void draw();
   GameGrid(AppNative *parent);
+  GameTile *getTile(int x, int y) { return _gameMap[MapPoint(x, y)]; }
 
 private:
   GameDef _gameDef;
   vector<GameTile *> _tileComponents;
+  map<MapPoint, GameTile *> _gameMap;
 };
 
 #endif

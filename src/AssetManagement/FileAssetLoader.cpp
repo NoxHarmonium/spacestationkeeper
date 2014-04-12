@@ -41,6 +41,7 @@ AssetDefBase *FileAssetLoader::LoadAsset(string assetRef) {
     case AssetType::Texture: {
       static TextureDef tDef = node.as<TextureDef>();
       tDef.setPath(path.parent_path()); // Get directory of asset
+      SaveLoadedAsset(AssetType::Texture, tDef.getId(), &tDef);
       return (AssetDefBase *)(&tDef);
     }
     default: {
@@ -52,4 +53,6 @@ AssetDefBase *FileAssetLoader::LoadAsset(string assetRef) {
   // Load error
   throw new std::exception();
 }
-void FileAssetLoader::UnloadAsset(AssetDefBase *asset) {}
+void FileAssetLoader::UnloadAsset(AssetDefBase *asset) {
+  ClearLoadedAsset(AssetType::Texture, asset->getId());
+}

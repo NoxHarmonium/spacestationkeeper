@@ -16,41 +16,49 @@
 #include <iostream>
 #include "MapPoint.h"
 #include "GameTile.h"
+#include "GameMapSquare.h"
 
 using namespace std;
 using namespace boost;
-
-enum TileType { Sides0 = 0, Sides1 = 1, Sides2 = 2, Sides3 = 3, Sides4 = 4 };
-
-enum TileOrientaion { Left = 0, Up = 1, Right = 2, Down = 4 };
 
 class GameDef {
 
 public:
   int getWidth() { return _width; }
   int getHeight() { return _height; }
-  GameTile *getTile(int x, int y) { return _gameMap[MapPoint(x, y)]; }
+  GameMapSquare getMapSquare(MapPoint mapPoint) { return _gameMap[mapPoint]; }
 
   static GameDef GetTestBoard(AssetLoaderBase *assetLoader, int width,
                               int height) {
     cout << "GameDef::GetTestBoard";
-    TextureDef *td = (TextureDef *)assetLoader->LoadAsset("tilesets/corridor");
-
-    int frameCount = td->getFrameCount();
 
     // cout << "TD address: " << (uint) & td;
 
     GameDef def = GameDef();
     def._width = width;
     def._height = height;
-    for (int i = 0; i < width; i++) {
-      for (int j = 0; j < height; j++) {
-        int frameIndex = ((i * height) + j) % frameCount;
-        Vec3f offset =
-            Vec3f(i * td->getFrameWidth(), j * td->getFrameHeight(), 0);
-        GameTile *t = new GameTile(td, frameIndex, offset);
-        def._gameMap[MapPoint(i, j)] = t;
-        // cout << "create: (" << i << "," << j << "): " << t << endl;
+
+    for (int x = 0; x < width; x++) {
+      for (int y = 0; y < height; y++) {
+
+        // Not really passability, it is an external texture so assigns
+        // orientation
+        int passability = 0;
+        if (x == 0) {
+          passability |= E_Passibility::West;
+        }
+        if (y == 0) {
+          passability |= E_Passibility::North;
+        }
+        if (x == (width - 1)) {
+          passability |= E_Passibility::East;
+        }
+        if (y == (height - 1)) {
+          passability |= E_Passibility::South;
+        }
+
+        def._gameMap[MapPoint(x, y)] =
+            GameMapSquare(def._defaultTexId, passability);
       }
     }
 
@@ -60,7 +68,8 @@ public:
 private:
   int _width;
   int _height;
-  map<MapPoint, GameTile *> _gameMap;
+  map<MapPoint, GameMapSquare> _gameMap;
+  int _defaultTexId = 0;
 };
 
 #endif

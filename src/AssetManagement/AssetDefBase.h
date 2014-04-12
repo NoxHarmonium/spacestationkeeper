@@ -17,12 +17,12 @@ class AssetDefBase {
   friend class AssetLoaderBase;
 
 public:
-  int getRefCount() {
-    return _refCount;
-  };
+  int getRefCount() { return _refCount; }
+  int getId() { return _id; }
 
 protected:
   int _refCount = 0;
+  int _id = -1;
 };
 
 #endif

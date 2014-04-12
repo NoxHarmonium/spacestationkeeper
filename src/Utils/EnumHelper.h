@@ -18,14 +18,18 @@ class EnumHelper {
 
 public:
   EnumHelper();
+  EnumHelper(int initialValue) : _internalValue(initialValue) {};
   void setFlag(int value);
   void clearFlag(int value);
   bool hasFlag(int value);
+  int getInternalValue();
+
+  operator int() { return _internalValue; }
 
   friend std::ostream &operator<<(std::ostream &out, EnumHelper &helper);
 
 private:
-  std::unordered_set<int> _internalValue;
+  int _internalValue = 0;
 };
 
 #endif /* defined(__SpaceStationKeeper__EnumHelper__) */

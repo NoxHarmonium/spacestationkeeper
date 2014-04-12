@@ -1,4 +1,5 @@
 --- # Texture Def
+id:             1
 type:           Texture
 subtype:        Sprite
 width:          256

@@ -9,6 +9,8 @@
 #ifndef SpaceStationKeeper_TextureDef_h
 #define SpaceStationKeeper_TextureDef_h
 
+#include <stdlib.h>
+#include <map>
 #include "yaml.h"
 #include "cinder/gl/gl.h"
 #include "cinder/gl/Texture.h"
@@ -23,10 +25,10 @@ using namespace ci;
 class TextureDef : public AssetDefBase {
 public:
   TextureDef();
-  TextureDef(int width, int height, int frameHeight, int frameWidth,
+  TextureDef(int id, int width, int height, int frameHeight, int frameWidth,
              string source);
 
-  void setValues(int width, int height, int frameHeight, int frameWidth,
+  void setValues(int id, int width, int height, int frameHeight, int frameWidth,
                  string source);
   int getWidth();
   int getHeight();
@@ -39,6 +41,7 @@ public:
   filesystem::path getPath();
   Passibility getPassiblity(int frameNumber);
   void setPassiblity(int frameNumber, Passibility passability);
+  int getFrameFromPassibility(Passibility passability);
 
   int getFrameCount();
 
@@ -56,6 +59,7 @@ private:
   filesystem::path _path;
   gl::Texture *_texture = nullptr;
   Passibility *_passibilities;
+  map<int, int> _passabilityMap;
 };
 
 #endif

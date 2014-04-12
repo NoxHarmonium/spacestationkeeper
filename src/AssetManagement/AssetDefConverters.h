@@ -29,7 +29,7 @@ template <> struct convert<TextureDef> {
   frameHeight:    64
   frameWidth:     64
   source:         "tileset_corridor.png" */
-
+    int id = node["id"].as<int>();
     int width = node["width"].as<int>();
     int height = node["height"].as<int>();
     int frameHeight = node["frameHeight"].as<int>();
@@ -45,7 +45,7 @@ template <> struct convert<TextureDef> {
     // cout << "source: " << source << endl;
 
     // TODO: Validate and return false if invalid.
-    textureDef.setValues(width, height, frameHeight, frameWidth, source);
+    textureDef.setValues(id, width, height, frameHeight, frameWidth, source);
 
     if (node["passibility"]) {
       cout << "passibility node detected..." << endl;

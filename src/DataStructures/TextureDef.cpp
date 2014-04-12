@@ -10,12 +10,13 @@
 using namespace std;
 
 TextureDef::TextureDef() {};
-TextureDef::TextureDef(int width, int height, int frameHeight, int frameWidth,
-                       string source) {
-  setValues(width, height, frameHeight, frameWidth, source);
-};
-void TextureDef::setValues(int width, int height, int frameHeight,
+TextureDef::TextureDef(int id, int width, int height, int frameHeight,
+                       int frameWidth, string source) {
+  setValues(id, width, height, frameHeight, frameWidth, source);
+}
+void TextureDef::setValues(int id, int width, int height, int frameHeight,
                            int frameWidth, string source) {
+  _id = id;
   _width = width;
   _height = height;
   _frameHeight = frameHeight;
@@ -24,23 +25,12 @@ void TextureDef::setValues(int width, int height, int frameHeight,
   _passibilities = (Passibility *)calloc(
       sizeof(Passibility),
       getFrameCount()); // TODO: better c++ dynamic array? Also destructor
-};
-
-int TextureDef::getWidth() {
-  return _width;
-};
-int TextureDef::getHeight() {
-  return _height;
-};
-int TextureDef::getFrameHeight() {
-  return _frameHeight;
-};
-int TextureDef::getFrameWidth() {
-  return _frameWidth;
-};
-std::string TextureDef::getSource() {
-  return _source;
-};
+}
+int TextureDef::getWidth() { return _width; }
+int TextureDef::getHeight() { return _height; }
+int TextureDef::getFrameHeight() { return _frameHeight; }
+int TextureDef::getFrameWidth() { return _frameWidth; }
+std::string TextureDef::getSource() { return _source; }
 gl::Texture TextureDef::useTexture() {
 
   if (_texture == nullptr) {
@@ -52,7 +42,7 @@ gl::Texture TextureDef::useTexture() {
 
   _refCount++;
   return *_texture;
-};
+}
 void TextureDef::releaseTexture() { _refCount--; }
 void TextureDef::setPath(filesystem::path path) { _path = path; }
 filesystem::path TextureDef::getPath() { return _path; }
@@ -74,4 +64,13 @@ void TextureDef::setPassiblity(int frameNumber, Passibility passability) {
     throw new std::exception(); // Out of bounds
   }
   _passibilities[frameNumber] = passability;
+  _passabilityMap[passability.getInternalValue()] = frameNumber;
+}
+
+int TextureDef::getFrameFromPassibility(Passibility passability) {
+  int val = passability.getInternalValue();
+  if (_passabilityMap.count(val)) {
+    return _passabilityMap[val];
+  }
+  return 0;
 }

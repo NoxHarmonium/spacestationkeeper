@@ -11,6 +11,7 @@
 
 #include <stdlib.h>
 #include "AssetDefBase.h"
+#include "AssetType.h"
 #include "filesystem.hpp"
 
 using namespace std;
@@ -22,8 +23,16 @@ class AssetLoaderBase {
 public:
   virtual AssetDefBase *LoadAsset(string assetRef) = 0;
   virtual void UnloadAsset(AssetDefBase *asset) = 0;
+  AssetDefBase *GetLoadedAsset(AssetType assetType, int assetId);
+
+protected:
+  void SaveLoadedAsset(AssetType assetType, int assetId,
+                       AssetDefBase *assetDef);
+
+  void ClearLoadedAsset(AssetType assetType, int assetId);
 
 private:
+  map<AssetType, map<int, AssetDefBase *>> _assetMap;
   // const path _assetDefFileName = path("assetdef.yaml";
 };
 
