@@ -10,7 +10,6 @@
 #define SpaceStationKeeper_GameComponent_h
 
 #include "ComponentDrivenApp.h"
-#include "GameComponent.h"
 
 using namespace ci;
 using namespace ci::app;

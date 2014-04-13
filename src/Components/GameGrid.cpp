@@ -35,22 +35,16 @@ void GameGrid::setup() {
           _gameDef.getMapSquare(MapPoint(i, j)).getPassability());
       Vec3f offset = Vec3f(i * asteroidTd->getFrameWidth(),
                            j * asteroidTd->getFrameHeight(), 0);
-      GameTile *t = new GameTile(asteroidTd, frameIndex, offset);
+      GameTile *t =
+          new GameTile(asteroidTd, frameIndex, offset, this->parentApp);
       _gameMap[MapPoint(i, j)] = t;
-      _tileComponents.push_back(t);
 
       t->setup();
+      parentApp->RegisterComponent(t);
 
       // cout << "create: (" << i << "," << j << "): " << t << endl;
     }
   }
 }
 
-void GameGrid::draw() {
-
-  for (auto &tile : _tileComponents) {
-    glPushMatrix();
-    tile->draw();
-    glPopMatrix();
-  }
-}
+void GameGrid::draw() {}

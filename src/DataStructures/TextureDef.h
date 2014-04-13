@@ -34,6 +34,7 @@ public:
   int getHeight();
   int getFrameHeight();
   int getFrameWidth();
+  Rectf getFrameSize();
   string getSource();
   gl::Texture useTexture();
   void releaseTexture();

@@ -30,6 +30,9 @@ int TextureDef::getWidth() { return _width; }
 int TextureDef::getHeight() { return _height; }
 int TextureDef::getFrameHeight() { return _frameHeight; }
 int TextureDef::getFrameWidth() { return _frameWidth; }
+Rectf TextureDef::getFrameSize() {
+  return Rectf(0.0f, 0.0f, getFrameWidth(), getFrameHeight());
+}
 std::string TextureDef::getSource() { return _source; }
 gl::Texture TextureDef::useTexture() {
 

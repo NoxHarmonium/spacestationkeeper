@@ -27,6 +27,8 @@
 		9E94D8EB18D122BE0032FDC3 /* GuiManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E94D8EA18D122BE0032FDC3 /* GuiManager.cpp */; };
 		9EA476CA18F7589A00C6BD1D /* EnumHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EA476C818F7589A00C6BD1D /* EnumHelper.cpp */; };
 		9EA476CC18F8ABC300C6BD1D /* AssetLoaderBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EA476CB18F8ABC300C6BD1D /* AssetLoaderBase.cpp */; };
+		9EA476D618F9FEFA00C6BD1D /* SimpleMesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EA476D518F9FEFA00C6BD1D /* SimpleMesh.cpp */; };
+		9EA476D818FA024100C6BD1D /* RenderComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EA476D718FA024100C6BD1D /* RenderComponent.cpp */; };
 		9EA4A77F18E26CCF005D069F /* TextureDef.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EA4A77E18E26CCF005D069F /* TextureDef.cpp */; };
 		9EE7AED618E2F262008A9C83 /* GameCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EE7AED418E2F262008A9C83 /* GameCamera.cpp */; };
 		9EE7AEEF18E36737008A9C83 /* Utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EE7AEED18E36737008A9C83 /* Utils.cpp */; };
@@ -89,6 +91,12 @@
 		9EA476C918F7589A00C6BD1D /* EnumHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnumHelper.h; sourceTree = "<group>"; };
 		9EA476CB18F8ABC300C6BD1D /* AssetLoaderBase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AssetLoaderBase.cpp; sourceTree = "<group>"; };
 		9EA476CD18F8B00C00C6BD1D /* GameMapSquare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameMapSquare.h; sourceTree = "<group>"; };
+		9EA476CE18F98FC000C6BD1D /* Transform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Transform.h; sourceTree = "<group>"; };
+		9EA476D218F9FDC500C6BD1D /* RenderComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RenderComponent.h; sourceTree = "<group>"; };
+		9EA476D318F9FE6900C6BD1D /* BaseMesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseMesh.h; sourceTree = "<group>"; };
+		9EA476D418F9FEAF00C6BD1D /* SimpleMesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleMesh.h; sourceTree = "<group>"; };
+		9EA476D518F9FEFA00C6BD1D /* SimpleMesh.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SimpleMesh.cpp; sourceTree = "<group>"; };
+		9EA476D718FA024100C6BD1D /* RenderComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RenderComponent.cpp; sourceTree = "<group>"; };
 		9EA4A75718E26CB0005D069F /* anchor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = anchor.h; sourceTree = "<group>"; };
 		9EA4A75818E26CB0005D069F /* binary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = binary.h; sourceTree = "<group>"; };
 		9EA4A75A18E26CB0005D069F /* anchordict.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = anchordict.h; sourceTree = "<group>"; };
@@ -362,6 +370,12 @@
 				9E92629918D50164001AB5D6 /* GameTile.cpp */,
 				9EE7AED418E2F262008A9C83 /* GameCamera.cpp */,
 				9EE7AED518E2F262008A9C83 /* GameCamera.h */,
+				9EA476CE18F98FC000C6BD1D /* Transform.h */,
+				9EA476D218F9FDC500C6BD1D /* RenderComponent.h */,
+				9EA476D318F9FE6900C6BD1D /* BaseMesh.h */,
+				9EA476D418F9FEAF00C6BD1D /* SimpleMesh.h */,
+				9EA476D518F9FEFA00C6BD1D /* SimpleMesh.cpp */,
+				9EA476D718FA024100C6BD1D /* RenderComponent.cpp */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -600,6 +614,8 @@
 				9EE7AED618E2F262008A9C83 /* GameCamera.cpp in Sources */,
 				9EA476CA18F7589A00C6BD1D /* EnumHelper.cpp in Sources */,
 				9EEE83E518E912E9006F2B49 /* AssetDefConverters.h in Sources */,
+				9EA476D818FA024100C6BD1D /* RenderComponent.cpp in Sources */,
+				9EA476D618F9FEFA00C6BD1D /* SimpleMesh.cpp in Sources */,
 				9E92629A18D50164001AB5D6 /* GameTile.cpp in Sources */,
 				9EA476CC18F8ABC300C6BD1D /* AssetLoaderBase.cpp in Sources */,
 				9E92628F18D48232001AB5D6 /* GameComponent.cpp in Sources */,

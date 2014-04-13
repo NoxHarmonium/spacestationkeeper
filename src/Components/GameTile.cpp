@@ -12,21 +12,26 @@ using namespace ci;
 using namespace std;
 using namespace cinder::gl;
 
-GameTile::GameTile(TextureDef *textureDef, int tileIndex) {
-  _textureDef = textureDef;
+GameTile::GameTile(TextureDef *textureDef, int tileIndex,
+                   ComponentDrivenApp *parent)
+    : RenderComponent(parent) {
   _tileIndex = tileIndex;
-  _offset = Vec3f();
+  this->texture = textureDef;
+  this->transform.localPosition = Vec3f();
 }
 
-GameTile::GameTile(TextureDef *textureDef, int tileIndex, Vec3f offset) {
-  _textureDef = textureDef;
+GameTile::GameTile(TextureDef *textureDef, int tileIndex, Vec3f offset,
+                   ComponentDrivenApp *parent)
+    : RenderComponent(parent) {
   _tileIndex = tileIndex;
-  _offset = offset;
+  this->texture = textureDef;
+  this->transform.localPosition = offset;
 }
 
 Rectf GameTile::getFrameRect() {
-  int tileXCount = (_textureDef->getWidth() / _textureDef->getFrameWidth());
-  int tileYCount = (_textureDef->getHeight() / _textureDef->getFrameHeight());
+  int tileXCount = (this->texture->getWidth() / this->texture->getFrameWidth());
+  int tileYCount =
+      (this->texture->getHeight() / this->texture->getFrameHeight());
   int xIndex = _tileIndex % tileXCount;
   int yIndex = _tileIndex / tileYCount;
   Rectf r;
@@ -38,48 +43,6 @@ Rectf GameTile::getFrameRect() {
 }
 
 void GameTile::setup() {
-
-  Rectf frameRect = getFrameRect();
-
-  TriMesh mesh;
-  mesh.clear();
-
-  mesh.appendVertex(Vec3f(0, 0, 0)); // appends the vertex
-  mesh.appendColorRgb(Color(1.0f, 1.0f, 1.0f));
-  mesh.appendTexCoord(Vec2f(frameRect.x1, frameRect.y1));
-  mesh.appendVertex(
-      Vec3f(0, _textureDef->getFrameHeight(), 0)); // appends the next vertex
-  mesh.appendColorRgb(Color(1.0f, 1.0f, 1.0f));
-  mesh.appendTexCoord(Vec2f(frameRect.x1, frameRect.y2));
-  mesh.appendVertex(
-      Vec3f(_textureDef->getFrameWidth(), _textureDef->getFrameHeight(), 0));
-  mesh.appendColorRgb(Color(1.0f, 1.0f, 1.0f));
-  mesh.appendTexCoord(Vec2f(frameRect.x2, frameRect.y2));
-  mesh.appendVertex(Vec3f(_textureDef->getFrameWidth(), 0, 0));
-  mesh.appendColorRgb(Color(1.0f, 1.0f, 1.0f));
-  mesh.appendTexCoord(Vec2f(frameRect.x2, frameRect.y1));
-
-  int vert0 = mesh.getNumVertices() - 4;
-  int vert1 = mesh.getNumVertices() - 1;
-  int vert2 = mesh.getNumVertices() - 2;
-  int vert3 = mesh.getNumVertices() - 3;
-
-  mesh.appendTriangle(vert0, vert1, vert3);
-  mesh.appendTriangle(vert3, vert1, vert2);
-
-  mesh.recalculateNormals();
-  mesh.calcBoundingBox();
-
-  _currentMesh = mesh;
-}
-
-void GameTile::draw() {
-  // gl::pushMatrices();
-  gl::Texture tex = _textureDef->useTexture();
-  tex.enableAndBind();
-  gl::translate(_offset);
-  gl::draw(_currentMesh);
-  tex.unbind();
-  _textureDef->releaseTexture();
-  // gl::popMatrices();
+  this->mesh = SimpleMesh::GenerateQuad(this->texture->getFrameSize(),
+                                        this->getFrameRect());
 }

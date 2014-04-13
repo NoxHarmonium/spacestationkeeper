@@ -43,9 +43,7 @@ void SpaceStationKeeperApp::setup() {
 
   RegisterComponent(_camera);
   RegisterComponent(_gameGrid);
-  RegisterComponent(_guiManager);
-
-  gl::enableAlphaBlending();
+  // RegisterComponent(_guiManager); Todo: render with quads so depth works
 
   // Make sure that components get setup
   ComponentDrivenApp::setup();
@@ -55,8 +53,9 @@ void SpaceStationKeeperApp::draw() {
   // clear out the window with black
   gl::clear(Color(0, 0, 0), true);
 
-  gl::enableDepthRead();
-  gl::enableDepthWrite();
+  // gl::enableDepthRead();
+  // gl::enableDepthWrite();
+  gl::enableAlphaBlending();
   // Make sure that the components get drawn
   ComponentDrivenApp::draw();
 }

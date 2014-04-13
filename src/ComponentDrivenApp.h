@@ -63,6 +63,7 @@ public:
   virtual void fileDrop(FileDropEvent event);
 
 private:
+  vector<GameComponent *> getRegisteredComponentsCopy();
   vector<GameComponent *> _registeredComponents;
 };
 

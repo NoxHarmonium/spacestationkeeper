@@ -10,6 +10,8 @@
 #define SpaceStationKeeper_GameTile_h
 
 #include "GameComponent.h"
+#include "RenderComponent.h"
+#include "SimpleMesh.h"
 #include "cinder/gl/gl.h"
 #include "cinder/gl/Texture.h"
 #include "cinder/TriMesh.h"
@@ -18,20 +20,16 @@
 
 using namespace cinder::gl;
 
-class GameTile {
+class GameTile : public RenderComponent {
 public:
-  GameTile(TextureDef *textureDef, int tileIndex);
-  GameTile(TextureDef *textureDef, int tileIndex, Vec3f offset);
+  GameTile(TextureDef *textureDef, int tileIndex, ComponentDrivenApp *parent);
+  GameTile(TextureDef *textureDef, int tileIndex, Vec3f offset,
+           ComponentDrivenApp *parent);
   void setup();
-  void draw();
 
 private:
   Rectf getFrameRect();
-
-  TriMesh _currentMesh;
-  TextureDef *_textureDef;
   int _tileIndex;
-  Vec3f _offset;
 };
 
 #endif

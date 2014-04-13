@@ -104,7 +104,7 @@ template <> struct convert<Passibility> {
 
     if (Utils::existsIn(passString, "-")) {
       // Skip
-      cout << "-";
+      // cout << "-";
       return true;
     }
     if (Utils::existsIn(passString, "n")) {
