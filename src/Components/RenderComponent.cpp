@@ -44,6 +44,6 @@ void RenderComponent::applyTransfromRecursive(Transform *t) {
     applyTransfromRecursive(t->parent);
   }
   gl::translate(t->localPosition);
-  // gl::rotate(t->localRotation);
-  // gl::scale(t->localScale);
+  gl::rotate(t->localRotation);
+  gl::scale(t->localScale);
 }

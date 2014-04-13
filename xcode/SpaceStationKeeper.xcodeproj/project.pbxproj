@@ -281,11 +281,11 @@
 			children = (
 				9E10054A18EA355F00EC5213 /* assets */,
 				01B97315FEAEA392516A2CEA /* Blocks */,
-				29B97315FDCFA39411CA2CEA /* Headers */,
-				080E96DDFE201D6D7F000001 /* Source */,
-				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
+				29B97315FDCFA39411CA2CEA /* Headers */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
+				29B97317FDCFA39411CA2CEA /* Resources */,
+				080E96DDFE201D6D7F000001 /* Source */,
 			);
 			name = SpaceStationKeeper;
 			sourceTree = "<group>";
