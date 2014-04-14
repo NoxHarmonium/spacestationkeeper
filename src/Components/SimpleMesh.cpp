@@ -49,8 +49,8 @@ SimpleMesh *SimpleMesh::GenerateQuad(Rectf dimensions,
   mesh.appendTriangle(vert3, vert1, vert2);
 
   mesh.recalculateNormals();
-  mesh.calcBoundingBox();
 
   SimpleMesh *meshWrapper = new SimpleMesh(mesh);
+  meshWrapper->_bounds = mesh.calcBoundingBox();
   return meshWrapper;
 }

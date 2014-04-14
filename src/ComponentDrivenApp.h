@@ -23,6 +23,9 @@ public:
   //! Registers a component to receive app events
   void RegisterComponent(GameComponent *component);
 
+  //! Get a list of currently registered components
+  vector<GameComponent *> GetComponents();
+
   //! Override to perform any application setup after the Renderer has been
   // initialized.
   virtual void setup();

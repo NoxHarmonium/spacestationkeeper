@@ -14,6 +14,11 @@ void ComponentDrivenApp::RegisterComponent(GameComponent *component) {
   _registeredComponents.push_back(component);
 }
 
+//! Get a list of currently registered components
+vector<GameComponent *> ComponentDrivenApp::GetComponents() {
+  return this->_registeredComponents;
+}
+
 //! Forwards event to component to perform any application setup after the
 // renderer has been initialized.
 void ComponentDrivenApp::setup() {

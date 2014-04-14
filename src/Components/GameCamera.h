@@ -24,6 +24,7 @@ public:
 
 private:
   ci::CameraOrtho _camera;
+  Vec2f _mousePos;
 };
 
 #endif /* defined(__SpaceStationKeeper__Camera__) */

@@ -23,10 +23,26 @@ class RenderComponent : public GameComponent {
 public:
   RenderComponent(ComponentDrivenApp *parent);
 
+  bool renderEnabled = true;
+
   Transform transform;
   TextureDef *texture = nullptr;
   BaseMesh *mesh = nullptr;
 
+  virtual bool canRayCast() { return true; }
+  virtual AxisAlignedBox3f getBounds() {
+    if (mesh) {
+      glPushMatrix();
+      applyTransfromRecursive(&this->transform);
+      Matrix44f matrix;
+      glGetFloatv(GL_MODELVIEW_MATRIX, matrix);
+      AxisAlignedBox3f transBound = mesh->getBoundingBox().transformed(matrix);
+      glPopMatrix();
+
+      return transBound;
+    }
+    return AxisAlignedBox3f();
+  }
   void draw();
 
 private:

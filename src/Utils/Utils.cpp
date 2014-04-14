@@ -55,3 +55,13 @@ BOOL Utils::existsIn(std::string sourceString, std::string searchString) {
   return strToUpper(sourceString).find(strToUpper(searchString)) !=
          std::string::npos;
 }
+
+bool Utils::isInside(ci::AxisAlignedBox3f bounds, ci::Vec2f point) {
+  return (point.x > bounds.getMin().x && point.x < bounds.getMax().x &&
+          point.y > bounds.getMin().y && point.y < bounds.getMax().y);
+}
+
+bool Utils::isInside(ci::AxisAlignedBox3f bounds, ci::Vec3f point) {
+  return (Utils::isInside(bounds, point) && point.z > bounds.getMin().z &&
+          point.z < bounds.getMax().z);
+}

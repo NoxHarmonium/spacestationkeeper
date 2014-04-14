@@ -14,24 +14,26 @@ RenderComponent::RenderComponent(ComponentDrivenApp *parent)
     : GameComponent(parent) {};
 
 void RenderComponent::draw() {
-  startDraw();
-  gl::Texture t;
+  if (renderEnabled) {
+    startDraw();
+    gl::Texture t;
 
-  if (this->texture) {
-    t = this->texture->useTexture();
-    t.enableAndBind();
+    if (this->texture) {
+      t = this->texture->useTexture();
+      t.enableAndBind();
+    }
+
+    if (this->mesh) {
+      this->mesh->Render();
+    }
+
+    if (this->texture) {
+      t.unbind();
+      this->texture->releaseTexture();
+    }
+
+    endDraw();
   }
-
-  if (this->mesh) {
-    this->mesh->Render();
-  }
-
-  if (this->texture) {
-    t.unbind();
-    this->texture->releaseTexture();
-  }
-
-  endDraw();
 }
 void RenderComponent::startDraw() {
   glPushMatrix();

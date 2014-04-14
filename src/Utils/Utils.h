@@ -24,6 +24,8 @@ public:
   static filesystem::path getResourcesPath();
   static BOOL existsIn(std::string sourceString, std::string searchString);
   static std::string strToUpper(std::string inputString);
+  static bool isInside(ci::AxisAlignedBox3f bounds, ci::Vec2f point);
+  static bool isInside(ci::AxisAlignedBox3f bounds, ci::Vec3f point);
 };
 
 #endif /* defined(__SpaceStationKeeper__Utils__) */

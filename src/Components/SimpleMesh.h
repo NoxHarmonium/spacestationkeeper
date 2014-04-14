@@ -19,12 +19,13 @@ using namespace ci;
 class SimpleMesh : public BaseMesh {
 public:
   void Render();
-
+  AxisAlignedBox3f getBoundingBox() { return _bounds; }
   static SimpleMesh *GenerateQuad(Rectf dimensions, Rectf uv);
 
 private:
   SimpleMesh(TriMesh mesh);
   TriMesh _currentMesh;
+  AxisAlignedBox3f _bounds;
 };
 
 #endif

@@ -30,6 +30,8 @@
 		9EA476D618F9FEFA00C6BD1D /* SimpleMesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EA476D518F9FEFA00C6BD1D /* SimpleMesh.cpp */; };
 		9EA476D818FA024100C6BD1D /* RenderComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EA476D718FA024100C6BD1D /* RenderComponent.cpp */; };
 		9EA4A77F18E26CCF005D069F /* TextureDef.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EA4A77E18E26CCF005D069F /* TextureDef.cpp */; };
+		9EA7815118FC1B5B001D2752 /* MouseOverTrigger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EA7815018FC1B5B001D2752 /* MouseOverTrigger.cpp */; };
+		9EA7815318FC1B78001D2752 /* HighlightBehaviour.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EA7815218FC1B78001D2752 /* HighlightBehaviour.cpp */; };
 		9EE7AED618E2F262008A9C83 /* GameCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EE7AED418E2F262008A9C83 /* GameCamera.cpp */; };
 		9EE7AEEF18E36737008A9C83 /* Utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EE7AEED18E36737008A9C83 /* Utils.cpp */; };
 		9EE7AF0218E37281008A9C83 /* libboost_filesystem.1.55.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EE7AEFF18E37281008A9C83 /* libboost_filesystem.1.55.0.a */; };
@@ -37,7 +39,6 @@
 		9EE7AF0418E37281008A9C83 /* libpng.1.5.17.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EE7AF0118E37281008A9C83 /* libpng.1.5.17.a */; };
 		9EE7AF0618E372AB008A9C83 /* libpixman.0.32.4.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EE7AF0518E372AB008A9C83 /* libpixman.0.32.4.a */; };
 		9EEE83E218E8FAEB006F2B49 /* FileAssetLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EEE83E018E8FAEB006F2B49 /* FileAssetLoader.cpp */; };
-		9EEE83E518E912E9006F2B49 /* AssetDefConverters.h in Sources */ = {isa = PBXBuildFile; fileRef = 9EEE83E318E912E9006F2B49 /* AssetDefConverters.h */; };
 		F6A27D521F144FE2BE32FA8A /* libfmodex.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 196E2B05CC274906BAD04564 /* libfmodex.dylib */; };
 /* End PBXBuildFile section */
 
@@ -134,6 +135,13 @@
 		9EA4A77C18E26CB0005D069F /* traits.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = traits.h; sourceTree = "<group>"; };
 		9EA4A77D18E26CB0005D069F /* yaml.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = yaml.h; sourceTree = "<group>"; };
 		9EA4A77E18E26CCF005D069F /* TextureDef.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TextureDef.cpp; path = ../DataStructures/TextureDef.cpp; sourceTree = "<group>"; };
+		9EA7814518FB7BC8001D2752 /* Behaviour.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Behaviour.h; sourceTree = "<group>"; };
+		9EA7814718FB7E8A001D2752 /* BehaviourManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BehaviourManager.h; sourceTree = "<group>"; };
+		9EA7814918FC104A001D2752 /* Trigger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Trigger.h; sourceTree = "<group>"; };
+		9EA7814A18FC10DF001D2752 /* MouseOverTrigger.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = MouseOverTrigger.h; sourceTree = "<group>"; };
+		9EA7814D18FC1A11001D2752 /* HighlightBehaviour.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = HighlightBehaviour.h; sourceTree = "<group>"; };
+		9EA7815018FC1B5B001D2752 /* MouseOverTrigger.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MouseOverTrigger.cpp; sourceTree = "<group>"; };
+		9EA7815218FC1B78001D2752 /* HighlightBehaviour.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HighlightBehaviour.cpp; sourceTree = "<group>"; };
 		9EE7AED418E2F262008A9C83 /* GameCamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameCamera.cpp; sourceTree = "<group>"; };
 		9EE7AED518E2F262008A9C83 /* GameCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameCamera.h; sourceTree = "<group>"; };
 		9EE7AEED18E36737008A9C83 /* Utils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Utils.cpp; sourceTree = "<group>"; };
@@ -198,6 +206,8 @@
 		080E96DDFE201D6D7F000001 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				9EA7814818FC1016001D2752 /* Triggers */,
+				9EA7814418FB7B7F001D2752 /* Behaviours */,
 				9EA476C618F648B700C6BD1D /* GameCore */,
 				9EEE83DB18E8F8CB006F2B49 /* AssetManagement */,
 				9EE7AED718E2FC9E008A9C83 /* Utils */,
@@ -475,6 +485,27 @@
 			path = detail;
 			sourceTree = "<group>";
 		};
+		9EA7814418FB7B7F001D2752 /* Behaviours */ = {
+			isa = PBXGroup;
+			children = (
+				9EA7814518FB7BC8001D2752 /* Behaviour.h */,
+				9EA7814718FB7E8A001D2752 /* BehaviourManager.h */,
+				9EA7814D18FC1A11001D2752 /* HighlightBehaviour.h */,
+				9EA7815218FC1B78001D2752 /* HighlightBehaviour.cpp */,
+			);
+			path = Behaviours;
+			sourceTree = "<group>";
+		};
+		9EA7814818FC1016001D2752 /* Triggers */ = {
+			isa = PBXGroup;
+			children = (
+				9EA7814918FC104A001D2752 /* Trigger.h */,
+				9EA7814A18FC10DF001D2752 /* MouseOverTrigger.h */,
+				9EA7815018FC1B5B001D2752 /* MouseOverTrigger.cpp */,
+			);
+			path = Triggers;
+			sourceTree = "<group>";
+		};
 		9EE7AED718E2FC9E008A9C83 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -613,15 +644,16 @@
 				9E92629418D4F8B2001AB5D6 /* GameGrid.cpp in Sources */,
 				9EE7AED618E2F262008A9C83 /* GameCamera.cpp in Sources */,
 				9EA476CA18F7589A00C6BD1D /* EnumHelper.cpp in Sources */,
-				9EEE83E518E912E9006F2B49 /* AssetDefConverters.h in Sources */,
 				9EA476D818FA024100C6BD1D /* RenderComponent.cpp in Sources */,
 				9EA476D618F9FEFA00C6BD1D /* SimpleMesh.cpp in Sources */,
 				9E92629A18D50164001AB5D6 /* GameTile.cpp in Sources */,
 				9EA476CC18F8ABC300C6BD1D /* AssetLoaderBase.cpp in Sources */,
+				9EA7815318FC1B78001D2752 /* HighlightBehaviour.cpp in Sources */,
 				9E92628F18D48232001AB5D6 /* GameComponent.cpp in Sources */,
 				9EE7AEEF18E36737008A9C83 /* Utils.cpp in Sources */,
 				9E92629218D4EDA0001AB5D6 /* ComponentDrivenApp.cpp in Sources */,
 				9EA4A77F18E26CCF005D069F /* TextureDef.cpp in Sources */,
+				9EA7815118FC1B5B001D2752 /* MouseOverTrigger.cpp in Sources */,
 				9EEE83E218E8FAEB006F2B49 /* FileAssetLoader.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -22,6 +22,12 @@ public:
   //! Construct a new GameComponent
   GameComponent(ComponentDrivenApp *parent);
 
+  // Interaction methods
+  virtual bool canRayCast() { return false; }
+  virtual AxisAlignedBox3f getBounds() {
+    throw new std::exception(); // Standard GameComponent has no bounds
+  }
+
   //! Setup the component
   virtual void setup() {}
   //! Override to perform any component cleanup before exiting.

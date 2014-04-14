@@ -16,10 +16,11 @@
 
 using namespace std;
 
-class GameGrid : public GameComponent {
+class GameGrid : public RenderComponent {
 public:
   void setup();
   void draw();
+  void update();
   GameGrid(ComponentDrivenApp *parent);
   GameTile *getTile(int x, int y) { return _gameMap[MapPoint(x, y)]; }
 
