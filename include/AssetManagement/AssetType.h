@@ -10,9 +10,10 @@
 #define SpaceStationKeeper_AssetType_h
 
 #define ASSET_TEXTURE "Texture"
+#define ASSET_SHADER "Shader"
 #define ASSET_AUDIO "Audio"
 #define ASSET_UNKNOWN "Unknown"
 
-enum AssetType { Unknown, Texture, Audio };
+enum AssetType { Unknown, Texture, Shader, Audio };
 
 #endif

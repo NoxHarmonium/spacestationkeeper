@@ -19,8 +19,8 @@ SimpleMesh *SimpleMesh::GenerateQuad(Rectf dimensions,
                                      Rectf uvCoords = Rectf(0.0f, 0.0f, 1.0f,
                                                             1.0f)) {
 
-  cout << "SimpleMesh::GenerateQuad(); dims: " << dimensions
-       << " uvCoords: " << uvCoords << endl;
+  // cout << "SimpleMesh::GenerateQuad(); dims: " << dimensions
+  //     << " uvCoords: " << uvCoords << endl;
 
   TriMesh mesh;
   mesh.clear();

@@ -44,6 +44,12 @@ AssetDefBase *FileAssetLoader::LoadAsset(string assetRef) {
       SaveLoadedAsset(AssetType::Texture, tDef.getId(), &tDef);
       return (AssetDefBase *)(&tDef);
     }
+      case AssetType::Shader: {
+        static ShaderDef sDef = node.as<ShaderDef>();
+        sDef.setPath(path.parent_path()); // Get directory of asset
+        SaveLoadedAsset(AssetType::Shader, sDef.getId(), &sDef);
+        return (AssetDefBase *)(&sDef);
+      }
     default: {
       throw new Exception(); // Not implemented
     }

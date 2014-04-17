@@ -8,6 +8,7 @@
 
 #include "yaml.h"
 #include "TextureDef.h"
+#include "ShaderDef.h"
 #include "AssetType.h"
 #include "Passibility.h"
 #include "Utils.h"
@@ -73,6 +74,45 @@ template <> struct convert<TextureDef> {
   }
 };
 
+template <> struct convert<ShaderDef> {
+  static Node encode(const ShaderDef &textureDef) {
+    throw new std::exception(); // Not implemented
+  }
+
+  static bool decode(const Node &node, ShaderDef &textureDef) {
+
+    cout << "Deserialising ShaderDef... ";
+
+    int id = node["id"].as<int>();
+
+    map<ShaderDef::ShaderType, string> _filenameMap;
+
+    Node components = node["components"];
+    if (components["vertex"]) {
+      cout << "vertex ";
+      string source = components["vertex"]["source"].as<string>();
+      _filenameMap[ShaderDef::ShaderType::Vertex] = source;
+    }
+    if (components["fragment"]) {
+      cout << "fragment ";
+      string source = components["fragment"]["source"].as<string>();
+      _filenameMap[ShaderDef::ShaderType::Fragment] = source;
+    }
+    if (components["geometry"]) {
+      cout << "geometry ";
+      string source = components["geometry"]["source"].as<string>();
+      _filenameMap[ShaderDef::ShaderType::Geometry] = source;
+    }
+
+    cout << endl;
+
+    // TODO: Validate and return false if invalid.
+    textureDef.setValues(id, _filenameMap);
+
+    return true;
+  }
+};
+
 template <> struct convert<AssetType> {
   static Node encode(const AssetType &assetType) {
     throw new std::exception(); // Not implemented
@@ -85,8 +125,32 @@ template <> struct convert<AssetType> {
       assetType = AssetType::Texture;
     } else if (type.compare(ASSET_AUDIO) == 0) {
       assetType = AssetType::Audio;
+    } else if (type.compare(ASSET_SHADER) == 0) {
+      assetType = AssetType::Shader;
     } else {
       assetType = AssetType::Unknown;
+    }
+
+    return true;
+  }
+};
+
+template <> struct convert<ShaderDef::ShaderType> {
+  static Node encode(const ShaderDef::ShaderType &shaderType) {
+    throw new std::exception(); // Not implemented
+  }
+
+  static bool decode(const Node &node, ShaderDef::ShaderType &shaderType) {
+
+    string type = node.as<string>();
+    if (type.compare(SHADER_FRAGMENT) == 0) {
+      shaderType = ShaderDef::ShaderType::Fragment;
+    } else if (type.compare(SHADER_VERTEX) == 0) {
+      shaderType = ShaderDef::ShaderType::Vertex;
+    } else if (type.compare(SHADER_GEOMETERY) == 0) {
+      shaderType = ShaderDef::ShaderType::Geometry;
+    } else {
+      shaderType = ShaderDef::ShaderType::Unknown;
     }
 
     return true;

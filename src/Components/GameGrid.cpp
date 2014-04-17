@@ -11,6 +11,7 @@
 #include "MouseOverTrigger.h"
 #include "HighlightBehaviour.h"
 #include <math.h>
+#include "ShaderDef.h"
 
 using namespace std;
 
@@ -26,10 +27,13 @@ void GameGrid::setup() {
   MouseOverTrigger *mouseOverTrigger = new MouseOverTrigger(parentApp);
   parentApp->RegisterComponent(mouseOverTrigger);
 
-  _gameDef = GameDef::GetTestBoard(assetLoader, 4, 4);
+  _gameDef = GameDef::GetTestBoard(assetLoader, 10, 10);
 
   TextureDef *asteroidTd =
       (TextureDef *)assetLoader->LoadAsset("tilesets/asteroid");
+
+  ShaderDef *defaultShader =
+      (ShaderDef *)assetLoader->LoadAsset("shaders/default");
   // TextureDef *corridorTd =
   //    (TextureDef *)assetLoader->LoadAsset("tilesets/corridor");
 
@@ -43,6 +47,7 @@ void GameGrid::setup() {
                            j * asteroidTd->getFrameHeight(), 0.0f);
       GameTile *t =
           new GameTile(asteroidTd, frameIndex, offset, this->parentApp);
+      t->shader = defaultShader;
       t->transform.parent = &this->transform;
       _gameMap[MapPoint(i, j)] = t;
 

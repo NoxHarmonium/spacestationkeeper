@@ -16,19 +16,31 @@ RenderComponent::RenderComponent(ComponentDrivenApp *parent)
 void RenderComponent::draw() {
   if (renderEnabled) {
     startDraw();
-    gl::Texture t;
+    gl::Texture *t = nullptr; // TODO: Use TextureRef (shared_ptr)
+    gl::GlslProgRef p = nullptr;
 
-    if (this->texture) {
-      t = this->texture->useTexture();
-      t.enableAndBind();
+    if (this->texture && (t = this->texture->useTexture())) {
+      t->enableAndBind();
+      if (this->shader && (p = this->shader->useShader())) {
+        p->bind();
+        p->uniform("diffuseMap", 0);
+        // t->bind(0);
+      } else {
+        // t->enableAndBind();
+      }
     }
 
     if (this->mesh) {
       this->mesh->Render();
     }
 
-    if (this->texture) {
-      t.unbind();
+    if (p) {
+      p->unbind();
+      this->shader->releaseShader();
+    }
+
+    if (t) {
+      t->unbind();
       this->texture->releaseTexture();
     }
 

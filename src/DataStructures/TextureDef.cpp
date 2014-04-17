@@ -11,17 +11,17 @@ using namespace std;
 
 TextureDef::TextureDef() {};
 TextureDef::TextureDef(int id, int width, int height, int frameHeight,
-                       int frameWidth, string source) {
-  setValues(id, width, height, frameHeight, frameWidth, source);
+                       int frameWidth, string filename) {
+  setValues(id, width, height, frameHeight, frameWidth, filename);
 }
 void TextureDef::setValues(int id, int width, int height, int frameHeight,
-                           int frameWidth, string source) {
+                           int frameWidth, string filename) {
   _id = id;
   _width = width;
   _height = height;
   _frameHeight = frameHeight;
   _frameWidth = frameWidth;
-  _source = source;
+  _filename = filename;
   _passibilities = (Passibility *)calloc(
       sizeof(Passibility),
       getFrameCount()); // TODO: better c++ dynamic array? Also destructor
@@ -33,18 +33,24 @@ int TextureDef::getFrameWidth() { return _frameWidth; }
 Rectf TextureDef::getFrameSize() {
   return Rectf(0.0f, 0.0f, getFrameWidth(), getFrameHeight());
 }
-std::string TextureDef::getSource() { return _source; }
-gl::Texture TextureDef::useTexture() {
+std::string TextureDef::getFilename() { return _filename; }
+gl::Texture *TextureDef::useTexture() {
 
-  if (_texture == nullptr) {
-    filesystem::path texPath = _path / _source;
-    cout << "Loading texture: " << texPath;
-    static gl::Texture newTex = gl::Texture(loadImage(texPath));
-    _texture = &newTex;
+  if (_texture == nullptr && _shouldLoad) {
+    filesystem::path texPath = _path / _filename;
+    cout << "Loading texture: " << texPath << endl;
+    try {
+      static gl::Texture newTex = gl::Texture(loadImage(texPath));
+      _texture = &newTex;
+      _refCount++;
+    }
+    catch (...) {
+      std::cout << std::endl << "unable to load the texture file!" << std::endl;
+      _shouldLoad = false; // Prevent bad assets from reloading multiple times.
+    }
   }
 
-  _refCount++;
-  return *_texture;
+  return _texture;
 }
 void TextureDef::releaseTexture() { _refCount--; }
 void TextureDef::setPath(filesystem::path path) { _path = path; }

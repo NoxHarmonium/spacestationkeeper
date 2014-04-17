@@ -26,6 +26,7 @@ public:
   static std::string strToUpper(std::string inputString);
   static bool isInside(ci::AxisAlignedBox3f bounds, ci::Vec2f point);
   static bool isInside(ci::AxisAlignedBox3f bounds, ci::Vec3f point);
+  static void printOpenGlVersionInfo();
 };
 
 #endif /* defined(__SpaceStationKeeper__Utils__) */

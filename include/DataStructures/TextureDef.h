@@ -26,17 +26,17 @@ class TextureDef : public AssetDefBase {
 public:
   TextureDef();
   TextureDef(int id, int width, int height, int frameHeight, int frameWidth,
-             string source);
+             string filename);
 
   void setValues(int id, int width, int height, int frameHeight, int frameWidth,
-                 string source);
+                 string filename);
   int getWidth();
   int getHeight();
   int getFrameHeight();
   int getFrameWidth();
   Rectf getFrameSize();
-  string getSource();
-  gl::Texture useTexture();
+  string getFilename();
+  gl::Texture *useTexture();
   void releaseTexture();
   void setPath(filesystem::path path);
   filesystem::path getPath();
@@ -46,17 +46,12 @@ public:
 
   int getFrameCount();
 
-  // conversion from A (constructor):
-  TextureDef(const AssetDefBase &x) {}
-  // conversion from A (assignment):
-  TextureDef &operator=(const AssetDefBase &x) { return *this; }
-
 private:
   int _width;
   int _height;
   int _frameHeight;
   int _frameWidth;
-  string _source;
+  string _filename;
   filesystem::path _path;
   gl::Texture *_texture = nullptr;
   Passibility *_passibilities;

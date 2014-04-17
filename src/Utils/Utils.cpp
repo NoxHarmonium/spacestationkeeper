@@ -65,3 +65,20 @@ bool Utils::isInside(ci::AxisAlignedBox3f bounds, ci::Vec3f point) {
   return (Utils::isInside(bounds, point) && point.z > bounds.getMin().z &&
           point.z < bounds.getMax().z);
 }
+
+void Utils::printOpenGlVersionInfo() {
+
+  const GLubyte *renderer = glGetString(GL_RENDERER);
+  const GLubyte *vendor = glGetString(GL_VENDOR);
+  const GLubyte *version = glGetString(GL_VERSION);
+  const GLubyte *glslVersion = glGetString(GL_SHADING_LANGUAGE_VERSION);
+  // GLint major, minor; // TODO: Can't work out where the OpenGL constants are.
+  // glGetIntegerv(GL_MAJOR_VERSION, &major);
+  // glGetIntegerv(GL_MINOR_VERSION, &minor);
+  printf("\nOpenGL Version Info:\n");
+  printf("GL Vendor    : %s\n", vendor);
+  printf("GL Renderer  : %s\n", renderer);
+  printf("GL Version (string)  : %s\n", version);
+  // printf("GL Version (integer) : %d.%d\n", major, minor);
+  printf("GLSL Version : %s\n\n", glslVersion);
+}

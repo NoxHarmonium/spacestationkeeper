@@ -1,0 +1,8 @@
+--- # Shader Def
+id:             1
+type:           Shader
+components:
+    vertex:
+        source:         vertex.glsl
+    fragment:
+        source:         fragment.glsl

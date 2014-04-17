@@ -23,6 +23,7 @@ public:
 protected:
   int _refCount = 0;
   int _id = -1;
+  bool _shouldLoad = true;
 };
 
 #endif

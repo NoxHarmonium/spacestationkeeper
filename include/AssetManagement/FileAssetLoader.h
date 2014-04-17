@@ -18,6 +18,7 @@
 #include "yaml.h"
 #include "TextureDef.h"
 #include "AssetDefConverters.h"
+#include "ShaderDef.h"
 
 using namespace boost;
 

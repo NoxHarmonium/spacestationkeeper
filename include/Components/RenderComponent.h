@@ -13,6 +13,7 @@
 #include "Transform.h"
 #include "BaseMesh.h"
 #include "TextureDef.h"
+#include "ShaderDef.h"
 
 #include "cinder/gl/gl.h"
 #include "cinder/gl/Texture.h"
@@ -28,6 +29,7 @@ public:
   Transform transform;
   TextureDef *texture = nullptr;
   BaseMesh *mesh = nullptr;
+  ShaderDef *shader = nullptr;
 
   virtual bool canRayCast() { return true; }
   virtual AxisAlignedBox3f getBounds() {

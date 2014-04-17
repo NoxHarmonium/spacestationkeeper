@@ -27,6 +27,8 @@ private:
 };
 
 void SpaceStationKeeperApp::prepareSettings(Settings *settings) {
+  // Utils::printOpenGlVersionInfo();
+
   settings->setFrameRate(60);
 }
 
@@ -36,6 +38,8 @@ void SpaceStationKeeperApp::resize() {
 }
 
 void SpaceStationKeeperApp::setup() {
+  Utils::printOpenGlVersionInfo();
+
   // Register all the components that will be sent app events
   _camera = new GameCamera(this);
   _gameGrid = new GameGrid(this);
