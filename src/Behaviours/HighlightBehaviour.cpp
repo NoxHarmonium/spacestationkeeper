@@ -15,8 +15,7 @@ void HighlightBehaviour::Begin() {
   cout << "Highlight::Begin()" << endl;
   _hasBegun = true;
   _elapsedTime = 0.0f;
-  _component->renderEnabled =
-      false; // TODO: Actually highlight rather than just disable
+  _component->brightness = 1.5f;
 }
 
 void HighlightBehaviour::Update(float deltaT) { _elapsedTime += deltaT; }
@@ -24,8 +23,7 @@ void HighlightBehaviour::Update(float deltaT) { _elapsedTime += deltaT; }
 void HighlightBehaviour::End() {
   cout << "Highlight::End() Elapsed Time: " << _elapsedTime << endl;
   _hasBegun = false;
-  _component->renderEnabled =
-      true; // TODO: Actually highlight rather than just disable
+  _component->brightness = 1.0f;
 }
 
 bool HighlightBehaviour::hasBegun() { return _hasBegun; }

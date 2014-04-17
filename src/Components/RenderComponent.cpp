@@ -24,6 +24,7 @@ void RenderComponent::draw() {
       if (this->shader && (p = this->shader->useShader())) {
         p->bind();
         p->uniform("diffuseMap", 0);
+        p->uniform("brightness", brightness);
         // t->bind(0);
       } else {
         // t->enableAndBind();

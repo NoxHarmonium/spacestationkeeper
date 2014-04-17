@@ -30,6 +30,8 @@ public:
   TextureDef *texture = nullptr;
   BaseMesh *mesh = nullptr;
   ShaderDef *shader = nullptr;
+  float brightness = 1.0f; // TODO: Combine shader/texture def into material
+                           // with these properties
 
   virtual bool canRayCast() { return true; }
   virtual AxisAlignedBox3f getBounds() {
