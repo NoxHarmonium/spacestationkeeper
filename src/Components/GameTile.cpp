@@ -12,26 +12,27 @@ using namespace ci;
 using namespace std;
 using namespace cinder::gl;
 
-GameTile::GameTile(TextureDef *textureDef, int tileIndex,
+GameTile::GameTile(MaterialRef material, int tileIndex,
                    ComponentDrivenApp *parent)
     : RenderComponent(parent) {
   _tileIndex = tileIndex;
-  this->texture = textureDef;
+  this->material = material;
   this->transform.localPosition = Vec3f();
 }
 
-GameTile::GameTile(TextureDef *textureDef, int tileIndex, Vec3f offset,
+GameTile::GameTile(MaterialRef material, int tileIndex, Vec3f offset,
                    ComponentDrivenApp *parent)
     : RenderComponent(parent) {
   _tileIndex = tileIndex;
-  this->texture = textureDef;
+  this->material = material;
   this->transform.localPosition = offset;
 }
 
 Rectf GameTile::getFrameRect() {
-  int tileXCount = (this->texture->getWidth() / this->texture->getFrameWidth());
-  int tileYCount =
-      (this->texture->getHeight() / this->texture->getFrameHeight());
+  int tileXCount = (this->material->texture->getWidth() /
+                    this->material->texture->getFrameWidth());
+  int tileYCount = (this->material->texture->getHeight() /
+                    this->material->texture->getFrameHeight());
   int xIndex = _tileIndex % tileXCount;
   int yIndex = _tileIndex / tileYCount;
   Rectf r;
@@ -43,6 +44,6 @@ Rectf GameTile::getFrameRect() {
 }
 
 void GameTile::setup() {
-  this->mesh = SimpleMesh::GenerateQuad(this->texture->getFrameSize(),
+  this->mesh = SimpleMesh::GenerateQuad(this->material->texture->getFrameSize(),
                                         this->getFrameRect());
 }

@@ -18,21 +18,25 @@ using namespace std;
 using namespace boost;
 
 class AssetDefBase; // Required def cyclic dependency
+typedef std::shared_ptr<AssetDefBase> AssetDefBaseRef;
 
 class AssetLoaderBase {
 public:
-  virtual AssetDefBase *LoadAsset(string assetRef) = 0;
-  virtual void UnloadAsset(AssetDefBase *asset) = 0;
-  AssetDefBase *GetLoadedAsset(AssetType assetType, int assetId);
+  // template <typename T>
+  // std::shared_ptr<T>
+  // LoadAsset(string assetRef) {}; // Can a template be virtual? How specify
+  // interface?
+  virtual void UnloadAsset(AssetDefBaseRef asset) = 0;
+  AssetDefBaseRef GetLoadedAsset(AssetType assetType, int assetId);
 
 protected:
   void SaveLoadedAsset(AssetType assetType, int assetId,
-                       AssetDefBase *assetDef);
+                       AssetDefBaseRef assetDef);
 
   void ClearLoadedAsset(AssetType assetType, int assetId);
 
 private:
-  map<AssetType, map<int, AssetDefBase *>> _assetMap;
+  map<AssetType, map<int, AssetDefBaseRef>> _assetMap;
   // const path _assetDefFileName = path("assetdef.yaml";
 };
 

@@ -34,14 +34,13 @@ Rectf TextureDef::getFrameSize() {
   return Rectf(0.0f, 0.0f, getFrameWidth(), getFrameHeight());
 }
 std::string TextureDef::getFilename() { return _filename; }
-gl::Texture *TextureDef::useTexture() {
+gl::TextureRef TextureDef::useTexture() {
 
   if (_texture == nullptr && _shouldLoad) {
     filesystem::path texPath = _path / _filename;
     cout << "Loading texture: " << texPath << endl;
     try {
-      static gl::Texture newTex = gl::Texture(loadImage(texPath));
-      _texture = &newTex;
+      _texture = gl::Texture::create(loadImage(texPath));
       _refCount++;
     }
     catch (...) {

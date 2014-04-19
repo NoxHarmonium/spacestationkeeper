@@ -8,10 +8,10 @@
 
 #include "AssetLoaderBase.h"
 
-AssetDefBase *AssetLoaderBase::GetLoadedAsset(AssetType assetType,
-                                              int assetId) {
+AssetDefBaseRef AssetLoaderBase::GetLoadedAsset(AssetType assetType,
+                                                int assetId) {
   if (_assetMap.count(assetType)) {
-    map<int, AssetDefBase *> idMap = _assetMap[assetType];
+    map<int, AssetDefBaseRef> idMap = _assetMap[assetType];
     if (idMap.count(assetId)) {
       return idMap[assetId];
     }
@@ -20,9 +20,9 @@ AssetDefBase *AssetLoaderBase::GetLoadedAsset(AssetType assetType,
 }
 
 void AssetLoaderBase::SaveLoadedAsset(AssetType assetType, int assetId,
-                                      AssetDefBase *assetDef) {
+                                      AssetDefBaseRef assetDef) {
   if (!_assetMap.count(assetType)) {
-    _assetMap[assetType] = map<int, AssetDefBase *>();
+    _assetMap[assetType] = map<int, AssetDefBaseRef>();
   }
   _assetMap[assetType][assetId] = assetDef;
 }

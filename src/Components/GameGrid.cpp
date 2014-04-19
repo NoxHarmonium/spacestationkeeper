@@ -28,12 +28,15 @@ void GameGrid::setup() {
   parentApp->RegisterComponent(mouseOverTrigger);
 
   _gameDef = GameDef::GetTestBoard(assetLoader, 10, 10);
+  TextureDefRef f;
 
-  TextureDef *asteroidTd =
-      (TextureDef *)assetLoader->LoadAsset("tilesets/asteroid");
+  // TODO: Cast shared pointers how??
+  TextureDefRef asteroidTd =
+      assetLoader->LoadAsset<TextureDef>("tilesets/asteroid");
 
-  ShaderDef *defaultShader =
-      (ShaderDef *)assetLoader->LoadAsset("shaders/default");
+  ShaderDefRef defaultShader =
+      assetLoader->LoadAsset<ShaderDef>("shaders/default");
+
   // TextureDef *corridorTd =
   //    (TextureDef *)assetLoader->LoadAsset("tilesets/corridor");
 
@@ -41,13 +44,18 @@ void GameGrid::setup() {
 
   for (int i = 0; i < _gameDef.getWidth(); i++) {
     for (int j = 0; j < _gameDef.getHeight(); j++) {
+      MaterialRef material = make_shared<Material>();
+      material->shader = defaultShader;
+      material->texture = asteroidTd;
+      // TODO: Should there be one material ref and each tile gets its own
+      // brightness/baseColor somehow? I think unity does something strange like
+      // copy materials on access. Investigate
+
       int frameIndex = asteroidTd->getFrameFromPassibility(
           _gameDef.getMapSquare(MapPoint(i, j)).getPassability());
       Vec3f offset = Vec3f(i * asteroidTd->getFrameWidth(),
                            j * asteroidTd->getFrameHeight(), 0.0f);
-      GameTile *t =
-          new GameTile(asteroidTd, frameIndex, offset, this->parentApp);
-      t->shader = defaultShader;
+      GameTile *t = new GameTile(material, frameIndex, offset, this->parentApp);
       t->transform.parent = &this->transform;
       _gameMap[MapPoint(i, j)] = t;
 

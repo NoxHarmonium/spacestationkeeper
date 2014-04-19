@@ -16,14 +16,14 @@
 #include "cinder/gl/Texture.h"
 #include "cinder/TriMesh.h"
 #include "cinder/gl/GlslProg.h"
-#include "TextureDef.h"
+#include "Material.h"
 
 using namespace cinder::gl;
 
 class GameTile : public RenderComponent {
 public:
-  GameTile(TextureDef *textureDef, int tileIndex, ComponentDrivenApp *parent);
-  GameTile(TextureDef *textureDef, int tileIndex, Vec3f offset,
+  GameTile(MaterialRef material, int tileIndex, ComponentDrivenApp *parent);
+  GameTile(MaterialRef material, int tileIndex, Vec3f offset,
            ComponentDrivenApp *parent);
   void setup();
 

@@ -12,8 +12,7 @@
 #include "GameComponent.h"
 #include "Transform.h"
 #include "BaseMesh.h"
-#include "TextureDef.h"
-#include "ShaderDef.h"
+#include "Material.h"
 
 #include "cinder/gl/gl.h"
 #include "cinder/gl/Texture.h"
@@ -27,11 +26,8 @@ public:
   bool renderEnabled = true;
 
   Transform transform;
-  TextureDef *texture = nullptr;
   BaseMesh *mesh = nullptr;
-  ShaderDef *shader = nullptr;
-  float brightness = 1.0f; // TODO: Combine shader/texture def into material
-                           // with these properties
+  MaterialRef material;
 
   virtual bool canRayCast() { return true; }
   virtual AxisAlignedBox3f getBounds() {

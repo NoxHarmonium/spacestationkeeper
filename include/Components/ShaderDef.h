@@ -43,4 +43,6 @@ private:
   gl::GlslProgRef _prog = nullptr;
 };
 
+typedef std::shared_ptr<ShaderDef> ShaderDefRef;
+
 #endif

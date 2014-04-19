@@ -18,6 +18,7 @@
 		72ABDE3F9B0F42038A135447 /* Cairo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5269D5A9A57F40DC830099CF /* Cairo.cpp */; };
 		8C08550A160647279CE5BCF2 /* SpaceStationKeeperApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 48844111FF804C239BF69347 /* SpaceStationKeeperApp.cpp */; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		9E09867518FFFFD200480FA7 /* Material.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E09867318FFFFD200480FA7 /* Material.cpp */; };
 		9E0B446F18FD94EC002B5DC7 /* ShaderDef.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E0B446D18FD94EC002B5DC7 /* ShaderDef.cpp */; };
 		9E10054B18EA355F00EC5213 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = 9E10054A18EA355F00EC5213 /* assets */; };
 		9E21C4B318DA14DE00E927D6 /* libyaml-cpp.0.5.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E21C4B218DA14DE00E927D6 /* libyaml-cpp.0.5.1.dylib */; };
@@ -72,6 +73,8 @@
 		5323E6B10EAFCA74003A9687 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = /System/Library/Frameworks/CoreVideo.framework; sourceTree = "<absolute>"; };
 		5323E6B50EAFCA7E003A9687 /* QTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QTKit.framework; path = /System/Library/Frameworks/QTKit.framework; sourceTree = "<absolute>"; };
 		8D1107320486CEB800E47090 /* SpaceStationKeeper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpaceStationKeeper.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9E09867218FFFDD900480FA7 /* Material.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Material.h; sourceTree = "<group>"; };
+		9E09867318FFFFD200480FA7 /* Material.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Material.cpp; sourceTree = "<group>"; };
 		9E0B446C18FD94AC002B5DC7 /* ShaderDef.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ShaderDef.h; path = ../Components/ShaderDef.h; sourceTree = "<group>"; };
 		9E0B446D18FD94EC002B5DC7 /* ShaderDef.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ShaderDef.cpp; path = ../Components/ShaderDef.cpp; sourceTree = "<group>"; };
 		9E10054A18EA355F00EC5213 /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; name = assets; path = ../assets; sourceTree = "<group>"; };
@@ -389,6 +392,7 @@
 				9EE7AED418E2F262008A9C83 /* GameCamera.cpp */,
 				9EA476D518F9FEFA00C6BD1D /* SimpleMesh.cpp */,
 				9EA476D718FA024100C6BD1D /* RenderComponent.cpp */,
+				9E09867318FFFFD200480FA7 /* Material.cpp */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -542,6 +546,7 @@
 				9EA781C018FC8C5A001D2752 /* RenderComponent.h */,
 				9EA781C118FC8C5A001D2752 /* SimpleMesh.h */,
 				9EA781C218FC8C5A001D2752 /* Transform.h */,
+				9E09867218FFFDD900480FA7 /* Material.h */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -708,6 +713,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9E09867518FFFFD200480FA7 /* Material.cpp in Sources */,
 				9E94D8EB18D122BE0032FDC3 /* GuiManager.cpp in Sources */,
 				8C08550A160647279CE5BCF2 /* SpaceStationKeeperApp.cpp in Sources */,
 				72ABDE3F9B0F42038A135447 /* Cairo.cpp in Sources */,

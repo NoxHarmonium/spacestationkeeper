@@ -36,7 +36,7 @@ public:
   int getFrameWidth();
   Rectf getFrameSize();
   string getFilename();
-  gl::Texture *useTexture();
+  gl::TextureRef useTexture();
   void releaseTexture();
   void setPath(filesystem::path path);
   filesystem::path getPath();
@@ -53,9 +53,11 @@ private:
   int _frameWidth;
   string _filename;
   filesystem::path _path;
-  gl::Texture *_texture = nullptr;
+  gl::TextureRef _texture = nullptr;
   Passibility *_passibilities;
   map<int, int> _passabilityMap;
 };
+
+typedef std::shared_ptr<TextureDef> TextureDefRef;
 
 #endif
