@@ -16,6 +16,7 @@ using namespace ci::app;
 using namespace std;
 
 class GameComponent;
+template <typename T> class GameComponentT;
 
 class ComponentDrivenApp : public AppNative {
 
@@ -25,6 +26,28 @@ public:
 
   //! Get a list of currently registered components
   vector<GameComponent *> GetComponents();
+
+  template <typename T> vector<GameComponent *> GetComponentsByType() {
+    vector<GameComponent *> selectedComps;
+    for (auto &comp : _registeredComponents) {
+      if (dynamic_cast<T>(comp) != nullptr) {
+        selectedComps.push_back(comp);
+      }
+    }
+    return selectedComps;
+  }
+
+  template <typename T> T *GetComponentByType() {
+    // TODO: Can I make GetComponentsByType() an iterator and then return the
+    // first value here?
+    for (auto &comp : _registeredComponents) {
+      T *compT = dynamic_cast<T *>(comp);
+      if (compT != nullptr) {
+        return compT;
+      }
+    }
+    return nullptr;
+  }
 
   //! Override to perform any application setup after the Renderer has been
   // initialized.

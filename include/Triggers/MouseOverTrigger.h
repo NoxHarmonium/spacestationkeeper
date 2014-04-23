@@ -18,18 +18,14 @@ class MouseOverTrigger : public Trigger, public GameComponent {
 public:
   MouseOverTrigger(ComponentDrivenApp *parentApp);
 
-  // Trigger Methods
-  void RegisterBehaviour(RenderComponent *target, Behaviour *behaviour);
+  bool isActive(RenderComponent *renderComponent);
 
   // GameComponent Methods
   void mouseMove(MouseEvent event);
   void update();
 
 private:
-  map<RenderComponent *, vector<Behaviour *>> _componentMap;
   Vec2f mousePoint;
-  bool _mouseMoved = false;
-  float _lastUpdateTime = NAN;
 };
 
 #endif

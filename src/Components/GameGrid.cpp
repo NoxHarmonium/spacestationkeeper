@@ -9,9 +9,12 @@
 #include "GameGrid.h"
 #include "FileAssetLoader.h"
 #include "MouseOverTrigger.h"
+#include "BehaviourConstructor.h"
 #include "HighlightBehaviour.h"
 #include <math.h>
 #include "ShaderDef.h"
+#include "EventManager.h"
+#include "Events.h"
 
 using namespace std;
 
@@ -21,11 +24,17 @@ void GameGrid::setup() {
 
   cout << "GameGrid::setup()" << endl;
 
+  string classFilter = "asteroidRock";
+
+  _eventManager = parentApp->GetComponentByType<EventManager>();
+  assert(_eventManager != nullptr);
+
+  _eventManager->SubscribeBehavior(
+      Events::MouseOver, classFilter,
+      BehaviourConstructor::Create<HighlightBehaviour>());
+
   vector<GameTile *> tiles;
   FileAssetLoader *assetLoader = new FileAssetLoader(Utils::getResourcesPath());
-
-  MouseOverTrigger *mouseOverTrigger = new MouseOverTrigger(parentApp);
-  parentApp->RegisterComponent(mouseOverTrigger);
 
   _gameDef = GameDef::GetTestBoard(assetLoader, 10, 10);
   TextureDefRef f;
@@ -62,8 +71,12 @@ void GameGrid::setup() {
       t->setup();
       parentApp->RegisterComponent(t);
 
-      mouseOverTrigger->RegisterBehaviour(
-          t, new HighlightBehaviour(t)); // TODO: component is passed in twice??
+      t->classFilter = classFilter;
+      t->setEventManager(_eventManager);
+
+      // mouseOverTrigger->RegisterBehaviour(
+      //    t, new HighlightBehaviour(t)); // TODO: component is passed in
+      // twice??
       // cout << "create: (" << i << "," << j << "): " << t << endl;
     }
   }

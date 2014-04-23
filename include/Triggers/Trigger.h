@@ -15,8 +15,7 @@
 
 class Trigger {
 public:
-  virtual void RegisterBehaviour(RenderComponent *target,
-                                 Behaviour *behaviour) = 0;
+  virtual bool isActive(RenderComponent *renderComponent) = 0;
 };
 
 #endif

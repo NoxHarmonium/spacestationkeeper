@@ -7,7 +7,3 @@
 //
 
 #include "GameComponent.h"
-
-GameComponent::GameComponent(ComponentDrivenApp *app) {
-  parentApp = app;
-};

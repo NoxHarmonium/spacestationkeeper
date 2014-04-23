@@ -28,6 +28,7 @@ public:
   Transform transform;
   BaseMesh *mesh = nullptr;
   MaterialRef material;
+  string classFilter;
 
   virtual bool canRayCast() { return true; }
   virtual AxisAlignedBox3f getBounds() {

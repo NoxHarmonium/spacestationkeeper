@@ -13,6 +13,7 @@
 #include "GameDef.h"
 #include "GameTile.h"
 #include "Utils.h"
+#include "EventManager.h"
 
 using namespace std;
 
@@ -27,6 +28,7 @@ public:
 private:
   GameDef _gameDef;
   vector<GameTile *> _tileComponents;
+  EventManager *_eventManager;
   map<MapPoint, GameTile *> _gameMap;
 };
 

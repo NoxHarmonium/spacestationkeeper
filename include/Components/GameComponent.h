@@ -20,7 +20,7 @@ using namespace std;
 class GameComponent {
 public:
   //! Construct a new GameComponent
-  GameComponent(ComponentDrivenApp *parent);
+  GameComponent(ComponentDrivenApp *parent) : parentApp(parent) {}
 
   // Interaction methods
   virtual bool canRayCast() { return false; }
@@ -68,6 +68,17 @@ public:
 
 protected:
   ComponentDrivenApp *parentApp;
+};
+
+// Attempt at creating specific GameComponents tied to a specific app
+// Didn't work due to pesky circular dependencies and my lack of c++ skills
+template <typename T> class GameComponentT : public GameComponent {
+public:
+  //! Construct a new GameComponent
+  GameComponentT(T *parent)
+      : GameComponent(dynamic_cast<ComponentDrivenApp *>(parent)) {}
+
+  T GetParent() { return dynamic_cast<T>(parentApp); }
 };
 
 #endif

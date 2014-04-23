@@ -9,54 +9,28 @@
 #include "MouseOverTrigger.h"
 
 MouseOverTrigger::MouseOverTrigger(ComponentDrivenApp *parentApp)
-    : GameComponent(parentApp) {}
+    : GameComponent(parentApp) {
+  this->mousePoint = Vec2f(0.0f, 0.0f);
+  cout << "MouseOverTrigger constructed!" << endl;
+}
 
 // Trigger Methods
-void MouseOverTrigger::RegisterBehaviour(RenderComponent *target,
-                                         Behaviour *behaviour) {
-  _componentMap[target].push_back(behaviour);
+bool MouseOverTrigger::isActive(RenderComponent *renderComponent) {
+  AxisAlignedBox3f bounds = renderComponent->getBounds();
+  // Cache this call for all mouse events (i.e. click needs same information as
+  // over)
+
+  // cout << "Mouse moved to: " << this->mousePoint << " center "
+  //     << bounds.getCenter() << endl;
+  return Utils::isInside(bounds, this->mousePoint);
 }
 
 // GameComponent Methods
 void MouseOverTrigger::mouseMove(MouseEvent event) {
   this->mousePoint = Vec2f(event.getX(), event.getY());
-  _mouseMoved = true;
 }
 
 void MouseOverTrigger::update() {
-  float delta;
-  if (isnan(_lastUpdateTime)) {
-    delta = 0.0f;
-  } else {
-    delta = ci::app::getElapsedSeconds() - _lastUpdateTime;
-  }
-
-  _lastUpdateTime = ci::app::getElapsedSeconds();
-
-  for (auto &pair : _componentMap) {
-    RenderComponent *c = pair.first;
-    vector<Behaviour *> behaviours = pair.second;
-    AxisAlignedBox3f bounds = c->getBounds();
-
-    // cout << "Bounds: " << bounds.getCenter() << "Mouse: " << mousePoint <<
-    // endl;
-    if (Utils::isInside(bounds, mousePoint)) {
-
-      for (auto &behaviour : behaviours) {
-        if (!behaviour->hasBegun()) {
-          behaviour->Begin();
-        } else {
-          behaviour->Update(delta); // todo delta time
-        }
-      }
-    } else {
-      for (auto &behaviour : behaviours) {
-        if (behaviour->hasBegun()) {
-          behaviour->End();
-        }
-      }
-    }
-
-    _mouseMoved = false;
-  }
+  /*
+     */
 }
