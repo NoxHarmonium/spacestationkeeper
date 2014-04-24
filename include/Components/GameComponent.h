@@ -66,6 +66,9 @@ public:
   //! Override to receive file-drop events.
   virtual void fileDrop(FileDropEvent event) {}
 
+  // Getters and setters
+  ComponentDrivenApp *getParentApp() { return parentApp; }
+
 protected:
   ComponentDrivenApp *parentApp;
 };

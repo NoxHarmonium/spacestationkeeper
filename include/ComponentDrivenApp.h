@@ -10,6 +10,7 @@
 #define SpaceStationKeeper_ComponentManager_h
 
 #include "cinder/app/AppNative.h"
+#include <type_traits>
 
 using namespace ci;
 using namespace ci::app;
@@ -88,9 +89,22 @@ public:
   //! Override to receive file-drop events.
   virtual void fileDrop(FileDropEvent event);
 
+  // Templates
+  // TODO: Use enable if (p796) to restrict to storing pointers
+  template <typename T> void setState(string key, T data) {
+    _stateMap[key] = (void *)data;
+  }
+  template <typename T> T getState(string key) {
+    if (_stateMap[key] != nullptr) {
+      return (T)_stateMap[key];
+    }
+    return nullptr;
+  }
+
 private:
   vector<GameComponent *> getRegisteredComponentsCopy();
   vector<GameComponent *> _registeredComponents;
+  map<string, void *> _stateMap;
 };
 
 #endif

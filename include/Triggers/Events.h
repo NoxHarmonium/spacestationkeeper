@@ -16,6 +16,7 @@ public:
   // TODO: Work out constexpr strings
   static constexpr char *MouseOver = "MouseOver";
   static constexpr char *MouseClick = "MouseClick";
+  static constexpr char *ComponentSelected = " ComponentSelected";
 };
 
 #endif

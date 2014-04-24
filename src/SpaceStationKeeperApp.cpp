@@ -1,6 +1,8 @@
 #include "SpaceStationKeeperApp.h"
 #include "Events.h"
 #include "MouseOverTrigger.h"
+#include "MouseClickTrigger.h"
+#include "SelectedTrigger.h"
 
 using namespace ci;
 using namespace ci::app;
@@ -24,13 +26,22 @@ void SpaceStationKeeperApp::setup() {
   // Register all the components that will be sent app events
   _eventManager = new EventManager(this);
   MouseOverTrigger *mouseOverTrigger = new MouseOverTrigger(this);
+  MouseClickTrigger *mouseClickTrigger = new MouseClickTrigger(this);
+  SelectedTrigger *selectedTrigger = new SelectedTrigger(this);
+
   _eventManager->RegisterEvent(Events::MouseOver, mouseOverTrigger);
+  _eventManager->RegisterEvent(Events::MouseClick, mouseClickTrigger);
+  _eventManager->RegisterEvent(Events::ComponentSelected, selectedTrigger);
+
   _camera = new GameCamera(this);
   _gameGrid = new GameGrid(this);
   _guiManager = new GuiManager(this);
 
   RegisterComponent(_eventManager);
   RegisterComponent(mouseOverTrigger);
+  RegisterComponent(mouseClickTrigger);
+  RegisterComponent(selectedTrigger);
+
   RegisterComponent(_camera);
   RegisterComponent(_gameGrid);
   // RegisterComponent(_guiManager); Todo: render with quads so depth works

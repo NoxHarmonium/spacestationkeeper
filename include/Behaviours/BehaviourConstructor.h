@@ -10,6 +10,9 @@
 #define SpaceStationKeeper_BehaviourConstructor_h
 
 #include <stdlib.h>
+
+typedef std::function<Behaviour *(RenderComponent *)> constructorFn;
+
 // A complicated way to create an object that constructs a specific type of
 // behaviour on demand
 class BehaviourConstructor {
@@ -21,18 +24,27 @@ public:
   // template <typename T> std::shared_ptr<T> LoadAsset(string assetRef)
 
   template <typename T> static BehaviourConstructor *Create() {
-    auto lambda = [](RenderComponent *renderComponent) {
+    constructorFn lambda = [](RenderComponent *renderComponent) {
       return dynamic_cast<Behaviour *>(new T(renderComponent));
     };
 
     return new BehaviourConstructor(lambda);
   }
 
-private:
-  BehaviourConstructor(Behaviour *constFn(RenderComponent *)) {
-    _constFn = constFn;
+  template <typename T, typename... Args>
+  static BehaviourConstructor *Create(Args... args) {
+    constructorFn lambda = [args...](RenderComponent * renderComponent)
+                               ->Behaviour *
+    {
+      return dynamic_cast<Behaviour *>(new T(renderComponent, args...));
+    };
+
+    return new BehaviourConstructor(lambda);
   }
-  Behaviour *(*_constFn)(RenderComponent *);
+
+private:
+  BehaviourConstructor(constructorFn constFn) { _constFn = constFn; }
+  constructorFn _constFn;
 };
 
 #endif

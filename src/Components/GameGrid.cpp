@@ -11,6 +11,7 @@
 #include "MouseOverTrigger.h"
 #include "BehaviourConstructor.h"
 #include "HighlightBehaviour.h"
+#include "ToggleSelectionBehaviour.h"
 #include <math.h>
 #include "ShaderDef.h"
 #include "EventManager.h"
@@ -32,6 +33,15 @@ void GameGrid::setup() {
   _eventManager->SubscribeBehavior(
       Events::MouseOver, classFilter,
       BehaviourConstructor::Create<HighlightBehaviour>());
+
+  _eventManager->SubscribeBehavior(
+      Events::MouseClick, classFilter,
+      BehaviourConstructor::Create<ToggleSelectionBehaviour>());
+
+  _eventManager->SubscribeBehavior(
+      Events::ComponentSelected, classFilter,
+      BehaviourConstructor::Create<HighlightBehaviour, float, ColorAf>(
+          1.0f, ColorAf(1.0f, 0.5f, 0.5f, 1.0f)));
 
   vector<GameTile *> tiles;
   FileAssetLoader *assetLoader = new FileAssetLoader(Utils::getResourcesPath());
