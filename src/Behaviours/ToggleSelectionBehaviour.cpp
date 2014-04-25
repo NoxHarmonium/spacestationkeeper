@@ -44,4 +44,7 @@ void ToggleSelectionBehaviour::End() {
   _hasBegun = false;
 }
 
+void ToggleSelectionBehaviour::ApplyModifications(
+    TransformModifier *transformModifier, MaterialModifier *materialModifier) {}
+
 bool ToggleSelectionBehaviour::hasBegun() { return _hasBegun; }

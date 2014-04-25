@@ -23,6 +23,8 @@ public:
   void Begin();
   void Update(float deltaT);
   void End();
+  void ApplyModifications(TransformModifier *transformModifier,
+                          MaterialModifier *materialModifier);
 
   bool hasBegun();
 

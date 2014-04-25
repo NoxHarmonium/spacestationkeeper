@@ -10,6 +10,10 @@
 #define SpaceStationKeeper_Behaviour_h
 
 #include "RenderComponent.h"
+#include "TransformModifier.h"
+#include "MaterialModifier.h"
+
+
 
 class Behaviour {
 public:
@@ -18,6 +22,8 @@ public:
   virtual void Begin() = 0;
   virtual void Update(float deltaT) = 0;
   virtual void End() = 0;
+  virtual void ApplyModifications(TransformModifier *transformModifier,
+                                  MaterialModifier *materialModifier) = 0;
 
   virtual bool hasBegun() = 0;
 

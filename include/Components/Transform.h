@@ -9,6 +9,8 @@
 #ifndef SpaceStationKeeper_Transform_h
 #define SpaceStationKeeper_Transform_h
 
+using namespace ci;
+
 class Transform {
 public:
   Vec3f localPosition = Vec3f(0.0f, 0.0f, 0.0f);

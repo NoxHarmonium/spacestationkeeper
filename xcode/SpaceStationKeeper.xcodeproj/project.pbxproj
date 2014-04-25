@@ -24,6 +24,8 @@
 		9E0E1E8219048917009EECFD /* LuaBridge.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E0E1E8019048917009EECFD /* LuaBridge.cpp */; };
 		9E10054B18EA355F00EC5213 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = 9E10054A18EA355F00EC5213 /* assets */; };
 		9E21C4B318DA14DE00E927D6 /* libyaml-cpp.0.5.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E21C4B218DA14DE00E927D6 /* libyaml-cpp.0.5.1.dylib */; };
+		9E50BCA41909CC0800587632 /* TranformModifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E50BCA21909CC0700587632 /* TranformModifier.cpp */; };
+		9E50BCA81909D11500587632 /* MaterialModifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E50BCA61909D11500587632 /* MaterialModifier.cpp */; };
 		9E92628F18D48232001AB5D6 /* GameComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E92628E18D48232001AB5D6 /* GameComponent.cpp */; };
 		9E92629218D4EDA0001AB5D6 /* ComponentDrivenApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E92629118D4EDA0001AB5D6 /* ComponentDrivenApp.cpp */; };
 		9E92629418D4F8B2001AB5D6 /* GameGrid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E92629318D4F8B2001AB5D6 /* GameGrid.cpp */; };
@@ -165,6 +167,10 @@
 		9E0E1E8119048917009EECFD /* LuaBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaBridge.h; sourceTree = "<group>"; };
 		9E10054A18EA355F00EC5213 /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; name = assets; path = ../assets; sourceTree = "<group>"; };
 		9E21C4B218DA14DE00E927D6 /* libyaml-cpp.0.5.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = "libyaml-cpp.0.5.1.dylib"; sourceTree = "<group>"; };
+		9E50BCA01909CB0200587632 /* TransformModifier.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TransformModifier.h; sourceTree = "<group>"; };
+		9E50BCA21909CC0700587632 /* TranformModifier.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TranformModifier.cpp; sourceTree = "<group>"; };
+		9E50BCA51909CE7000587632 /* MaterialModifier.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MaterialModifier.h; sourceTree = "<group>"; };
+		9E50BCA61909D11500587632 /* MaterialModifier.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MaterialModifier.cpp; sourceTree = "<group>"; };
 		9E92628E18D48232001AB5D6 /* GameComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameComponent.cpp; sourceTree = "<group>"; };
 		9E92629118D4EDA0001AB5D6 /* ComponentDrivenApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ComponentDrivenApp.cpp; sourceTree = "<group>"; };
 		9E92629318D4F8B2001AB5D6 /* GameGrid.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameGrid.cpp; sourceTree = "<group>"; };
@@ -236,6 +242,7 @@
 		080E96DDFE201D6D7F000001 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				9E50BCA11909CBEF00587632 /* Modifiers */,
 				9E0E1E7F190488EE009EECFD /* Binding */,
 				9EEE83DB18E8F8CB006F2B49 /* AssetManagement */,
 				9EA7814418FB7B7F001D2752 /* Behaviours */,
@@ -377,6 +384,7 @@
 		9E0E1E1D190488C5009EECFD /* Include */ = {
 			isa = PBXGroup;
 			children = (
+				9E50BC9F1909CA9100587632 /* Modifiers */,
 				9E0E1E8319048928009EECFD /* Binding */,
 				9E0E1E1E190488C5009EECFD /* AssetManagement */,
 				9E0E1E24190488C5009EECFD /* Behaviours */,
@@ -621,6 +629,24 @@
 			path = Binding;
 			sourceTree = "<group>";
 		};
+		9E50BC9F1909CA9100587632 /* Modifiers */ = {
+			isa = PBXGroup;
+			children = (
+				9E50BCA01909CB0200587632 /* TransformModifier.h */,
+				9E50BCA51909CE7000587632 /* MaterialModifier.h */,
+			);
+			path = Modifiers;
+			sourceTree = "<group>";
+		};
+		9E50BCA11909CBEF00587632 /* Modifiers */ = {
+			isa = PBXGroup;
+			children = (
+				9E50BCA21909CC0700587632 /* TranformModifier.cpp */,
+				9E50BCA61909D11500587632 /* MaterialModifier.cpp */,
+			);
+			path = Modifiers;
+			sourceTree = "<group>";
+		};
 		9E645D4718E0F2D20032E7A7 /* Libs */ = {
 			isa = PBXGroup;
 			children = (
@@ -799,11 +825,13 @@
 				9EA476D818FA024100C6BD1D /* RenderComponent.cpp in Sources */,
 				9EA476D618F9FEFA00C6BD1D /* SimpleMesh.cpp in Sources */,
 				9E0B446F18FD94EC002B5DC7 /* ShaderDef.cpp in Sources */,
+				9E50BCA41909CC0800587632 /* TranformModifier.cpp in Sources */,
 				9E92629A18D50164001AB5D6 /* GameTile.cpp in Sources */,
 				9EA476CC18F8ABC300C6BD1D /* AssetLoaderBase.cpp in Sources */,
 				9EA7815318FC1B78001D2752 /* HighlightBehaviour.cpp in Sources */,
 				9E92628F18D48232001AB5D6 /* GameComponent.cpp in Sources */,
 				9EF8763E19093CF3005824D9 /* SelectedTrigger.cpp in Sources */,
+				9E50BCA81909D11500587632 /* MaterialModifier.cpp in Sources */,
 				9EE7AEEF18E36737008A9C83 /* Utils.cpp in Sources */,
 				9E92629218D4EDA0001AB5D6 /* ComponentDrivenApp.cpp in Sources */,
 				9EA4A77F18E26CCF005D069F /* TextureDef.cpp in Sources */,
