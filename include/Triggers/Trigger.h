@@ -11,11 +11,11 @@
 
 #include <stdlib.h>
 #include "Behaviour.h"
-#include "GameComponent.h"
+#include "RenderComponent.h"
 
 class Trigger {
 public:
-  virtual bool isActive(GameComponent *gameComponent) = 0;
+  virtual bool isActive(RenderComponent *renderComponent) = 0;
 };
 
 #endif

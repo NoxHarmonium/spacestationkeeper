@@ -18,7 +18,7 @@ class MouseOverTrigger : public Trigger, public GameComponent {
 public:
   MouseOverTrigger(ComponentDrivenApp *parentApp);
 
-  bool isActive(GameComponent *gameComponent);
+  bool isActive(RenderComponent *renderComponent);
 
   // GameComponent Methods
   void mouseMove(MouseEvent event);

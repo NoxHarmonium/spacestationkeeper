@@ -10,7 +10,7 @@
 #define SpaceStationKeeper_EventManager_h
 
 #include <stdlib.h>
-#include "GameComponent.h"
+#include "RenderComponent.h"
 #include "Behaviour.h"
 #include "BehaviourConstructor.h"
 #include "Trigger.h"
@@ -21,7 +21,7 @@ struct EventRegistration {
   string eventName;
   string classPattern;
   BehaviourConstructor *behaviourConstructor;
-  map<GameComponent *, Behaviour *> constructedBehaviours;
+  map<RenderComponent *, Behaviour *> constructedBehaviours;
 };
 
 class EventManager : public GameComponent {
@@ -37,30 +37,24 @@ public:
                          BehaviourConstructor *BehaviourConstructor);
   // Subscribe a single component to an event with a provided instance of a
   // behaviour
-  void SuscribeBehaviour(string eventName, GameComponent *renderComponent,
+  void SuscribeBehaviour(string eventName, RenderComponent *renderComponent,
                          Behaviour *behaviour);
 
-  void ProcessTriggers(GameComponent *renderComponent,
-                       TransformModifierRef transformModifier,
-                       MaterialModifierRef materialModifier);
+  void ProcessTriggers(RenderComponent *renderComponent);
 
   // Component events
   void update();
 
 private:
-  void processTriggers(GameComponent *renderComponent,
-                       vector<EventRegistration *> eventRegistration,
-                       TransformModifierRef transformModifier,
-                       MaterialModifierRef materialModifier);
+  void processTriggers(RenderComponent *renderComponent,
+                       vector<EventRegistration *> eventRegistration);
 
-  void handleBehaviour(GameComponent *renderComponent, Trigger *trigger,
-                       Behaviour *behaviour,
-                       TransformModifierRef transformModifier,
-                       MaterialModifierRef materialModifier);
+  void handleBehaviour(RenderComponent *renderComponent, Trigger *trigger,
+                       Behaviour *behaviour);
 
   float _lastUpdateTime = NAN;
   float _deltaTime = 0.0f;
-  map<GameComponent *, vector<pair<Trigger *, vector<Behaviour *>>>>
+  map<RenderComponent *, vector<pair<Trigger *, vector<Behaviour *>>>>
   _componentMap;
 
   map<string, vector<EventRegistration *>> _classFilterMap;

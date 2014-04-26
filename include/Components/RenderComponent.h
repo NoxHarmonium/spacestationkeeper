@@ -10,27 +10,14 @@
 #define SpaceStationKeeper_RenderComponent_h
 
 #include "GameComponent.h"
-#include "Transform.h"
-#include "BaseMesh.h"
-#include "Material.h"
-#include "EventManager.h"
+//#include "EventManager.h"
 #include "TransformModifier.h"
 #include "MaterialModifier.h"
+#include "Renderer.h"
 
-#include "cinder/gl/gl.h"
-#include "cinder/gl/Texture.h"
-#include "cinder/TriMesh.h"
-#include "cinder/gl/GlslProg.h"
-
-class RenderComponent : public GameComponent {
+class RenderComponent : public GameComponent, public RenderInfo {
 public:
   RenderComponent(ComponentDrivenApp *parent);
-
-  bool renderEnabled = true;
-
-  Transform transform;
-  BaseMesh *mesh = nullptr;
-  MaterialRef material;
 
   virtual bool canRayCast() { return true; }
   virtual AxisAlignedBox3f getBounds() {
@@ -46,28 +33,23 @@ public:
     }
     return AxisAlignedBox3f();
   }
+
   virtual void update();
 
   void draw();
-  void setEventManager(EventManager *eventManager) {
-    _eventManager = eventManager;
-  }
-  void resetModifiers();
-  TransformModifierRef getTransformModifier() { return _transformModifier; }
-  MaterialModifierRef getMaterialModifier() { return _materialModifier; }
+  // void setEventManager(EventManager *eventManager) {
+  //  _eventManager = eventManager;
+  // }
 
 protected:
-  void processEvents();
+  // void processEvents();
 
-  EventManager *_eventManager = nullptr;
+  // EventManager *_eventManager = nullptr;
 
 private:
   void startDraw();
   void endDraw();
   void applyTransfromRecursive(Transform *t);
-
-  TransformModifierRef _transformModifier = nullptr;
-  MaterialModifierRef _materialModifier = nullptr;
 };
 
 #endif

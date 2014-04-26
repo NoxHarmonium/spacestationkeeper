@@ -47,3 +47,9 @@ void GameTile::setup() {
   this->mesh = SimpleMesh::GenerateQuad(this->material->texture->getFrameSize(),
                                         this->getFrameRect());
 }
+
+void GameTile::update() {
+  if (_eventManager != nullptr) {
+    _eventManager->ProcessTriggers(this);
+  }
+}

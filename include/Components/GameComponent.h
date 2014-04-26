@@ -23,10 +23,6 @@ public:
   GameComponent(ComponentDrivenApp *parent) : parentApp(parent) {}
 
   // Interaction methods
-  virtual bool canRayCast() { return false; }
-  virtual AxisAlignedBox3f getBounds() {
-    throw new std::exception(); // Standard GameComponent has no bounds
-  }
   string classFilter = "";
 
   //! Setup the component

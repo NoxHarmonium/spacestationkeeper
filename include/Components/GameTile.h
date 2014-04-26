@@ -27,10 +27,15 @@ public:
   GameTile(MaterialRef material, int tileIndex, Vec3f offset,
            ComponentDrivenApp *parent);
   void setup();
+  void update();
+  void setEventManager(EventManager *eventManager) {
+    _eventManager = eventManager;
+  }
 
 private:
   Rectf getFrameRect();
   int _tileIndex;
+  EventManager *_eventManager = nullptr;
 };
 
 #endif

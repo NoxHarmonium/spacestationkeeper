@@ -171,6 +171,8 @@
 		9E50BCA21909CC0700587632 /* TranformModifier.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TranformModifier.cpp; sourceTree = "<group>"; };
 		9E50BCA51909CE7000587632 /* MaterialModifier.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MaterialModifier.h; sourceTree = "<group>"; };
 		9E50BCA61909D11500587632 /* MaterialModifier.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MaterialModifier.cpp; sourceTree = "<group>"; };
+		9E72B0E4190C4E0E00F9935A /* Modifier.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Modifier.h; sourceTree = "<group>"; };
+		9E72B0E5190C4E3400F9935A /* Renderer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Renderer.h; sourceTree = "<group>"; };
 		9E92628E18D48232001AB5D6 /* GameComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameComponent.cpp; sourceTree = "<group>"; };
 		9E92629118D4EDA0001AB5D6 /* ComponentDrivenApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ComponentDrivenApp.cpp; sourceTree = "<group>"; };
 		9E92629318D4F8B2001AB5D6 /* GameGrid.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameGrid.cpp; sourceTree = "<group>"; };
@@ -440,6 +442,7 @@
 				9E0E1E31190488C5009EECFD /* ShaderDef.h */,
 				9E0E1E32190488C5009EECFD /* SimpleMesh.h */,
 				9E0E1E33190488C5009EECFD /* Transform.h */,
+				9E72B0E5190C4E3400F9935A /* Renderer.h */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -634,6 +637,7 @@
 			children = (
 				9E50BCA01909CB0200587632 /* TransformModifier.h */,
 				9E50BCA51909CE7000587632 /* MaterialModifier.h */,
+				9E72B0E4190C4E0E00F9935A /* Modifier.h */,
 			);
 			path = Modifiers;
 			sourceTree = "<group>";
