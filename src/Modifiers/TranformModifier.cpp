@@ -10,10 +10,10 @@
 
 using namespace ci;
 
-TransformModifier *TransformModifier::fromTransform(Transform baseTransform) {
-  return new TransformModifier(baseTransform.localPosition,
-                               baseTransform.localRotation,
-                               baseTransform.localScale);
+TransformModifierRef TransformModifier::fromTransform(Transform baseTransform) {
+  return TransformModifierRef(new TransformModifier(baseTransform.localPosition,
+                                                    baseTransform.localRotation,
+                                                    baseTransform.localScale));
 }
 
 void TransformModifier::translateBy(Vec3f translation) {
@@ -25,9 +25,9 @@ void TransformModifier::rotateBy(Quatf rotation) {
 }
 void TransformModifier::scaleBy(Vec3f scale) { _scale = _scale * scale; }
 
-Transform TransformModifier::applyModification(Transform source) {
-  source.localPosition += _translation;
-  source.localRotation = _rotation * source.localRotation; // TODO: See above
-  source.localScale *= _scale;
+Transform *TransformModifier::applyModification(Transform *source) {
+  source->localPosition = _translation;
+  source->localRotation = _rotation * source->localRotation; // TODO: See above
+  source->localScale = _scale;
   return source;
 }

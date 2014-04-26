@@ -15,7 +15,7 @@ MouseClickTrigger::MouseClickTrigger(ComponentDrivenApp *parentApp)
 }
 
 // Trigger Methods
-bool MouseClickTrigger::isActive(RenderComponent *renderComponent) {
+bool MouseClickTrigger::isActive(GameComponent *renderComponent) {
   AxisAlignedBox3f bounds = renderComponent->getBounds();
   // Cache this call for all mouse events (i.e. click needs same information as
   // over)

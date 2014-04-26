@@ -12,19 +12,19 @@
 #include "Behaviour.h"
 #include <set>
 
-typedef set<RenderComponent *> ComponentSet;
+typedef set<GameComponent *> ComponentSet;
 
 class ToggleSelectionBehaviour : public Behaviour {
 public:
   static constexpr char *stateKeyName = "selectedComponents";
 
-  ToggleSelectionBehaviour(RenderComponent *component);
+  ToggleSelectionBehaviour(GameComponent *component);
 
   void Begin();
   void Update(float deltaT);
   void End();
-  void ApplyModifications(TransformModifier *transformModifier,
-                          MaterialModifier *materialModifier);
+  void ApplyModifications(TransformModifierRef transformModifier,
+                          MaterialModifierRef materialModifier);
 
   bool hasBegun();
 

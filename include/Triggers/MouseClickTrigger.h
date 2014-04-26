@@ -21,7 +21,7 @@ public:
 
   MouseClickTrigger(ComponentDrivenApp *parentApp);
 
-  bool isActive(RenderComponent *renderComponent);
+  bool isActive(GameComponent *renderComponent);
 
   // GameComponent Methods
   void mouseDown(MouseEvent event);

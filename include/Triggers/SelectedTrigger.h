@@ -18,7 +18,7 @@ public:
 
   void setup();
 
-  bool isActive(RenderComponent *renderComponent);
+  bool isActive(GameComponent *renderComponent);
 
 private:
   ComponentSet *_pSet = nullptr;

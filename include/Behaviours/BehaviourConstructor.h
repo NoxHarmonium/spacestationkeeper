@@ -11,21 +11,21 @@
 
 #include <stdlib.h>
 
-typedef std::function<Behaviour *(RenderComponent *)> constructorFn;
+typedef std::function<Behaviour *(GameComponent *)> constructorFn;
 
 // A complicated way to create an object that constructs a specific type of
 // behaviour on demand
 class BehaviourConstructor {
 public:
-  Behaviour *Construct(RenderComponent *renderComponent) {
+  Behaviour *Construct(GameComponent *renderComponent) {
     return _constFn(renderComponent);
   }
 
   // template <typename T> std::shared_ptr<T> LoadAsset(string assetRef)
 
   template <typename T> static BehaviourConstructor *Create() {
-    constructorFn lambda = [](RenderComponent *renderComponent) {
-      return dynamic_cast<Behaviour *>(new T(renderComponent));
+    constructorFn lambda = [](GameComponent *gameComponent) {
+      return dynamic_cast<Behaviour *>(new T(gameComponent));
     };
 
     return new BehaviourConstructor(lambda);
@@ -33,10 +33,9 @@ public:
 
   template <typename T, typename... Args>
   static BehaviourConstructor *Create(Args... args) {
-    constructorFn lambda = [args...](RenderComponent * renderComponent)
-                               ->Behaviour *
+    constructorFn lambda = [args...](GameComponent * gameComponent)->Behaviour *
     {
-      return dynamic_cast<Behaviour *>(new T(renderComponent, args...));
+      return dynamic_cast<Behaviour *>(new T(gameComponent, args...));
     };
 
     return new BehaviourConstructor(lambda);

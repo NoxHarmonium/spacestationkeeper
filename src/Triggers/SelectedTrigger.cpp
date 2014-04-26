@@ -14,7 +14,7 @@ SelectedTrigger::SelectedTrigger(ComponentDrivenApp *parentApp)
 void SelectedTrigger::setup() {}
 
 // Trigger Methods
-bool SelectedTrigger::isActive(RenderComponent *renderComponent) {
+bool SelectedTrigger::isActive(GameComponent *gameComponent) {
   if (_pSet == nullptr) {
     ComponentDrivenApp *app = this->getParentApp();
     _pSet =
@@ -22,7 +22,7 @@ bool SelectedTrigger::isActive(RenderComponent *renderComponent) {
   }
   // If pset has been created by a ToggleSelectionBehaviour
   if (_pSet != nullptr) {
-    return _pSet->count(renderComponent) > 0;
+    return _pSet->count(gameComponent) > 0;
   }
 
   return false;

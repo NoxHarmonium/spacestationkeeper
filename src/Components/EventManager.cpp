@@ -39,22 +39,28 @@ EventManager::SubscribeBehavior(string eventName, string classPattern,
 // Subscribe a single component to an event with a provided instance of a
 // behaviour
 void EventManager::SuscribeBehaviour(string eventName,
-                                     RenderComponent *renderComponent,
+                                     GameComponent *renderComponent,
                                      Behaviour *behaviour) {}
 
-void EventManager::ProcessTriggers(RenderComponent *renderComponent) {
-
+void EventManager::ProcessTriggers(GameComponent *renderComponent,
+                                   TransformModifierRef transformModifier,
+                                   MaterialModifierRef materialModifier) {
+  // TODO: Passing the modifiers around like that, its terrible I need to re
+  // think the way it all works
   if (_componentMap.count(renderComponent)) {
     for (auto &pair : _componentMap[renderComponent]) {
       for (auto &behaviour : pair.second) {
-        handleBehaviour(renderComponent, pair.first, behaviour);
+        handleBehaviour(renderComponent, pair.first, behaviour,
+                        transformModifier, materialModifier);
       }
     }
   }
 
-  if (_classFilterMap.count(renderComponent->classFilter)) {
+  if (renderComponent->classFilter.length() > 0 &&
+      _classFilterMap.count(renderComponent->classFilter)) {
     processTriggers(renderComponent,
-                    _classFilterMap[renderComponent->classFilter]);
+                    _classFilterMap[renderComponent->classFilter],
+                    transformModifier, materialModifier);
   }
 }
 
@@ -71,8 +77,10 @@ void EventManager::update() {
 }
 
 void
-EventManager::processTriggers(RenderComponent *renderComponent,
-                              vector<EventRegistration *> eventRegistrations) {
+EventManager::processTriggers(GameComponent *renderComponent,
+                              vector<EventRegistration *> eventRegistrations,
+                              TransformModifierRef transformModifier,
+                              MaterialModifierRef materialModifier) {
 
   for (auto &eventReg : eventRegistrations) {
     Trigger *trigger = _triggerMap[eventReg->eventName];
@@ -88,12 +96,15 @@ EventManager::processTriggers(RenderComponent *renderComponent,
       behaviour = eventReg->behaviourConstructor->Construct(renderComponent);
       eventReg->constructedBehaviours[renderComponent] = behaviour;
     }
-    handleBehaviour(renderComponent, trigger, behaviour);
+    handleBehaviour(renderComponent, trigger, behaviour, transformModifier,
+                    materialModifier);
   }
 }
 
-void EventManager::handleBehaviour(RenderComponent *renderComponent,
-                                   Trigger *trigger, Behaviour *behaviour) {
+void EventManager::handleBehaviour(GameComponent *renderComponent,
+                                   Trigger *trigger, Behaviour *behaviour,
+                                   TransformModifierRef transformModifier,
+                                   MaterialModifierRef materialModifier) {
   if (trigger->isActive(renderComponent)) {
     if (!behaviour->hasBegun()) {
       behaviour->Begin();
@@ -105,4 +116,6 @@ void EventManager::handleBehaviour(RenderComponent *renderComponent,
       behaviour->End();
     }
   }
+
+  behaviour->ApplyModifications(transformModifier, materialModifier);
 }

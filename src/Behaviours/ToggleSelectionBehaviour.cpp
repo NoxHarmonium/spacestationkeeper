@@ -9,7 +9,7 @@
 #include "ToggleSelectionBehaviour.h"
 #include <set>
 
-ToggleSelectionBehaviour::ToggleSelectionBehaviour(RenderComponent *component)
+ToggleSelectionBehaviour::ToggleSelectionBehaviour(GameComponent *component)
     : Behaviour(component) {}
 
 void ToggleSelectionBehaviour::Begin() {
@@ -45,6 +45,7 @@ void ToggleSelectionBehaviour::End() {
 }
 
 void ToggleSelectionBehaviour::ApplyModifications(
-    TransformModifier *transformModifier, MaterialModifier *materialModifier) {}
+    TransformModifierRef transformModifier,
+    MaterialModifierRef materialModifier) {}
 
 bool ToggleSelectionBehaviour::hasBegun() { return _hasBegun; }

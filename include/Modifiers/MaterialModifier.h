@@ -24,8 +24,10 @@ public:
   void setShader(ShaderDefRef shaderRef);
   void setTexture(TextureDefRef textureRef);
 
-  MaterialModifier *CreateFromMaterial(MaterialRef baseMaterial);
-  MaterialRef ApplyToMaterial(MaterialRef source);
+  static std::shared_ptr<MaterialModifier>
+  fromMaterialRef(MaterialRef baseMaterial);
+
+  Material *applyToMaterial(Material *source);
 
 private:
   MaterialModifier(float brightness, ColorAf baseColor, ShaderDefRef shader,
@@ -38,5 +40,7 @@ private:
   ShaderDefRef _shader;
   TextureDefRef _texture;
 };
+
+typedef std::shared_ptr<MaterialModifier> MaterialModifierRef;
 
 #endif

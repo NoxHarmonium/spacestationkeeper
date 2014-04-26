@@ -17,20 +17,42 @@ void RenderComponent::draw() {
   if (renderEnabled) {
     startDraw();
 
-    material->bind();
+    Material mCopy{*this->material};
+    _materialModifier->applyToMaterial(&mCopy);
+
+    mCopy.bind();
 
     if (this->mesh) {
       this->mesh->Render();
     }
 
-    material->unbind();
+    mCopy.unbind();
 
     endDraw();
   }
 }
+
+void RenderComponent::update() { processEvents(); }
+
+void RenderComponent::processEvents() {
+  if (_eventManager != nullptr) {
+    this->resetModifiers();
+    _eventManager->ProcessTriggers((GameComponent *)this,
+                                   this->getTransformModifier(),
+                                   this->getMaterialModifier());
+  }
+}
+
+void RenderComponent::resetModifiers() {
+  _transformModifier = TransformModifier::fromTransform(this->transform);
+  _materialModifier = MaterialModifier::fromMaterialRef(this->material);
+}
+
 void RenderComponent::startDraw() {
   glPushMatrix();
-  applyTransfromRecursive(&this->transform);
+  Transform tCopy = this->transform;
+  _transformModifier->applyModification(&tCopy);
+  applyTransfromRecursive(&tCopy);
 }
 void RenderComponent::endDraw() { glPopMatrix(); }
 

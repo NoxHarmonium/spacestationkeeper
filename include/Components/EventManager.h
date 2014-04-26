@@ -14,6 +14,8 @@
 #include "Behaviour.h"
 #include "BehaviourConstructor.h"
 #include "Trigger.h"
+#include "TransformModifier.h"
+#include "MaterialModifier.h"
 
 struct EventRegistration {
   string eventName;
@@ -35,24 +37,30 @@ public:
                          BehaviourConstructor *BehaviourConstructor);
   // Subscribe a single component to an event with a provided instance of a
   // behaviour
-  void SuscribeBehaviour(string eventName, RenderComponent *renderComponent,
+  void SuscribeBehaviour(string eventName, GameComponent *renderComponent,
                          Behaviour *behaviour);
 
-  void ProcessTriggers(RenderComponent *renderComponent);
+  void ProcessTriggers(GameComponent *renderComponent,
+                       TransformModifierRef transformModifier,
+                       MaterialModifierRef materialModifier);
 
   // Component events
   void update();
 
 private:
-  void processTriggers(RenderComponent *renderComponent,
-                       vector<EventRegistration *> eventRegistration);
+  void processTriggers(GameComponent *renderComponent,
+                       vector<EventRegistration *> eventRegistration,
+                       TransformModifierRef transformModifier,
+                       MaterialModifierRef materialModifier);
 
-  void handleBehaviour(RenderComponent *renderComponent, Trigger *trigger,
-                       Behaviour *behaviour);
+  void handleBehaviour(GameComponent *renderComponent, Trigger *trigger,
+                       Behaviour *behaviour,
+                       TransformModifierRef transformModifier,
+                       MaterialModifierRef materialModifier);
 
   float _lastUpdateTime = NAN;
   float _deltaTime = 0.0f;
-  map<RenderComponent *, vector<pair<Trigger *, vector<Behaviour *>>>>
+  map<GameComponent *, vector<pair<Trigger *, vector<Behaviour *>>>>
   _componentMap;
 
   map<string, vector<EventRegistration *>> _classFilterMap;

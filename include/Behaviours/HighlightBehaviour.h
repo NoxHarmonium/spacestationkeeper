@@ -13,7 +13,7 @@
 
 class HighlightBehaviour : public Behaviour {
 public:
-  HighlightBehaviour(RenderComponent *component,
+  HighlightBehaviour(GameComponent *component,
                      float brightnessMultiplier = 1.5f,
                      ColorAf baseColorMultiplier = ColorAf(1.0f, 1.0f, 1.0f,
                                                            1.0f));
@@ -21,8 +21,8 @@ public:
   void Begin();
   void Update(float deltaT);
   void End();
-  void ApplyModifications(TransformModifier *transformModifier,
-                          MaterialModifier *materialModifier);
+  void ApplyModifications(TransformModifierRef transformModifier,
+                          MaterialModifierRef materialModifier);
 
   bool hasBegun();
 

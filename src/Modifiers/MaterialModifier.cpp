@@ -23,12 +23,13 @@ void MaterialModifier::setTexture(TextureDefRef textureRef) {
   _texture = textureRef;
 }
 
-MaterialModifier *
-MaterialModifier::CreateFromMaterial(MaterialRef baseMaterial) {
-  return new MaterialModifier(baseMaterial->brightness, baseMaterial->baseColor,
-                              baseMaterial->shader, baseMaterial->texture);
+MaterialModifierRef
+MaterialModifier::fromMaterialRef(MaterialRef baseMaterial) {
+  return MaterialModifierRef(
+      new MaterialModifier(baseMaterial->brightness, baseMaterial->baseColor,
+                           baseMaterial->shader, baseMaterial->texture));
 }
-MaterialRef MaterialModifier::ApplyToMaterial(MaterialRef source) {
+Material *MaterialModifier::applyToMaterial(Material *source) {
   source->brightness = _brightness;
   source->baseColor = _baseColor;
   source->shader = _shader;

@@ -27,6 +27,7 @@ public:
   virtual AxisAlignedBox3f getBounds() {
     throw new std::exception(); // Standard GameComponent has no bounds
   }
+  string classFilter = "";
 
   //! Setup the component
   virtual void setup() {}

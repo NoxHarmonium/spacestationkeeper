@@ -13,6 +13,9 @@
 #include "Transform.h"
 #include "BaseMesh.h"
 #include "Material.h"
+#include "EventManager.h"
+#include "TransformModifier.h"
+#include "MaterialModifier.h"
 
 #include "cinder/gl/gl.h"
 #include "cinder/gl/Texture.h"
@@ -28,7 +31,6 @@ public:
   Transform transform;
   BaseMesh *mesh = nullptr;
   MaterialRef material;
-  string classFilter;
 
   virtual bool canRayCast() { return true; }
   virtual AxisAlignedBox3f getBounds() {
@@ -44,12 +46,28 @@ public:
     }
     return AxisAlignedBox3f();
   }
+  virtual void update();
+
   void draw();
+  void setEventManager(EventManager *eventManager) {
+    _eventManager = eventManager;
+  }
+  void resetModifiers();
+  TransformModifierRef getTransformModifier() { return _transformModifier; }
+  MaterialModifierRef getMaterialModifier() { return _materialModifier; }
+
+protected:
+  void processEvents();
+
+  EventManager *_eventManager = nullptr;
 
 private:
   void startDraw();
   void endDraw();
   void applyTransfromRecursive(Transform *t);
+
+  TransformModifierRef _transformModifier = nullptr;
+  MaterialModifierRef _materialModifier = nullptr;
 };
 
 #endif

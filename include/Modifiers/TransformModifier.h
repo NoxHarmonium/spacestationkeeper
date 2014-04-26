@@ -19,8 +19,10 @@ public:
   void rotateBy(Quatf rotation);
   void scaleBy(Vec3f scale);
 
-  TransformModifier *fromTransform(Transform baseTransform);
-  Transform applyModification(Transform source);
+  static std::shared_ptr<TransformModifier>
+  fromTransform(Transform baseTransform);
+
+  Transform *applyModification(Transform *source);
 
 private:
   TransformModifier(Vec3f localPosition, Quatf localRotation, Vec3f localScale)
@@ -31,5 +33,7 @@ private:
   Quatf _rotation = Quatf::identity();
   Vec3f _scale = Vec3f(1.0f, 1.0f, 1.0f);
 };
+
+typedef std::shared_ptr<TransformModifier> TransformModifierRef;
 
 #endif
