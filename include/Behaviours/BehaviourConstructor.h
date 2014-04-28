@@ -21,7 +21,7 @@ public:
     return _constFn(renderComponent);
   }
 
-  // template <typename T> std::shared_ptr<T> LoadAsset(string assetRef)
+  // template <typename T> std::shared_ptr<T> loadAsset(string assetRef)
 
   template <typename T> static BehaviourConstructor *Create() {
     constructorFn lambda = [](GameComponent *gameComponent) {

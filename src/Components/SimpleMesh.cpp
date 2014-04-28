@@ -13,9 +13,9 @@ using namespace std;
 
 SimpleMesh::SimpleMesh(TriMesh mesh) { _currentMesh = mesh; }
 
-void SimpleMesh::Render() { ci::gl::draw(_currentMesh); }
+void SimpleMesh::render() { ci::gl::draw(_currentMesh); }
 
-SimpleMesh *SimpleMesh::GenerateQuad(Rectf dimensions,
+SimpleMesh *SimpleMesh::generateQuad(Rectf dimensions,
                                      Rectf uvCoords = Rectf(0.0f, 0.0f, 1.0f,
                                                             1.0f)) {
 

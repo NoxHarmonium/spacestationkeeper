@@ -10,12 +10,12 @@
 #include "GameComponent.h"
 
 //! Registers a component to receive app events
-void ComponentDrivenApp::RegisterComponent(GameComponent *component) {
+void ComponentDrivenApp::registerComponent(GameComponent *component) {
   _registeredComponents.push_back(component);
 }
 
 //! Get a list of currently registered components
-vector<GameComponent *> ComponentDrivenApp::GetComponents() {
+vector<GameComponent *> ComponentDrivenApp::getComponents() {
   return this->_registeredComponents;
 }
 

@@ -20,7 +20,7 @@ using namespace std;
 class GameComponent {
 public:
   //! Construct a new GameComponent
-  GameComponent(ComponentDrivenApp *parent) : parentApp(parent) {}
+  GameComponent(ComponentDrivenApp *parentApp) : _parentApp(parentApp) {}
 
   // Interaction methods
   string classFilter = "";
@@ -64,10 +64,10 @@ public:
   virtual void fileDrop(FileDropEvent event) {}
 
   // Getters and setters
-  ComponentDrivenApp *getParentApp() { return parentApp; }
+  ComponentDrivenApp *getParentApp() { return _parentApp; }
 
 protected:
-  ComponentDrivenApp *parentApp;
+  ComponentDrivenApp *_parentApp;
 };
 
 // Attempt at creating specific GameComponents tied to a specific app
@@ -78,7 +78,7 @@ public:
   GameComponentT(T *parent)
       : GameComponent(dynamic_cast<ComponentDrivenApp *>(parent)) {}
 
-  T GetParent() { return dynamic_cast<T>(parentApp); }
+  T getParent() { return dynamic_cast<T>(_parentApp); }
 };
 
 #endif

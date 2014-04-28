@@ -14,7 +14,7 @@ RenderInfo *TriggeredRenderComponent::getRenderInfo() {
 
 void TriggeredRenderComponent::update() {
   if (_eventManager != nullptr) {
-    _modifiers = _eventManager->ProcessTriggers(this);
+    _modifiers = _eventManager->processTriggers(this);
   }
   if (_modifiedRenderInfo != nullptr) {
     delete _modifiedRenderInfo;

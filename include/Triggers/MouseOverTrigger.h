@@ -25,7 +25,7 @@ public:
   void update();
 
 private:
-  Vec2f mousePoint;
+  Vec2f _mousePoint;
 };
 
 #endif

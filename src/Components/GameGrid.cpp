@@ -27,18 +27,18 @@ void GameGrid::setup() {
 
   string classFilter = "asteroidRock";
 
-  _eventManager = parentApp->GetComponentByType<EventManager>();
+  _eventManager = _parentApp->GetComponentByType<EventManager>();
   assert(_eventManager != nullptr);
 
-  _eventManager->SubscribeBehavior(
+  _eventManager->subscribeBehavior(
       Events::MouseOver, classFilter,
       BehaviourConstructor::Create<HighlightBehaviour>());
 
-  _eventManager->SubscribeBehavior(
+  _eventManager->subscribeBehavior(
       Events::MouseClick, classFilter,
       BehaviourConstructor::Create<ToggleSelectionBehaviour>());
 
-  _eventManager->SubscribeBehavior(
+  _eventManager->subscribeBehavior(
       Events::ComponentSelected, classFilter,
       BehaviourConstructor::Create<HighlightBehaviour, float, ColorAf>(
           1.0f, ColorAf(1.0f, 0.5f, 0.5f, 1.0f)));
@@ -46,18 +46,18 @@ void GameGrid::setup() {
   vector<GameTile *> tiles;
   FileAssetLoader *assetLoader = new FileAssetLoader(Utils::getResourcesPath());
 
-  _gameDef = GameDef::GetTestBoard(assetLoader, 10, 10);
+  _gameDef = GameDef::getTestBoard(assetLoader, 10, 10);
   TextureDefRef f;
 
   // TODO: Cast shared pointers how??
   TextureDefRef asteroidTd =
-      assetLoader->LoadAsset<TextureDef>("tilesets/asteroid");
+      assetLoader->loadAsset<TextureDef>("tilesets/asteroid");
 
   ShaderDefRef defaultShader =
-      assetLoader->LoadAsset<ShaderDef>("shaders/default");
+      assetLoader->loadAsset<ShaderDef>("shaders/default");
 
   // TextureDef *corridorTd =
-  //    (TextureDef *)assetLoader->LoadAsset("tilesets/corridor");
+  //    (TextureDef *)assetLoader->loadAsset("tilesets/corridor");
 
   // int frameCount = asteroidTd->getFrameCount();
 
@@ -74,12 +74,13 @@ void GameGrid::setup() {
           _gameDef.getMapSquare(MapPoint(i, j)).getPassability());
       Vec3f offset = Vec3f(i * asteroidTd->getFrameWidth(),
                            j * asteroidTd->getFrameHeight(), 0.0f);
-      GameTile *t = new GameTile(material, frameIndex, offset, this->parentApp);
+      GameTile *t =
+          new GameTile(material, frameIndex, offset, this->_parentApp);
       t->transform->parent = this->transform;
       _gameMap[MapPoint(i, j)] = t;
 
       t->setup();
-      parentApp->RegisterComponent(t);
+      _parentApp->registerComponent(t);
 
       t->classFilter = classFilter;
       t->setEventManager(_eventManager);

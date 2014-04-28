@@ -17,10 +17,10 @@ public:
   Behaviour(GameComponent *component) : _component(component) {};
   virtual ~Behaviour() {};
 
-  virtual void Begin() = 0;
-  virtual void Update(float deltaT) = 0;
-  virtual void End() = 0;
-  virtual vector<Modifier *> GetModifiers() = 0;
+  virtual void begin() = 0;
+  virtual void update(float deltaT) = 0;
+  virtual void end() = 0;
+  virtual vector<Modifier *> getModifiers() = 0;
 
   virtual bool hasBegun() = 0;
 

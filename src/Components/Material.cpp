@@ -14,19 +14,19 @@ Material::Material() {
 }
 
 void Material::bind() {
-  if (tRef != nullptr || pRef != nullptr) {
+  if (_tRef != nullptr || _pRef != nullptr) {
     cout << "Warning: Material::bind() called without being unbound. Use "
             "Material::unbind() after rendering." << endl;
     unbind();
   }
 
-  if (this->texture && (tRef = this->texture->useTexture())) {
-    tRef->enableAndBind();
-    if (this->shader && (pRef = this->shader->useShader())) {
-      pRef->bind();
-      pRef->uniform("diffuseMap", 0);
-      pRef->uniform("baseColor", baseColor);
-      pRef->uniform("brightness", brightness);
+  if (this->texture && (_tRef = this->texture->useTexture())) {
+    _tRef->enableAndBind();
+    if (this->shader && (_pRef = this->shader->useShader())) {
+      _pRef->bind();
+      _pRef->uniform("diffuseMap", 0);
+      _pRef->uniform("baseColor", baseColor);
+      _pRef->uniform("brightness", brightness);
       // t->bind(0);
     } else {
       // t->enableAndBind();
@@ -35,16 +35,16 @@ void Material::bind() {
 }
 
 void Material::unbind() {
-  if (pRef) {
-    pRef->unbind();
+  if (_pRef) {
+    _pRef->unbind();
     this->shader->releaseShader();
   }
 
-  if (tRef) {
-    tRef->unbind();
+  if (_tRef) {
+    _tRef->unbind();
     this->texture->releaseTexture();
   }
 
-  tRef = nullptr;
-  pRef = nullptr;
+  _tRef = nullptr;
+  _pRef = nullptr;
 }

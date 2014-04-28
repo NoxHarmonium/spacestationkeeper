@@ -10,7 +10,7 @@
 
 MouseClickTrigger::MouseClickTrigger(ComponentDrivenApp *parentApp)
     : GameComponent(parentApp) {
-  this->mouseDownPoint = Vec2f(0.0f, 0.0f);
+  this->_mouseDownPoint = Vec2f(0.0f, 0.0f);
   cout << "MouseClickTrigger constructed!" << endl;
 }
 
@@ -22,34 +22,34 @@ bool MouseClickTrigger::isActive(RenderComponent *renderComponent) {
 
   // cout << "Mouse moved to: " << this->mousePoint << " center "
   //     << bounds.getCenter() << endl;
-  if (doClickTrigger) {
-    clickTriggered = true;
-    return Utils::isInside(bounds, this->mouseUpPoint);
+  if (this->_doClickTrigger) {
+    this->_clickTriggered = true;
+    return Utils::isInside(bounds, this->_mouseUpPoint);
   } else {
     return false;
   }
 }
 
 void MouseClickTrigger::mouseDown(MouseEvent event) {
-  this->mouseDownPoint = Vec2f(event.getX(), event.getY());
-  this->mouseDownTime = ci::app::getElapsedSeconds();
+  this->_mouseDownPoint = Vec2f(event.getX(), event.getY());
+  this->_mouseDownTime = ci::app::getElapsedSeconds();
 }
 void MouseClickTrigger::mouseUp(MouseEvent event) {
-  this->mouseUpPoint = Vec2f(event.getX(), event.getY());
-  float mouseDistance = mouseUpPoint.distance(this->mouseDownPoint);
-  float mouseDownDuration = ci::app::getElapsedSeconds() - this->mouseDownTime;
+  this->_mouseUpPoint = Vec2f(event.getX(), event.getY());
+  float mouseDistance = _mouseUpPoint.distance(this->_mouseDownPoint);
+  float mouseDownDuration = ci::app::getElapsedSeconds() - this->_mouseDownTime;
   cout << "mouseDistance: " << mouseDistance
        << " mouseDownDuration: " << mouseDownDuration << endl;
 
   if (mouseDistance < MouseClickTrigger::moveThreshold &&
       mouseDownDuration < MouseClickTrigger::timeThreshold) {
-    doClickTrigger = true;
+    _doClickTrigger = true;
   }
 }
 
 void MouseClickTrigger::update() {
-  if (clickTriggered) {
-    doClickTrigger = false;
-    clickTriggered = false;
+  if (_clickTriggered) {
+    _doClickTrigger = false;
+    _clickTriggered = false;
   }
 }

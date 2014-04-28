@@ -16,20 +16,20 @@ HighlightBehaviour::HighlightBehaviour(GameComponent *component,
     : _brightnessMultiplier(brightnessMultiplier),
       _baseColorMultiplier(baseColorMultiplier), Behaviour(component) {}
 
-void HighlightBehaviour::Begin() {
-  cout << "Highlight::Begin()" << endl;
+void HighlightBehaviour::begin() {
+  cout << "Highlight::begin()" << endl;
   _hasBegun = true;
   _elapsedTime = 0.0f;
 }
 
-void HighlightBehaviour::Update(float deltaT) { _elapsedTime += deltaT; }
+void HighlightBehaviour::update(float deltaT) { _elapsedTime += deltaT; }
 
-void HighlightBehaviour::End() {
+void HighlightBehaviour::end() {
   cout << "Highlight::End() Elapsed Time: " << _elapsedTime << endl;
   _hasBegun = false;
 }
 
-vector<Modifier *> HighlightBehaviour::GetModifiers() {
+vector<Modifier *> HighlightBehaviour::getModifiers() {
   vector<Modifier *> modifiers;
   if (_hasBegun) {
     modifiers.push_back(

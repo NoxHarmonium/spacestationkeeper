@@ -12,7 +12,7 @@ EventManager::EventManager(ComponentDrivenApp *parent)
     : GameComponent(parent) {}
 
 // Register an available event associated with a given trigger.
-void EventManager::RegisterEvent(string eventName, Trigger *trigger) {
+void EventManager::registerEvent(string eventName, Trigger *trigger) {
   if (_triggerMap.count(eventName) != 0) {
     cout << "Warning: eventName: " << eventName
          << " already registered with a trigger. It will be "
@@ -25,7 +25,7 @@ void EventManager::RegisterEvent(string eventName, Trigger *trigger) {
 // BehaviourConstructor class is needed to instantiate a new instance of a
 // behaviour for a variable number of components.
 void
-EventManager::SubscribeBehavior(string eventName, string classPattern,
+EventManager::subscribeBehavior(string eventName, string classPattern,
                                 BehaviourConstructor *behaviourConstructor) {
 
   EventRegistration *reg = new EventRegistration();
@@ -38,12 +38,12 @@ EventManager::SubscribeBehavior(string eventName, string classPattern,
 
 // Subscribe a single component to an event with a provided instance of a
 // behaviour
-void EventManager::SuscribeBehaviour(string eventName,
+void EventManager::suscribeBehaviour(string eventName,
                                      RenderComponent *renderComponent,
                                      Behaviour *behaviour) {}
 
 vector<Modifier *>
-EventManager::ProcessTriggers(RenderComponent *renderComponent) {
+EventManager::processTriggers(RenderComponent *renderComponent) {
   vector<Modifier *> modifiers;
   // TODO: Passing the modifiers around like that, its terrible I need to re
   // think the way it all works
@@ -104,17 +104,17 @@ void EventManager::handleBehaviour(RenderComponent *renderComponent,
                                    vector<Modifier *> *modifiers) {
   if (trigger->isActive(renderComponent)) {
     if (!behaviour->hasBegun()) {
-      behaviour->Begin();
+      behaviour->begin();
     } else {
-      behaviour->Update(_deltaTime); // todo delta time
+      behaviour->update(_deltaTime); // todo delta time
     }
   } else {
     if (behaviour->hasBegun()) {
-      behaviour->End();
+      behaviour->end();
     }
   }
 
-  for (auto &mod : behaviour->GetModifiers()) {
+  for (auto &mod : behaviour->getModifiers()) {
     modifiers->push_back(mod);
   }
 }

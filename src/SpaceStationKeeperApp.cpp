@@ -29,21 +29,21 @@ void SpaceStationKeeperApp::setup() {
   MouseClickTrigger *mouseClickTrigger = new MouseClickTrigger(this);
   SelectedTrigger *selectedTrigger = new SelectedTrigger(this);
 
-  _eventManager->RegisterEvent(Events::MouseOver, mouseOverTrigger);
-  _eventManager->RegisterEvent(Events::MouseClick, mouseClickTrigger);
-  _eventManager->RegisterEvent(Events::ComponentSelected, selectedTrigger);
+  _eventManager->registerEvent(Events::MouseOver, mouseOverTrigger);
+  _eventManager->registerEvent(Events::MouseClick, mouseClickTrigger);
+  _eventManager->registerEvent(Events::ComponentSelected, selectedTrigger);
 
   _camera = new GameCamera(this);
   _gameGrid = new GameGrid(this);
   _guiManager = new GuiManager(this);
 
-  RegisterComponent(_eventManager);
-  RegisterComponent(mouseOverTrigger);
-  RegisterComponent(mouseClickTrigger);
-  RegisterComponent(selectedTrigger);
+  registerComponent(_eventManager);
+  registerComponent(mouseOverTrigger);
+  registerComponent(mouseClickTrigger);
+  registerComponent(selectedTrigger);
 
-  RegisterComponent(_camera);
-  RegisterComponent(_gameGrid);
+  registerComponent(_camera);
+  registerComponent(_gameGrid);
   // RegisterComponent(_guiManager); Todo: render with quads so depth works
 
   // Make sure that components get setup

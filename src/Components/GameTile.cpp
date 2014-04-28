@@ -45,6 +45,6 @@ Rectf GameTile::getFrameRect() {
 }
 
 void GameTile::setup() {
-  this->mesh = SimpleMesh::GenerateQuad(this->material->texture->getFrameSize(),
+  this->mesh = SimpleMesh::generateQuad(this->material->texture->getFrameSize(),
                                         this->getFrameRect());
 }

@@ -24,16 +24,16 @@ class AssetLoaderBase {
 public:
   // template <typename T>
   // std::shared_ptr<T>
-  // LoadAsset(string assetRef) {}; // Can a template be virtual? How specify
+  // loadAsset(string assetRef) {}; // Can a template be virtual? How specify
   // interface?
-  virtual void UnloadAsset(AssetDefBaseRef asset) = 0;
-  AssetDefBaseRef GetLoadedAsset(AssetType assetType, int assetId);
+  virtual void unloadAsset(AssetDefBaseRef asset) = 0;
+  AssetDefBaseRef getLoadedAsset(AssetType assetType, int assetId);
 
 protected:
-  void SaveLoadedAsset(AssetType assetType, int assetId,
+  void saveLoadedAsset(AssetType assetType, int assetId,
                        AssetDefBaseRef assetDef);
 
-  void ClearLoadedAsset(AssetType assetType, int assetId);
+  void clearLoadedAsset(AssetType assetType, int assetId);
 
 private:
   map<AssetType, map<int, AssetDefBaseRef>> _assetMap;

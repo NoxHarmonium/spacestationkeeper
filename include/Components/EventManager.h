@@ -27,18 +27,18 @@ public:
   EventManager(ComponentDrivenApp *parent);
 
   // Register an available event associated with a given trigger.
-  void RegisterEvent(string eventName, Trigger *trigger);
+  void registerEvent(string eventName, Trigger *trigger);
   // Subscribe a whole class of components to an event. The special
   // BehaviourConstructor class is needed to instantiate a new instance of a
   // behaviour for a variable number of components.
-  void SubscribeBehavior(string eventName, string classPattern,
+  void subscribeBehavior(string eventName, string classPattern,
                          BehaviourConstructor *BehaviourConstructor);
   // Subscribe a single component to an event with a provided instance of a
   // behaviour
-  void SuscribeBehaviour(string eventName, RenderComponent *renderComponent,
+  void suscribeBehaviour(string eventName, RenderComponent *renderComponent,
                          Behaviour *behaviour);
 
-  vector<Modifier *> ProcessTriggers(RenderComponent *renderComponent);
+  vector<Modifier *> processTriggers(RenderComponent *renderComponent);
 
   // Component events
   void update();

@@ -28,9 +28,9 @@ public:
   int getHeight() { return _height; }
   GameMapSquare getMapSquare(MapPoint mapPoint) { return _gameMap[mapPoint]; }
 
-  static GameDef GetTestBoard(AssetLoaderBase *assetLoader, int width,
+  static GameDef getTestBoard(AssetLoaderBase *assetLoader, int width,
                               int height) {
-    cout << "GameDef::GetTestBoard()" << endl;
+    cout << "GameDef::getTestBoard()" << endl;
 
     // cout << "TD address: " << (uint) & td;
 

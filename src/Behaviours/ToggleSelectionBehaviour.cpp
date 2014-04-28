@@ -12,33 +12,33 @@
 ToggleSelectionBehaviour::ToggleSelectionBehaviour(GameComponent *component)
     : Behaviour(component) {}
 
-void ToggleSelectionBehaviour::Begin() {
+void ToggleSelectionBehaviour::begin() {
 
-  cout << "ToggleSelectionBehaviour::Begin()" << endl;
+  cout << "ToggleSelectionBehaviour::begin()" << endl;
   _hasBegun = true;
   _elapsedTime = 0.0f;
   ComponentDrivenApp *app = _component->getParentApp();
 
-  pSet = app->getState<ComponentSet *>(stateKeyName);
-  if (pSet == nullptr) {
-    pSet = new ComponentSet();
-    app->setState<ComponentSet *>(stateKeyName, pSet);
+  _pSet = app->getState<ComponentSet *>(stateKeyName);
+  if (_pSet == nullptr) {
+    _pSet = new ComponentSet();
+    app->setState<ComponentSet *>(stateKeyName, _pSet);
   }
 
-  if (pSet->count(_component) > 0) {
-    pSet->erase(_component);
+  if (_pSet->count(_component) > 0) {
+    _pSet->erase(_component);
   } else {
-    pSet->insert(_component);
+    _pSet->insert(_component);
   }
 
-  for (auto &comp : *pSet) {
+  for (auto &comp : *_pSet) {
     cout << "Selected component: " << comp << endl;
   }
 }
 
-void ToggleSelectionBehaviour::Update(float deltaT) { _elapsedTime += deltaT; }
+void ToggleSelectionBehaviour::update(float deltaT) { _elapsedTime += deltaT; }
 
-void ToggleSelectionBehaviour::End() {
+void ToggleSelectionBehaviour::end() {
   cout << "ToggleSelectionBehaviour::End() Elapsed Time: " << _elapsedTime
        << endl;
   _hasBegun = false;

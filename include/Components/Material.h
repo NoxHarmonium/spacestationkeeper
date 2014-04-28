@@ -28,8 +28,8 @@ public:
   void unbind();
 
 private:
-  gl::TextureRef tRef = nullptr;
-  gl::GlslProgRef pRef = nullptr;
+  gl::TextureRef _tRef = nullptr;
+  gl::GlslProgRef _pRef = nullptr;
 };
 
 typedef std::shared_ptr<Material> MaterialRef;

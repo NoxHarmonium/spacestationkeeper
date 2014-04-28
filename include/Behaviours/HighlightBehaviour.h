@@ -19,10 +19,10 @@ public:
                                                            1.0f));
   ~HighlightBehaviour() {};
 
-  void Begin();
-  void Update(float deltaT);
-  void End();
-  vector<Modifier *> GetModifiers();
+  void begin();
+  void update(float deltaT);
+  void end();
+  vector<Modifier *> getModifiers();
 
   bool hasBegun();
 

@@ -26,11 +26,12 @@ class FileAssetLoader : public AssetLoaderBase {
 
 public:
   FileAssetLoader(filesystem::path assetRoot);
-  template <typename T> std::shared_ptr<T> LoadAsset(string assetRef) {
+
+  template <typename T> std::shared_ptr<T> loadAsset(string assetRef) {
     // WHAT THE DAMN HELL?!?! Why does this need to be in the header?
     // When I try to put it in the cpp file it doesn't seem to compile.
 
-    cout << "FileAssetLoader::LoadAsset()" << endl;
+    cout << "FileAssetLoader::loadAsset()" << endl;
 
     filesystem::ifstream ifs;
     filesystem::path path = getAssetRoot() / filesystem::path(assetRef) /
@@ -53,14 +54,14 @@ public:
       static T assetDef = node.as<T>();
       assetDef.setPath(path.parent_path()); // Get directory of asset
       std::shared_ptr<T> assetDefRef = std::shared_ptr<T>(&assetDef);
-      SaveLoadedAsset(assetType, assetDef.getId(), assetDefRef);
+      saveLoadedAsset(assetType, assetDef.getId(), assetDefRef);
       return assetDefRef;
     }
 
     // Load error
     throw new std::exception();
   }
-  void UnloadAsset(AssetDefBaseRef asset);
+  void unloadAsset(AssetDefBaseRef asset);
   filesystem::path getAssetRoot();
 
 private:

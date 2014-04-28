@@ -20,8 +20,8 @@ filesystem::path FileAssetLoader::getAssetRoot() {
 }
 /*
 template <typename T>
-std::shared_ptr<T> FileAssetLoader::LoadAsset(string assetRef) {
-  cout << "FileAssetLoader::LoadAsset()" << endl;
+std::shared_ptr<T> FileAssetLoader::loadAsset(string assetRef) {
+  cout << "FileAssetLoader::loadAsset()" << endl;
 
   filesystem::ifstream ifs;
   filesystem::path path = getAssetRoot() / filesystem::path(assetRef) /
@@ -44,13 +44,13 @@ std::shared_ptr<T> FileAssetLoader::LoadAsset(string assetRef) {
     static T assetDef = node.as<T>();
     assetDef.setPath(path.parent_path()); // Get directory of asset
     std::shared_ptr<T> assetDefRef = std::shared_ptr<T>(&assetDef);
-    SaveLoadedAsset(assetType, assetDef, assetDefRef);
+    saveLoadedAsset(assetType, assetDef, assetDefRef);
     return assetDefRef;
   }
 
   // Load error
   throw new std::exception();
 }*/
-void FileAssetLoader::UnloadAsset(AssetDefBaseRef asset) {
-  ClearLoadedAsset(AssetType::Texture, asset->getId());
+void FileAssetLoader::unloadAsset(AssetDefBaseRef asset) {
+  clearLoadedAsset(AssetType::Texture, asset->getId());
 }

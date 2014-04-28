@@ -21,17 +21,17 @@ public:
   ToggleSelectionBehaviour(GameComponent *component);
   ~ToggleSelectionBehaviour() {};
 
-  void Begin();
-  void Update(float deltaT);
-  void End();
-  vector<Modifier *> GetModifiers() { return vector<Modifier *>(); }
+  void begin();
+  void update(float deltaT);
+  void end();
+  vector<Modifier *> getModifiers() { return vector<Modifier *>(); }
 
   bool hasBegun();
 
 private:
   bool _hasBegun = false;
   float _elapsedTime = 0.0f;
-  ComponentSet *pSet = nullptr;
+  ComponentSet *_pSet = nullptr;
 };
 
 #endif

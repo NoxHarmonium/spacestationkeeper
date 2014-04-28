@@ -19,7 +19,7 @@ void RenderComponent::draw() {
     renderInfo->material->bind();
 
     if (renderInfo->mesh) {
-      renderInfo->mesh->Render();
+      renderInfo->mesh->render();
     }
 
     renderInfo->material->unbind();

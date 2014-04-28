@@ -23,10 +23,10 @@ class ComponentDrivenApp : public AppNative {
 
 public:
   //! Registers a component to receive app events
-  void RegisterComponent(GameComponent *component);
+  void registerComponent(GameComponent *component);
 
   //! Get a list of currently registered components
-  vector<GameComponent *> GetComponents();
+  vector<GameComponent *> getComponents();
 
   template <typename T> vector<GameComponent *> GetComponentsByType() {
     vector<GameComponent *> selectedComps;

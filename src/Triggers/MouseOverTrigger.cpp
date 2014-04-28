@@ -10,7 +10,7 @@
 
 MouseOverTrigger::MouseOverTrigger(ComponentDrivenApp *parentApp)
     : GameComponent(parentApp) {
-  this->mousePoint = Vec2f(0.0f, 0.0f);
+  this->_mousePoint = Vec2f(0.0f, 0.0f);
   cout << "MouseOverTrigger constructed!" << endl;
 }
 
@@ -22,12 +22,12 @@ bool MouseOverTrigger::isActive(RenderComponent *renderComponent) {
 
   // cout << "Mouse moved to: " << this->mousePoint << " center "
   //     << bounds.getCenter() << endl;
-  return Utils::isInside(bounds, this->mousePoint);
+  return Utils::isInside(bounds, this->_mousePoint);
 }
 
 // GameComponent Methods
 void MouseOverTrigger::mouseMove(MouseEvent event) {
-  this->mousePoint = Vec2f(event.getX(), event.getY());
+  this->_mousePoint = Vec2f(event.getX(), event.getY());
 }
 
 void MouseOverTrigger::update() {

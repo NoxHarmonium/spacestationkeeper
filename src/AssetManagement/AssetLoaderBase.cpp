@@ -8,7 +8,7 @@
 
 #include "AssetLoaderBase.h"
 
-AssetDefBaseRef AssetLoaderBase::GetLoadedAsset(AssetType assetType,
+AssetDefBaseRef AssetLoaderBase::getLoadedAsset(AssetType assetType,
                                                 int assetId) {
   if (_assetMap.count(assetType)) {
     map<int, AssetDefBaseRef> idMap = _assetMap[assetType];
@@ -19,7 +19,7 @@ AssetDefBaseRef AssetLoaderBase::GetLoadedAsset(AssetType assetType,
   return nullptr;
 }
 
-void AssetLoaderBase::SaveLoadedAsset(AssetType assetType, int assetId,
+void AssetLoaderBase::saveLoadedAsset(AssetType assetType, int assetId,
                                       AssetDefBaseRef assetDef) {
   if (!_assetMap.count(assetType)) {
     _assetMap[assetType] = map<int, AssetDefBaseRef>();
@@ -27,7 +27,7 @@ void AssetLoaderBase::SaveLoadedAsset(AssetType assetType, int assetId,
   _assetMap[assetType][assetId] = assetDef;
 }
 
-void AssetLoaderBase::ClearLoadedAsset(AssetType assetType, int assetId) {
+void AssetLoaderBase::clearLoadedAsset(AssetType assetType, int assetId) {
 
   if (_assetMap.count(assetType)) {
     _assetMap[assetType].erase(assetId);

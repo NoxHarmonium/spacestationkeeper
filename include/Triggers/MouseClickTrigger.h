@@ -29,11 +29,11 @@ public:
   void update();
 
 private:
-  Vec2f mouseDownPoint;
-  Vec2f mouseUpPoint;
-  bool doClickTrigger = false;
-  bool clickTriggered = false;
-  float mouseDownTime = 0.0f;
+  Vec2f _mouseDownPoint;
+  Vec2f _mouseUpPoint;
+  bool _doClickTrigger = false;
+  bool _clickTriggered = false;
+  float _mouseDownTime = 0.0f;
 };
 
 #endif

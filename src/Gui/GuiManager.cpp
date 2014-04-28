@@ -15,7 +15,7 @@ using namespace cinder::cairo;
 void GuiManager::update() {
   // Only redraw cairo surface if there is a change (expensive)
   if (_currentText != _prevText) {
-    DisplayRef dispRef = parentApp->getDisplay();
+    DisplayRef dispRef = _parentApp->getDisplay();
     // TODO: Just hard coded test commands, will be replaced with a system of
     // nested GUI components at some point
     cairo::Context ctx = cairo::Context(*_cairoSurface);
@@ -39,7 +39,7 @@ void GuiManager::update() {
 void GuiManager::draw() { gl::draw(_currentTexture); }
 
 void GuiManager::setup() {
-  DisplayRef dispRef = parentApp->getDisplay();
+  DisplayRef dispRef = _parentApp->getDisplay();
 
   cleanUp();
   _cairoSurface =
@@ -59,7 +59,7 @@ void GuiManager::cleanUp() {
 }
 
 GuiManager::GuiManager(ComponentDrivenApp *app) : GameComponent(app) {
-  DisplayRef dispRef = parentApp->getDisplay();
+  DisplayRef dispRef = _parentApp->getDisplay();
 
   _cairoSurface =
       new SurfaceImage(dispRef->getWidth(), dispRef->getHeight(), true);
