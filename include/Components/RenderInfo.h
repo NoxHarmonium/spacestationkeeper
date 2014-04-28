@@ -1,5 +1,5 @@
 //
-//  Renderer.h
+//  RenderInfo.h
 //  SpaceStationKeeper
 //
 //  Created by Sean Dawson on 26/04/2014.
@@ -15,14 +15,21 @@
 
 class RenderInfo {
 public:
+  RenderInfo() { this->transform = make_shared<Transform>(); }
+
   bool renderEnabled = true;
 
-  Transform transform;
+  TransformRef transform;
   BaseMesh *mesh = nullptr;
   MaterialRef material;
 
-  virtual bool canRayCast() = 0;
-  virtual AxisAlignedBox3f getBounds() = 0;
+  virtual bool canRayCast() {
+    return false;
+  }
+  virtual AxisAlignedBox3f getBounds() {
+    return AxisAlignedBox3f();
+  }
+  RenderInfo *clone();
 };
 
 #endif

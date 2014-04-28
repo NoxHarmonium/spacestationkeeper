@@ -75,7 +75,7 @@ void GameGrid::setup() {
       Vec3f offset = Vec3f(i * asteroidTd->getFrameWidth(),
                            j * asteroidTd->getFrameHeight(), 0.0f);
       GameTile *t = new GameTile(material, frameIndex, offset, this->parentApp);
-      t->transform.parent = &this->transform;
+      t->transform->parent = this->transform;
       _gameMap[MapPoint(i, j)] = t;
 
       t->setup();
@@ -93,7 +93,7 @@ void GameGrid::setup() {
 }
 
 void GameGrid::update() {
-  this->transform.localPosition.x =
+  this->transform->localPosition.x =
       50.0f + ((sin(ci::app::getElapsedSeconds())) * 25.0f);
 }
 

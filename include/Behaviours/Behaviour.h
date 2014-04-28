@@ -10,18 +10,17 @@
 #define SpaceStationKeeper_Behaviour_h
 
 #include "GameComponent.h"
-#include "TransformModifier.h"
-#include "MaterialModifier.h"
+#include "Modifier.h"
 
 class Behaviour {
 public:
   Behaviour(GameComponent *component) : _component(component) {};
+  virtual ~Behaviour() {};
 
   virtual void Begin() = 0;
   virtual void Update(float deltaT) = 0;
   virtual void End() = 0;
-  virtual void ApplyModifications(TransformModifierRef transformModifier,
-                                  MaterialModifierRef materialModifier) = 0;
+  virtual vector<Modifier *> GetModifiers() = 0;
 
   virtual bool hasBegun() = 0;
 

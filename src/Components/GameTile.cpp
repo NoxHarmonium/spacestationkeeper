@@ -7,6 +7,7 @@
 //
 
 #include "GameTile.h"
+#include "SimpleMesh.h"
 
 using namespace ci;
 using namespace std;
@@ -14,18 +15,18 @@ using namespace cinder::gl;
 
 GameTile::GameTile(MaterialRef material, int tileIndex,
                    ComponentDrivenApp *parent)
-    : RenderComponent(parent) {
+    : TriggeredRenderComponent(parent) {
   _tileIndex = tileIndex;
   this->material = material;
-  this->transform.localPosition = Vec3f();
+  this->transform->localPosition = Vec3f();
 }
 
 GameTile::GameTile(MaterialRef material, int tileIndex, Vec3f offset,
                    ComponentDrivenApp *parent)
-    : RenderComponent(parent) {
+    : TriggeredRenderComponent(parent) {
   _tileIndex = tileIndex;
   this->material = material;
-  this->transform.localPosition = offset;
+  this->transform->localPosition = offset;
 }
 
 Rectf GameTile::getFrameRect() {
@@ -46,10 +47,4 @@ Rectf GameTile::getFrameRect() {
 void GameTile::setup() {
   this->mesh = SimpleMesh::GenerateQuad(this->material->texture->getFrameSize(),
                                         this->getFrameRect());
-}
-
-void GameTile::update() {
-  if (_eventManager != nullptr) {
-    _eventManager->ProcessTriggers(this);
-  }
 }

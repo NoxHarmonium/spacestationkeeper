@@ -10,42 +10,31 @@
 
 using namespace ci;
 
-RenderComponent::RenderComponent(ComponentDrivenApp *parent)
-    : GameComponent(parent) {};
-
 void RenderComponent::draw() {
   if (renderEnabled) {
-    startDraw();
+    RenderInfo *renderInfo = this->getRenderInfo();
 
-    material->bind();
+    startDraw(renderInfo);
 
-    if (this->mesh) {
-      this->mesh->Render();
+    renderInfo->material->bind();
+
+    if (renderInfo->mesh) {
+      renderInfo->mesh->Render();
     }
 
-    material->unbind();
+    renderInfo->material->unbind();
 
-    endDraw();
+    endDraw(renderInfo);
   }
 }
 
-void RenderComponent::update() {
-  // processEvents();
-}
-
-// void RenderComponent::processEvents() {
-// if (_eventManager != nullptr) {
-//  _eventManager->ProcessTriggers(this);
-//}
-//}
-
-void RenderComponent::startDraw() {
+void RenderComponent::startDraw(RenderInfo *renderInfo) {
   glPushMatrix();
-  applyTransfromRecursive(&transform);
+  applyTransfromRecursive(renderInfo->transform);
 }
-void RenderComponent::endDraw() { glPopMatrix(); }
+void RenderComponent::endDraw(RenderInfo *renderInfo) { glPopMatrix(); }
 
-void RenderComponent::applyTransfromRecursive(Transform *t) {
+void RenderComponent::applyTransfromRecursive(TransformRef t) {
   if (t->parent) {
     applyTransfromRecursive(t->parent);
   }

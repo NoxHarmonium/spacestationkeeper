@@ -19,12 +19,12 @@ public:
   static constexpr char *stateKeyName = "selectedComponents";
 
   ToggleSelectionBehaviour(GameComponent *component);
+  ~ToggleSelectionBehaviour() {};
 
   void Begin();
   void Update(float deltaT);
   void End();
-  void ApplyModifications(TransformModifierRef transformModifier,
-                          MaterialModifierRef materialModifier);
+  vector<Modifier *> GetModifiers() { return vector<Modifier *>(); }
 
   bool hasBegun();
 

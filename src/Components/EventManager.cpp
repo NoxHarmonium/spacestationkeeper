@@ -42,13 +42,15 @@ void EventManager::SuscribeBehaviour(string eventName,
                                      RenderComponent *renderComponent,
                                      Behaviour *behaviour) {}
 
-void EventManager::ProcessTriggers(RenderComponent *renderComponent) {
+vector<Modifier *>
+EventManager::ProcessTriggers(RenderComponent *renderComponent) {
+  vector<Modifier *> modifiers;
   // TODO: Passing the modifiers around like that, its terrible I need to re
   // think the way it all works
   if (_componentMap.count(renderComponent)) {
     for (auto &pair : _componentMap[renderComponent]) {
       for (auto &behaviour : pair.second) {
-        handleBehaviour(renderComponent, pair.first, behaviour);
+        handleBehaviour(renderComponent, pair.first, behaviour, &modifiers);
       }
     }
   }
@@ -56,8 +58,10 @@ void EventManager::ProcessTriggers(RenderComponent *renderComponent) {
   if (renderComponent->classFilter.length() > 0 &&
       _classFilterMap.count(renderComponent->classFilter)) {
     processTriggers(renderComponent,
-                    _classFilterMap[renderComponent->classFilter]);
+                    _classFilterMap[renderComponent->classFilter], &modifiers);
   }
+
+  return modifiers;
 }
 
 // Component events
@@ -74,7 +78,8 @@ void EventManager::update() {
 
 void
 EventManager::processTriggers(RenderComponent *renderComponent,
-                              vector<EventRegistration *> eventRegistrations) {
+                              vector<EventRegistration *> eventRegistrations,
+                              vector<Modifier *> *modifiers) {
 
   for (auto &eventReg : eventRegistrations) {
     Trigger *trigger = _triggerMap[eventReg->eventName];
@@ -90,12 +95,13 @@ EventManager::processTriggers(RenderComponent *renderComponent,
       behaviour = eventReg->behaviourConstructor->Construct(renderComponent);
       eventReg->constructedBehaviours[renderComponent] = behaviour;
     }
-    handleBehaviour(renderComponent, trigger, behaviour);
+    handleBehaviour(renderComponent, trigger, behaviour, modifiers);
   }
 }
 
 void EventManager::handleBehaviour(RenderComponent *renderComponent,
-                                   Trigger *trigger, Behaviour *behaviour) {
+                                   Trigger *trigger, Behaviour *behaviour,
+                                   vector<Modifier *> *modifiers) {
   if (trigger->isActive(renderComponent)) {
     if (!behaviour->hasBegun()) {
       behaviour->Begin();
@@ -108,5 +114,7 @@ void EventManager::handleBehaviour(RenderComponent *renderComponent,
     }
   }
 
-  // behaviour->ApplyModifications(transformModifier, materialModifier);
+  for (auto &mod : behaviour->GetModifiers()) {
+    modifiers->push_back(mod);
+  }
 }

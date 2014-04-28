@@ -11,19 +11,17 @@
 
 #include "GameComponent.h"
 //#include "EventManager.h"
-#include "TransformModifier.h"
-#include "MaterialModifier.h"
-#include "Renderer.h"
+#include "RenderInfo.h"
 
 class RenderComponent : public GameComponent, public RenderInfo {
 public:
-  RenderComponent(ComponentDrivenApp *parent);
+  RenderComponent(ComponentDrivenApp *parent) : GameComponent(parent) {};
 
   virtual bool canRayCast() { return true; }
   virtual AxisAlignedBox3f getBounds() {
     if (mesh) {
       glPushMatrix();
-      applyTransfromRecursive(&this->transform);
+      applyTransfromRecursive(this->transform);
       Matrix44f matrix;
       glGetFloatv(GL_MODELVIEW_MATRIX, matrix);
       AxisAlignedBox3f transBound = mesh->getBoundingBox().transformed(matrix);
@@ -34,22 +32,15 @@ public:
     return AxisAlignedBox3f();
   }
 
-  virtual void update();
-
   void draw();
-  // void setEventManager(EventManager *eventManager) {
-  //  _eventManager = eventManager;
-  // }
 
 protected:
-  // void processEvents();
-
-  // EventManager *_eventManager = nullptr;
+  virtual RenderInfo *getRenderInfo() { return this; }
 
 private:
-  void startDraw();
-  void endDraw();
-  void applyTransfromRecursive(Transform *t);
+  void startDraw(RenderInfo *renderInfo);
+  void endDraw(RenderInfo *renderInfo);
+  void applyTransfromRecursive(TransformRef t);
 };
 
 #endif

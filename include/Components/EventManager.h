@@ -14,8 +14,6 @@
 #include "Behaviour.h"
 #include "BehaviourConstructor.h"
 #include "Trigger.h"
-#include "TransformModifier.h"
-#include "MaterialModifier.h"
 
 struct EventRegistration {
   string eventName;
@@ -40,17 +38,18 @@ public:
   void SuscribeBehaviour(string eventName, RenderComponent *renderComponent,
                          Behaviour *behaviour);
 
-  void ProcessTriggers(RenderComponent *renderComponent);
+  vector<Modifier *> ProcessTriggers(RenderComponent *renderComponent);
 
   // Component events
   void update();
 
 private:
   void processTriggers(RenderComponent *renderComponent,
-                       vector<EventRegistration *> eventRegistration);
+                       vector<EventRegistration *> eventRegistration,
+                       vector<Modifier *> *modifiers);
 
   void handleBehaviour(RenderComponent *renderComponent, Trigger *trigger,
-                       Behaviour *behaviour);
+                       Behaviour *behaviour, vector<Modifier *> *modifiers);
 
   float _lastUpdateTime = NAN;
   float _deltaTime = 0.0f;

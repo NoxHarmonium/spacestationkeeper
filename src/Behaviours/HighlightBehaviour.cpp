@@ -7,6 +7,8 @@
 //
 
 #include "HighlightBehaviour.h"
+#include "BrightnessModifier.h"
+#include "BaseColorModifier.h"
 
 HighlightBehaviour::HighlightBehaviour(GameComponent *component,
                                        float brightnessMultiplier,
@@ -27,13 +29,15 @@ void HighlightBehaviour::End() {
   _hasBegun = false;
 }
 
-void
-HighlightBehaviour::ApplyModifications(TransformModifierRef transformModifier,
-                                       MaterialModifierRef materialModifier) {
+vector<Modifier *> HighlightBehaviour::GetModifiers() {
+  vector<Modifier *> modifiers;
   if (_hasBegun) {
-    materialModifier->addToBrightness(_brightnessMultiplier);
-    materialModifier->multiplyBaseColor(_baseColorMultiplier);
+    modifiers.push_back(
+        new BrightnessModifier(_brightnessMultiplier, ModifyMode::Multiply));
+    modifiers.push_back(
+        new BaseColorModifier(_baseColorMultiplier, ModifyMode::Multiply));
   }
+  return modifiers;
 }
 
 bool HighlightBehaviour::hasBegun() { return _hasBegun; }

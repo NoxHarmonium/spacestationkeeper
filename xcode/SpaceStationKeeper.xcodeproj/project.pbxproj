@@ -24,8 +24,15 @@
 		9E0E1E8219048917009EECFD /* LuaBridge.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E0E1E8019048917009EECFD /* LuaBridge.cpp */; };
 		9E10054B18EA355F00EC5213 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = 9E10054A18EA355F00EC5213 /* assets */; };
 		9E21C4B318DA14DE00E927D6 /* libyaml-cpp.0.5.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E21C4B218DA14DE00E927D6 /* libyaml-cpp.0.5.1.dylib */; };
-		9E50BCA41909CC0800587632 /* TranformModifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E50BCA21909CC0700587632 /* TranformModifier.cpp */; };
-		9E50BCA81909D11500587632 /* MaterialModifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E50BCA61909D11500587632 /* MaterialModifier.cpp */; };
+		9E3AF3E8190C5943001007F4 /* TranslateModifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E3AF3E1190C5943001007F4 /* TranslateModifier.cpp */; };
+		9E3AF3E9190C5943001007F4 /* ScaleModifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E3AF3E2190C5943001007F4 /* ScaleModifier.cpp */; };
+		9E3AF3EA190C5943001007F4 /* RotateModifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E3AF3E3190C5943001007F4 /* RotateModifier.cpp */; };
+		9E3AF3EB190C5943001007F4 /* BaseColorModifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E3AF3E4190C5943001007F4 /* BaseColorModifier.cpp */; };
+		9E3AF3EC190C5943001007F4 /* BrightnessModifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E3AF3E5190C5943001007F4 /* BrightnessModifier.cpp */; };
+		9E3AF3ED190C5943001007F4 /* ShaderModifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E3AF3E6190C5943001007F4 /* ShaderModifier.cpp */; };
+		9E3AF3EE190C5943001007F4 /* TextureModifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E3AF3E7190C5943001007F4 /* TextureModifier.cpp */; };
+		9E3AF3F2190D24F3001007F4 /* TriggeredRenderComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E3AF3F0190D24F3001007F4 /* TriggeredRenderComponent.cpp */; };
+		9E3AF3F5190DBBC6001007F4 /* RenderInfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E3AF3F3190DBBC6001007F4 /* RenderInfo.cpp */; };
 		9E92628F18D48232001AB5D6 /* GameComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E92628E18D48232001AB5D6 /* GameComponent.cpp */; };
 		9E92629218D4EDA0001AB5D6 /* ComponentDrivenApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E92629118D4EDA0001AB5D6 /* ComponentDrivenApp.cpp */; };
 		9E92629418D4F8B2001AB5D6 /* GameGrid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E92629318D4F8B2001AB5D6 /* GameGrid.cpp */; };
@@ -167,12 +174,25 @@
 		9E0E1E8119048917009EECFD /* LuaBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaBridge.h; sourceTree = "<group>"; };
 		9E10054A18EA355F00EC5213 /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; name = assets; path = ../assets; sourceTree = "<group>"; };
 		9E21C4B218DA14DE00E927D6 /* libyaml-cpp.0.5.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = "libyaml-cpp.0.5.1.dylib"; sourceTree = "<group>"; };
-		9E50BCA01909CB0200587632 /* TransformModifier.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TransformModifier.h; sourceTree = "<group>"; };
-		9E50BCA21909CC0700587632 /* TranformModifier.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TranformModifier.cpp; sourceTree = "<group>"; };
-		9E50BCA51909CE7000587632 /* MaterialModifier.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MaterialModifier.h; sourceTree = "<group>"; };
-		9E50BCA61909D11500587632 /* MaterialModifier.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MaterialModifier.cpp; sourceTree = "<group>"; };
+		9E3AF3DA190C562D001007F4 /* TranslateModifier.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TranslateModifier.h; sourceTree = "<group>"; };
+		9E3AF3DB190C569B001007F4 /* RotateModifier.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RotateModifier.h; sourceTree = "<group>"; };
+		9E3AF3DC190C56DE001007F4 /* ScaleModifier.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScaleModifier.h; sourceTree = "<group>"; };
+		9E3AF3DD190C573B001007F4 /* BrightnessModifier.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BrightnessModifier.h; sourceTree = "<group>"; };
+		9E3AF3DE190C57EE001007F4 /* BaseColorModifier.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseColorModifier.h; sourceTree = "<group>"; };
+		9E3AF3DF190C5828001007F4 /* ShaderModifier.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShaderModifier.h; sourceTree = "<group>"; };
+		9E3AF3E0190C5885001007F4 /* TextureModifier.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TextureModifier.h; sourceTree = "<group>"; };
+		9E3AF3E1190C5943001007F4 /* TranslateModifier.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TranslateModifier.cpp; sourceTree = "<group>"; };
+		9E3AF3E2190C5943001007F4 /* ScaleModifier.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ScaleModifier.cpp; sourceTree = "<group>"; };
+		9E3AF3E3190C5943001007F4 /* RotateModifier.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RotateModifier.cpp; sourceTree = "<group>"; };
+		9E3AF3E4190C5943001007F4 /* BaseColorModifier.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BaseColorModifier.cpp; sourceTree = "<group>"; };
+		9E3AF3E5190C5943001007F4 /* BrightnessModifier.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BrightnessModifier.cpp; sourceTree = "<group>"; };
+		9E3AF3E6190C5943001007F4 /* ShaderModifier.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ShaderModifier.cpp; sourceTree = "<group>"; };
+		9E3AF3E7190C5943001007F4 /* TextureModifier.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TextureModifier.cpp; sourceTree = "<group>"; };
+		9E3AF3EF190CA329001007F4 /* TriggeredRenderComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TriggeredRenderComponent.h; sourceTree = "<group>"; };
+		9E3AF3F0190D24F3001007F4 /* TriggeredRenderComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TriggeredRenderComponent.cpp; sourceTree = "<group>"; };
+		9E3AF3F3190DBBC6001007F4 /* RenderInfo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RenderInfo.cpp; sourceTree = "<group>"; };
 		9E72B0E4190C4E0E00F9935A /* Modifier.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Modifier.h; sourceTree = "<group>"; };
-		9E72B0E5190C4E3400F9935A /* Renderer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Renderer.h; sourceTree = "<group>"; };
+		9E72B0E5190C4E3400F9935A /* RenderInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RenderInfo.h; sourceTree = "<group>"; };
 		9E92628E18D48232001AB5D6 /* GameComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameComponent.cpp; sourceTree = "<group>"; };
 		9E92629118D4EDA0001AB5D6 /* ComponentDrivenApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ComponentDrivenApp.cpp; sourceTree = "<group>"; };
 		9E92629318D4F8B2001AB5D6 /* GameGrid.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameGrid.cpp; sourceTree = "<group>"; };
@@ -442,7 +462,8 @@
 				9E0E1E31190488C5009EECFD /* ShaderDef.h */,
 				9E0E1E32190488C5009EECFD /* SimpleMesh.h */,
 				9E0E1E33190488C5009EECFD /* Transform.h */,
-				9E72B0E5190C4E3400F9935A /* Renderer.h */,
+				9E72B0E5190C4E3400F9935A /* RenderInfo.h */,
+				9E3AF3EF190CA329001007F4 /* TriggeredRenderComponent.h */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -635,9 +656,14 @@
 		9E50BC9F1909CA9100587632 /* Modifiers */ = {
 			isa = PBXGroup;
 			children = (
-				9E50BCA01909CB0200587632 /* TransformModifier.h */,
-				9E50BCA51909CE7000587632 /* MaterialModifier.h */,
 				9E72B0E4190C4E0E00F9935A /* Modifier.h */,
+				9E3AF3DA190C562D001007F4 /* TranslateModifier.h */,
+				9E3AF3DB190C569B001007F4 /* RotateModifier.h */,
+				9E3AF3DC190C56DE001007F4 /* ScaleModifier.h */,
+				9E3AF3DD190C573B001007F4 /* BrightnessModifier.h */,
+				9E3AF3DE190C57EE001007F4 /* BaseColorModifier.h */,
+				9E3AF3DF190C5828001007F4 /* ShaderModifier.h */,
+				9E3AF3E0190C5885001007F4 /* TextureModifier.h */,
 			);
 			path = Modifiers;
 			sourceTree = "<group>";
@@ -645,8 +671,13 @@
 		9E50BCA11909CBEF00587632 /* Modifiers */ = {
 			isa = PBXGroup;
 			children = (
-				9E50BCA21909CC0700587632 /* TranformModifier.cpp */,
-				9E50BCA61909D11500587632 /* MaterialModifier.cpp */,
+				9E3AF3E1190C5943001007F4 /* TranslateModifier.cpp */,
+				9E3AF3E2190C5943001007F4 /* ScaleModifier.cpp */,
+				9E3AF3E3190C5943001007F4 /* RotateModifier.cpp */,
+				9E3AF3E4190C5943001007F4 /* BaseColorModifier.cpp */,
+				9E3AF3E5190C5943001007F4 /* BrightnessModifier.cpp */,
+				9E3AF3E6190C5943001007F4 /* ShaderModifier.cpp */,
+				9E3AF3E7190C5943001007F4 /* TextureModifier.cpp */,
 			);
 			path = Modifiers;
 			sourceTree = "<group>";
@@ -676,6 +707,8 @@
 				9EA476D518F9FEFA00C6BD1D /* SimpleMesh.cpp */,
 				9EA476D718FA024100C6BD1D /* RenderComponent.cpp */,
 				9E09867318FFFFD200480FA7 /* Material.cpp */,
+				9E3AF3F0190D24F3001007F4 /* TriggeredRenderComponent.cpp */,
+				9E3AF3F3190DBBC6001007F4 /* RenderInfo.cpp */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -823,25 +856,32 @@
 				9E92629418D4F8B2001AB5D6 /* GameGrid.cpp in Sources */,
 				9EF87636190859F2005824D9 /* MouseClickTrigger.cpp in Sources */,
 				9E0E1E8219048917009EECFD /* LuaBridge.cpp in Sources */,
+				9E3AF3ED190C5943001007F4 /* ShaderModifier.cpp in Sources */,
 				9EF876301906F4E5005824D9 /* EventManager.cpp in Sources */,
 				9EE7AED618E2F262008A9C83 /* GameCamera.cpp in Sources */,
+				9E3AF3EE190C5943001007F4 /* TextureModifier.cpp in Sources */,
 				9EA476CA18F7589A00C6BD1D /* EnumHelper.cpp in Sources */,
 				9EA476D818FA024100C6BD1D /* RenderComponent.cpp in Sources */,
 				9EA476D618F9FEFA00C6BD1D /* SimpleMesh.cpp in Sources */,
+				9E3AF3EA190C5943001007F4 /* RotateModifier.cpp in Sources */,
 				9E0B446F18FD94EC002B5DC7 /* ShaderDef.cpp in Sources */,
-				9E50BCA41909CC0800587632 /* TranformModifier.cpp in Sources */,
 				9E92629A18D50164001AB5D6 /* GameTile.cpp in Sources */,
 				9EA476CC18F8ABC300C6BD1D /* AssetLoaderBase.cpp in Sources */,
+				9E3AF3E9190C5943001007F4 /* ScaleModifier.cpp in Sources */,
 				9EA7815318FC1B78001D2752 /* HighlightBehaviour.cpp in Sources */,
+				9E3AF3EC190C5943001007F4 /* BrightnessModifier.cpp in Sources */,
 				9E92628F18D48232001AB5D6 /* GameComponent.cpp in Sources */,
+				9E3AF3E8190C5943001007F4 /* TranslateModifier.cpp in Sources */,
 				9EF8763E19093CF3005824D9 /* SelectedTrigger.cpp in Sources */,
-				9E50BCA81909D11500587632 /* MaterialModifier.cpp in Sources */,
 				9EE7AEEF18E36737008A9C83 /* Utils.cpp in Sources */,
 				9E92629218D4EDA0001AB5D6 /* ComponentDrivenApp.cpp in Sources */,
 				9EA4A77F18E26CCF005D069F /* TextureDef.cpp in Sources */,
 				9EF8763A19085F26005824D9 /* ToggleSelectionBehaviour.cpp in Sources */,
 				9EA7815118FC1B5B001D2752 /* MouseOverTrigger.cpp in Sources */,
+				9E3AF3F2190D24F3001007F4 /* TriggeredRenderComponent.cpp in Sources */,
 				9EEE83E218E8FAEB006F2B49 /* FileAssetLoader.cpp in Sources */,
+				9E3AF3F5190DBBC6001007F4 /* RenderInfo.cpp in Sources */,
+				9E3AF3EB190C5943001007F4 /* BaseColorModifier.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

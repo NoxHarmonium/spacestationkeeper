@@ -17,12 +17,12 @@ public:
                      float brightnessMultiplier = 1.5f,
                      ColorAf baseColorMultiplier = ColorAf(1.0f, 1.0f, 1.0f,
                                                            1.0f));
+  ~HighlightBehaviour() {};
 
   void Begin();
   void Update(float deltaT);
   void End();
-  void ApplyModifications(TransformModifierRef transformModifier,
-                          MaterialModifierRef materialModifier);
+  vector<Modifier *> GetModifiers();
 
   bool hasBegun();
 
