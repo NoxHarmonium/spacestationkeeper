@@ -18,7 +18,9 @@ class AssetDefBase {
 
 public:
   int getRefCount() { return _refCount; }
-  int getId() { return _id; }
+
+  virtual int getId() { return _id; }
+  virtual std::string getAssetType() = 0;
 
 protected:
   int _refCount = 0;
@@ -26,6 +28,6 @@ protected:
   bool _shouldLoad = true;
 };
 
-
+typedef std::shared_ptr<AssetDefBase> AssetDefBaseRef;
 
 #endif

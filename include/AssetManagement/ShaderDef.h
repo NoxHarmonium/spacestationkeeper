@@ -37,6 +37,8 @@ public:
   gl::GlslProgRef useShader();
   void releaseShader();
 
+  string getAssetType() { return "Shader"; }
+
 private:
   map<ShaderType, string> _filenameMap;
   filesystem::path _path; // TODO: Directory path, need to rename to be clearer

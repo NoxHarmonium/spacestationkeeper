@@ -44,17 +44,17 @@ void GameGrid::setup() {
           1.0f, ColorAf(1.0f, 0.5f, 0.5f, 1.0f)));
 
   vector<GameTile *> tiles;
-  FileAssetLoader *assetLoader = new FileAssetLoader(Utils::getResourcesPath());
+  _assetLoader = new FileAssetLoader(Utils::getResourcesPath());
 
-  _gameDef = GameDef::getTestBoard(assetLoader, 10, 10);
+  _gameDef = GameDef::getTestBoard(_assetLoader, 10, 10);
   TextureDefRef f;
 
   // TODO: Cast shared pointers how??
   TextureDefRef asteroidTd =
-      assetLoader->loadAsset<TextureDef>("tilesets/asteroid");
+      _assetLoader->loadAsset<TextureDef>("tilesets/asteroid");
 
   ShaderDefRef defaultShader =
-      assetLoader->loadAsset<ShaderDef>("shaders/default");
+      _assetLoader->loadAsset<ShaderDef>("shaders/default");
 
   // TextureDef *corridorTd =
   //    (TextureDef *)assetLoader->loadAsset("tilesets/corridor");

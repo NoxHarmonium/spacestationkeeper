@@ -24,12 +24,15 @@ public:
   void update();
   GameGrid(ComponentDrivenApp *parent);
   GameTile *getTile(int x, int y) { return _gameMap[MapPoint(x, y)]; }
+  GameTile *getTile(MapPoint point) { return _gameMap[point]; }
+  AssetLoaderBase *getAssetLoader() { return _assetLoader; }
 
 private:
   GameDef _gameDef;
   vector<GameTile *> _tileComponents;
   EventManager *_eventManager;
   map<MapPoint, GameTile *> _gameMap;
+  AssetLoaderBase *_assetLoader;
 };
 
 #endif

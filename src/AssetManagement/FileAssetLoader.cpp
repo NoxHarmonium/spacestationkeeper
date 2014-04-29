@@ -18,9 +18,8 @@ FileAssetLoader::FileAssetLoader(filesystem::path assetRoot) {
 filesystem::path FileAssetLoader::getAssetRoot() {
   return _assetRoot / filesystem::path("assets");
 }
-/*
-template <typename T>
-std::shared_ptr<T> FileAssetLoader::loadAsset(string assetRef) {
+
+AssetDefBaseRef FileAssetLoader::LoadAsset(string assetRef) {
   cout << "FileAssetLoader::loadAsset()" << endl;
 
   filesystem::ifstream ifs;
@@ -39,18 +38,31 @@ std::shared_ptr<T> FileAssetLoader::loadAsset(string assetRef) {
 
     AssetType assetType = node["type"].as<AssetType>();
 
-    // TODO: Verify that AssetType matches the template type
-
-    static T assetDef = node.as<T>();
-    assetDef.setPath(path.parent_path()); // Get directory of asset
-    std::shared_ptr<T> assetDefRef = std::shared_ptr<T>(&assetDef);
-    saveLoadedAsset(assetType, assetDef, assetDefRef);
-    return assetDefRef;
+    switch (assetType) {
+    case AssetType::Texture: {
+      static TextureDef tDef = node.as<TextureDef>();
+      tDef.setPath(path.parent_path()); // Get directory of asset
+      AssetDefBaseRef tDefRef = AssetDefBaseRef((AssetDefBase *)(&tDef));
+      saveLoadedAsset(AssetType::Texture, tDef.getId(), tDefRef);
+      return tDefRef;
+    }
+    case AssetType::Shader: {
+      static ShaderDef sDef = node.as<ShaderDef>();
+      sDef.setPath(path.parent_path()); // Get directory of asset
+      AssetDefBaseRef sDefRef = AssetDefBaseRef((AssetDefBase *)(&sDef));
+      saveLoadedAsset(AssetType::Shader, sDef.getId(), sDefRef);
+      return sDefRef;
+    }
+    default: {
+      throw new Exception(); // Not implemented
+    }
+    }
   }
 
   // Load error
   throw new std::exception();
-}*/
+}
+
 void FileAssetLoader::unloadAsset(AssetDefBaseRef asset) {
   clearLoadedAsset(AssetType::Texture, asset->getId());
 }

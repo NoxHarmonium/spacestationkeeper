@@ -19,7 +19,6 @@
 		8C08550A160647279CE5BCF2 /* SpaceStationKeeperApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 48844111FF804C239BF69347 /* SpaceStationKeeperApp.cpp */; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		9E09867518FFFFD200480FA7 /* Material.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E09867318FFFFD200480FA7 /* Material.cpp */; };
-		9E0B446F18FD94EC002B5DC7 /* ShaderDef.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E0B446D18FD94EC002B5DC7 /* ShaderDef.cpp */; };
 		9E0E1CF919048854009EECFD /* liblua.5.1.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E0E1CF819048854009EECFD /* liblua.5.1.5.dylib */; };
 		9E0E1E8219048917009EECFD /* LuaBridge.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E0E1E8019048917009EECFD /* LuaBridge.cpp */; };
 		9E10054B18EA355F00EC5213 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = 9E10054A18EA355F00EC5213 /* assets */; };
@@ -42,11 +41,12 @@
 		9EA476CC18F8ABC300C6BD1D /* AssetLoaderBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EA476CB18F8ABC300C6BD1D /* AssetLoaderBase.cpp */; };
 		9EA476D618F9FEFA00C6BD1D /* SimpleMesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EA476D518F9FEFA00C6BD1D /* SimpleMesh.cpp */; };
 		9EA476D818FA024100C6BD1D /* RenderComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EA476D718FA024100C6BD1D /* RenderComponent.cpp */; };
-		9EA4A77F18E26CCF005D069F /* TextureDef.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EA4A77E18E26CCF005D069F /* TextureDef.cpp */; };
 		9EA7815118FC1B5B001D2752 /* MouseOverTrigger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EA7815018FC1B5B001D2752 /* MouseOverTrigger.cpp */; };
 		9EA7815318FC1B78001D2752 /* HighlightBehaviour.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EA7815218FC1B78001D2752 /* HighlightBehaviour.cpp */; };
 		9ED6DF6A190F58BC002D286C /* Job.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ED6DF68190F58BC002D286C /* Job.cpp */; };
 		9ED6DF6D190F5B01002D286C /* MiningJob.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ED6DF6B190F5B01002D286C /* MiningJob.cpp */; };
+		9ED6DF7219106B70002D286C /* TextureDef.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ED6DF7019106B70002D286C /* TextureDef.cpp */; };
+		9ED6DF7319106B70002D286C /* ShaderDef.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ED6DF7119106B70002D286C /* ShaderDef.cpp */; };
 		9EE7AED618E2F262008A9C83 /* GameCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EE7AED418E2F262008A9C83 /* GameCamera.cpp */; };
 		9EE7AEEF18E36737008A9C83 /* Utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EE7AEED18E36737008A9C83 /* Utils.cpp */; };
 		9EE7AF0218E37281008A9C83 /* libboost_filesystem.1.55.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EE7AEFF18E37281008A9C83 /* libboost_filesystem.1.55.0.a */; };
@@ -91,7 +91,6 @@
 		5323E6B50EAFCA7E003A9687 /* QTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QTKit.framework; path = /System/Library/Frameworks/QTKit.framework; sourceTree = "<absolute>"; };
 		8D1107320486CEB800E47090 /* SpaceStationKeeper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpaceStationKeeper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E09867318FFFFD200480FA7 /* Material.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Material.cpp; sourceTree = "<group>"; };
-		9E0B446D18FD94EC002B5DC7 /* ShaderDef.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ShaderDef.cpp; path = ../Components/ShaderDef.cpp; sourceTree = "<group>"; };
 		9E0E1CF819048854009EECFD /* liblua.5.1.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = liblua.5.1.5.dylib; sourceTree = "<group>"; };
 		9E0E1E1F190488C5009EECFD /* AssetDefBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetDefBase.h; sourceTree = "<group>"; };
 		9E0E1E20190488C5009EECFD /* AssetDefConverters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetDefConverters.h; sourceTree = "<group>"; };
@@ -108,13 +107,11 @@
 		9E0E1E2E190488C5009EECFD /* GameTile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameTile.h; sourceTree = "<group>"; };
 		9E0E1E2F190488C5009EECFD /* Material.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Material.h; sourceTree = "<group>"; };
 		9E0E1E30190488C5009EECFD /* RenderComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RenderComponent.h; sourceTree = "<group>"; };
-		9E0E1E31190488C5009EECFD /* ShaderDef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShaderDef.h; sourceTree = "<group>"; };
 		9E0E1E32190488C5009EECFD /* SimpleMesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleMesh.h; sourceTree = "<group>"; };
 		9E0E1E33190488C5009EECFD /* Transform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Transform.h; sourceTree = "<group>"; };
 		9E0E1E35190488C5009EECFD /* GameDef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameDef.h; sourceTree = "<group>"; };
 		9E0E1E36190488C5009EECFD /* GameMapSquare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameMapSquare.h; sourceTree = "<group>"; };
 		9E0E1E37190488C5009EECFD /* MapPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapPoint.h; sourceTree = "<group>"; };
-		9E0E1E38190488C5009EECFD /* TextureDef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextureDef.h; sourceTree = "<group>"; };
 		9E0E1E3A190488C5009EECFD /* Passibility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Passibility.h; sourceTree = "<group>"; };
 		9E0E1E3C190488C5009EECFD /* GuiManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuiManager.h; sourceTree = "<group>"; };
 		9E0E1E40190488C5009EECFD /* config.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = config.hpp; sourceTree = "<group>"; };
@@ -204,7 +201,6 @@
 		9EA476CB18F8ABC300C6BD1D /* AssetLoaderBase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AssetLoaderBase.cpp; sourceTree = "<group>"; };
 		9EA476D518F9FEFA00C6BD1D /* SimpleMesh.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SimpleMesh.cpp; sourceTree = "<group>"; };
 		9EA476D718FA024100C6BD1D /* RenderComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RenderComponent.cpp; sourceTree = "<group>"; };
-		9EA4A77E18E26CCF005D069F /* TextureDef.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TextureDef.cpp; path = ../DataStructures/TextureDef.cpp; sourceTree = "<group>"; };
 		9EA7815018FC1B5B001D2752 /* MouseOverTrigger.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MouseOverTrigger.cpp; sourceTree = "<group>"; };
 		9EA7815218FC1B78001D2752 /* HighlightBehaviour.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HighlightBehaviour.cpp; sourceTree = "<group>"; };
 		9ED6DF63190F5666002D286C /* Job.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Job.h; sourceTree = "<group>"; };
@@ -212,6 +208,10 @@
 		9ED6DF66190F57E0002D286C /* MiningJob.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MiningJob.h; sourceTree = "<group>"; };
 		9ED6DF68190F58BC002D286C /* Job.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Job.cpp; sourceTree = "<group>"; };
 		9ED6DF6B190F5B01002D286C /* MiningJob.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MiningJob.cpp; sourceTree = "<group>"; };
+		9ED6DF6E19106B60002D286C /* ShaderDef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShaderDef.h; sourceTree = "<group>"; };
+		9ED6DF6F19106B60002D286C /* TextureDef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextureDef.h; sourceTree = "<group>"; };
+		9ED6DF7019106B70002D286C /* TextureDef.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TextureDef.cpp; sourceTree = "<group>"; };
+		9ED6DF7119106B70002D286C /* ShaderDef.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ShaderDef.cpp; sourceTree = "<group>"; };
 		9EE7AED418E2F262008A9C83 /* GameCamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameCamera.cpp; sourceTree = "<group>"; };
 		9EE7AEED18E36737008A9C83 /* Utils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Utils.cpp; sourceTree = "<group>"; };
 		9EE7AEFF18E37281008A9C83 /* libboost_filesystem.1.55.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libboost_filesystem.1.55.0.a; sourceTree = "<group>"; };
@@ -438,6 +438,8 @@
 		9E0E1E1E190488C5009EECFD /* AssetManagement */ = {
 			isa = PBXGroup;
 			children = (
+				9ED6DF6E19106B60002D286C /* ShaderDef.h */,
+				9ED6DF6F19106B60002D286C /* TextureDef.h */,
 				9E0E1E1F190488C5009EECFD /* AssetDefBase.h */,
 				9E0E1E20190488C5009EECFD /* AssetDefConverters.h */,
 				9E0E1E21190488C5009EECFD /* AssetLoaderBase.h */,
@@ -469,7 +471,6 @@
 				9E0E1E2E190488C5009EECFD /* GameTile.h */,
 				9E0E1E2F190488C5009EECFD /* Material.h */,
 				9E0E1E30190488C5009EECFD /* RenderComponent.h */,
-				9E0E1E31190488C5009EECFD /* ShaderDef.h */,
 				9E0E1E32190488C5009EECFD /* SimpleMesh.h */,
 				9E0E1E33190488C5009EECFD /* Transform.h */,
 				9E72B0E5190C4E3400F9935A /* RenderInfo.h */,
@@ -484,7 +485,6 @@
 				9E0E1E35190488C5009EECFD /* GameDef.h */,
 				9E0E1E36190488C5009EECFD /* GameMapSquare.h */,
 				9E0E1E37190488C5009EECFD /* MapPoint.h */,
-				9E0E1E38190488C5009EECFD /* TextureDef.h */,
 			);
 			path = DataStructures;
 			sourceTree = "<group>";
@@ -803,8 +803,8 @@
 		9EEE83DB18E8F8CB006F2B49 /* AssetManagement */ = {
 			isa = PBXGroup;
 			children = (
-				9E0B446D18FD94EC002B5DC7 /* ShaderDef.cpp */,
-				9EA4A77E18E26CCF005D069F /* TextureDef.cpp */,
+				9ED6DF7019106B70002D286C /* TextureDef.cpp */,
+				9ED6DF7119106B70002D286C /* ShaderDef.cpp */,
 				9EEE83E018E8FAEB006F2B49 /* FileAssetLoader.cpp */,
 				9EA476CB18F8ABC300C6BD1D /* AssetLoaderBase.cpp */,
 			);
@@ -891,6 +891,7 @@
 				72ABDE3F9B0F42038A135447 /* Cairo.cpp in Sources */,
 				9E92629418D4F8B2001AB5D6 /* GameGrid.cpp in Sources */,
 				9EF87636190859F2005824D9 /* MouseClickTrigger.cpp in Sources */,
+				9ED6DF7319106B70002D286C /* ShaderDef.cpp in Sources */,
 				9E0E1E8219048917009EECFD /* LuaBridge.cpp in Sources */,
 				9E3AF3ED190C5943001007F4 /* ShaderModifier.cpp in Sources */,
 				9EF876301906F4E5005824D9 /* EventManager.cpp in Sources */,
@@ -900,11 +901,11 @@
 				9EA476D818FA024100C6BD1D /* RenderComponent.cpp in Sources */,
 				9EA476D618F9FEFA00C6BD1D /* SimpleMesh.cpp in Sources */,
 				9E3AF3EA190C5943001007F4 /* RotateModifier.cpp in Sources */,
-				9E0B446F18FD94EC002B5DC7 /* ShaderDef.cpp in Sources */,
 				9E92629A18D50164001AB5D6 /* GameTile.cpp in Sources */,
 				9EA476CC18F8ABC300C6BD1D /* AssetLoaderBase.cpp in Sources */,
 				9E3AF3E9190C5943001007F4 /* ScaleModifier.cpp in Sources */,
 				9EA7815318FC1B78001D2752 /* HighlightBehaviour.cpp in Sources */,
+				9ED6DF7219106B70002D286C /* TextureDef.cpp in Sources */,
 				9E3AF3EC190C5943001007F4 /* BrightnessModifier.cpp in Sources */,
 				9E92628F18D48232001AB5D6 /* GameComponent.cpp in Sources */,
 				9ED6DF6D190F5B01002D286C /* MiningJob.cpp in Sources */,
@@ -912,7 +913,6 @@
 				9EF8763E19093CF3005824D9 /* SelectedTrigger.cpp in Sources */,
 				9EE7AEEF18E36737008A9C83 /* Utils.cpp in Sources */,
 				9E92629218D4EDA0001AB5D6 /* ComponentDrivenApp.cpp in Sources */,
-				9EA4A77F18E26CCF005D069F /* TextureDef.cpp in Sources */,
 				9EF8763A19085F26005824D9 /* ToggleSelectionBehaviour.cpp in Sources */,
 				9EA7815118FC1B5B001D2752 /* MouseOverTrigger.cpp in Sources */,
 				9E3AF3F2190D24F3001007F4 /* TriggeredRenderComponent.cpp in Sources */,

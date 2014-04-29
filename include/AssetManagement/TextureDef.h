@@ -43,8 +43,9 @@ public:
   Passibility getPassiblity(int frameNumber);
   void setPassiblity(int frameNumber, Passibility passability);
   int getFrameFromPassibility(Passibility passability);
-
   int getFrameCount();
+
+  string getAssetType() { return "Texture"; }
 
 private:
   int _width;

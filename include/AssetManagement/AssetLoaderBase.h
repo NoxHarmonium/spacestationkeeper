@@ -22,10 +22,11 @@ typedef std::shared_ptr<AssetDefBase> AssetDefBaseRef;
 
 class AssetLoaderBase {
 public:
-  // template <typename T>
-  // std::shared_ptr<T>
-  // loadAsset(string assetRef) {}; // Can a template be virtual? How specify
-  // interface?
+  virtual AssetDefBaseRef LoadAsset(string assetRef) = 0;
+  template <typename T> std::shared_ptr<T> loadAsset(string assetRef) {
+    return std::dynamic_pointer_cast<T>(LoadAsset(assetRef));
+  }
+
   virtual void unloadAsset(AssetDefBaseRef asset) = 0;
   AssetDefBaseRef getLoadedAsset(AssetType assetType, int assetId);
 

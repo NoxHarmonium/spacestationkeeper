@@ -19,6 +19,7 @@ void Job::assignResources(ResourceAllocation allocation) {
 void Job::removeResources(ResourceAllocation allocation) {
   for (auto &kvp : allocation) {
     _resources[kvp.first] -= kvp.second;
+    assert(_resources[kvp.first] >= 0);
   }
 }
 
