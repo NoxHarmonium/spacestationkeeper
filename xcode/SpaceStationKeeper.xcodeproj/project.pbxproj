@@ -205,6 +205,9 @@
 		9EA4A77E18E26CCF005D069F /* TextureDef.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TextureDef.cpp; path = ../DataStructures/TextureDef.cpp; sourceTree = "<group>"; };
 		9EA7815018FC1B5B001D2752 /* MouseOverTrigger.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MouseOverTrigger.cpp; sourceTree = "<group>"; };
 		9EA7815218FC1B78001D2752 /* HighlightBehaviour.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HighlightBehaviour.cpp; sourceTree = "<group>"; };
+		9ED6DF63190F5666002D286C /* Job.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Job.h; sourceTree = "<group>"; };
+		9ED6DF65190F5733002D286C /* Resource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Resource.h; sourceTree = "<group>"; };
+		9ED6DF66190F57E0002D286C /* MiningJob.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MiningJob.h; sourceTree = "<group>"; };
 		9EE7AED418E2F262008A9C83 /* GameCamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameCamera.cpp; sourceTree = "<group>"; };
 		9EE7AEED18E36737008A9C83 /* Utils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Utils.cpp; sourceTree = "<group>"; };
 		9EE7AEFF18E37281008A9C83 /* libboost_filesystem.1.55.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libboost_filesystem.1.55.0.a; sourceTree = "<group>"; };
@@ -406,6 +409,8 @@
 		9E0E1E1D190488C5009EECFD /* Include */ = {
 			isa = PBXGroup;
 			children = (
+				9ED6DF64190F571B002D286C /* Resources */,
+				9ED6DF62190F5639002D286C /* Jobs */,
 				9E50BC9F1909CA9100587632 /* Modifiers */,
 				9E0E1E8319048928009EECFD /* Binding */,
 				9E0E1E1E190488C5009EECFD /* AssetManagement */,
@@ -753,6 +758,23 @@
 				9EF8763C19093CF3005824D9 /* SelectedTrigger.cpp */,
 			);
 			path = Triggers;
+			sourceTree = "<group>";
+		};
+		9ED6DF62190F5639002D286C /* Jobs */ = {
+			isa = PBXGroup;
+			children = (
+				9ED6DF63190F5666002D286C /* Job.h */,
+				9ED6DF66190F57E0002D286C /* MiningJob.h */,
+			);
+			path = Jobs;
+			sourceTree = "<group>";
+		};
+		9ED6DF64190F571B002D286C /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				9ED6DF65190F5733002D286C /* Resource.h */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		9EE7AED718E2FC9E008A9C83 /* Utils */ = {
