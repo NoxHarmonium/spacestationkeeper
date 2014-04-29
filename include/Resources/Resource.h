@@ -9,6 +9,8 @@
 #ifndef SpaceStationKeeper_Resource_h
 #define SpaceStationKeeper_Resource_h
 
+using namespace std;
+
 class Resource {
   string getName();
 };

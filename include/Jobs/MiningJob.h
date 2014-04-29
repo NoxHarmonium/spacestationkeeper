@@ -10,6 +10,9 @@
 #define SpaceStationKeeper_MiningJob_h
 
 class MiningJob : public Job {
+  MiningJob(GameGrid *gameGrid, MapPoint targetMapPoint);
+  virtual ~MiningJob();
+
   virtual bool preRequisitesAreMet();
   virtual bool postRequistesAreMet();
   virtual bool isDone();

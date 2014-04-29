@@ -45,6 +45,8 @@
 		9EA4A77F18E26CCF005D069F /* TextureDef.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EA4A77E18E26CCF005D069F /* TextureDef.cpp */; };
 		9EA7815118FC1B5B001D2752 /* MouseOverTrigger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EA7815018FC1B5B001D2752 /* MouseOverTrigger.cpp */; };
 		9EA7815318FC1B78001D2752 /* HighlightBehaviour.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EA7815218FC1B78001D2752 /* HighlightBehaviour.cpp */; };
+		9ED6DF6A190F58BC002D286C /* Job.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ED6DF68190F58BC002D286C /* Job.cpp */; };
+		9ED6DF6D190F5B01002D286C /* MiningJob.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ED6DF6B190F5B01002D286C /* MiningJob.cpp */; };
 		9EE7AED618E2F262008A9C83 /* GameCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EE7AED418E2F262008A9C83 /* GameCamera.cpp */; };
 		9EE7AEEF18E36737008A9C83 /* Utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EE7AEED18E36737008A9C83 /* Utils.cpp */; };
 		9EE7AF0218E37281008A9C83 /* libboost_filesystem.1.55.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EE7AEFF18E37281008A9C83 /* libboost_filesystem.1.55.0.a */; };
@@ -208,6 +210,8 @@
 		9ED6DF63190F5666002D286C /* Job.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Job.h; sourceTree = "<group>"; };
 		9ED6DF65190F5733002D286C /* Resource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Resource.h; sourceTree = "<group>"; };
 		9ED6DF66190F57E0002D286C /* MiningJob.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MiningJob.h; sourceTree = "<group>"; };
+		9ED6DF68190F58BC002D286C /* Job.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Job.cpp; sourceTree = "<group>"; };
+		9ED6DF6B190F5B01002D286C /* MiningJob.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MiningJob.cpp; sourceTree = "<group>"; };
 		9EE7AED418E2F262008A9C83 /* GameCamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameCamera.cpp; sourceTree = "<group>"; };
 		9EE7AEED18E36737008A9C83 /* Utils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Utils.cpp; sourceTree = "<group>"; };
 		9EE7AEFF18E37281008A9C83 /* libboost_filesystem.1.55.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libboost_filesystem.1.55.0.a; sourceTree = "<group>"; };
@@ -267,6 +271,7 @@
 		080E96DDFE201D6D7F000001 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				9ED6DF67190F58A9002D286C /* Jobs */,
 				9E50BCA11909CBEF00587632 /* Modifiers */,
 				9E0E1E7F190488EE009EECFD /* Binding */,
 				9EEE83DB18E8F8CB006F2B49 /* AssetManagement */,
@@ -777,6 +782,15 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		9ED6DF67190F58A9002D286C /* Jobs */ = {
+			isa = PBXGroup;
+			children = (
+				9ED6DF68190F58BC002D286C /* Job.cpp */,
+				9ED6DF6B190F5B01002D286C /* MiningJob.cpp */,
+			);
+			path = Jobs;
+			sourceTree = "<group>";
+		};
 		9EE7AED718E2FC9E008A9C83 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -893,6 +907,7 @@
 				9EA7815318FC1B78001D2752 /* HighlightBehaviour.cpp in Sources */,
 				9E3AF3EC190C5943001007F4 /* BrightnessModifier.cpp in Sources */,
 				9E92628F18D48232001AB5D6 /* GameComponent.cpp in Sources */,
+				9ED6DF6D190F5B01002D286C /* MiningJob.cpp in Sources */,
 				9E3AF3E8190C5943001007F4 /* TranslateModifier.cpp in Sources */,
 				9EF8763E19093CF3005824D9 /* SelectedTrigger.cpp in Sources */,
 				9EE7AEEF18E36737008A9C83 /* Utils.cpp in Sources */,
@@ -902,6 +917,7 @@
 				9EA7815118FC1B5B001D2752 /* MouseOverTrigger.cpp in Sources */,
 				9E3AF3F2190D24F3001007F4 /* TriggeredRenderComponent.cpp in Sources */,
 				9EEE83E218E8FAEB006F2B49 /* FileAssetLoader.cpp in Sources */,
+				9ED6DF6A190F58BC002D286C /* Job.cpp in Sources */,
 				9E3AF3F5190DBBC6001007F4 /* RenderInfo.cpp in Sources */,
 				9E3AF3EB190C5943001007F4 /* BaseColorModifier.cpp in Sources */,
 			);

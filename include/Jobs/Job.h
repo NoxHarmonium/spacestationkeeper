@@ -9,22 +9,27 @@
 #ifndef SpaceStationKeeper_Job_h
 #define SpaceStationKeeper_Job_h
 
-typedef map<Resource, int> ResourceAlloction;
+using namespace std;
+
+typedef map<Resource *, int> ResourceAllocation;
 
 class Job {
 public:
+  Job() {};
+  virtual ~Job() {};
+
   virtual bool preRequisitesAreMet() = 0;
   virtual bool postRequistesAreMet() = 0;
   virtual bool isDone() = 0;
   virtual float getProgress() = 0;
   virtual void update(float deltaTime) = 0;
 
-  void assignResources(ResourceAlloction allocation);
-  void removeResources(ResourceAlloction allocation);
-  ResourceAlloction getResourceAllocation();
+  void assignResources(ResourceAllocation allocation);
+  void removeResources(ResourceAllocation allocation);
+  ResourceAllocation getResourceAllocation();
 
 private:
-  ResourceAlloction _resources;
+  ResourceAllocation _resources;
 };
 
 #endif
