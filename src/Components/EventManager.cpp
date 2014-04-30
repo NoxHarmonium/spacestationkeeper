@@ -64,18 +64,6 @@ EventManager::processTriggers(RenderComponent *renderComponent) {
   return modifiers;
 }
 
-// Component events
-void EventManager::update() {
-
-  if (isnan(_lastUpdateTime)) {
-    _deltaTime = 0.0f;
-  } else {
-    _deltaTime = ci::app::getElapsedSeconds() - _lastUpdateTime;
-  }
-
-  _lastUpdateTime = ci::app::getElapsedSeconds();
-}
-
 void
 EventManager::processTriggers(RenderComponent *renderComponent,
                               vector<EventRegistration *> eventRegistrations,
@@ -106,7 +94,7 @@ void EventManager::handleBehaviour(RenderComponent *renderComponent,
     if (!behaviour->hasBegun()) {
       behaviour->begin();
     } else {
-      behaviour->update(_deltaTime); // todo delta time
+      behaviour->update(_parentApp->getDeltaTime());
     }
   } else {
     if (behaviour->hasBegun()) {

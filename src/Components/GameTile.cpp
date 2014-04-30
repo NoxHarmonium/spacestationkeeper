@@ -6,6 +6,7 @@
 //
 //
 
+#include "MapPoint.h"
 #include "GameTile.h"
 #include "SimpleMesh.h"
 
@@ -13,17 +14,17 @@ using namespace ci;
 using namespace std;
 using namespace cinder::gl;
 
-GameTile::GameTile(MaterialRef material, int tileIndex,
+GameTile::GameTile(MaterialRef material, MapPoint mapPoint, int tileIndex,
                    ComponentDrivenApp *parent)
-    : TriggeredRenderComponent(parent) {
+    : _mapPoint(mapPoint), TriggeredRenderComponent(parent) {
   _tileIndex = tileIndex;
   this->material = material;
   this->transform->localPosition = Vec3f();
 }
 
-GameTile::GameTile(MaterialRef material, int tileIndex, Vec3f offset,
-                   ComponentDrivenApp *parent)
-    : TriggeredRenderComponent(parent) {
+GameTile::GameTile(MaterialRef material, MapPoint mapPoint, int tileIndex,
+                   Vec3f offset, ComponentDrivenApp *parent)
+    : _mapPoint(mapPoint), TriggeredRenderComponent(parent) {
   _tileIndex = tileIndex;
   this->material = material;
   this->transform->localPosition = offset;
@@ -48,3 +49,5 @@ void GameTile::setup() {
   this->mesh = SimpleMesh::generateQuad(this->material->texture->getFrameSize(),
                                         this->getFrameRect());
 }
+
+MapPoint GameTile::getMapPoint() { return _mapPoint; }

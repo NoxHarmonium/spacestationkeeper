@@ -13,8 +13,6 @@
 #include "MiningJob.h"
 #include "GameTile.h"
 
-// TODO: Everything
-
 MiningJob::MiningJob(GameGrid *gameGrid, MapPoint targetMapPoint,
                      AssetLoaderBase *assetLoader)
     : _gameGrid(gameGrid), _targetMapPoint(targetMapPoint),
@@ -23,24 +21,27 @@ MiningJob::~MiningJob() {};
 
 bool MiningJob::preRequisitesAreMet() {
   GameTile *tile = _gameGrid->getTile(_targetMapPoint);
-  string tileset = tile->material->texture->getFilename();
-  return tile != nullptr && tileset == MiningJob::preReqTileSet;
+  string assetRef = tile->material->texture->getAssetRef();
+  cout << "MiningJob::preRequisitesAreMet(): assetRef: " << assetRef
+       << " tile addr: " << tile << endl;
+  return tile != nullptr && assetRef == string(MiningJob::preReqTileSet);
 }
 bool MiningJob::postRequistesAreMet() {
   GameTile *tile = _gameGrid->getTile(_targetMapPoint);
-  string tileset = tile->material->texture->getFilename();
-  return tile != nullptr && tileset == MiningJob::postReqTileSet;
+  string assetRef = tile->material->texture->getAssetRef();
+  return tile != nullptr && assetRef == string(MiningJob::postReqTileSet);
 }
 bool MiningJob::isDone() { return _workUnitsDone >= MiningJob::maxWorkUnits; }
+
 float MiningJob::getProgress() {
   return _workUnitsDone / (float)MiningJob::maxWorkUnits;
 }
 void MiningJob::update(float deltaTime) {
   float workPerSecond = MiningJob::workUnitPerWorker * 2;
   float workRate = workPerSecond * deltaTime;
-  _workUnitProgress += workPerSecond;
+  _workUnitProgress += workRate;
 
-  if (_workUnitProgress >= 0.0f) {
+  if (_workUnitProgress >= 1.0f) {
     _workUnitsDone++;
     _workUnitProgress = 0.0f;
   }
@@ -52,5 +53,6 @@ void MiningJob::update(float deltaTime) {
         _assetLoader->loadAsset<TextureDef>(MiningJob::postReqTileSet);
     materialCopy->texture = corridorTd;
     tile->material = materialCopy;
+    tile->material->baseColor = ColorAf(0.0f, 0.0f, 1.0f, 1.0f);
   }
 }

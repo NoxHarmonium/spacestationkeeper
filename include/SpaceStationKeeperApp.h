@@ -15,6 +15,9 @@
 #include "GameGrid.h"
 #include "GameCamera.h"
 #include "EventManager.h"
+#include "Resource.h"
+#include "Job.h"
+#include "JobManager.h"
 
 class SpaceStationKeeperApp : public ComponentDrivenApp {
 
@@ -23,12 +26,13 @@ public:
   void setup();
   void draw();
   void resize();
+  void keyDown(KeyEvent event);
 
 private:
   GuiManager *_guiManager;
   GameGrid *_gameGrid;
   GameCamera *_camera;
-  EventManager *_eventManager;
+  JobManager *_jobManager;
 };
 
 #endif

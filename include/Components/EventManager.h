@@ -40,9 +40,6 @@ public:
 
   vector<Modifier *> processTriggers(RenderComponent *renderComponent);
 
-  // Component events
-  void update();
-
 private:
   void processTriggers(RenderComponent *renderComponent,
                        vector<EventRegistration *> eventRegistration,
@@ -51,8 +48,6 @@ private:
   void handleBehaviour(RenderComponent *renderComponent, Trigger *trigger,
                        Behaviour *behaviour, vector<Modifier *> *modifiers);
 
-  float _lastUpdateTime = NAN;
-  float _deltaTime = 0.0f;
   map<RenderComponent *, vector<pair<Trigger *, vector<Behaviour *>>>>
   _componentMap;
 

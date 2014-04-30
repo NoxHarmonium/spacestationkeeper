@@ -32,4 +32,6 @@ private:
   ResourceAllocation _resources;
 };
 
+typedef std::shared_ptr<Job> JobRef;
+
 #endif

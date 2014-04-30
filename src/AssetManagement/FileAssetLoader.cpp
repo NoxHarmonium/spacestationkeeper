@@ -42,6 +42,7 @@ AssetDefBaseRef FileAssetLoader::LoadAsset(string assetRef) {
     case AssetType::Texture: {
       static TextureDef tDef = node.as<TextureDef>();
       tDef.setPath(path.parent_path()); // Get directory of asset
+      tDef.setAssetRef(assetRef);
       AssetDefBaseRef tDefRef = AssetDefBaseRef((AssetDefBase *)(&tDef));
       saveLoadedAsset(AssetType::Texture, tDef.getId(), tDefRef);
       return tDefRef;
@@ -49,6 +50,7 @@ AssetDefBaseRef FileAssetLoader::LoadAsset(string assetRef) {
     case AssetType::Shader: {
       static ShaderDef sDef = node.as<ShaderDef>();
       sDef.setPath(path.parent_path()); // Get directory of asset
+      sDef.setAssetRef(assetRef);
       AssetDefBaseRef sDefRef = AssetDefBaseRef((AssetDefBase *)(&sDef));
       saveLoadedAsset(AssetType::Shader, sDef.getId(), sDefRef);
       return sDefRef;

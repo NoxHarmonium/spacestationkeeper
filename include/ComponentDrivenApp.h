@@ -50,6 +50,9 @@ public:
     return nullptr;
   }
 
+  // Get the time in seconds since the last update
+  float getDeltaTime() { return _deltaTime; }
+
   //! Override to perform any application setup after the Renderer has been
   // initialized.
   virtual void setup();
@@ -105,6 +108,8 @@ private:
   vector<GameComponent *> getRegisteredComponentsCopy();
   vector<GameComponent *> _registeredComponents;
   map<string, void *> _stateMap;
+  float _lastElapsedTime = NAN;
+  float _deltaTime = 0.0f;
 };
 
 #endif

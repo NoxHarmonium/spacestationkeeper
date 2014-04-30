@@ -15,14 +15,17 @@ using namespace cinder::gl;
 
 class GameTile : public TriggeredRenderComponent {
 public:
-  GameTile(MaterialRef material, int tileIndex, ComponentDrivenApp *parent);
-  GameTile(MaterialRef material, int tileIndex, Vec3f offset,
+  GameTile(MaterialRef material, MapPoint mapPoint, int tileIndex,
+           ComponentDrivenApp *parent);
+  GameTile(MaterialRef material, MapPoint mapPoint, int tileIndex, Vec3f offset,
            ComponentDrivenApp *parent);
   void setup();
+  MapPoint getMapPoint();
 
 private:
   Rectf getFrameRect();
   int _tileIndex;
+  MapPoint _mapPoint;
 };
 
 #endif

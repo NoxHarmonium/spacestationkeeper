@@ -47,6 +47,7 @@
 		9ED6DF6D190F5B01002D286C /* MiningJob.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ED6DF6B190F5B01002D286C /* MiningJob.cpp */; };
 		9ED6DF7219106B70002D286C /* TextureDef.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ED6DF7019106B70002D286C /* TextureDef.cpp */; };
 		9ED6DF7319106B70002D286C /* ShaderDef.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ED6DF7119106B70002D286C /* ShaderDef.cpp */; };
+		9ED6DF771910707A002D286C /* JobManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ED6DF751910707A002D286C /* JobManager.cpp */; };
 		9EE7AED618E2F262008A9C83 /* GameCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EE7AED418E2F262008A9C83 /* GameCamera.cpp */; };
 		9EE7AEEF18E36737008A9C83 /* Utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EE7AEED18E36737008A9C83 /* Utils.cpp */; };
 		9EE7AF0218E37281008A9C83 /* libboost_filesystem.1.55.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EE7AEFF18E37281008A9C83 /* libboost_filesystem.1.55.0.a */; };
@@ -212,6 +213,8 @@
 		9ED6DF6F19106B60002D286C /* TextureDef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextureDef.h; sourceTree = "<group>"; };
 		9ED6DF7019106B70002D286C /* TextureDef.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TextureDef.cpp; sourceTree = "<group>"; };
 		9ED6DF7119106B70002D286C /* ShaderDef.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ShaderDef.cpp; sourceTree = "<group>"; };
+		9ED6DF7419106F77002D286C /* JobManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobManager.h; sourceTree = "<group>"; };
+		9ED6DF751910707A002D286C /* JobManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JobManager.cpp; sourceTree = "<group>"; };
 		9EE7AED418E2F262008A9C83 /* GameCamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameCamera.cpp; sourceTree = "<group>"; };
 		9EE7AEED18E36737008A9C83 /* Utils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Utils.cpp; sourceTree = "<group>"; };
 		9EE7AEFF18E37281008A9C83 /* libboost_filesystem.1.55.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libboost_filesystem.1.55.0.a; sourceTree = "<group>"; };
@@ -770,6 +773,7 @@
 			children = (
 				9ED6DF63190F5666002D286C /* Job.h */,
 				9ED6DF66190F57E0002D286C /* MiningJob.h */,
+				9ED6DF7419106F77002D286C /* JobManager.h */,
 			);
 			path = Jobs;
 			sourceTree = "<group>";
@@ -787,6 +791,7 @@
 			children = (
 				9ED6DF68190F58BC002D286C /* Job.cpp */,
 				9ED6DF6B190F5B01002D286C /* MiningJob.cpp */,
+				9ED6DF751910707A002D286C /* JobManager.cpp */,
 			);
 			path = Jobs;
 			sourceTree = "<group>";
@@ -910,6 +915,7 @@
 				9E92628F18D48232001AB5D6 /* GameComponent.cpp in Sources */,
 				9ED6DF6D190F5B01002D286C /* MiningJob.cpp in Sources */,
 				9E3AF3E8190C5943001007F4 /* TranslateModifier.cpp in Sources */,
+				9ED6DF771910707A002D286C /* JobManager.cpp in Sources */,
 				9EF8763E19093CF3005824D9 /* SelectedTrigger.cpp in Sources */,
 				9EE7AEEF18E36737008A9C83 /* Utils.cpp in Sources */,
 				9E92629218D4EDA0001AB5D6 /* ComponentDrivenApp.cpp in Sources */,

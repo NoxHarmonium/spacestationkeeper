@@ -36,6 +36,11 @@ void ComponentDrivenApp::shutdown() {
 
 //! Forwards event to component to perform any once-per-loop computation.
 void ComponentDrivenApp::update() {
+  if (!isnan(_lastElapsedTime)) {
+    _deltaTime = ci::app::getElapsedSeconds() - _lastElapsedTime;
+  }
+  _lastElapsedTime = ci::app::getElapsedSeconds();
+
   for (auto &comp : getRegisteredComponentsCopy()) {
     comp->update();
   }

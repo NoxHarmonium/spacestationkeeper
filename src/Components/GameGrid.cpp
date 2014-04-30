@@ -74,8 +74,8 @@ void GameGrid::setup() {
           _gameDef.getMapSquare(MapPoint(i, j)).getPassability());
       Vec3f offset = Vec3f(i * asteroidTd->getFrameWidth(),
                            j * asteroidTd->getFrameHeight(), 0.0f);
-      GameTile *t =
-          new GameTile(material, frameIndex, offset, this->_parentApp);
+      GameTile *t = new GameTile(material, MapPoint(i, j), frameIndex, offset,
+                                 this->_parentApp);
       t->transform->parent = this->transform;
       _gameMap[MapPoint(i, j)] = t;
 
