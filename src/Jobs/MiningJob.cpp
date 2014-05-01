@@ -53,6 +53,5 @@ void MiningJob::update(float deltaTime) {
         _assetLoader->loadAsset<TextureDef>(MiningJob::postReqTileSet);
     materialCopy->texture = corridorTd;
     tile->material = materialCopy;
-    tile->material->baseColor = ColorAf(0.0f, 0.0f, 1.0f, 1.0f);
   }
 }

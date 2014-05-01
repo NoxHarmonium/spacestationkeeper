@@ -44,8 +44,9 @@ public:
   void setPassiblity(int frameNumber, Passibility passability);
   int getFrameFromPassibility(Passibility passability);
   int getFrameCount();
-
   string getAssetType() { return "Texture"; }
+
+  static std::shared_ptr<TextureDef> FromYamlNode(YAML::Node node);
 
 private:
   int _width;

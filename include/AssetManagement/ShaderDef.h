@@ -28,16 +28,16 @@ public:
   ShaderDef();
   ShaderDef(int id, ShaderType shaderType, string filename);
   ShaderDef(int id, map<ShaderType, string> _filenameMap);
-  void setValues(int id, map<ShaderType, string> _filenameMap);
 
+  void setValues(int id, map<ShaderType, string> _filenameMap);
   string getFilename(ShaderType shaderType);
   void setPath(filesystem::path path);
   filesystem::path getPath();
-
   gl::GlslProgRef useShader();
   void releaseShader();
-
   string getAssetType() { return "Shader"; }
+
+  static std::shared_ptr<ShaderDef> FromYamlNode(YAML::Node node);
 
 private:
   map<ShaderType, string> _filenameMap;

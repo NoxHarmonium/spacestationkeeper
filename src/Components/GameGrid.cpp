@@ -99,3 +99,5 @@ void GameGrid::update() {
 }
 
 void GameGrid::draw() {}
+
+void fixTileFrameFromAdjacent(MapPoint point) {}

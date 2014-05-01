@@ -6,7 +6,10 @@
 //
 //
 
+#include "yaml.h"
 #include "ShaderDef.h"
+
+using namespace YAML;
 
 ShaderDef::ShaderDef() {}
 ShaderDef::ShaderDef(int id, ShaderType shaderType, string filename) {
@@ -87,4 +90,37 @@ gl::GlslProgRef ShaderDef::useShader() {
 
   return _prog;
 }
+
 void ShaderDef::releaseShader() { _refCount--; }
+
+std::shared_ptr<ShaderDef> ShaderDef::FromYamlNode(YAML::Node node) {
+  cout << "Deserialising ShaderDef... ";
+
+  int id = node["id"].as<int>();
+
+  map<ShaderDef::ShaderType, string> _filenameMap;
+
+  Node components = node["components"];
+  if (components["vertex"]) {
+    cout << "vertex ";
+    string source = components["vertex"]["source"].as<string>();
+    _filenameMap[ShaderDef::ShaderType::Vertex] = source;
+  }
+  if (components["fragment"]) {
+    cout << "fragment ";
+    string source = components["fragment"]["source"].as<string>();
+    _filenameMap[ShaderDef::ShaderType::Fragment] = source;
+  }
+  if (components["geometry"]) {
+    cout << "geometry ";
+    string source = components["geometry"]["source"].as<string>();
+    _filenameMap[ShaderDef::ShaderType::Geometry] = source;
+  }
+
+  cout << endl;
+
+  ShaderDef *shaderDef = new ShaderDef(id, _filenameMap);
+
+  // TODO: Validate and return nullptr/exception if invalid.
+  return ShaderDefRef(shaderDef);
+}

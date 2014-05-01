@@ -26,6 +26,8 @@ public:
   GameTile *getTile(int x, int y) { return _gameMap[MapPoint(x, y)]; }
   GameTile *getTile(MapPoint point) { return _gameMap[point]; }
   AssetLoaderBase *getAssetLoader() { return _assetLoader; }
+  void fixTileFrameFromAdjacent(
+      MapPoint point); // Make corridors and rooms framed properly.
 
 private:
   GameDef _gameDef;

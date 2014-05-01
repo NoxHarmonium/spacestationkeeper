@@ -40,20 +40,20 @@ AssetDefBaseRef FileAssetLoader::LoadAsset(string assetRef) {
 
     switch (assetType) {
     case AssetType::Texture: {
-      static TextureDef tDef = node.as<TextureDef>();
-      tDef.setPath(path.parent_path()); // Get directory of asset
-      tDef.setAssetRef(assetRef);
-      AssetDefBaseRef tDefRef = AssetDefBaseRef((AssetDefBase *)(&tDef));
-      saveLoadedAsset(AssetType::Texture, tDef.getId(), tDefRef);
-      return tDefRef;
+      TextureDefRef tDef = TextureDef::FromYamlNode(node);
+      tDef->setPath(path.parent_path()); // Get directory of asset
+      tDef->setAssetRef(assetRef);
+      AssetDefBaseRef tDefBase = dynamic_pointer_cast<AssetDefBase>(tDef);
+      saveLoadedAsset(AssetType::Texture, tDef->getId(), tDefBase);
+      return tDefBase;
     }
     case AssetType::Shader: {
-      static ShaderDef sDef = node.as<ShaderDef>();
-      sDef.setPath(path.parent_path()); // Get directory of asset
-      sDef.setAssetRef(assetRef);
-      AssetDefBaseRef sDefRef = AssetDefBaseRef((AssetDefBase *)(&sDef));
-      saveLoadedAsset(AssetType::Shader, sDef.getId(), sDefRef);
-      return sDefRef;
+      ShaderDefRef sDef = ShaderDef::FromYamlNode(node);
+      sDef->setPath(path.parent_path()); // Get directory of asset
+      sDef->setAssetRef(assetRef);
+      AssetDefBaseRef sDefBase = dynamic_pointer_cast<AssetDefBase>(sDef);
+      saveLoadedAsset(AssetType::Shader, sDef->getId(), sDefBase);
+      return sDefBase;
     }
     default: {
       throw new Exception(); // Not implemented

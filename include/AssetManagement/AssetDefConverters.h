@@ -13,105 +13,12 @@
 #include "Passibility.h"
 #include "Utils.h"
 
+#ifndef __SpaceStationKeeper__AssetDefConverters__
+#define __SpaceStationKeeper__AssetDefConverters__
+
 namespace YAML {
 using namespace std;
 using namespace ci;
-
-template <> struct convert<TextureDef> {
-  static Node encode(const TextureDef &textureDef) {
-    throw new std::exception(); // Not implemented
-  }
-
-  static bool decode(const Node &node, TextureDef &textureDef) {
-    /* Example format
-    --- # Texture Def
-  width:          256
-  height:         256
-  frameHeight:    64
-  frameWidth:     64
-  source:         "tileset_corridor.png" */
-    int id = node["id"].as<int>();
-    int width = node["width"].as<int>();
-    int height = node["height"].as<int>();
-    int frameHeight = node["frameHeight"].as<int>();
-    int frameWidth = node["frameWidth"].as<int>();
-    string source = node["source"].as<string>();
-    // gl::Texture texture = loadImage(source);
-
-    cout << "Deserialising TextureDef..." << endl;
-    // cout << "width: " << width << endl;
-    // cout << "height: " << height << endl;
-    // cout << "frameHeight: " << frameHeight << endl;
-    // cout << "frameWidth: " << frameWidth << endl;
-    // cout << "source: " << source << endl;
-
-    // TODO: Validate and return false if invalid.
-    textureDef.setValues(id, width, height, frameHeight, frameWidth, source);
-
-    if (node["passibility"]) {
-      // cout << "passibility node detected..." << endl;
-      Node pRef = node["passibility"];
-      // cout << "pRef: " << pRef << endl;
-      // TODO: Code to parse passibility
-      for (int i = 0; i < textureDef.getFrameCount(); i++) {
-        if (pRef[i]) {
-          Passibility p = pRef[i].as<Passibility>();
-          textureDef.setPassiblity(i, p);
-          // cout << "Passibility: (" << i << "): " << p << endl;
-        }
-      }
-    }
-
-    /*
-        textureDef.width = node["width"].as<int>();
-        textureDef.height = node["height"].as<int>();
-        textureDef.frameHeight = node["frameHeight"].as<int>();
-        textureDef.frameWidth = node["frameWidth"].as<int>();
-        textureDef.source = node["source"].as<string>();
-     */
-
-    return true;
-  }
-};
-
-template <> struct convert<ShaderDef> {
-  static Node encode(const ShaderDef &textureDef) {
-    throw new std::exception(); // Not implemented
-  }
-
-  static bool decode(const Node &node, ShaderDef &textureDef) {
-
-    cout << "Deserialising ShaderDef... ";
-
-    int id = node["id"].as<int>();
-
-    map<ShaderDef::ShaderType, string> _filenameMap;
-
-    Node components = node["components"];
-    if (components["vertex"]) {
-      cout << "vertex ";
-      string source = components["vertex"]["source"].as<string>();
-      _filenameMap[ShaderDef::ShaderType::Vertex] = source;
-    }
-    if (components["fragment"]) {
-      cout << "fragment ";
-      string source = components["fragment"]["source"].as<string>();
-      _filenameMap[ShaderDef::ShaderType::Fragment] = source;
-    }
-    if (components["geometry"]) {
-      cout << "geometry ";
-      string source = components["geometry"]["source"].as<string>();
-      _filenameMap[ShaderDef::ShaderType::Geometry] = source;
-    }
-
-    cout << endl;
-
-    // TODO: Validate and return false if invalid.
-    textureDef.setValues(id, _filenameMap);
-
-    return true;
-  }
-};
 
 template <> struct convert<AssetType> {
   static Node encode(const AssetType &assetType) {
@@ -190,3 +97,5 @@ template <> struct convert<Passibility> {
   }
 };
 }
+
+#endif
