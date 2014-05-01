@@ -12,11 +12,12 @@
 #include "EnumHelper.h"
 
 enum E_Passibility {
-  None = 1 << 0,
-  North = 1 << 1,
-  South = 1 << 2,
-  East = 1 << 3,
-  West = 1 << 4
+  None = 0,
+  North = 1 << 0,
+  South = 1 << 1,
+  East = 1 << 2,
+  West = 1 << 3,
+  Unused = 1 << 4
 };
 
 typedef EnumHelper Passibility;

@@ -26,14 +26,15 @@ class TextureDef : public AssetDefBase {
 public:
   TextureDef();
   TextureDef(int id, int width, int height, int frameHeight, int frameWidth,
-             string filename);
+             string filename, bool canWalk);
 
   void setValues(int id, int width, int height, int frameHeight, int frameWidth,
-                 string filename);
+                 string filename, bool canWalk);
   int getWidth();
   int getHeight();
   int getFrameHeight();
   int getFrameWidth();
+  bool getCanWalk();
   Rectf getFrameSize();
   string getFilename();
   gl::TextureRef useTexture();
@@ -53,6 +54,7 @@ private:
   int _height;
   int _frameHeight;
   int _frameWidth;
+  bool _canWalk;
   string _filename;
   filesystem::path _path;
   gl::TextureRef _texture = nullptr;

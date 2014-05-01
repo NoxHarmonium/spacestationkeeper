@@ -100,4 +100,43 @@ void GameGrid::update() {
 
 void GameGrid::draw() {}
 
-void fixTileFrameFromAdjacent(MapPoint point) {}
+void GameGrid::fixTileFrameFromAdjacent(MapPoint point) {
+  if (!isPassable(point)) {
+    return;
+  }
+
+  Passibility p;
+  ThreeInt adjacentChecks[] = {make_tuple(-1, 0, E_Passibility::West),
+                               make_tuple(0, -1, E_Passibility::North),
+                               make_tuple(1, 0, E_Passibility::East),
+                               make_tuple(0, 1, E_Passibility::South)};
+
+  for (auto t : adjacentChecks) {
+    if (isPassable(MapPoint(point.x + get<0>(t), point.y + get<1>(t)))) {
+      p.setFlag(get<2>(t));
+    }
+  }
+
+  cout << "GameGrid::fixTileFrameFromAdjacent(): p:" << p << endl;
+
+  GameTile *tile = getTile(point);
+  if (tile != nullptr) {
+    TextureDefRef tDef = tile->material->texture;
+    int frame = tDef->getFrameFromPassibility(p);
+    tile->setTileIndex(frame);
+  }
+}
+
+void GameGrid::fixMultipleTileFrameFromAdjacent(MapPoint point) {
+  fixTileFrameFromAdjacent(point);
+  fixTileFrameFromAdjacent(MapPoint(point.x - 1, point.y));
+  fixTileFrameFromAdjacent(MapPoint(point.x, point.y - 1));
+  fixTileFrameFromAdjacent(MapPoint(point.x + 1, point.y));
+  fixTileFrameFromAdjacent(MapPoint(point.x, point.y + 1));
+}
+
+bool GameGrid::isPassable(MapPoint point) {
+  bool canPass = _gameMap.count(point) > 0 &&
+                 _gameMap[point]->material->texture->getCanWalk();
+  return canPass;
+}

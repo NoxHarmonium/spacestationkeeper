@@ -56,7 +56,10 @@ public:
         if (y == (height - 1)) {
           passability |= E_Passibility::South;
         }
-
+        // All others are set to none
+        if (passability == 0) {
+          passability = E_Passibility::None;
+        }
         def._gameMap[MapPoint(x, y)] =
             GameMapSquare(def._defaultTexId, passability);
       }

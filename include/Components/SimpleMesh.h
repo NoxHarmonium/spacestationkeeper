@@ -18,7 +18,11 @@ using namespace ci;
 
 class SimpleMesh : public BaseMesh {
 public:
+  SimpleMesh() {};
+  ~SimpleMesh() {};
+
   void render();
+
   AxisAlignedBox3f getBoundingBox() { return _bounds; }
   static SimpleMesh *generateQuad(Rectf dimensions, Rectf uv);
 

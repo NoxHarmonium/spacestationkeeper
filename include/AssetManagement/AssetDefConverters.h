@@ -74,10 +74,17 @@ template <> struct convert<Passibility> {
     // cout << "passString: " << passString << " ";
 
     if (Utils::existsIn(passString, "-")) {
-      // Skip
-      // cout << "-";
+      // Tile is unused
+      passibility.setFlag(E_Passibility::Unused);
       return true;
     }
+
+    if (passString == "") {
+      // No direction is passable
+      passibility.setFlag(E_Passibility::None);
+      return true;
+    }
+
     if (Utils::existsIn(passString, "n")) {
       passibility.setFlag(E_Passibility::North);
     }

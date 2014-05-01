@@ -16,6 +16,9 @@ using namespace ci;
 
 class BaseMesh {
 public:
+  BaseMesh() {};
+  virtual ~BaseMesh() {};
+
   virtual void render() = 0;
   virtual AxisAlignedBox3f getBoundingBox() = 0;
 };

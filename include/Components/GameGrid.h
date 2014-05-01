@@ -28,6 +28,10 @@ public:
   AssetLoaderBase *getAssetLoader() { return _assetLoader; }
   void fixTileFrameFromAdjacent(
       MapPoint point); // Make corridors and rooms framed properly.
+  void fixMultipleTileFrameFromAdjacent(
+      MapPoint point); // Make corridors and rooms framed properly.
+
+  bool isPassable(MapPoint point);
 
 private:
   GameDef _gameDef;
@@ -36,5 +40,7 @@ private:
   map<MapPoint, GameTile *> _gameMap;
   AssetLoaderBase *_assetLoader;
 };
+
+typedef tuple<int, int, int> ThreeInt;
 
 #endif

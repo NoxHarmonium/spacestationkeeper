@@ -14,7 +14,7 @@ ToggleSelectionBehaviour::ToggleSelectionBehaviour(GameComponent *component)
 
 void ToggleSelectionBehaviour::begin() {
 
-  cout << "ToggleSelectionBehaviour::begin()" << endl;
+  // cout << "ToggleSelectionBehaviour::begin()" << endl;
   _hasBegun = true;
   _elapsedTime = 0.0f;
   ComponentDrivenApp *app = _component->getParentApp();
@@ -31,16 +31,16 @@ void ToggleSelectionBehaviour::begin() {
     _pSet->insert(_component);
   }
 
-  for (auto &comp : *_pSet) {
-    cout << "Selected component: " << comp << endl;
-  }
+  // for (auto &comp : *_pSet) {
+  //  cout << "Selected component: " << comp << endl;
+  //}
 }
 
 void ToggleSelectionBehaviour::update(float deltaT) { _elapsedTime += deltaT; }
 
 void ToggleSelectionBehaviour::end() {
-  cout << "ToggleSelectionBehaviour::End() Elapsed Time: " << _elapsedTime
-       << endl;
+  // cout << "ToggleSelectionBehaviour::End() Elapsed Time: " << _elapsedTime
+  //     << endl;
   _hasBegun = false;
 }
 

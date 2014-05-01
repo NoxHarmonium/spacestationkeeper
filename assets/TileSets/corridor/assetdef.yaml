@@ -6,7 +6,8 @@ width:          256
 height:         256
 frameHeight:    64
 frameWidth:     64
-source:         tileset_corridor.png
+filename:       tileset_corridor.png
+canWalk:        true
 passibility:
     0: "NESW"
     1: "NSW"
@@ -19,8 +20,8 @@ passibility:
     8: "N"
     9: "E"
     10: "S"
-    11: "-"
-    12: "-"
-    13: "-"
-    14: "-"
-    15: "-"
+    11: ""
+    12: "NE"
+    13: "ES"
+    14: "WS"
+    15: "NW"

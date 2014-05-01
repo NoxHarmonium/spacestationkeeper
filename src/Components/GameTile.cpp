@@ -46,8 +46,16 @@ Rectf GameTile::getFrameRect() {
 }
 
 void GameTile::setup() {
+  if (this->mesh != nullptr) {
+    delete this->mesh;
+  }
   this->mesh = SimpleMesh::generateQuad(this->material->texture->getFrameSize(),
                                         this->getFrameRect());
 }
 
 MapPoint GameTile::getMapPoint() { return _mapPoint; }
+
+void GameTile::setTileIndex(int tileIndex) {
+  _tileIndex = tileIndex;
+  setup();
+}

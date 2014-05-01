@@ -6,21 +6,23 @@ width:          256
 height:         256
 frameHeight:    64
 frameWidth:     64
-source:         tileset_asteroid.png
+filename:         tileset_asteroid.png
+canWalk:        false
+#passibility here just defines which frames are edges
 passibility:
     0: "NW"
     1: "N"
     2: "NE"
-    3: "NESW"
+    3: "-"
     4: "W"
-    5: "-"
+    5: ""
     6: "E"
-    7: "NESW"
+    7: "-"
     8: "SW"
     9: "S"
     10: "SE"
-    11: "NESW"
-    12: "NESW"
-    13: "NESW"
-    14: "NESW"
-    15: "NESW"
+    11: "-"
+    12: "-"
+    13: "-"
+    14: "-"
+    15: "-"

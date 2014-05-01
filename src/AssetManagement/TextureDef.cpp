@@ -14,11 +14,11 @@ using namespace YAML;
 
 TextureDef::TextureDef() {};
 TextureDef::TextureDef(int id, int width, int height, int frameHeight,
-                       int frameWidth, string filename) {
-  setValues(id, width, height, frameHeight, frameWidth, filename);
+                       int frameWidth, string filename, bool canWalk) {
+  setValues(id, width, height, frameHeight, frameWidth, filename, canWalk);
 }
 void TextureDef::setValues(int id, int width, int height, int frameHeight,
-                           int frameWidth, string filename) {
+                           int frameWidth, string filename, bool canWalk) {
   _id = id;
   _width = width;
   _height = height;
@@ -28,11 +28,13 @@ void TextureDef::setValues(int id, int width, int height, int frameHeight,
   _passibilities = (Passibility *)calloc(
       sizeof(Passibility),
       getFrameCount()); // TODO: better c++ dynamic array? Also destructor
+  _canWalk = canWalk;
 }
 int TextureDef::getWidth() { return _width; }
 int TextureDef::getHeight() { return _height; }
 int TextureDef::getFrameHeight() { return _frameHeight; }
 int TextureDef::getFrameWidth() { return _frameWidth; }
+bool TextureDef::getCanWalk() { return _canWalk; }
 Rectf TextureDef::getFrameSize() {
   return Rectf(0.0f, 0.0f, getFrameWidth(), getFrameHeight());
 }
@@ -83,6 +85,8 @@ int TextureDef::getFrameFromPassibility(Passibility passability) {
   if (_passabilityMap.count(val)) {
     return _passabilityMap[val];
   }
+  cout << "Warning: Could not get frame number from passability: "
+       << passability << " Returning 0..." << endl;
   return 0;
 }
 
@@ -99,7 +103,8 @@ std::shared_ptr<TextureDef> TextureDef::FromYamlNode(YAML::Node node) {
   int height = node["height"].as<int>();
   int frameHeight = node["frameHeight"].as<int>();
   int frameWidth = node["frameWidth"].as<int>();
-  string source = node["source"].as<string>();
+  string filename = node["filename"].as<string>();
+  bool canWalk = node["canWalk"].as<bool>();
   // gl::Texture texture = loadImage(source);
 
   cout << "Deserialising TextureDef..." << endl;
@@ -110,8 +115,8 @@ std::shared_ptr<TextureDef> TextureDef::FromYamlNode(YAML::Node node) {
   // cout << "source: " << source << endl;
 
   // TODO: Validate and return false if invalid.
-  TextureDef *textureDef =
-      new TextureDef(id, width, height, frameHeight, frameWidth, source);
+  TextureDef *textureDef = new TextureDef(id, width, height, frameHeight,
+                                          frameWidth, filename, canWalk);
 
   if (node["passibility"]) {
     // cout << "passibility node detected..." << endl;
@@ -122,18 +127,10 @@ std::shared_ptr<TextureDef> TextureDef::FromYamlNode(YAML::Node node) {
       if (pRef[i]) {
         Passibility p = pRef[i].as<Passibility>();
         textureDef->setPassiblity(i, p);
-        // cout << "Passibility: (" << i << "): " << p << endl;
+        cout << "Passibility: (" << i << "): " << p << endl;
       }
     }
   }
-
-  /*
-   textureDef.width = node["width"].as<int>();
-   textureDef.height = node["height"].as<int>();
-   textureDef.frameHeight = node["frameHeight"].as<int>();
-   textureDef.frameWidth = node["frameWidth"].as<int>();
-   textureDef.source = node["source"].as<string>();
-   */
 
   return TextureDefRef(textureDef);
 }

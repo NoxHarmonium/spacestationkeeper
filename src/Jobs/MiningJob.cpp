@@ -53,5 +53,7 @@ void MiningJob::update(float deltaTime) {
         _assetLoader->loadAsset<TextureDef>(MiningJob::postReqTileSet);
     materialCopy->texture = corridorTd;
     tile->material = materialCopy;
+
+    _gameGrid->fixMultipleTileFrameFromAdjacent(_targetMapPoint);
   }
 }

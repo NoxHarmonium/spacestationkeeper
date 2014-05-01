@@ -21,6 +21,7 @@ public:
            ComponentDrivenApp *parent);
   void setup();
   MapPoint getMapPoint();
+  void setTileIndex(int tileIndex);
 
 private:
   Rectf getFrameRect();

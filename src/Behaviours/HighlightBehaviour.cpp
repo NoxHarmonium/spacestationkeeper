@@ -17,7 +17,7 @@ HighlightBehaviour::HighlightBehaviour(GameComponent *component,
       _baseColorMultiplier(baseColorMultiplier), Behaviour(component) {}
 
 void HighlightBehaviour::begin() {
-  cout << "Highlight::begin()" << endl;
+  // cout << "Highlight::begin()" << endl;
   _hasBegun = true;
   _elapsedTime = 0.0f;
 }
@@ -25,7 +25,7 @@ void HighlightBehaviour::begin() {
 void HighlightBehaviour::update(float deltaT) { _elapsedTime += deltaT; }
 
 void HighlightBehaviour::end() {
-  cout << "Highlight::End() Elapsed Time: " << _elapsedTime << endl;
+  // cout << "Highlight::End() Elapsed Time: " << _elapsedTime << endl;
   _hasBegun = false;
 }
 
