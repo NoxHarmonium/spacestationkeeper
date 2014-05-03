@@ -21,10 +21,11 @@ public:
   virtual float getProgress();
   virtual void update(float deltaTime);
 
-  static constexpr char *preReqTileSet = "tilesets/asteroid";
-  static constexpr char *postReqTileSet = "tilesets/corridor";
-  static constexpr int workUnitPerWorker = 1; // TODO: Put these in config files
-  static constexpr int maxWorkUnits = 8;
+  static constexpr const char *preReqTileSet = "tilesets/asteroid";
+  static constexpr const char *postReqTileSet = "tilesets/corridor";
+  static constexpr const int workUnitPerWorker =
+      1; // TODO: Put these in config files
+  static constexpr const int maxWorkUnits = 8;
 
 private:
   GameGrid *_gameGrid;

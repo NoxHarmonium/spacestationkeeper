@@ -16,7 +16,7 @@ typedef set<GameComponent *> ComponentSet;
 
 class ToggleSelectionBehaviour : public Behaviour {
 public:
-  static constexpr char *stateKeyName = "selectedComponents";
+  static constexpr const char *stateKeyName = "selectedComponents";
 
   ToggleSelectionBehaviour(GameComponent *component);
   ~ToggleSelectionBehaviour() {};
