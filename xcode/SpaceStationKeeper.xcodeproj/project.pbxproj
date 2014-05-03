@@ -978,6 +978,8 @@
 					/usr/local/Cellar/boost/1.55.0/lib,
 					/Users/seandawson/Development/spacestationkeeper/libs,
 				);
+				LLVM_LTO = YES;
+				LLVM_VECTORIZE_LOOPS = YES;
 				OTHER_LDFLAGS = (
 					"\"$(CINDER_PATH)/lib/libcinder_d.a\"",
 					../blocks/FMOD/lib/macosx/libfmodex.dylib,
@@ -1027,6 +1029,8 @@
 					/usr/local/Cellar/boost/1.55.0/lib,
 					/Users/seandawson/Development/spacestationkeeper/libs,
 				);
+				LLVM_LTO = YES;
+				LLVM_VECTORIZE_LOOPS = YES;
 				OTHER_LDFLAGS = (
 					"\"$(CINDER_PATH)/lib/libcinder.a\"",
 					../blocks/FMOD/lib/macosx/libfmodex.dylib,
