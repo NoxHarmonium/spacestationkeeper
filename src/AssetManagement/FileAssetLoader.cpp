@@ -40,11 +40,13 @@ AssetDefBaseRef FileAssetLoader::LoadAsset(string assetRef) {
 
     switch (assetType) {
     case AssetType::Texture: {
+      // if (node["id"])
+
       TextureDefRef tDef = TextureDef::FromYamlNode(node);
       tDef->setPath(path.parent_path()); // Get directory of asset
       tDef->setAssetRef(assetRef);
       AssetDefBaseRef tDefBase = dynamic_pointer_cast<AssetDefBase>(tDef);
-      saveLoadedAsset(AssetType::Texture, tDef->getId(), tDefBase);
+      saveLoadedAsset(AssetType::Texture, assetRef, tDefBase);
       return tDefBase;
     }
     case AssetType::Shader: {
@@ -52,7 +54,7 @@ AssetDefBaseRef FileAssetLoader::LoadAsset(string assetRef) {
       sDef->setPath(path.parent_path()); // Get directory of asset
       sDef->setAssetRef(assetRef);
       AssetDefBaseRef sDefBase = dynamic_pointer_cast<AssetDefBase>(sDef);
-      saveLoadedAsset(AssetType::Shader, sDef->getId(), sDefBase);
+      saveLoadedAsset(AssetType::Shader, assetRef, sDefBase);
       return sDefBase;
     }
     default: {
@@ -66,5 +68,5 @@ AssetDefBaseRef FileAssetLoader::LoadAsset(string assetRef) {
 }
 
 void FileAssetLoader::unloadAsset(AssetDefBaseRef asset) {
-  clearLoadedAsset(AssetType::Texture, asset->getId());
+  clearLoadedAsset(AssetType::Texture, asset->getAssetRef());
 }

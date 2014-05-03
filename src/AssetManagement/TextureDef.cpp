@@ -91,6 +91,9 @@ int TextureDef::getFrameFromPassibility(Passibility passability) {
 }
 
 std::shared_ptr<TextureDef> TextureDef::FromYamlNode(YAML::Node node) {
+
+  // NEXT TODO: IMPLEMENT CACHING!
+
   /* Example format
    --- # Texture Def
    width:          256

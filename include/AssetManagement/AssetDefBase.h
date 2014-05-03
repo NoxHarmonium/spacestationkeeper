@@ -9,6 +9,7 @@
 #ifndef SpaceStationKeeper_AssetDefBase_h
 #define SpaceStationKeeper_AssetDefBase_h
 
+#include "AssetType.h"
 #include "AssetLoaderBase.h"
 
 #define ASSETDEF_FILE "assetdef.yaml"
@@ -24,7 +25,6 @@ public:
   void setAssetRef(string assetRef) { _assetRef = assetRef; }
 
   virtual int getId() { return _id; }
-  virtual string getAssetType() = 0;
 
 protected:
   int _refCount = 0;
@@ -35,5 +35,9 @@ protected:
 };
 
 typedef std::shared_ptr<AssetDefBase> AssetDefBaseRef;
+
+template <typename T> struct GetAssetType {
+  static const AssetType value = AssetType::Unknown;
+};
 
 #endif

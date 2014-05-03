@@ -35,7 +35,6 @@ public:
   filesystem::path getPath();
   gl::GlslProgRef useShader();
   void releaseShader();
-  string getAssetType() { return "Shader"; }
 
   static std::shared_ptr<ShaderDef> FromYamlNode(YAML::Node node);
 
@@ -46,5 +45,9 @@ private:
 };
 
 typedef std::shared_ptr<ShaderDef> ShaderDefRef;
+
+template <> struct GetAssetType<ShaderDef> {
+  static const AssetType value = AssetType::Shader;
+};
 
 #endif

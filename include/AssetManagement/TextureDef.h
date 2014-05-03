@@ -45,7 +45,6 @@ public:
   void setPassiblity(int frameNumber, Passibility passability);
   int getFrameFromPassibility(Passibility passability);
   int getFrameCount();
-  string getAssetType() { return "Texture"; }
 
   static std::shared_ptr<TextureDef> FromYamlNode(YAML::Node node);
 
@@ -63,5 +62,9 @@ private:
 };
 
 typedef std::shared_ptr<TextureDef> TextureDefRef;
+
+template <> struct GetAssetType<TextureDef> {
+  static const AssetType value = AssetType::Texture;
+};
 
 #endif

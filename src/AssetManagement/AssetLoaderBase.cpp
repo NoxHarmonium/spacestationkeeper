@@ -9,27 +9,24 @@
 #include "AssetLoaderBase.h"
 
 AssetDefBaseRef AssetLoaderBase::getLoadedAsset(AssetType assetType,
-                                                int assetId) {
+                                                string assetRef) {
   if (_assetMap.count(assetType)) {
-    map<int, AssetDefBaseRef> idMap = _assetMap[assetType];
-    if (idMap.count(assetId)) {
-      return idMap[assetId];
+    map<string, AssetDefBaseRef> idMap = _assetMap[assetType];
+    if (idMap.count(assetRef)) {
+      return idMap[assetRef];
     }
   }
   return nullptr;
 }
 
-void AssetLoaderBase::saveLoadedAsset(AssetType assetType, int assetId,
+void AssetLoaderBase::saveLoadedAsset(AssetType assetType, string assetRef,
                                       AssetDefBaseRef assetDef) {
-  if (!_assetMap.count(assetType)) {
-    _assetMap[assetType] = map<int, AssetDefBaseRef>();
-  }
-  _assetMap[assetType][assetId] = assetDef;
+  _assetMap[assetType][assetRef] = assetDef;
 }
 
-void AssetLoaderBase::clearLoadedAsset(AssetType assetType, int assetId) {
+void AssetLoaderBase::clearLoadedAsset(AssetType assetType, string assetRef) {
 
   if (_assetMap.count(assetType)) {
-    _assetMap[assetType].erase(assetId);
+    _assetMap[assetType].erase(assetRef);
   }
 }
