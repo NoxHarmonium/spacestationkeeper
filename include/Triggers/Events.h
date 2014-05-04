@@ -13,7 +13,6 @@
 
 class Events {
 public:
-  // TODO: Work out constexpr strings
   static constexpr const char *MouseOver = "MouseOver";
   static constexpr const char *MouseClick = "MouseClick";
   static constexpr const char *ComponentSelected = " ComponentSelected";

@@ -9,10 +9,10 @@
 #ifndef SpaceStationKeeper_GameShader_h
 #define SpaceStationKeeper_GameShader_h
 
-#include "AssetDefBase.h"
-#include "cinder/gl/gl.h"
-#include "cinder/gl/GlslProg.h"
 #include <map>
+#include "cinder/gl/GlslProg.h"
+#include "yaml.h"
+#include "AssetDefBase.h"
 
 #define SHADER_UNKNOWN "Unknown"
 #define SHADER_FRAGMENT "Fragment"
@@ -21,31 +21,69 @@
 
 using namespace ci;
 
-class ShaderDef : public AssetDefBase {
+/*!
+ @brief Encapsulates a set of shader programs loaded from the assets directory.
+ @discussion You usually assign a Material object a ShaderDef for
+ RenderComponents to use for rendering.
+ Shaders are defined in YAML in the following format:
+ @textblock
+ <pre>
+ --- # Shader Def
+ id:          1
+ type:        Shader
+ components:
+ vertex:
+  source:     vertex.glsl
+ fragment:
+  source:     fragment.glsl
+ geometry:
+  source:     geometry.glsl
+ </pre>
+ @/textblock
+ */
+class ShaderDef : public AssetDefBaseT<gl::GlslProg> {
 public:
-  enum ShaderType { Unknown, Fragment, Vertex, Geometry };
+  // Enums
+  enum class ShaderType { Unknown, Fragment, Vertex, Geometry };
 
-  ShaderDef();
-  ShaderDef(int id, ShaderType shaderType, string filename);
-  ShaderDef(int id, map<ShaderType, string> _filenameMap);
+  // Constructors/Destructors
+  ~ShaderDef();
 
-  void setValues(int id, map<ShaderType, string> _filenameMap);
-  string getFilename(ShaderType shaderType);
-  void setPath(filesystem::path path);
-  filesystem::path getPath();
-  gl::GlslProgRef useShader();
-  void releaseShader();
+  // Getters/Setters
+  /*! Gets the filename of each shader program (not the full path). */
+  string getFilename(const ShaderType shaderType);
 
+  // Methods
+  /*! Loads the asset pointed to by this AssetRef object into memory so it can
+   * be used. */
+  void loadAsset();
+  /*! Unloads the asset pointed to by this AssetRef object making it unavailable
+   * for use. */
+  void unloadAsset();
+
+  // Static Methods
+  /*! Constructs an instance of ShaderDef from a loaded YAML node. This should
+   * be called by an AssetLoader and not directly through scripts. */
   static std::shared_ptr<ShaderDef> FromYamlNode(YAML::Node node);
 
 private:
+  // Constructors/Destructors
+  /* Constructs a new instance of ShaderDef with values provided through the
+   * static method FromYamlNode(). */
+  ShaderDef(int id, map<ShaderType, string> _filenameMap);
+
+  // Fields
+  /* Maps shader types to their source files. */
   map<ShaderType, string> _filenameMap;
-  filesystem::path _path; // TODO: Directory path, need to rename to be clearer
+  /*! The reference to the OpenGL shader program. (Wrapped by Cinder)*/
   gl::GlslProgRef _prog = nullptr;
 };
 
+/*! A shared pointer reference to a ShaderDef object. */
 typedef std::shared_ptr<ShaderDef> ShaderDefRef;
 
+/*! A specilization of GetAssetType to allow compile time definition of this
+ * classes AssetType. */
 template <> struct GetAssetType<ShaderDef> {
   static const AssetType value = AssetType::Shader;
 };

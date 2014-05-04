@@ -19,6 +19,7 @@ using namespace boost;
 
 // Required defs for cyclic dependency
 class AssetDefBase;
+template <typename T> class AssetDefBaseT;
 template <typename T> struct GetAssetType;
 typedef std::shared_ptr<AssetDefBase> AssetDefBaseRef;
 

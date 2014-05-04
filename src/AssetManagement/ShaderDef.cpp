@@ -6,40 +6,25 @@
 //
 //
 
-#include "yaml.h"
 #include "ShaderDef.h"
 
 using namespace YAML;
+ShaderDef::~ShaderDef() {};
 
-ShaderDef::ShaderDef() {}
-ShaderDef::ShaderDef(int id, ShaderType shaderType, string filename) {
-  map<ShaderType, string> filenameMap;
-  _filenameMap[shaderType] = filename;
-  setValues(id, filenameMap);
-}
+ShaderDef::ShaderDef(int id, map<ShaderType, string> filenameMap)
+    : _filenameMap(filenameMap), AssetDefBaseT(id) {}
 
-ShaderDef::ShaderDef(int id, map<ShaderType, string> filenameMap) {
-  setValues(id, filenameMap);
-}
-void ShaderDef::setValues(int id, map<ShaderType, string> filenameMap) {
-  _id = id;
-  _filenameMap = filenameMap;
-}
-
-string ShaderDef::getFilename(ShaderDef::ShaderType shaderType) {
+string ShaderDef::getFilename(const ShaderDef::ShaderType shaderType) {
   if (_filenameMap.count(shaderType)) {
     return _filenameMap[shaderType];
   }
   return nullptr;
 }
 
-void ShaderDef::setPath(filesystem::path path) { _path = path; }
-filesystem::path ShaderDef::getPath() { return _path; }
-
-gl::GlslProgRef ShaderDef::useShader() {
-
-  if (_prog == nullptr && _shouldLoad) {
-    cout << "Loading shader at: " << _path << endl;
+// Methods
+void ShaderDef::loadAsset() {
+  if (!assetLoaded() && _shouldLoad) {
+    cout << "Loading shader at: " << getPath() << endl;
 
     DataSourceRef vertexShaderData = DataSourceRef();
     DataSourceRef fragmentShaderData = DataSourceRef();
@@ -49,21 +34,22 @@ gl::GlslProgRef ShaderDef::useShader() {
       switch (shaderPair.first) {
       case ShaderDef::ShaderType::Vertex: {
         // cout << " ...vertex" << endl;
-        vertexShaderData = loadFile(_path / shaderPair.second);
+        vertexShaderData = loadFile(getPath() / shaderPair.second);
         break;
       }
       case ShaderDef::ShaderType::Fragment: {
         // cout << " ...fragment";
-        fragmentShaderData = loadFile(_path / shaderPair.second);
+        fragmentShaderData = loadFile(getPath() / shaderPair.second);
         break;
       }
       case ShaderDef::ShaderType::Geometry: {
         // cout << " ...geometry";
-        geometeryShaderData = loadFile(_path / shaderPair.second);
+        geometeryShaderData = loadFile(getPath() / shaderPair.second);
         break;
       }
       default: {
-        cout << "Warning: Bogus shader type loaded from asset: " << _path;
+        cout << "Warning: Bogus shader type loaded from asset: " << getPath()
+             << endl;
       }
       }
     }
@@ -71,9 +57,8 @@ gl::GlslProgRef ShaderDef::useShader() {
     // TODO: Check at least one shader is loaded
 
     try {
-      _prog = gl::GlslProg::create(vertexShaderData, fragmentShaderData,
-                                   geometeryShaderData);
-      _refCount++;
+      setAssetPointer(gl::GlslProg::create(vertexShaderData, fragmentShaderData,
+                                           geometeryShaderData));
     }
     catch (gl::GlslProgCompileExc &exc) {
       std::cout << std::endl << "Error: Shader compile error: " << std::endl;
@@ -87,12 +72,15 @@ gl::GlslProgRef ShaderDef::useShader() {
 
     cout << endl;
   }
-
-  return _prog;
 }
 
-void ShaderDef::releaseShader() { _refCount--; }
+void ShaderDef::unloadAsset() {
+  // shared_ptr will handle destruction if nothing else has
+  // a reference
+  setAssetPointer(nullptr);
+}
 
+// Static Methods
 std::shared_ptr<ShaderDef> ShaderDef::FromYamlNode(YAML::Node node) {
   cout << "Deserialising ShaderDef... ";
 

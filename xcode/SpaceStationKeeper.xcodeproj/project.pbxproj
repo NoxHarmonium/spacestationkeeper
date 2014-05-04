@@ -43,6 +43,7 @@
 		9EA476D818FA024100C6BD1D /* RenderComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EA476D718FA024100C6BD1D /* RenderComponent.cpp */; };
 		9EA7815118FC1B5B001D2752 /* MouseOverTrigger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EA7815018FC1B5B001D2752 /* MouseOverTrigger.cpp */; };
 		9EA7815318FC1B78001D2752 /* HighlightBehaviour.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EA7815218FC1B78001D2752 /* HighlightBehaviour.cpp */; };
+		9EB951ED19152837003B5FED /* AssetDefBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EB951EB19152837003B5FED /* AssetDefBase.cpp */; };
 		9ED6DF6A190F58BC002D286C /* Job.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ED6DF68190F58BC002D286C /* Job.cpp */; };
 		9ED6DF6D190F5B01002D286C /* MiningJob.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ED6DF6B190F5B01002D286C /* MiningJob.cpp */; };
 		9ED6DF7219106B70002D286C /* TextureDef.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ED6DF7019106B70002D286C /* TextureDef.cpp */; };
@@ -204,6 +205,8 @@
 		9EA476D718FA024100C6BD1D /* RenderComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RenderComponent.cpp; sourceTree = "<group>"; };
 		9EA7815018FC1B5B001D2752 /* MouseOverTrigger.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MouseOverTrigger.cpp; sourceTree = "<group>"; };
 		9EA7815218FC1B78001D2752 /* HighlightBehaviour.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HighlightBehaviour.cpp; sourceTree = "<group>"; };
+		9EB951EB19152837003B5FED /* AssetDefBase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AssetDefBase.cpp; sourceTree = "<group>"; };
+		9EB951F01915311E003B5FED /* AssetLoadException.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AssetLoadException.h; sourceTree = "<group>"; };
 		9ED6DF63190F5666002D286C /* Job.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Job.h; sourceTree = "<group>"; };
 		9ED6DF65190F5733002D286C /* Resource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Resource.h; sourceTree = "<group>"; };
 		9ED6DF66190F57E0002D286C /* MiningJob.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MiningJob.h; sourceTree = "<group>"; };
@@ -274,17 +277,17 @@
 		080E96DDFE201D6D7F000001 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				9ED6DF67190F58A9002D286C /* Jobs */,
-				9E50BCA11909CBEF00587632 /* Modifiers */,
-				9E0E1E7F190488EE009EECFD /* Binding */,
+				9E92629118D4EDA0001AB5D6 /* ComponentDrivenApp.cpp */,
+				48844111FF804C239BF69347 /* SpaceStationKeeperApp.cpp */,
 				9EEE83DB18E8F8CB006F2B49 /* AssetManagement */,
 				9EA7814418FB7B7F001D2752 /* Behaviours */,
-				9E92629118D4EDA0001AB5D6 /* ComponentDrivenApp.cpp */,
+				9E0E1E7F190488EE009EECFD /* Binding */,
 				9E92628C18D47F87001AB5D6 /* Components */,
 				9E92629518D4F915001AB5D6 /* DataStructures */,
 				9EA476C618F648B700C6BD1D /* GameCore */,
 				9E94D8E818D121720032FDC3 /* Gui */,
-				48844111FF804C239BF69347 /* SpaceStationKeeperApp.cpp */,
+				9ED6DF67190F58A9002D286C /* Jobs */,
+				9E50BCA11909CBEF00587632 /* Modifiers */,
 				9EA7814818FC1016001D2752 /* Triggers */,
 				9EE7AED718E2FC9E008A9C83 /* Utils */,
 			);
@@ -417,22 +420,23 @@
 		9E0E1E1D190488C5009EECFD /* Include */ = {
 			isa = PBXGroup;
 			children = (
-				9ED6DF64190F571B002D286C /* Resources */,
-				9ED6DF62190F5639002D286C /* Jobs */,
-				9E50BC9F1909CA9100587632 /* Modifiers */,
-				9E0E1E8319048928009EECFD /* Binding */,
+				9EB951EE19152FFF003B5FED /* Exceptions */,
+				9E0E1E28190488C5009EECFD /* ComponentDrivenApp.h */,
+				9E0E1E78190488C5009EECFD /* Resources.h */,
+				9EF876311907FF4C005824D9 /* SpaceStationKeeperApp.h */,
 				9E0E1E1E190488C5009EECFD /* AssetManagement */,
 				9E0E1E24190488C5009EECFD /* Behaviours */,
-				9E0E1E28190488C5009EECFD /* ComponentDrivenApp.h */,
+				9E0E1E8319048928009EECFD /* Binding */,
 				9E0E1E29190488C5009EECFD /* Components */,
 				9E0E1E34190488C5009EECFD /* DataStructures */,
 				9E0E1E39190488C5009EECFD /* GameCore */,
 				9E0E1E3B190488C5009EECFD /* Gui */,
+				9ED6DF62190F5639002D286C /* Jobs */,
 				9E0E1E3D190488C5009EECFD /* Libs */,
-				9E0E1E78190488C5009EECFD /* Resources.h */,
+				9E50BC9F1909CA9100587632 /* Modifiers */,
+				9ED6DF64190F571B002D286C /* Resources */,
 				9E0E1E79190488C5009EECFD /* Triggers */,
 				9E0E1E7C190488C5009EECFD /* Utils */,
-				9EF876311907FF4C005824D9 /* SpaceStationKeeperApp.h */,
 			);
 			name = Include;
 			path = ../include;
@@ -768,6 +772,14 @@
 			path = Triggers;
 			sourceTree = "<group>";
 		};
+		9EB951EE19152FFF003B5FED /* Exceptions */ = {
+			isa = PBXGroup;
+			children = (
+				9EB951F01915311E003B5FED /* AssetLoadException.h */,
+			);
+			path = Exceptions;
+			sourceTree = "<group>";
+		};
 		9ED6DF62190F5639002D286C /* Jobs */ = {
 			isa = PBXGroup;
 			children = (
@@ -812,6 +824,7 @@
 				9ED6DF7119106B70002D286C /* ShaderDef.cpp */,
 				9EEE83E018E8FAEB006F2B49 /* FileAssetLoader.cpp */,
 				9EA476CB18F8ABC300C6BD1D /* AssetLoaderBase.cpp */,
+				9EB951EB19152837003B5FED /* AssetDefBase.cpp */,
 			);
 			path = AssetManagement;
 			sourceTree = "<group>";
@@ -899,6 +912,7 @@
 				9ED6DF7319106B70002D286C /* ShaderDef.cpp in Sources */,
 				9E0E1E8219048917009EECFD /* LuaBridge.cpp in Sources */,
 				9E3AF3ED190C5943001007F4 /* ShaderModifier.cpp in Sources */,
+				9EB951ED19152837003B5FED /* AssetDefBase.cpp in Sources */,
 				9EF876301906F4E5005824D9 /* EventManager.cpp in Sources */,
 				9EE7AED618E2F262008A9C83 /* GameCamera.cpp in Sources */,
 				9E3AF3EE190C5943001007F4 /* TextureModifier.cpp in Sources */,

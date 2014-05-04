@@ -7,64 +7,43 @@
 //
 
 #include "TextureDef.h"
-#include "AssetDefConverters.h"
 
 using namespace std;
 using namespace YAML;
 
-TextureDef::TextureDef() {};
+// Constructors/Destructors
 TextureDef::TextureDef(int id, int width, int height, int frameHeight,
-                       int frameWidth, string filename, bool canWalk) {
-  setValues(id, width, height, frameHeight, frameWidth, filename, canWalk);
-}
-void TextureDef::setValues(int id, int width, int height, int frameHeight,
-                           int frameWidth, string filename, bool canWalk) {
-  _id = id;
+                       int frameWidth, string filename, bool canWalk)
+    : AssetDefBaseT(id) {
   _width = width;
   _height = height;
   _frameHeight = frameHeight;
   _frameWidth = frameWidth;
   _filename = filename;
-  _passibilities = (Passibility *)calloc(
-      sizeof(Passibility),
-      getFrameCount()); // TODO: better c++ dynamic array? Also destructor
+  _passibilities = vector<Passibility>(
+      getFrameCount(),
+      Passibility()); // Fill vector with empty Passibility objects.
   _canWalk = canWalk;
 }
+
+TextureDef::~TextureDef() {};
+
+// Getters/Setters
 int TextureDef::getWidth() { return _width; }
+
 int TextureDef::getHeight() { return _height; }
-int TextureDef::getFrameHeight() { return _frameHeight; }
+
 int TextureDef::getFrameWidth() { return _frameWidth; }
-bool TextureDef::getCanWalk() { return _canWalk; }
+
+int TextureDef::getFrameHeight() { return _frameHeight; }
+
 Rectf TextureDef::getFrameSize() {
   return Rectf(0.0f, 0.0f, getFrameWidth(), getFrameHeight());
 }
+
+bool TextureDef::getCanWalk() { return _canWalk; }
+
 std::string TextureDef::getFilename() { return _filename; }
-gl::TextureRef TextureDef::useTexture() {
-
-  if (_texture == nullptr && _shouldLoad) {
-    filesystem::path texPath = _path / _filename;
-    cout << "Loading texture: " << texPath << endl;
-    try {
-      _texture = gl::Texture::create(loadImage(texPath));
-      _refCount++;
-    }
-    catch (...) {
-      std::cout << std::endl << "unable to load the texture file!" << std::endl;
-      _shouldLoad = false; // Prevent bad assets from reloading multiple times.
-    }
-  }
-
-  return _texture;
-}
-void TextureDef::releaseTexture() { _refCount--; }
-void TextureDef::setPath(filesystem::path path) { _path = path; }
-filesystem::path TextureDef::getPath() { return _path; }
-
-int TextureDef::getFrameCount() {
-  int xFrames = _width / _frameWidth;
-  int yFrames = _height / _frameHeight;
-  return xFrames * yFrames;
-}
 
 Passibility TextureDef::getPassiblity(int frameNumber) {
   if (frameNumber < 0 || frameNumber >= getFrameCount()) {
@@ -90,47 +69,62 @@ int TextureDef::getFrameFromPassibility(Passibility passability) {
   return 0;
 }
 
+int TextureDef::getFrameCount() {
+  int xFrames = _width / _frameWidth;
+  int yFrames = _height / _frameHeight;
+  return xFrames * yFrames;
+}
+
+// Methods
+void TextureDef::loadAsset() {
+  if (!assetLoaded() && _shouldLoad) {
+    filesystem::path texPath = getPath() / _filename;
+    cout << "Loading texture: " << texPath << endl;
+    try {
+      setAssetPointer(gl::Texture::create(loadImage(texPath)));
+    }
+    catch (...) {
+      std::cout << std::endl << "unable to load the texture file!" << std::endl;
+      _shouldLoad = false; // Prevent bad assets from reloading multiple times.
+    }
+  }
+}
+
+void TextureDef::unloadAsset() {
+  // shared_ptr will handle destruction if nothing else has
+  // a reference
+  setAssetPointer(nullptr);
+}
+
+// Static Methods
 std::shared_ptr<TextureDef> TextureDef::FromYamlNode(YAML::Node node) {
 
-  // NEXT TODO: IMPLEMENT CACHING!
-
-  /* Example format
-   --- # Texture Def
-   width:          256
-   height:         256
-   frameHeight:    64
-   frameWidth:     64
-   source:         "tileset_corridor.png" */
-  int id = node["id"].as<int>();
-  int width = node["width"].as<int>();
-  int height = node["height"].as<int>();
-  int frameHeight = node["frameHeight"].as<int>();
-  int frameWidth = node["frameWidth"].as<int>();
-  string filename = node["filename"].as<string>();
-  bool canWalk = node["canWalk"].as<bool>();
-  // gl::Texture texture = loadImage(source);
+  // Load in values from YAML file.
+  int id, width, height, frameHeight, frameWidth;
+  string filename;
+  bool canWalk;
 
   cout << "Deserialising TextureDef..." << endl;
-  // cout << "width: " << width << endl;
-  // cout << "height: " << height << endl;
-  // cout << "frameHeight: " << frameHeight << endl;
-  // cout << "frameWidth: " << frameWidth << endl;
-  // cout << "source: " << source << endl;
 
-  // TODO: Validate and return false if invalid.
+  AssetDefBase::parseNode<int>(&id, node, "id");
+  AssetDefBase::parseNode<int>(&width, node, "width");
+  AssetDefBase::parseNode<int>(&height, node, "height");
+  AssetDefBase::parseNode<int>(&frameWidth, node, "frameHeight");
+  AssetDefBase::parseNode<int>(&frameHeight, node, "frameHeight");
+  AssetDefBase::parseNode<string>(&filename, node, "filename");
+  AssetDefBase::parseNode<bool>(&canWalk, node, "canWalk");
+
   TextureDef *textureDef = new TextureDef(id, width, height, frameHeight,
                                           frameWidth, filename, canWalk);
 
-  if (node["passibility"]) {
-    // cout << "passibility node detected..." << endl;
-    Node pRef = node["passibility"];
-    // cout << "pRef: " << pRef << endl;
-    // TODO: Code to parse passibility
+  // Passability is optional
+  Node pNode = node["passibility"];
+  if (pNode.IsDefined()) {
     for (int i = 0; i < textureDef->getFrameCount(); i++) {
-      if (pRef[i]) {
-        Passibility p = pRef[i].as<Passibility>();
+      if (pNode[i].IsDefined()) {
+        Passibility p = pNode[i].as<Passibility>();
         textureDef->setPassiblity(i, p);
-        cout << "Passibility: (" << i << "): " << p << endl;
+        // cout << "Passibility: (" << i << "): " << p << endl;
       }
     }
   }

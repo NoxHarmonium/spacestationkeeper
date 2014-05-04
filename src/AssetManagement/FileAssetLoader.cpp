@@ -58,7 +58,7 @@ AssetDefBaseRef FileAssetLoader::LoadAsset(string assetRef) {
       return sDefBase;
     }
     default: {
-      throw new Exception(); // Not implemented
+      throw new std::exception(); // Not implemented
     }
     }
   }
@@ -68,5 +68,5 @@ AssetDefBaseRef FileAssetLoader::LoadAsset(string assetRef) {
 }
 
 void FileAssetLoader::unloadAsset(AssetDefBaseRef asset) {
-  clearLoadedAsset(AssetType::Texture, asset->getAssetRef());
+  // TODO: Work this out properly
 }

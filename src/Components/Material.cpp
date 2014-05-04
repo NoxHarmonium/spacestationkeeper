@@ -20,9 +20,9 @@ void Material::bind() {
     unbind();
   }
 
-  if (this->texture && (_tRef = this->texture->useTexture())) {
+  if (this->texture && (_tRef = this->texture->getAsset())) {
     _tRef->enableAndBind();
-    if (this->shader && (_pRef = this->shader->useShader())) {
+    if (this->shader && (_pRef = this->shader->getAsset())) {
       _pRef->bind();
       _pRef->uniform("diffuseMap", 0);
       _pRef->uniform("baseColor", baseColor);
@@ -37,12 +37,10 @@ void Material::bind() {
 void Material::unbind() {
   if (_pRef) {
     _pRef->unbind();
-    this->shader->releaseShader();
   }
 
   if (_tRef) {
     _tRef->unbind();
-    this->texture->releaseTexture();
   }
 
   _tRef = nullptr;
