@@ -94,8 +94,9 @@ void GameGrid::setup() {
 }
 
 void GameGrid::update() {
-  this->transform->localPosition.x =
-      50.0f + ((sin(ci::app::getElapsedSeconds())) * 25.0f);
+  // Reenable to debug nested transforms
+  // this->transform->localPosition.x =
+  //    50.0f + ((sin(ci::app::getElapsedSeconds())) * 25.0f);
 }
 
 void GameGrid::draw() {}
