@@ -15,7 +15,8 @@ using namespace YAML;
 // Constructors/Destructors
 
 TextureDef::TextureDef(int id, int width, int height, int frameHeight,
-                       int frameWidth, string filename, bool canWalk)
+                       int frameWidth, string filename, bool canWalk,
+                       float border)
     : AssetDefBaseT(id) {
   _width = width;
   _height = height;
@@ -26,6 +27,7 @@ TextureDef::TextureDef(int id, int width, int height, int frameHeight,
       getFrameCount(),
       Passibility()); // Fill vector with empty Passibility objects.
   _canWalk = canWalk;
+  _border = border;
 }
 
 TextureDef::~TextureDef() {};
@@ -45,6 +47,8 @@ Rectf TextureDef::getFrameSize() {
 }
 
 bool TextureDef::getCanWalk() { return _canWalk; }
+
+float TextureDef::getBorder() { return _border; }
 
 std::string TextureDef::getFilename() { return _filename; }
 
@@ -87,7 +91,8 @@ void TextureDef::loadAsset() {
     filesystem::path texPath = getPath() / _filename;
     cout << "Loading texture: " << texPath << endl;
     try {
-      setAssetPointer(gl::Texture::create(loadImage(texPath)));
+      gl::TextureRef texRef = gl::Texture::create(loadImage(texPath));
+      setAssetPointer(texRef);
     }
     catch (const std::exception &e) {
       cout << "unable to load the texture file: " << e.what() << endl;
@@ -111,6 +116,7 @@ std::shared_ptr<TextureDef> TextureDef::FromYamlNode(YAML::Node node) {
   int id, width, height, frameHeight, frameWidth;
   string filename;
   bool canWalk;
+  float border = 0.0f;
 
   cout << "Deserialising TextureDef..." << endl;
 
@@ -121,9 +127,10 @@ std::shared_ptr<TextureDef> TextureDef::FromYamlNode(YAML::Node node) {
   Utils::parseNode<int>(&frameHeight, node, "frameHeight");
   Utils::parseNode<string>(&filename, node, "filename");
   Utils::parseNode<bool>(&canWalk, node, "canWalk");
+  Utils::parseNode<float>(&border, node, "border", false);
 
-  TextureDef *textureDef = new TextureDef(id, width, height, frameHeight,
-                                          frameWidth, filename, canWalk);
+  TextureDef *textureDef = new TextureDef(
+      id, width, height, frameHeight, frameWidth, filename, canWalk, border);
 
   // Passability is optional
   Node pNode = node["passibility"];

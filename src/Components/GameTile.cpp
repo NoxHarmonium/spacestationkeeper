@@ -37,11 +37,15 @@ Rectf GameTile::getFrameRect() {
                     this->material->texture->getFrameHeight());
   int xIndex = _tileIndex % tileXCount;
   int yIndex = _tileIndex / tileYCount;
+  float normalisedBorderX = this->material->texture->getBorder() /
+                            this->material->texture->getWidth();
+  float normalisedBorderY = this->material->texture->getBorder() /
+                            this->material->texture->getHeight();
   Rectf r;
-  r.x1 = xIndex / (float)tileXCount;
-  r.x2 = (xIndex + 1) / (float)tileXCount;
-  r.y1 = yIndex / (float)tileYCount;
-  r.y2 = (yIndex + 1) / (float)tileYCount;
+  r.x1 = (xIndex / (float)tileXCount) + normalisedBorderX;
+  r.x2 = ((xIndex + 1) / (float)tileXCount) - normalisedBorderX;
+  r.y1 = (yIndex / (float)tileYCount) + normalisedBorderY;
+  r.y2 = ((yIndex + 1) / (float)tileYCount) - normalisedBorderY;
   return r;
 }
 

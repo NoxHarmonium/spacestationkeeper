@@ -8,6 +8,7 @@ frameHeight:    64
 frameWidth:     64
 filename:       tileset_corridor.png
 canWalk:        true
+border:         1
 passibility:
     0: "NESW"
     1: "NSW"

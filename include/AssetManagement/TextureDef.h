@@ -40,6 +40,8 @@ public:
   Rectf getFrameSize();
   /*! Gets if the texture can have things on top of it. */
   bool getCanWalk();
+  /*! Gets the border around each frame in a texture. */
+  float getBorder();
   /*! Gets the filename of the source texture file (not the full path). */
   string getFilename();
   /*! Gets the Passability enum for a particular frame. */
@@ -69,7 +71,7 @@ private:
   /*! Constructs a new instance of TextureDef with values provided through the
    * static method FromYamlNode(). */
   TextureDef(int id, int width, int height, int frameHeight, int frameWidth,
-             string filename, bool canWalk);
+             string filename, bool canWalk, float border);
 
   // Fields
   /*! The total width of the texture. */
@@ -82,6 +84,8 @@ private:
   int _frameHeight;
   /*! Determines if the texture can have things on top of it. */
   bool _canWalk;
+  /*! Determines the border around each frame in a texture. */
+  float _border;
   /*! The filename of the source texture file (not the full path). */
   string _filename;
   /*! The reference to the OpenGL texture. (Wrapped by Cinder)*/

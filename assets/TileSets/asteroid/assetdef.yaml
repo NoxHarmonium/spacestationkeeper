@@ -6,8 +6,9 @@ width:          256
 height:         256
 frameHeight:    64
 frameWidth:     64
-filename:         tileset_asteroid.png
+filename:       tileset_asteroid.png
 canWalk:        false
+border:         0
 #passibility here just defines which frames are edges
 passibility:
     0: "NW"
