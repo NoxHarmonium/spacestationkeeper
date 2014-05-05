@@ -18,14 +18,16 @@
 
 class Material {
 public:
+  // Methods
+  Material();
+  void bind();
+  void unbind();
+
+  // Fields
   TextureDefRef texture = nullptr;
   ShaderDefRef shader = nullptr;
   float brightness;
   ColorAf baseColor;
-
-  Material();
-  void bind();
-  void unbind();
 
 private:
   gl::TextureRef _tRef = nullptr;

@@ -16,7 +16,7 @@ using namespace cinder::gl;
 
 GameTile::GameTile(MaterialRef material, MapPoint mapPoint, int tileIndex,
                    ComponentDrivenApp *parent)
-    : _mapPoint(mapPoint), TriggeredRenderComponent(parent) {
+    : _mapPoint(mapPoint), RenderComponent(parent) {
   _tileIndex = tileIndex;
   this->material = material;
   this->transform->localPosition = Vec3f();
@@ -24,7 +24,7 @@ GameTile::GameTile(MaterialRef material, MapPoint mapPoint, int tileIndex,
 
 GameTile::GameTile(MaterialRef material, MapPoint mapPoint, int tileIndex,
                    Vec3f offset, ComponentDrivenApp *parent)
-    : _mapPoint(mapPoint), TriggeredRenderComponent(parent) {
+    : _mapPoint(mapPoint), RenderComponent(parent) {
   _tileIndex = tileIndex;
   this->material = material;
   this->transform->localPosition = offset;
@@ -50,9 +50,6 @@ Rectf GameTile::getFrameRect() {
 }
 
 void GameTile::setup() {
-  if (this->mesh != nullptr) {
-    delete this->mesh;
-  }
   this->mesh = SimpleMesh::generateQuad(this->material->texture->getFrameSize(),
                                         this->getFrameRect());
 }

@@ -25,6 +25,9 @@ public:
   virtual void render() = 0;
   /*! Gets the internal mesh representation of the mesh. */
   virtual TriMesh *getInternalMesh() = 0;
+  /*! Gets the internal mesh representation of the mesh translated according to
+   * a transform matrix. */
+  virtual TriMesh *getInternalMesh(Matrix44f transformMatrix) = 0;
   /*! Gets the bounds of the mesh. */
   virtual AxisAlignedBox3f getBoundingBox() = 0;
 };

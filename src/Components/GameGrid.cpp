@@ -27,6 +27,8 @@ void GameGrid::setup() {
 
   string classFilter = "asteroidRock";
 
+  _batchedMeshRef = make_shared<BatchedMesh>();
+
   _eventManager = _parentApp->GetComponentByType<EventManager>();
   assert(_eventManager != nullptr);
 
@@ -55,7 +57,7 @@ void GameGrid::setup() {
   vector<GameTile *> tiles;
   _assetLoader = new FileAssetLoader(Utils::getResourcesPath());
 
-  _gameDef = GameDef::getTestBoard(_assetLoader, 100, 100);
+  _gameDef = GameDef::getTestBoard(_assetLoader, 10, 10);
   TextureDefRef f;
 
   // TODO: Cast shared pointers how??
@@ -70,11 +72,13 @@ void GameGrid::setup() {
 
   // int frameCount = asteroidTd->getFrameCount();
 
+  MaterialRef material = make_shared<Material>();
+  material->shader = defaultShader;
+  material->texture = asteroidTd;
+
   for (int i = 0; i < _gameDef.getWidth(); i++) {
     for (int j = 0; j < _gameDef.getHeight(); j++) {
-      MaterialRef material = make_shared<Material>();
-      material->shader = defaultShader;
-      material->texture = asteroidTd;
+
       // TODO: Should there be one material ref and each tile gets its own
       // brightness/baseColor somehow? I think unity does something strange like
       // copy materials on access. Investigate
@@ -85,6 +89,7 @@ void GameGrid::setup() {
                            j * asteroidTd->getFrameHeight(), 0.0f);
       GameTile *t = new GameTile(material, MapPoint(i, j), frameIndex, offset,
                                  this->_parentApp);
+      t->batch(_batchedMeshRef);
       t->transform->parent = this->transform;
       _gameMap[MapPoint(i, j)] = t;
 
@@ -92,7 +97,7 @@ void GameGrid::setup() {
       _parentApp->registerComponent(t);
 
       t->classFilter = classFilter;
-      t->setEventManager(_eventManager);
+      // t->setEventManager(_eventManager);
 
       // mouseOverTrigger->RegisterBehaviour(
       //    t, new HighlightBehaviour(t)); // TODO: component is passed in
@@ -108,7 +113,11 @@ void GameGrid::update() {
   //    50.0f + ((sin(ci::app::getElapsedSeconds())) * 25.0f);
 }
 
-void GameGrid::draw() {}
+void GameGrid::draw() {
+  if (_batchedMeshRef != nullptr) {
+    _batchedMeshRef->render();
+  }
+}
 
 void GameGrid::fixTileFrameFromAdjacent(MapPoint point) {
   if (!isPassable(point)) {

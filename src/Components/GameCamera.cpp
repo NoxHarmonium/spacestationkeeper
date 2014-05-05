@@ -51,6 +51,7 @@ void GameCamera::update() {
   ci::gl::translate(-_transform.localPosition);
 
   // Scale around screen center
+  // TODO: This doesn't work properly with big maps
   Vec3f scaleOffset = Vec3f((float)app::getWindowWidth() / 2.0f,
                             (float)app::getWindowHeight() / 2.0f, 0.0f);
   ci::gl::translate(scaleOffset);

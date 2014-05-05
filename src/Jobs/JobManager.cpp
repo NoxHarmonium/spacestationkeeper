@@ -39,7 +39,7 @@ void JobManager::update() {
     case JobState::Cancelled:
       // TODO: job->cancel/cleanup
 
-      state = JobState::Finished;
+      _registeredJobs[job] = JobState::Finished;
       break;
 
     case JobState::Finished:

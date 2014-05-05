@@ -19,9 +19,19 @@ AxisAlignedBox3f SimpleMesh::getBoundingBox() { return _bounds; }
 
 TriMesh *SimpleMesh::getInternalMesh() { return &_currentMesh; }
 
-SimpleMesh *SimpleMesh::generateQuad(Rectf dimensions,
-                                     Rectf uvCoords = Rectf(0.0f, 0.0f, 1.0f,
-                                                            1.0f)) {
+TriMesh *SimpleMesh::getInternalMesh(Matrix44f transformMatrix) {
+  TriMesh *meshCopy = new TriMesh{_currentMesh};
+  vector<Vec3f> verts = meshCopy->getVertices();
+
+  for (Vec3f &vertex : meshCopy->getVertices()) {
+    vertex = transformMatrix.transformPoint(vertex);
+  }
+  return meshCopy;
+}
+
+SimpleMeshRef SimpleMesh::generateQuad(Rectf dimensions,
+                                       Rectf uvCoords = Rectf(0.0f, 0.0f, 1.0f,
+                                                              1.0f)) {
 
   // cout << "SimpleMesh::GenerateQuad(); dims: " << dimensions
   //     << " uvCoords: " << uvCoords << endl;
@@ -57,7 +67,7 @@ SimpleMesh *SimpleMesh::generateQuad(Rectf dimensions,
 
   mesh.recalculateNormals();
 
-  SimpleMesh *meshWrapper = new SimpleMesh(mesh);
+  SimpleMeshRef meshWrapper = make_shared<SimpleMesh>(mesh);
   meshWrapper->_bounds = mesh.calcBoundingBox();
   return meshWrapper;
 }

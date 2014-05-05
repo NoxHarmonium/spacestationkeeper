@@ -9,11 +9,11 @@
 #ifndef SpaceStationKeeper_GameTile_h
 #define SpaceStationKeeper_GameTile_h
 
-#include "TriggeredRenderComponent.h"
+#include "RenderComponent.h"
 
-using namespace cinder::gl;
+using namespace ci;
 
-class GameTile : public TriggeredRenderComponent {
+class GameTile : public RenderComponent {
 public:
   GameTile(MaterialRef material, MapPoint mapPoint, int tileIndex,
            ComponentDrivenApp *parent);

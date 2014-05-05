@@ -21,6 +21,7 @@
 using namespace std;
 using namespace YAML;
 using namespace boost;
+using namespace ci;
 
 class Utils {
 public:
@@ -35,9 +36,13 @@ public:
   static void printOpenGlVersionInfo();
   static bool getChildNode(Node *childNode, Node node, string key,
                            bool required = true);
+  static AxisAlignedBox3f combineBounds(AxisAlignedBox3f first,
+                                        AxisAlignedBox3f second);
   // Template Methods
-  /*! Parses a value from a YAML node referenced by key and validates it. Should
-   * be used when parsing AssetDefs so that the exceptions that are thrown are
+  /*! Parses a value from a YAML node referenced by key and validates it.
+   * Should
+   * be used when parsing AssetDefs so that the exceptions that are thrown
+   * are
    * consistant. */
   template <typename T2>
   static bool parseNode(T2 *targetVar, Node node, string key,

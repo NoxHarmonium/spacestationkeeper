@@ -9,6 +9,7 @@
 #include "Utils.h"
 
 using namespace boost;
+using namespace ci;
 
 filesystem::path Utils::getCurrentExecutablePath() {
 #if defined __APPLE__ && __MACH__
@@ -69,6 +70,19 @@ bool Utils::isInside(ci::AxisAlignedBox3f bounds, ci::Vec3f point) {
 bool Utils::areOverlapping(ci::AxisAlignedBox3f bounds, ci::Rectf rect) {
   return (bounds.getMin().x < rect.x2 && bounds.getMax().x > rect.x1 &&
           bounds.getMin().y < rect.y2 && bounds.getMax().y > rect.y1);
+}
+
+AxisAlignedBox3f Utils::combineBounds(AxisAlignedBox3f first,
+                                      AxisAlignedBox3f second) {
+  float minX = min(first.getMin().x, first.getMin().x);
+  float minY = min(first.getMin().y, first.getMin().y);
+  float minZ = min(first.getMin().z, first.getMin().z);
+
+  float maxX = max(first.getMax().x, first.getMax().x);
+  float maxY = max(first.getMax().y, first.getMax().y);
+  float maxZ = max(first.getMax().z, first.getMax().z);
+
+  return AxisAlignedBox3f(Vec3f(minX, minY, minZ), Vec3f(maxX, maxY, maxZ));
 }
 
 void Utils::printOpenGlVersionInfo() {

@@ -10,22 +10,56 @@
 
 using namespace ci;
 
+// Constructors/Destructors
+RenderComponent::RenderComponent(ComponentDrivenApp *parent)
+    : GameComponent(parent) {};
+
+RenderComponent::~RenderComponent() {}
+
+// Methods
+AxisAlignedBox3f RenderComponent::getBounds() {
+  if (mesh) {
+    glPushMatrix();
+    applyTransfromRecursive(this->transform);
+    Matrix44f matrix;
+    glGetFloatv(GL_MODELVIEW_MATRIX, matrix);
+    AxisAlignedBox3f transBound = mesh->getBoundingBox().transformed(matrix);
+    glPopMatrix();
+
+    return transBound;
+  }
+  return AxisAlignedBox3f();
+}
+
 void RenderComponent::draw() {
   if (renderEnabled) {
     RenderInfo *renderInfo = this->getRenderInfo();
 
     startDraw(renderInfo);
 
-    renderInfo->material->bind();
-
-    if (renderInfo->mesh) {
-      renderInfo->mesh->render();
+    if (_batchMode) {
+      if (!_addedToBatch) {
+        _batchedMeshRef->addMesh(this->material, this->mesh,
+                                 this->transform); // material without modifiers
+        _addedToBatch = true;
+      }
+      // Rendering of batched mesh should be done elsewhere (where the batched
+      // mesh is defined).
+    } else {
+      renderInfo->material->bind();
+      if (this->mesh != nullptr) {
+        renderInfo->mesh->render();
+      }
+      renderInfo->material->unbind();
     }
-
-    renderInfo->material->unbind();
 
     endDraw(renderInfo);
   }
+}
+
+void RenderComponent::batch(BatchedMeshRef batchedMeshRef) {
+  _batchMode = true;
+  _batchedMeshRef = batchedMeshRef;
 }
 
 void RenderComponent::startDraw(RenderInfo *renderInfo) {

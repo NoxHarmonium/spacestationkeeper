@@ -14,6 +14,7 @@
 #include "GameTile.h"
 #include "Utils.h"
 #include "EventManager.h"
+#include "BatchedMesh.h"
 
 using namespace std;
 
@@ -39,6 +40,7 @@ private:
   EventManager *_eventManager;
   map<MapPoint, GameTile *> _gameMap;
   AssetLoaderBase *_assetLoader;
+  BatchedMeshRef _batchedMeshRef;
 };
 
 typedef tuple<int, int, int> ThreeInt;

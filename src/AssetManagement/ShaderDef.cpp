@@ -110,7 +110,7 @@ bool ShaderDef::parseShader(Node node, string key,
 std::shared_ptr<ShaderDef> ShaderDef::FromYamlNode(YAML::Node node) {
   cout << "Deserialising ShaderDef... ";
 
-  int id;
+  int id = 0;
   Node components;
   map<ShaderDef::ShaderType, string> _filenameMap;
 

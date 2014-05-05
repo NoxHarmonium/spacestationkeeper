@@ -20,15 +20,10 @@ public:
   bool renderEnabled = true;
 
   TransformRef transform;
-  BaseMesh *mesh = nullptr;
+  BaseMeshRef mesh = nullptr;
   MaterialRef material;
 
-  virtual bool canRayCast() {
-    return false;
-  }
-  virtual AxisAlignedBox3f getBounds() {
-    return AxisAlignedBox3f();
-  }
+  virtual AxisAlignedBox3f getBounds() { return AxisAlignedBox3f(); }
   RenderInfo *clone();
 };
 
