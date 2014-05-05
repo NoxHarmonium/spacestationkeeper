@@ -25,19 +25,22 @@ SimpleMesh *SimpleMesh::generateQuad(Rectf dimensions,
   TriMesh mesh;
   mesh.clear();
 
-  mesh.appendVertex(
-      Vec3f(dimensions.x1, dimensions.y1, 0)); // appends the vertex
-  mesh.appendColorRgb(Color(1.0f, 1.0f, 1.0f));
-  mesh.appendTexCoord(Vec2f(uvCoords.x1, uvCoords.y1));
-  mesh.appendVertex(
-      Vec3f(dimensions.x1, dimensions.y2, 0)); // appends the next vertex
-  mesh.appendColorRgb(Color(1.0f, 1.0f, 1.0f));
-  mesh.appendTexCoord(Vec2f(uvCoords.x1, uvCoords.y2));
+  // Vertexes
+  mesh.appendVertex(Vec3f(dimensions.x1, dimensions.y1, 0));
+  mesh.appendVertex(Vec3f(dimensions.x1, dimensions.y2, 0));
   mesh.appendVertex(Vec3f(dimensions.x2, dimensions.y2, 0));
-  mesh.appendColorRgb(Color(1.0f, 1.0f, 1.0f));
-  mesh.appendTexCoord(Vec2f(uvCoords.x2, uvCoords.y2));
   mesh.appendVertex(Vec3f(dimensions.x2, dimensions.y1, 0));
+
+  // Vertex Colors
   mesh.appendColorRgb(Color(1.0f, 1.0f, 1.0f));
+  mesh.appendColorRgb(Color(1.0f, 1.0f, 1.0f));
+  mesh.appendColorRgb(Color(1.0f, 1.0f, 1.0f));
+  mesh.appendColorRgb(Color(1.0f, 1.0f, 1.0f));
+
+  // Tex coords
+  mesh.appendTexCoord(Vec2f(uvCoords.x1, uvCoords.y1));
+  mesh.appendTexCoord(Vec2f(uvCoords.x1, uvCoords.y2));
+  mesh.appendTexCoord(Vec2f(uvCoords.x2, uvCoords.y2));
   mesh.appendTexCoord(Vec2f(uvCoords.x2, uvCoords.y1));
 
   int vert0 = mesh.getNumVertices() - 4;
