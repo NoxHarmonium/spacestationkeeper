@@ -8,6 +8,8 @@
 
 #include "AssetLoaderBase.h"
 
+// Methods
+
 AssetDefBaseRef AssetLoaderBase::getLoadedAsset(AssetType assetType,
                                                 string assetRef) {
   if (_assetMap.count(assetType)) {

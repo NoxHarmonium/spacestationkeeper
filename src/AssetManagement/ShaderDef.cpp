@@ -7,8 +7,13 @@
 //
 
 #include "ShaderDef.h"
+#include "AssetLoadException.h"
+#include "Utils.h"
 
 using namespace YAML;
+
+// Constructors/Destructors
+
 ShaderDef::~ShaderDef() {};
 
 ShaderDef::ShaderDef(int id, map<ShaderType, string> filenameMap)
@@ -22,10 +27,12 @@ string ShaderDef::getFilename(const ShaderDef::ShaderType shaderType) {
 }
 
 // Methods
+
 void ShaderDef::loadAsset() {
   if (!assetLoaded() && _shouldLoad) {
     cout << "Loading shader at: " << getPath() << endl;
 
+    // DataSourceRef default constructor is null;
     DataSourceRef vertexShaderData = DataSourceRef();
     DataSourceRef fragmentShaderData = DataSourceRef();
     DataSourceRef geometeryShaderData = DataSourceRef();
@@ -54,23 +61,26 @@ void ShaderDef::loadAsset() {
       }
     }
 
-    // TODO: Check at least one shader is loaded
+    if (!(vertexShaderData || fragmentShaderData || geometeryShaderData)) {
+      throw new AssetLoadException(
+          AssetLoadException::AssetLoadExceptionReason::SourceFileMissing);
+    }
 
     try {
       setAssetPointer(gl::GlslProg::create(vertexShaderData, fragmentShaderData,
                                            geometeryShaderData));
     }
-    catch (gl::GlslProgCompileExc &exc) {
+    catch (const gl::GlslProgCompileExc &exc) {
       std::cout << std::endl << "Error: Shader compile error: " << std::endl;
       std::cout << exc.what();
+      throw new AssetLoadException(&exc);
       _shouldLoad = false; // Prevent bad assets from reloading multiple times.
     }
-    catch (...) {
+    catch (const std::exception &e) {
       std::cout << std::endl << "Error: Unable to load shader" << std::endl;
       _shouldLoad = false; // Prevent bad assets from reloading multiple times.
+      throw new AssetLoadException(&e);
     }
-
-    cout << endl;
   }
 }
 
@@ -80,35 +90,51 @@ void ShaderDef::unloadAsset() {
   setAssetPointer(nullptr);
 }
 
+bool ShaderDef::parseShader(Node node, string key,
+                            map<ShaderType, string> *filenameMap,
+                            ShaderDef::ShaderType shaderType) {
+  Node childNode;
+  string source;
+
+  bool nodeExists = Utils::getChildNode(&childNode, node, key, false);
+  if (nodeExists) {
+    Utils::parseNode<string>(&source, childNode, "source");
+    (*filenameMap)[shaderType] = source;
+    return true;
+  }
+  return false;
+}
+
 // Static Methods
+
 std::shared_ptr<ShaderDef> ShaderDef::FromYamlNode(YAML::Node node) {
   cout << "Deserialising ShaderDef... ";
 
-  int id = node["id"].as<int>();
-
+  int id;
+  Node components;
   map<ShaderDef::ShaderType, string> _filenameMap;
 
-  Node components = node["components"];
-  if (components["vertex"]) {
-    cout << "vertex ";
-    string source = components["vertex"]["source"].as<string>();
-    _filenameMap[ShaderDef::ShaderType::Vertex] = source;
-  }
-  if (components["fragment"]) {
-    cout << "fragment ";
-    string source = components["fragment"]["source"].as<string>();
-    _filenameMap[ShaderDef::ShaderType::Fragment] = source;
-  }
-  if (components["geometry"]) {
-    cout << "geometry ";
-    string source = components["geometry"]["source"].as<string>();
-    _filenameMap[ShaderDef::ShaderType::Geometry] = source;
-  }
+  Utils::parseNode<int>(&id, node, "id");
+  Utils::getChildNode(&components, node, "components");
 
-  cout << endl;
+  bool geomExists = parseShader(components, "geometry", &_filenameMap,
+                                ShaderDef::ShaderType::Geometry);
+  bool fragExists = parseShader(components, "fragment", &_filenameMap,
+                                ShaderDef::ShaderType::Fragment);
+  bool vertexExists = parseShader(components, "vertex", &_filenameMap,
+                                  ShaderDef::ShaderType::Vertex);
+
+  // Transitive dependencies (i.e. frag shader needs vertex shader.)
+  if ((geomExists && !(fragExists && vertexExists)) ||
+      (fragExists && !vertexExists) || !vertexExists) {
+    throw new AssetLoadException(AssetLoadException::AssetLoadExceptionReason::
+                                     AssetDefMissingDependencies,
+                                 "The shader pipeline depends on a specific "
+                                 "order of defined shaders (i.e. You need a "
+                                 "vertex shader for a fragment shader).");
+  }
 
   ShaderDef *shaderDef = new ShaderDef(id, _filenameMap);
 
-  // TODO: Validate and return nullptr/exception if invalid.
   return ShaderDefRef(shaderDef);
 }

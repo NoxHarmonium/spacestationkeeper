@@ -11,15 +11,21 @@
 using namespace std;
 using namespace boost;
 
+// Constructors/Destructors
+
 FileAssetLoader::FileAssetLoader(filesystem::path assetRoot) {
   _assetRoot = assetRoot;
 }
+
+FileAssetLoader::~FileAssetLoader() {}
+
+// Methods
 
 filesystem::path FileAssetLoader::getAssetRoot() {
   return _assetRoot / filesystem::path("assets");
 }
 
-AssetDefBaseRef FileAssetLoader::LoadAsset(string assetRef) {
+AssetDefBaseRef FileAssetLoader::loadAsset(string assetRef) {
   cout << "FileAssetLoader::loadAsset()" << endl;
 
   filesystem::ifstream ifs;
@@ -28,20 +34,29 @@ AssetDefBaseRef FileAssetLoader::LoadAsset(string assetRef) {
 
   cout << "Loading path: " << path << endl;
 
-  ifs.open(path);
+  try {
+    ifs.open(path);
+  }
+  catch (const std::exception &e) {
+    throw new AssetLoadException(&e);
+  }
   if (ifs.is_open()) {
+    YAML::Node node;
+    try {
+      node = YAML::Load(ifs);
+      ifs.close();
+    }
+    catch (const std::exception &e) {
+      throw new AssetLoadException(
+          AssetLoadException::AssetLoadExceptionReason::YamlParseError,
+          e.what());
+    }
 
-    YAML::Node node = YAML::Load(ifs);
-    ifs.close();
-
-    // cout << "Yaml dump: " << YAML::Dump(node) << endl;
-
-    AssetType assetType = node["type"].as<AssetType>();
+    AssetType assetType;
+    Utils::parseNode(&assetType, node, "type");
 
     switch (assetType) {
     case AssetType::Texture: {
-      // if (node["id"])
-
       TextureDefRef tDef = TextureDef::FromYamlNode(node);
       tDef->setPath(path.parent_path()); // Get directory of asset
       tDef->setAssetRef(assetRef);
@@ -58,15 +73,16 @@ AssetDefBaseRef FileAssetLoader::LoadAsset(string assetRef) {
       return sDefBase;
     }
     default: {
-      throw new std::exception(); // Not implemented
+      throw new AssetLoadException(
+          AssetLoadException::AssetLoadExceptionReason::UnsupportedAssetType);
     }
     }
   }
 
-  // Load error
-  throw new std::exception();
+  throw new AssetLoadException(
+      AssetLoadException::AssetLoadExceptionReason::UnknownError);
 }
 
 void FileAssetLoader::unloadAsset(AssetDefBaseRef asset) {
-  // TODO: Work this out properly
+  clearLoadedAsset(asset->getAssetType(), asset->getAssetRef());
 }

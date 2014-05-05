@@ -9,11 +9,10 @@
 #ifndef SpaceStationKeeper_TextureDef_h
 #define SpaceStationKeeper_TextureDef_h
 
-#include <stdlib.h>
 #include <map>
 #include "yaml.h"
 #include "cinder/gl/Texture.h"
-#include "AssetDefBase.h"
+#include "AssetDefBaseT.h"
 #include "AssetDefConverters.h"
 #include "AssetLoadException.h"
 

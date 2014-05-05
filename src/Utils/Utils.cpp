@@ -82,3 +82,18 @@ void Utils::printOpenGlVersionInfo() {
   // printf("GL Version (integer) : %d.%d\n", major, minor);
   printf("GLSL Version : %s\n\n", glslVersion);
 }
+
+bool Utils::getChildNode(YAML::Node *childNode, Node node, string key,
+                         bool required) {
+  *childNode = node[key];
+  if (!childNode->IsDefined()) {
+    if (required) {
+      throw new AssetLoadException(
+          AssetLoadException::AssetLoadExceptionReason::AssetDefMissingKey,
+          key);
+    } else {
+      return false;
+    }
+  }
+  return true;
+}

@@ -7,22 +7,30 @@
 //
 
 #include "yaml.h"
-#include "TextureDef.h"
-#include "ShaderDef.h"
 #include "AssetType.h"
+#include "ShaderDef.h"
 #include "Passibility.h"
 #include "Utils.h"
+#include "NotImplementedException.h"
 
 #ifndef __SpaceStationKeeper__AssetDefConverters__
 #define __SpaceStationKeeper__AssetDefConverters__
+
+//
+// YAML node conversion specializations
+// This file contains specializations so that certain types can be
+// directly converted from YAML nodes using the YAML::Node.as<T>() method.
+//
 
 namespace YAML {
 using namespace std;
 using namespace ci;
 
 template <> struct convert<AssetType> {
+
   static Node encode(const AssetType &assetType) {
-    throw new std::exception(); // Not implemented
+    // Not required yet
+    throw new NotImplementedException();
   }
 
   static bool decode(const Node &node, AssetType &assetType) {
@@ -44,7 +52,8 @@ template <> struct convert<AssetType> {
 
 template <> struct convert<ShaderDef::ShaderType> {
   static Node encode(const ShaderDef::ShaderType &shaderType) {
-    throw new std::exception(); // Not implemented
+    // Not required yet
+    throw new NotImplementedException();
   }
 
   static bool decode(const Node &node, ShaderDef::ShaderType &shaderType) {
@@ -65,7 +74,8 @@ template <> struct convert<ShaderDef::ShaderType> {
 };
 template <> struct convert<Passibility> {
   static Node encode(const AssetType &assetType) {
-    throw new std::exception(); // Not implemented
+    // Not required yet
+    throw new NotImplementedException();
   }
 
   static bool decode(const Node &node, Passibility &passibility) {

@@ -12,7 +12,7 @@
 #include <map>
 #include "cinder/gl/GlslProg.h"
 #include "yaml.h"
-#include "AssetDefBase.h"
+#include "AssetDefBaseT.h"
 
 #define SHADER_UNKNOWN "Unknown"
 #define SHADER_FRAGMENT "Fragment"
@@ -72,6 +72,13 @@ private:
    * static method FromYamlNode(). */
   ShaderDef(int id, map<ShaderType, string> _filenameMap);
 
+  // Static Methods
+  /*! Load in a shader source from a YAML node. Returns true if key exists,
+   * otherwise false. */
+  static bool parseShader(Node node, string key,
+                          map<ShaderType, string> *filenameMap,
+                          ShaderDef::ShaderType shaderType);
+
   // Fields
   /* Maps shader types to their source files. */
   map<ShaderType, string> _filenameMap;
@@ -83,7 +90,7 @@ private:
 typedef std::shared_ptr<ShaderDef> ShaderDefRef;
 
 /*! A specilization of GetAssetType to allow compile time definition of this
- * classes AssetType. */
+ * class's AssetType. */
 template <> struct GetAssetType<ShaderDef> {
   static const AssetType value = AssetType::Shader;
 };

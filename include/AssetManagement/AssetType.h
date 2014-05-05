@@ -14,6 +14,7 @@
 #define ASSET_AUDIO "Audio"
 #define ASSET_UNKNOWN "Unknown"
 
+/*! A enum of all the known asset types. */
 enum AssetType { Unknown, Texture, Shader, Audio };
 
 #endif

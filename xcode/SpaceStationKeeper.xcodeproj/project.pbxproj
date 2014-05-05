@@ -207,6 +207,8 @@
 		9EA7815218FC1B78001D2752 /* HighlightBehaviour.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HighlightBehaviour.cpp; sourceTree = "<group>"; };
 		9EB951EB19152837003B5FED /* AssetDefBase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AssetDefBase.cpp; sourceTree = "<group>"; };
 		9EB951F01915311E003B5FED /* AssetLoadException.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AssetLoadException.h; sourceTree = "<group>"; };
+		9EB951F2191709E7003B5FED /* AssetDefBaseT.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AssetDefBaseT.h; sourceTree = "<group>"; };
+		9EB951F319170B3F003B5FED /* NotImplementedException.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotImplementedException.h; sourceTree = "<group>"; };
 		9ED6DF63190F5666002D286C /* Job.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Job.h; sourceTree = "<group>"; };
 		9ED6DF65190F5733002D286C /* Resource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Resource.h; sourceTree = "<group>"; };
 		9ED6DF66190F57E0002D286C /* MiningJob.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MiningJob.h; sourceTree = "<group>"; };
@@ -448,6 +450,7 @@
 				9ED6DF6E19106B60002D286C /* ShaderDef.h */,
 				9ED6DF6F19106B60002D286C /* TextureDef.h */,
 				9E0E1E1F190488C5009EECFD /* AssetDefBase.h */,
+				9EB951F2191709E7003B5FED /* AssetDefBaseT.h */,
 				9E0E1E20190488C5009EECFD /* AssetDefConverters.h */,
 				9E0E1E21190488C5009EECFD /* AssetLoaderBase.h */,
 				9E0E1E22190488C5009EECFD /* AssetType.h */,
@@ -776,6 +779,7 @@
 			isa = PBXGroup;
 			children = (
 				9EB951F01915311E003B5FED /* AssetLoadException.h */,
+				9EB951F319170B3F003B5FED /* NotImplementedException.h */,
 			);
 			path = Exceptions;
 			sourceTree = "<group>";

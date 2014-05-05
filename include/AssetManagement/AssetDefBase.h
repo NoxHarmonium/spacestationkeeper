@@ -20,10 +20,6 @@ using namespace std;
 using namespace YAML;
 using namespace boost;
 
-//
-// Interface
-//
-
 class AssetDefBase {
   // Allows the AssetLoaders to modify internal state.
   friend class AssetLoaderBase;
@@ -52,6 +48,8 @@ public:
   std::shared_ptr<void> getAsset();
   /*! Gets whether the asset is loaded into memory or not. */
   bool assetLoaded();
+  /*! Gets the type definition of this asset definition. */
+  AssetType getAssetType();
 
   // Methods
   /*! Loads the asset pointed to by this AssetRef object into memory so it can
@@ -76,65 +74,11 @@ protected:
   /*! Sets the reference to the asset. */
   void setAssetPointer(std::shared_ptr<void> pointer);
 
-  // Template Methods
-  /*! Parses a value from a YAML node referenced by key and validates it. Should
-   * be used when parsing AssetDefs so that the exceptions that are thrown are
-   * consistant. */
-  template <typename T2>
-  static void parseNode(T2 *targetVar, Node node, string key) {
-    Node childNode = node[key];
-    if (childNode.IsDefined()) {
-      try {
-        *targetVar = childNode.as<T2>();
-      }
-      catch (const YAML::BadConversion &e) {
-        // Catch format error
-        throw new AssetLoadException(
-            AssetLoadException::AssetLoadExceptionReason::AssetDefInvalidFormat,
-            key);
-      }
-      catch (const std::exception &e) {
-        // Hopefully catch all other exceptions
-        throw new AssetLoadException(&e);
-      }
-      catch (...) {
-        // Catch exceptional exceptions generically.
-        throw new AssetLoadException(
-            AssetLoadException::AssetLoadExceptionReason::UnknownError);
-      }
-    } else {
-      throw new AssetLoadException(
-          AssetLoadException::AssetLoadExceptionReason::AssetDefMissingKey,
-          key);
-    }
-  }
-
 private:
   /*! The root directory of the asset. */
   filesystem::path _path; // TODO: Directory path, need to rename to be clearer
   /*! Stores the reference to the asset. */
   std::shared_ptr<void> _assetPointer;
-};
-
-/*! Abstract base class for all references to assets. */
-template <typename T> class AssetDefBaseT : public AssetDefBase {
-
-public:
-  // Constructors/Destructors
-  AssetDefBaseT(int id);
-  ~AssetDefBaseT();
-
-  /*! Gets the asset pointed to by this assetref object. If the asset is not
-   * loaded, LoadAsset() is called automatically. */
-  virtual std::shared_ptr<T> getAsset() {
-    return static_pointer_cast<T>(AssetDefBase::getAsset());
-  }
-
-protected:
-  /*! Sets the reference to the asset. */
-  virtual void setAssetPointer(std::shared_ptr<T> pointer) {
-    AssetDefBase::setAssetPointer(static_pointer_cast<void>(pointer));
-  }
 };
 
 typedef std::shared_ptr<AssetDefBase> AssetDefBaseRef;
@@ -143,13 +87,4 @@ template <typename T> struct GetAssetType {
   static const AssetType value = AssetType::Unknown;
 };
 
-//
-// Implementation
-//
-
-template <typename T>
-AssetDefBaseT<T>::AssetDefBaseT(int id)
-    : AssetDefBase(id) {}
-
-template <typename T> AssetDefBaseT<T>::~AssetDefBaseT() {}
 #endif

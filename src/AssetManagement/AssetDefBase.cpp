@@ -32,8 +32,12 @@ std::shared_ptr<void> AssetDefBase::getAsset() {
   return _assetPointer;
 }
 
+bool AssetDefBase::assetLoaded() { return _assetPointer != nullptr; }
+
+AssetType AssetDefBase::getAssetType() {
+  return GetAssetType<decltype(this)>::value;
+}
+
 void AssetDefBase::setAssetPointer(std::shared_ptr<void> pointer) {
   _assetPointer = pointer;
 }
-
-bool AssetDefBase::assetLoaded() { return _assetPointer != nullptr; }

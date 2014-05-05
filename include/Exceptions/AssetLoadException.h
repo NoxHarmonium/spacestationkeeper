@@ -27,11 +27,17 @@ public:
     AssetDefMissing,
     /*! The assetdef.yaml file has a missing manditory data key. */
     AssetDefMissingKey,
+    /*! The YAML file could not be parsed by the YAML parser. */
+    YamlParseError,
     /*! One of the values in the assetdef.yaml file is in the incorrect
        format. */
     AssetDefInvalidFormat,
+    /*! Something that the asset needs to function is missing . */
+    AssetDefMissingDependencies,
     /*! The file that the assetdef.yaml file points to doesn't exist. */
     SourceFileMissing,
+    /*! The asset type is not supported in this version of the application. */
+    UnsupportedAssetType,
     /*! Some other error occurred when loading the asset. */
     UnknownError
   };
@@ -69,6 +75,12 @@ public:
              << _extraData << endl;
       break;
     }
+    case AssetLoadExceptionReason::YamlParseError: {
+      output << parentMessage
+             << "The YAML file could not be parsed by the YAML parser. Error: "
+             << _extraData << endl;
+      break;
+    }
     case AssetLoadExceptionReason::AssetDefInvalidFormat: {
       output << parentMessage
              << "One of the values in the assetdef.yaml file is "
@@ -76,10 +88,22 @@ public:
                 "format. Key: " << _extraData << endl;
       break;
     }
+    case AssetLoadExceptionReason::AssetDefMissingDependencies: {
+      output << parentMessage
+             << "Something that is needed for this asset is missing. Detail: "
+             << _extraData << endl;
+
+      break;
+    }
     case AssetLoadExceptionReason::SourceFileMissing: {
       output << parentMessage
              << "The file that the assetdef.yaml file points to doesn't exist. "
                 "Filename: " << _extraData << endl;
+      break;
+    }
+    case AssetLoadExceptionReason::UnsupportedAssetType: {
+      output << parentMessage << "The asset type is not supported in this "
+                                 "version of the application. " << endl;
       break;
     }
     case AssetLoadExceptionReason::UnknownError: {
