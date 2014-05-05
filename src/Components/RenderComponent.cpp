@@ -19,14 +19,12 @@ RenderComponent::~RenderComponent() {}
 // Methods
 AxisAlignedBox3f RenderComponent::getBounds() {
   if (mesh) {
-    glPushMatrix();
-    applyTransfromRecursive(this->transform);
-    Matrix44f matrix;
-    glGetFloatv(GL_MODELVIEW_MATRIX, matrix);
-    AxisAlignedBox3f transBound = mesh->getBoundingBox().transformed(matrix);
-    glPopMatrix();
-
-    return transBound;
+    if (!_boundsDirty) {
+      return _cachedBounds;
+    }
+    _cachedBounds = mesh->getBoundingBox(this->transform->getTransformMatrix());
+    _boundsDirty = false;
+    return _cachedBounds;
   }
   return AxisAlignedBox3f();
 }
@@ -56,7 +54,6 @@ void RenderComponent::draw() {
     endDraw(renderInfo);
   }
 }
-
 void RenderComponent::batch(BatchedMeshRef batchedMeshRef) {
   _batchMode = true;
   _batchedMeshRef = batchedMeshRef;
@@ -66,7 +63,10 @@ void RenderComponent::startDraw(RenderInfo *renderInfo) {
   glPushMatrix();
   applyTransfromRecursive(renderInfo->transform);
 }
-void RenderComponent::endDraw(RenderInfo *renderInfo) { glPopMatrix(); }
+void RenderComponent::endDraw(RenderInfo *renderInfo) {
+  glPopMatrix();
+  _boundsDirty = true; // Invalidate bounds cache once per frame.
+}
 
 void RenderComponent::applyTransfromRecursive(TransformRef t) {
   if (t->parent) {

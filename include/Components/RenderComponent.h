@@ -49,6 +49,10 @@ private:
   bool _addedToBatch = false;
   /*! The reference to BatchedMesh used for batching. */
   BatchedMeshRef _batchedMeshRef = nullptr;
+  /*! Determines whether the bounds need to be recalculated. */
+  bool _boundsDirty = true;
+  /*! A cached reference to this object's bounds (invalidated once per frame); */
+  AxisAlignedBox3f _cachedBounds;
 };
 
 #endif

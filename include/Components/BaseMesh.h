@@ -30,6 +30,8 @@ public:
   virtual TriMesh *getInternalMesh(Matrix44f transformMatrix) = 0;
   /*! Gets the bounds of the mesh. */
   virtual AxisAlignedBox3f getBoundingBox() = 0;
+  /*! Gets the bounds of the mesh translated according to a transform matrix. */
+  virtual AxisAlignedBox3f getBoundingBox(Matrix44f transformMatrix) = 0;
 };
 
 typedef std::shared_ptr<BaseMesh> BaseMeshRef;

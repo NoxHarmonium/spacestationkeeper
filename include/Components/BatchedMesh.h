@@ -33,6 +33,8 @@ public:
   virtual TriMesh *getInternalMesh(Matrix44f transformMatrix);
   /*! Gets the bounds of the mesh. */
   virtual AxisAlignedBox3f getBoundingBox();
+  /*! Gets the bounds of the mesh translated according to a transform matrix. */
+  virtual AxisAlignedBox3f getBoundingBox(Matrix44f transformMatrix);
   /*! Adds a mesh to the batch. */
   virtual void addMesh(MaterialRef material, BaseMeshRef mesh,
                        TransformRef transform = TransformRef());

@@ -49,10 +49,14 @@ TriMesh *BatchedMesh::getInternalMesh(Matrix44f transformMatrix) {
 
 AxisAlignedBox3f BatchedMesh::getBoundingBox() { return _bounds; }
 
+AxisAlignedBox3f BatchedMesh::getBoundingBox(Matrix44f transformMatrix) {
+  return _bounds.transformed(transformMatrix);
+}
+
 void BatchedMesh::addMesh(MaterialRef material, BaseMeshRef mesh,
                           TransformRef transform) {
-  cout << "BatchedMesh::addMesh(): Adding mesh to batcher: Material: "
-       << material << " Mesh: " << mesh << endl;
+  // cout << "BatchedMesh::addMesh(): Adding mesh to batcher: Material: "
+  //     << material << " Mesh: " << mesh << endl;
 
   _meshes[material].push_back(
       mesh->getInternalMesh(transform->getTransformMatrix()));
@@ -60,9 +64,10 @@ void BatchedMesh::addMesh(MaterialRef material, BaseMeshRef mesh,
 }
 
 void BatchedMesh::regenerateVboMesh(MaterialRef material) {
-  cout
-      << "BatchedMesh::regenerateVboMesh(): Regenerating VboMesh for material: "
-      << material << endl;
+  // cout
+  //    << "BatchedMesh::regenerateVboMesh(): Regenerating VboMesh for material:
+  // "
+  //    << material << endl;
 
   TriMesh combinedMesh;
   vector<Vec3f> vertices;

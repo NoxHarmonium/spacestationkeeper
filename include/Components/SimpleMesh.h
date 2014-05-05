@@ -32,6 +32,8 @@ public:
   virtual TriMesh *getInternalMesh(Matrix44f transformMatrix);
   /*! Gets the bounds of the mesh. */
   virtual AxisAlignedBox3f getBoundingBox();
+  /*! Gets the bounds of the mesh translated according to a transform matrix. */
+  virtual AxisAlignedBox3f getBoundingBox(Matrix44f transformMatrix);
 
   // Static Methods
   /*! Generates a simple quad with the specified dimenstions and UV coordinates.

@@ -17,6 +17,10 @@ void SimpleMesh::render() { ci::gl::draw(_currentMesh); }
 
 AxisAlignedBox3f SimpleMesh::getBoundingBox() { return _bounds; }
 
+AxisAlignedBox3f SimpleMesh::getBoundingBox(Matrix44f transformMatrix) {
+  return _bounds.transformed(transformMatrix);
+}
+
 TriMesh *SimpleMesh::getInternalMesh() { return &_currentMesh; }
 
 TriMesh *SimpleMesh::getInternalMesh(Matrix44f transformMatrix) {
