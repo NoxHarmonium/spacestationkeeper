@@ -43,10 +43,19 @@ void GameCamera::update() {
 
   _velocity *= _deceleration;
 
-  _camera.setOrtho(0, getWindowWidth(), getWindowHeight(), 0, -50, 50);
+  float w = getWindowWidth();
+  float h = getWindowHeight();
+  _camera.setOrtho(0, w, h, 0, -50, 50);
 
   ci::gl::setMatrices(_camera);
   ci::gl::translate(-_transform.localPosition);
+
+  // Scale around screen center
+  Vec3f scaleOffset = Vec3f((float)app::getWindowWidth() / 2.0f,
+                            (float)app::getWindowHeight() / 2.0f, 0.0f);
+  ci::gl::translate(scaleOffset);
+  ci::gl::scale(_transform.localScale);
+  ci::gl::translate(-scaleOffset);
 }
 
 void GameCamera::draw() {}
@@ -66,3 +75,11 @@ void GameCamera::mouseMove(MouseEvent event) {
 }
 
 void GameCamera::mouseDown(MouseEvent event) {}
+
+void GameCamera::mouseWheel(MouseEvent event) {
+  float scale = event.getWheelIncrement() * _mouseWheelMult;
+  // Vec2f dir = (Vec2f(event.getX(), event.getY()) -
+  //             -_transform.localPosition.xy()).normalized();
+  //_velocity += (_acceleration * _parentApp->getDeltaTime()) * dir * 0.5f;
+  _transform.localScale += Vec3f(scale, scale, scale);
+}

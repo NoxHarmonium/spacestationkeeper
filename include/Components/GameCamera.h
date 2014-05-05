@@ -22,6 +22,7 @@ public:
   void draw();
   void mouseMove(MouseEvent event);
   void mouseDown(MouseEvent event);
+  void mouseWheel(MouseEvent event);
 
 private:
   ci::CameraOrtho _camera;
@@ -30,8 +31,9 @@ private:
   Vec2f _velocity = Vec2f(0.0f, 0.0f);       // Pixels/Second
   float _edgeSensitivity = 25.0f;            // Pixels
   Vec2f _acceleration = Vec2f(15.0f, 15.0f); // Pixels/Second/Second
-  Vec2f _deceleration = Vec2f(0.93f, 0.93f);
+  Vec2f _deceleration = Vec2f(0.92f, 0.92f);
   float _maxSpeed = 40.0f; // Pixels/Second
+  float _mouseWheelMult = 0.05f;
   Transform _transform;
 };
 
