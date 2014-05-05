@@ -15,6 +15,10 @@ SimpleMesh::SimpleMesh(TriMesh mesh) { _currentMesh = mesh; }
 
 void SimpleMesh::render() { ci::gl::draw(_currentMesh); }
 
+AxisAlignedBox3f SimpleMesh::getBoundingBox() { return _bounds; }
+
+TriMesh *SimpleMesh::getInternalMesh() { return &_currentMesh; }
+
 SimpleMesh *SimpleMesh::generateQuad(Rectf dimensions,
                                      Rectf uvCoords = Rectf(0.0f, 0.0f, 1.0f,
                                                             1.0f)) {

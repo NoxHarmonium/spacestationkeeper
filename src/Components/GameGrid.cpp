@@ -55,7 +55,7 @@ void GameGrid::setup() {
   vector<GameTile *> tiles;
   _assetLoader = new FileAssetLoader(Utils::getResourcesPath());
 
-  _gameDef = GameDef::getTestBoard(_assetLoader, 10, 10);
+  _gameDef = GameDef::getTestBoard(_assetLoader, 100, 100);
   TextureDefRef f;
 
   // TODO: Cast shared pointers how??

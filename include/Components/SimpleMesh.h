@@ -18,17 +18,30 @@ using namespace ci;
 
 class SimpleMesh : public BaseMesh {
 public:
-  SimpleMesh() {};
+  // Constructors/Destructors
   ~SimpleMesh() {};
 
-  void render();
+  // Methods
+  /*! Draws the mesh. */
+  virtual void render();
+  /*! Gets the internal mesh representation of the mesh. */
+  virtual TriMesh *getInternalMesh();
+  /*! Gets the bounds of the mesh. */
+  virtual AxisAlignedBox3f getBoundingBox();
 
-  AxisAlignedBox3f getBoundingBox() { return _bounds; }
+  // Static Methods
+  /*! Generates a simple quad with the specified dimenstions and UV coordinates.
+   */
   static SimpleMesh *generateQuad(Rectf dimensions, Rectf uv);
 
 private:
+  // Constructors/Destructors
   SimpleMesh(TriMesh mesh);
+
+  // Fields
+  /* The internal mesh respresentation if the mesh. */
   TriMesh _currentMesh;
+  /* The bounds of the mesh. */
   AxisAlignedBox3f _bounds;
 };
 
