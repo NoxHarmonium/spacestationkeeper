@@ -39,6 +39,15 @@ void GameGrid::setup() {
       BehaviourConstructor::Create<ToggleSelectionBehaviour>());
 
   _eventManager->subscribeBehavior(
+      Events::MouseDragAreaRelease, classFilter,
+      BehaviourConstructor::Create<ToggleSelectionBehaviour>());
+
+  _eventManager->subscribeBehavior(
+      Events::MouseDragAreaOver, classFilter,
+      BehaviourConstructor::Create<HighlightBehaviour, float, ColorAf>(
+          1.0f, ColorAf(0.5f, 1.0f, 0.5f, 1.0f)));
+
+  _eventManager->subscribeBehavior(
       Events::ComponentSelected, classFilter,
       BehaviourConstructor::Create<HighlightBehaviour, float, ColorAf>(
           1.0f, ColorAf(1.0f, 0.5f, 0.5f, 1.0f)));

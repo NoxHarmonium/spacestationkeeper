@@ -17,7 +17,7 @@
 class MouseClickTrigger : public Trigger, public GameComponent {
 public:
   static constexpr float moveThreshold = 10.0f;
-  static constexpr float timeThreshold = 10.0f;
+  static constexpr float timeThreshold = 0.33f;
 
   MouseClickTrigger(ComponentDrivenApp *parentApp);
 

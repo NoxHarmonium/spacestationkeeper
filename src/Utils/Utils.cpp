@@ -66,6 +66,11 @@ bool Utils::isInside(ci::AxisAlignedBox3f bounds, ci::Vec3f point) {
           point.z < bounds.getMax().z);
 }
 
+bool Utils::areOverlapping(ci::AxisAlignedBox3f bounds, ci::Rectf rect) {
+  return (bounds.getMin().x < rect.x2 && bounds.getMax().x > rect.x1 &&
+          bounds.getMin().y < rect.y2 && bounds.getMax().y > rect.y1);
+}
+
 void Utils::printOpenGlVersionInfo() {
 
   const GLubyte *renderer = glGetString(GL_RENDERER);

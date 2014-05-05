@@ -9,6 +9,7 @@
 #include "Resource.h"
 #include "Job.h"
 #include "MiningJob.h"
+#include "MouseDragAreaTrigger.h"
 
 using namespace ci;
 using namespace ci::app;
@@ -34,10 +35,17 @@ void SpaceStationKeeperApp::setup() {
   MouseOverTrigger *mouseOverTrigger = new MouseOverTrigger(this);
   MouseClickTrigger *mouseClickTrigger = new MouseClickTrigger(this);
   SelectedTrigger *selectedTrigger = new SelectedTrigger(this);
+  MouseDragAreaTrigger *mouseDragAreaReleaseTrigger =
+      new MouseDragAreaTrigger(this, true);
+  MouseDragAreaTrigger *mouseDragAreaTrigger =
+      new MouseDragAreaTrigger(this, false);
 
   eventManager->registerEvent(Events::MouseOver, mouseOverTrigger);
   eventManager->registerEvent(Events::MouseClick, mouseClickTrigger);
   eventManager->registerEvent(Events::ComponentSelected, selectedTrigger);
+  eventManager->registerEvent(Events::MouseDragAreaRelease,
+                              mouseDragAreaReleaseTrigger);
+  eventManager->registerEvent(Events::MouseDragAreaOver, mouseDragAreaTrigger);
 
   _camera = new GameCamera(this);
   _gameGrid = new GameGrid(this);
@@ -48,6 +56,8 @@ void SpaceStationKeeperApp::setup() {
   registerComponent(mouseOverTrigger);
   registerComponent(mouseClickTrigger);
   registerComponent(selectedTrigger);
+  registerComponent(mouseDragAreaReleaseTrigger);
+  registerComponent(mouseDragAreaTrigger);
 
   registerComponent(_camera);
   registerComponent(_gameGrid);

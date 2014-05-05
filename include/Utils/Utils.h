@@ -31,6 +31,7 @@ public:
   static std::string strToUpper(std::string inputString);
   static bool isInside(ci::AxisAlignedBox3f bounds, ci::Vec2f point);
   static bool isInside(ci::AxisAlignedBox3f bounds, ci::Vec3f point);
+  static bool areOverlapping(ci::AxisAlignedBox3f bounds, ci::Rectf rect);
   static void printOpenGlVersionInfo();
   static bool getChildNode(Node *childNode, Node node, string key,
                            bool required = true);

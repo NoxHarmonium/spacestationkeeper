@@ -17,7 +17,8 @@ MouseClickTrigger::MouseClickTrigger(ComponentDrivenApp *parentApp)
 // Trigger Methods
 bool MouseClickTrigger::isActive(RenderComponent *renderComponent) {
   AxisAlignedBox3f bounds = renderComponent->getBounds();
-  // Cache this call for all mouse events (i.e. click needs same information as
+  // TODO: Cache this call for all mouse events (i.e. click needs same
+  // information as
   // over)
 
   // cout << "Mouse moved to: " << this->mousePoint << " center "
@@ -38,8 +39,8 @@ void MouseClickTrigger::mouseUp(MouseEvent event) {
   this->_mouseUpPoint = Vec2f(event.getX(), event.getY());
   float mouseDistance = _mouseUpPoint.distance(this->_mouseDownPoint);
   float mouseDownDuration = ci::app::getElapsedSeconds() - this->_mouseDownTime;
-  cout << "mouseDistance: " << mouseDistance
-       << " mouseDownDuration: " << mouseDownDuration << endl;
+  // cout << "mouseDistance: " << mouseDistance
+  //     << " mouseDownDuration: " << mouseDownDuration << endl;
 
   if (mouseDistance < MouseClickTrigger::moveThreshold &&
       mouseDownDuration < MouseClickTrigger::timeThreshold) {

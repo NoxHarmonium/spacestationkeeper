@@ -44,6 +44,7 @@
 		9EA7815118FC1B5B001D2752 /* MouseOverTrigger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EA7815018FC1B5B001D2752 /* MouseOverTrigger.cpp */; };
 		9EA7815318FC1B78001D2752 /* HighlightBehaviour.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EA7815218FC1B78001D2752 /* HighlightBehaviour.cpp */; };
 		9EB951ED19152837003B5FED /* AssetDefBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EB951EB19152837003B5FED /* AssetDefBase.cpp */; };
+		9EB951F7191735C8003B5FED /* MouseDragAreaTrigger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EB951F5191735C8003B5FED /* MouseDragAreaTrigger.cpp */; };
 		9ED6DF6A190F58BC002D286C /* Job.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ED6DF68190F58BC002D286C /* Job.cpp */; };
 		9ED6DF6D190F5B01002D286C /* MiningJob.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ED6DF6B190F5B01002D286C /* MiningJob.cpp */; };
 		9ED6DF7219106B70002D286C /* TextureDef.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ED6DF7019106B70002D286C /* TextureDef.cpp */; };
@@ -209,6 +210,8 @@
 		9EB951F01915311E003B5FED /* AssetLoadException.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AssetLoadException.h; sourceTree = "<group>"; };
 		9EB951F2191709E7003B5FED /* AssetDefBaseT.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AssetDefBaseT.h; sourceTree = "<group>"; };
 		9EB951F319170B3F003B5FED /* NotImplementedException.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotImplementedException.h; sourceTree = "<group>"; };
+		9EB951F419173551003B5FED /* MouseDragAreaTrigger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MouseDragAreaTrigger.h; sourceTree = "<group>"; };
+		9EB951F5191735C8003B5FED /* MouseDragAreaTrigger.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MouseDragAreaTrigger.cpp; sourceTree = "<group>"; };
 		9ED6DF63190F5666002D286C /* Job.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Job.h; sourceTree = "<group>"; };
 		9ED6DF65190F5733002D286C /* Resource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Resource.h; sourceTree = "<group>"; };
 		9ED6DF66190F57E0002D286C /* MiningJob.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MiningJob.h; sourceTree = "<group>"; };
@@ -644,6 +647,7 @@
 				9EF8762C1906F0D5005824D9 /* Events.h */,
 				9EF8763319085944005824D9 /* MouseClickTrigger.h */,
 				9EF8763B19093CB2005824D9 /* SelectedTrigger.h */,
+				9EB951F419173551003B5FED /* MouseDragAreaTrigger.h */,
 			);
 			path = Triggers;
 			sourceTree = "<group>";
@@ -771,6 +775,7 @@
 				9EA7815018FC1B5B001D2752 /* MouseOverTrigger.cpp */,
 				9EF87634190859F2005824D9 /* MouseClickTrigger.cpp */,
 				9EF8763C19093CF3005824D9 /* SelectedTrigger.cpp */,
+				9EB951F5191735C8003B5FED /* MouseDragAreaTrigger.cpp */,
 			);
 			path = Triggers;
 			sourceTree = "<group>";
@@ -908,6 +913,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9E09867518FFFFD200480FA7 /* Material.cpp in Sources */,
+				9EB951F7191735C8003B5FED /* MouseDragAreaTrigger.cpp in Sources */,
 				9E94D8EB18D122BE0032FDC3 /* GuiManager.cpp in Sources */,
 				8C08550A160647279CE5BCF2 /* SpaceStationKeeperApp.cpp in Sources */,
 				72ABDE3F9B0F42038A135447 /* Cairo.cpp in Sources */,
