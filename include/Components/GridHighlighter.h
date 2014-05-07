@@ -16,7 +16,7 @@ class GridHighlighter : public GameComponent {
 public:
   // Constructors/Destructors
   GridHighlighter(GameGrid *_parentGrid);
-  ~GridHightlighter();
+  ~GridHighlighter();
 
   // Methods
   /*! Called by the application once every frame. */

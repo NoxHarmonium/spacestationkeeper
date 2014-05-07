@@ -9,10 +9,9 @@
 #include "GridHighlighter.h"
 
 // Constructors/Destructors
-GridHighlighter::GridHighlighter(GameGrid* parentGrid) : _parentGrid(parentGrid) {
-  parentGrid->
-}
-GridHighlighter::~GridHightlighter() {}
+GridHighlighter::GridHighlighter(GameGrid *parentGrid)
+    : _parentGrid(parentGrid), GameComponent(parentGrid->getParentApp()) {}
+GridHighlighter::~GridHighlighter() {}
 
 // Methods
 void GridHighlighter::update() {}
