@@ -14,7 +14,6 @@
 #include "ToggleSelectionBehaviour.h"
 #include <math.h>
 #include "ShaderDef.h"
-#include "EventManager.h"
 #include "Events.h"
 
 using namespace std;
@@ -28,31 +27,6 @@ void GameGrid::setup() {
   string classFilter = "asteroidRock";
 
   _batchedMeshRef = make_shared<BatchedMesh>();
-
-  _eventManager = _parentApp->GetComponentByType<EventManager>();
-  assert(_eventManager != nullptr);
-
-  _eventManager->subscribeBehavior(
-      Events::MouseOver, classFilter,
-      BehaviourConstructor::Create<HighlightBehaviour>());
-
-  _eventManager->subscribeBehavior(
-      Events::MouseClick, classFilter,
-      BehaviourConstructor::Create<ToggleSelectionBehaviour>());
-
-  _eventManager->subscribeBehavior(
-      Events::MouseDragAreaRelease, classFilter,
-      BehaviourConstructor::Create<ToggleSelectionBehaviour>());
-
-  _eventManager->subscribeBehavior(
-      Events::MouseDragAreaOver, classFilter,
-      BehaviourConstructor::Create<HighlightBehaviour, float, ColorAf>(
-          1.0f, ColorAf(0.5f, 1.0f, 0.5f, 1.0f)));
-
-  _eventManager->subscribeBehavior(
-      Events::ComponentSelected, classFilter,
-      BehaviourConstructor::Create<HighlightBehaviour, float, ColorAf>(
-          1.0f, ColorAf(1.0f, 0.5f, 0.5f, 1.0f)));
 
   vector<GameTile *> tiles;
   _assetLoader = new FileAssetLoader(Utils::getResourcesPath());
@@ -76,6 +50,8 @@ void GameGrid::setup() {
   material->shader = defaultShader;
   material->texture = asteroidTd;
 
+  _gridSize = Vec2f(asteroidTd->getFrameWidth(), asteroidTd->getFrameHeight());
+
   for (int i = 0; i < _gameDef.getWidth(); i++) {
     for (int j = 0; j < _gameDef.getHeight(); j++) {
 
@@ -85,8 +61,7 @@ void GameGrid::setup() {
 
       int frameIndex = asteroidTd->getFrameFromPassibility(
           _gameDef.getMapSquare(MapPoint(i, j)).getPassability());
-      Vec3f offset = Vec3f(i * asteroidTd->getFrameWidth(),
-                           j * asteroidTd->getFrameHeight(), 0.0f);
+      Vec3f offset = Vec3f(i * _gridSize.x, j * _gridSize.y, 0.0f);
       GameTile *t = new GameTile(material, MapPoint(i, j), frameIndex, offset,
                                  this->_parentApp);
       t->batch(_batchedMeshRef);
@@ -105,6 +80,15 @@ void GameGrid::setup() {
       // cout << "create: (" << i << "," << j << "): " << t << endl;
     }
   }
+
+  MouseOverGridSquareEvent.Subscribe([](void *sender, Vec2i coord) {
+                                       cout << "MouseOver::Begin: sender: "
+                                            << sender << " coord: " << coord
+                                            << endl;
+                                     },
+                                     [](void *sender, Vec2i coord) {
+    cout << "MouseOver::End: sender: " << sender << " coord: " << coord << endl;
+  });
 }
 
 void GameGrid::update() {
@@ -116,6 +100,23 @@ void GameGrid::update() {
 void GameGrid::draw() {
   if (_batchedMeshRef != nullptr) {
     _batchedMeshRef->render();
+  }
+}
+
+void GameGrid::mouseMove(MouseEvent event) {
+  Vec3f mousePosition = Vec3f(event.getX(), event.getY(), 0.0f);
+  // Adjust for camera position (the current modelview matrix)
+  mousePosition = gl::getModelView().inverted() * mousePosition;
+  int gridX = floor(mousePosition.x / _gridSize.x);
+  int gridY = floor(mousePosition.y / _gridSize.y);
+  Vec2i gridCoord = Vec2i(gridX, gridY);
+
+  if (_lastGridCoord != gridCoord) {
+    if (_lastGridCoord) {
+      MouseOverGridSquareEvent.End((void *)this, _lastGridCoord.get());
+    }
+    MouseOverGridSquareEvent.Begin((void *)this, gridCoord);
+    _lastGridCoord = gridCoord;
   }
 }
 

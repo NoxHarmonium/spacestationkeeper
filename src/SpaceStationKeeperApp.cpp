@@ -30,34 +30,10 @@ void SpaceStationKeeperApp::resize() {
 void SpaceStationKeeperApp::setup() {
   Utils::printOpenGlVersionInfo();
 
-  // Register all the components that will be sent app events
-  EventManager *eventManager = new EventManager(this);
-  MouseOverTrigger *mouseOverTrigger = new MouseOverTrigger(this);
-  MouseClickTrigger *mouseClickTrigger = new MouseClickTrigger(this);
-  SelectedTrigger *selectedTrigger = new SelectedTrigger(this);
-  MouseDragAreaTrigger *mouseDragAreaReleaseTrigger =
-      new MouseDragAreaTrigger(this, true);
-  MouseDragAreaTrigger *mouseDragAreaTrigger =
-      new MouseDragAreaTrigger(this, false);
-
-  eventManager->registerEvent(Events::MouseOver, mouseOverTrigger);
-  eventManager->registerEvent(Events::MouseClick, mouseClickTrigger);
-  eventManager->registerEvent(Events::ComponentSelected, selectedTrigger);
-  eventManager->registerEvent(Events::MouseDragAreaRelease,
-                              mouseDragAreaReleaseTrigger);
-  eventManager->registerEvent(Events::MouseDragAreaOver, mouseDragAreaTrigger);
-
   _camera = new GameCamera(this);
   _gameGrid = new GameGrid(this);
   _guiManager = new GuiManager(this);
   _jobManager = new JobManager(this);
-
-  registerComponent(eventManager);
-  registerComponent(mouseOverTrigger);
-  registerComponent(mouseClickTrigger);
-  registerComponent(selectedTrigger);
-  registerComponent(mouseDragAreaReleaseTrigger);
-  registerComponent(mouseDragAreaTrigger);
 
   registerComponent(_camera);
   registerComponent(_gameGrid);

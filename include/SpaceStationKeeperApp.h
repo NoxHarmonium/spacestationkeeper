@@ -14,7 +14,6 @@
 #include "ComponentDrivenApp.h"
 #include "GameGrid.h"
 #include "GameCamera.h"
-#include "EventManager.h"
 #include "Resource.h"
 #include "Job.h"
 #include "JobManager.h"
