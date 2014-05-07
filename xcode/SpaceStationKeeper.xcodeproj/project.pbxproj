@@ -23,6 +23,7 @@
 		9E0E1E8219048917009EECFD /* LuaBridge.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E0E1E8019048917009EECFD /* LuaBridge.cpp */; };
 		9E10054B18EA355F00EC5213 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = 9E10054A18EA355F00EC5213 /* assets */; };
 		9E21C4B318DA14DE00E927D6 /* libyaml-cpp.0.5.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E21C4B218DA14DE00E927D6 /* libyaml-cpp.0.5.1.dylib */; };
+		9E238FDE191A698300F642A5 /* GridHighlighter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E238FDC191A698300F642A5 /* GridHighlighter.cpp */; };
 		9E36F8831917CC640098B3C0 /* BatchedMesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E36F8811917CC640098B3C0 /* BatchedMesh.cpp */; };
 		9E36F88619180E8F0098B3C0 /* Transform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E36F88419180E8F0098B3C0 /* Transform.cpp */; };
 		9E3AF3E8190C5943001007F4 /* TranslateModifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E3AF3E1190C5943001007F4 /* TranslateModifier.cpp */; };
@@ -127,6 +128,8 @@
 		9E10054A18EA355F00EC5213 /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; name = assets; path = ../assets; sourceTree = "<group>"; };
 		9E21C4B218DA14DE00E927D6 /* libyaml-cpp.0.5.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = "libyaml-cpp.0.5.1.dylib"; sourceTree = "<group>"; };
 		9E238FD91919DB7800F642A5 /* TypedEvent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TypedEvent.h; sourceTree = "<group>"; };
+		9E238FDB191A681500F642A5 /* GridHighlighter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GridHighlighter.h; sourceTree = "<group>"; };
+		9E238FDC191A698300F642A5 /* GridHighlighter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GridHighlighter.cpp; sourceTree = "<group>"; };
 		9E36F8801917CBAC0098B3C0 /* BatchedMesh.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BatchedMesh.h; sourceTree = "<group>"; };
 		9E36F8811917CC640098B3C0 /* BatchedMesh.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BatchedMesh.cpp; sourceTree = "<group>"; };
 		9E36F88419180E8F0098B3C0 /* Transform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Transform.cpp; sourceTree = "<group>"; };
@@ -437,6 +440,7 @@
 				9E0E1E33190488C5009EECFD /* Transform.h */,
 				9E72B0E5190C4E3400F9935A /* RenderInfo.h */,
 				9E36F8801917CBAC0098B3C0 /* BatchedMesh.h */,
+				9E238FDB191A681500F642A5 /* GridHighlighter.h */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -569,6 +573,7 @@
 				9E3AF3F3190DBBC6001007F4 /* RenderInfo.cpp */,
 				9E36F8811917CC640098B3C0 /* BatchedMesh.cpp */,
 				9E36F88419180E8F0098B3C0 /* Transform.cpp */,
+				9E238FDC191A698300F642A5 /* GridHighlighter.cpp */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -775,6 +780,7 @@
 				9E3AF3EC190C5943001007F4 /* BrightnessModifier.cpp in Sources */,
 				9E92628F18D48232001AB5D6 /* GameComponent.cpp in Sources */,
 				9ED6DF6D190F5B01002D286C /* MiningJob.cpp in Sources */,
+				9E238FDE191A698300F642A5 /* GridHighlighter.cpp in Sources */,
 				9E3AF3E8190C5943001007F4 /* TranslateModifier.cpp in Sources */,
 				9ED6DF771910707A002D286C /* JobManager.cpp in Sources */,
 				9EF8763E19093CF3005824D9 /* SelectedTrigger.cpp in Sources */,
