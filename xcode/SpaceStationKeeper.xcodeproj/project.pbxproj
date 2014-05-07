@@ -826,23 +826,12 @@
 				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
 				GCC_WARN_PEDANTIC = NO;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				HEADER_SEARCH_PATHS = (
-					"\"$(CINDER_PATH)/boost\"",
-					../../cinder_0.8.5_mac/blocks/Cairo/include/macosx,
-					"/usr/local/include/**",
-				);
-				"HEADER_SEARCH_PATHS[arch=*]" = (
-					"\"$(CINDER_PATH)/boost\"",
-					../../cinder_0.8.5_mac/blocks/Cairo/include/macosx,
-					"../include/Libs/**",
-				);
+				HEADER_SEARCH_PATHS = "../libraries/include/**";
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/seandawson/Development/SpaceStationKeeper/libs,
-					/usr/local/Cellar/boost/1.55.0/lib,
-					/Users/seandawson/Development/spacestationkeeper/libs,
+					"../libraries/lib/**",
 				);
 				OTHER_LDFLAGS = (
 					"\"$(CINDER_PATH)/lib/libcinder_d.a\"",
@@ -850,7 +839,7 @@
 				);
 				PRODUCT_NAME = SpaceStationKeeper;
 				SYMROOT = ./build;
-				USER_HEADER_SEARCH_PATHS = "\"$(CINDER_PATH)/include\" ../include/Libs ../../cinder_0.8.5_mac/blocks/Cairo/include ../blocks/FMOD/include";
+				USER_HEADER_SEARCH_PATHS = "../include/**";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -880,18 +869,12 @@
 				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
 				GCC_WARN_PEDANTIC = NO;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				HEADER_SEARCH_PATHS = (
-					"\"$(CINDER_PATH)/boost\"",
-					../../cinder_0.8.5_mac/blocks/Cairo/include/macosx,
-					"../include/Libs/**",
-				);
+				HEADER_SEARCH_PATHS = "../libraries/include/**";
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/seandawson/Development/SpaceStationKeeper/libs,
-					/usr/local/Cellar/boost/1.55.0/lib,
-					/Users/seandawson/Development/spacestationkeeper/libs,
+					"../libraries/lib/**",
 				);
 				OTHER_LDFLAGS = (
 					"\"$(CINDER_PATH)/lib/libcinder.a\"",
@@ -900,7 +883,7 @@
 				PRODUCT_NAME = SpaceStationKeeper;
 				STRIP_INSTALLED_PRODUCT = YES;
 				SYMROOT = ./build;
-				USER_HEADER_SEARCH_PATHS = "\"$(CINDER_PATH)/include\" ../include/Libs ../../cinder_0.8.5_mac/blocks/Cairo/include ../blocks/FMOD/include";
+				USER_HEADER_SEARCH_PATHS = "../include/**";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
