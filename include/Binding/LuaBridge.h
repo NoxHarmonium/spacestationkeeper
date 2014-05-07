@@ -9,8 +9,10 @@
 #ifndef __SpaceStationKeeper__LuaBridge__
 #define __SpaceStationKeeper__LuaBridge__
 
-#include <iostream>
+extern "C" {
+#include "lua.h"
+}
 
-// Can't do anything until I get internet to download bjam
+#include <luabind/luabind.hpp>
 
 #endif /* defined(__SpaceStationKeeper__LuaBridge__) */
