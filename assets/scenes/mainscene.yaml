@@ -1,5 +1,5 @@
--- Scene
-GameObjects:  
+--- # Main Scene
+GameObjects:
     -   RenderInfo:
             localPosition: [0,0,0]
             localRotatiom: [0,0,0,0]

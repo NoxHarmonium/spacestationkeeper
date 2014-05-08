@@ -26,7 +26,7 @@ filesystem::path FileAssetLoader::getAssetRoot() {
 }
 
 AssetDefBaseRef FileAssetLoader::loadAsset(string assetRef) {
-  cout << "FileAssetLoader::loadAsset()" << endl;
+  // cout << "FileAssetLoader::loadAsset()" << endl;
 
   AssetDefBaseRef cachedAsset = AssetLoaderBase::loadAsset(assetRef);
   if (cachedAsset != nullptr) {
@@ -34,16 +34,23 @@ AssetDefBaseRef FileAssetLoader::loadAsset(string assetRef) {
   }
 
   filesystem::ifstream ifs;
+  // Make the ifstream throw exceptions on error
+  ifs.exceptions(std::ifstream::failbit | std::ifstream::badbit);
   filesystem::path path = getAssetRoot() / filesystem::path(assetRef) /
                           filesystem::path(ASSETDEF_FILE);
 
-  cout << "Loading path: " << path << endl;
+  // cout << "Loading path: " << path << endl;
+
+  if (!filesystem::exists(path) || filesystem::is_directory(path)) {
+    throw AssetLoadException(
+        AssetLoadException::AssetLoadExceptionReason::InvalidPath);
+  }
 
   try {
     ifs.open(path);
   }
-  catch (const std::exception &e) {
-    throw new AssetLoadException(&e);
+  catch (const std::ifstream::failure &e) {
+    throw AssetLoadException(&e);
   }
   if (ifs.is_open()) {
     YAML::Node node;
@@ -52,7 +59,7 @@ AssetDefBaseRef FileAssetLoader::loadAsset(string assetRef) {
       ifs.close();
     }
     catch (const std::exception &e) {
-      throw new AssetLoadException(
+      throw AssetLoadException(
           AssetLoadException::AssetLoadExceptionReason::YamlParseError,
           e.what());
     }
@@ -78,13 +85,13 @@ AssetDefBaseRef FileAssetLoader::loadAsset(string assetRef) {
       return sDefBase;
     }
     default: {
-      throw new AssetLoadException(
+      throw AssetLoadException(
           AssetLoadException::AssetLoadExceptionReason::UnsupportedAssetType);
     }
     }
   }
 
-  throw new AssetLoadException(
+  throw AssetLoadException(
       AssetLoadException::AssetLoadExceptionReason::UnknownError);
 }
 

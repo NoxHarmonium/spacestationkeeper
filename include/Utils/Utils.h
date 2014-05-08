@@ -58,13 +58,13 @@ public:
     }
     catch (const YAML::BadConversion &e) {
       // Catch format error
-      throw new AssetLoadException(
+      throw AssetLoadException(
           AssetLoadException::AssetLoadExceptionReason::AssetDefInvalidFormat,
           key);
     }
     catch (const std::exception &e) {
       // Hopefully catch all other exceptions
-      throw new AssetLoadException(&e);
+      throw AssetLoadException(&e);
     }
     return true;
   }

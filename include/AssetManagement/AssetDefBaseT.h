@@ -30,6 +30,11 @@ public:
   virtual std::shared_ptr<T> getAsset() {
     return static_pointer_cast<T>(AssetDefBase::getAsset());
   }
+  /*! Gets the type definition of this asset definition. */
+  virtual AssetType getAssetType() {
+    AssetType t = AssetDefBase::getAssetType();
+    return t;
+  }
 
 protected:
   /*! Sets the reference to the asset. */

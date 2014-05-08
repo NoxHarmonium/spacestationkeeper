@@ -49,7 +49,7 @@ public:
   /*! Gets whether the asset is loaded into memory or not. */
   bool assetLoaded();
   /*! Gets the type definition of this asset definition. */
-  AssetType getAssetType();
+  virtual AssetType getAssetType();
 
   // Methods
   /*! Loads the asset pointed to by this AssetRef object into memory so it can

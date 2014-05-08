@@ -20,7 +20,7 @@ void BrightnessModifier::apply(RenderInfo *renderInfo) {
 
   default:
     cout << "Unrecognized ModifyMode" << endl;
-    throw new std::exception();
+    throw std::exception();
     break;
   }
 }

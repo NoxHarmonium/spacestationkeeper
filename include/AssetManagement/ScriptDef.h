@@ -18,11 +18,14 @@ using namespace ci;
 class ScriptDef : public AssetDefBaseT<string> {
 public:
   // Constructors/Destructors
-  ScriptDef();
+  ScriptDef(int id, int order, vector<string> filenames);
+  ~ScriptDef();
 
   // Getters/Setters
   /*! Gets the filename of each script (not the full path). */
   string getFilename(int index);
+  /*! Gets the type definition of this asset definition. */
+  virtual AssetType getAssetType();
 
   // Methods
   /*! Loads the asset pointed to by this AssetRef object into memory so it can
@@ -48,6 +51,9 @@ private:
   vector<string> _filenames;
   /*! The reference to the OpenGL shader program. (Wrapped by Cinder)*/
   string _program = nullptr;
+  /*! The execution order of this script. Scripts with lower numbers execute
+   * first. */
+  int _order;
 };
 
 /*! A shared pointer reference to a ShaderDef object. */

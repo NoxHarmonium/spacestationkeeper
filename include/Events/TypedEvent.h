@@ -46,7 +46,7 @@ public:
    will be executed. Returns an id which can be used to unsubscribe. */
   int Subscribe(TypedEventHandler onBegin, TypedEventHandler onEnd) {
     if (_eventType == EventType::Transient) {
-      throw new runtime_error(
+      throw runtime_error(
           "You cannot attach an onEnd handler to a transient event.");
     }
 

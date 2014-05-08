@@ -52,6 +52,8 @@ public:
   // Getters/Setters
   /*! Gets the filename of each shader program (not the full path). */
   string getFilename(const ShaderType shaderType);
+  /*! Gets the type definition of this asset definition. */
+  virtual AssetType getAssetType();
 
   // Methods
   /*! Loads the asset pointed to by this AssetRef object into memory so it can

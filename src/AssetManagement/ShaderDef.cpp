@@ -16,6 +16,7 @@ using namespace YAML;
 
 ShaderDef::~ShaderDef() {};
 
+// Getters/Setters
 ShaderDef::ShaderDef(int id, map<ShaderType, string> filenameMap)
     : _filenameMap(filenameMap), AssetDefBaseT(id) {}
 
@@ -25,6 +26,8 @@ string ShaderDef::getFilename(const ShaderDef::ShaderType shaderType) {
   }
   return nullptr;
 }
+
+AssetType ShaderDef::getAssetType() { return GetAssetType<ShaderDef>::value; }
 
 // Methods
 
@@ -62,7 +65,7 @@ void ShaderDef::loadAsset() {
     }
 
     if (!(vertexShaderData || fragmentShaderData || geometeryShaderData)) {
-      throw new AssetLoadException(
+      throw AssetLoadException(
           AssetLoadException::AssetLoadExceptionReason::SourceFileMissing);
     }
 
@@ -73,13 +76,13 @@ void ShaderDef::loadAsset() {
     catch (const gl::GlslProgCompileExc &exc) {
       std::cout << std::endl << "Error: Shader compile error: " << std::endl;
       std::cout << exc.what();
-      throw new AssetLoadException(&exc);
+      throw AssetLoadException(&exc);
       _shouldLoad = false; // Prevent bad assets from reloading multiple times.
     }
     catch (const std::exception &e) {
       std::cout << std::endl << "Error: Unable to load shader" << std::endl;
       _shouldLoad = false; // Prevent bad assets from reloading multiple times.
-      throw new AssetLoadException(&e);
+      throw AssetLoadException(&e);
     }
   }
 }
@@ -108,7 +111,7 @@ bool ShaderDef::parseShader(Node node, string key,
 // Static Methods
 
 std::shared_ptr<ShaderDef> ShaderDef::FromYamlNode(YAML::Node node) {
-  cout << "Deserialising ShaderDef... ";
+  // cout << "Deserialising ShaderDef... " << endl;
 
   int id = 0;
   Node components;
@@ -127,11 +130,11 @@ std::shared_ptr<ShaderDef> ShaderDef::FromYamlNode(YAML::Node node) {
   // Transitive dependencies (i.e. frag shader needs vertex shader.)
   if ((geomExists && !(fragExists && vertexExists)) ||
       (fragExists && !vertexExists) || !vertexExists) {
-    throw new AssetLoadException(AssetLoadException::AssetLoadExceptionReason::
-                                     AssetDefMissingDependencies,
-                                 "The shader pipeline depends on a specific "
-                                 "order of defined shaders (i.e. You need a "
-                                 "vertex shader for a fragment shader).");
+    throw AssetLoadException(AssetLoadException::AssetLoadExceptionReason::
+                                 AssetDefMissingDependencies,
+                             "The shader pipeline depends on a specific "
+                             "order of defined shaders (i.e. You need a "
+                             "vertex shader for a fragment shader).");
   }
 
   ShaderDef *shaderDef = new ShaderDef(id, _filenameMap);

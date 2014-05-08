@@ -1,10 +1,11 @@
 
 #include "SpaceStationKeeperApp.h"
-#include "Utils.h"
+#include "AssetLoadException.h"
 
 using namespace ci;
 using namespace ci::app;
 using namespace std;
+using namespace boost;
 
 void SpaceStationKeeperApp::prepareSettings(Settings *settings) {
   // Utils::printOpenGlVersionInfo();
@@ -21,7 +22,12 @@ void SpaceStationKeeperApp::setup() {
   Utils::printOpenGlVersionInfo();
 
   _camera = new GameCamera();
+
+  _fileAssetLoader = make_shared<FileAssetLoader>(Utils::getResourcesPath());
   _bindingManager = std::unique_ptr<BindingManager>(new BindingManager());
+  _bindingManager->initialiseBindings();
+  scanAssetsAndExecuteScripts();
+
   //_gameGrid = new GameGrid();
   //_guiManager = new GuiManager();
   //_jobManager = new JobManager();
@@ -60,6 +66,35 @@ void SpaceStationKeeperApp::keyDown(KeyEvent event) {
     }
     pSet->clear();
   }*/
+}
+
+void SpaceStationKeeperApp::scanAssetsAndExecuteScripts() {
+  filesystem::path rootPath =
+      Utils::getResourcesPath() / filesystem::path("assets");
+  for (filesystem::recursive_directory_iterator end, dir(rootPath); dir != end;
+       ++dir) {
+
+    filesystem::path p = dir->path();
+    if (p.filename() == "assetdef.yaml") {
+      string pDir = p.parent_path().string();
+      string assetRef =
+          getRelativePath(pDir, rootPath); // Get the relative path
+      cout << "Loading asset: " << assetRef << endl;
+      try {
+        AssetDefBaseRef asset = _fileAssetLoader->loadAsset(assetRef);
+        cout << "--> Found asset: id: " << asset->getId()
+             << " type: " << asset->getAssetType() << endl;
+      }
+      catch (const AssetLoadException &e) {
+        cout << "--> Error loading asset: " << e.what() << endl;
+      }
+    }
+  }
+}
+
+string SpaceStationKeeperApp::getRelativePath(
+    filesystem::path p, filesystem::path root = filesystem::current_path()) {
+  return p.string().substr(root.string().length());
 }
 
 CINDER_APP_NATIVE(SpaceStationKeeperApp, RendererGl)

@@ -54,15 +54,15 @@ std::string TextureDef::getFilename() { return _filename; }
 
 Passibility TextureDef::getPassiblity(int frameNumber) {
   if (frameNumber < 0 || frameNumber >= getFrameCount()) {
-    throw new out_of_range("The specified frame number is out of range: " +
-                           to_string(frameNumber));
+    throw out_of_range("The specified frame number is out of range: " +
+                       to_string(frameNumber));
   }
   return _passibilities[frameNumber];
 }
 void TextureDef::setPassiblity(int frameNumber, Passibility passability) {
   if (frameNumber < 0 || frameNumber >= getFrameCount()) {
-    throw new out_of_range("The specified frame number is out of range." +
-                           to_string(frameNumber));
+    throw out_of_range("The specified frame number is out of range." +
+                       to_string(frameNumber));
   }
   _passibilities[frameNumber] = passability;
   _passabilityMap[passability.getInternalValue()] = frameNumber;
@@ -84,6 +84,8 @@ int TextureDef::getFrameCount() {
   return xFrames * yFrames;
 }
 
+AssetType TextureDef::getAssetType() { return GetAssetType<TextureDef>::value; }
+
 // Methods
 
 void TextureDef::loadAsset() {
@@ -97,7 +99,7 @@ void TextureDef::loadAsset() {
     catch (const std::exception &e) {
       cout << "unable to load the texture file: " << e.what() << endl;
       _shouldLoad = false; // Prevent bad assets from reloading multiple times.
-      throw new AssetLoadException(&e);
+      throw AssetLoadException(&e);
     }
   }
 }
@@ -118,7 +120,7 @@ std::shared_ptr<TextureDef> TextureDef::FromYamlNode(YAML::Node node) {
   bool canWalk;
   float border = 0.0f;
 
-  cout << "Deserialising TextureDef..." << endl;
+  // cout << "Deserialising TextureDef..." << endl;
 
   Utils::parseNode<int>(&id, node, "id");
   Utils::parseNode<int>(&width, node, "width");

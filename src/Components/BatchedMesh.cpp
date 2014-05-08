@@ -41,10 +41,10 @@ void BatchedMesh::render() {
   }
 }
 
-TriMesh *BatchedMesh::getInternalMesh() { throw new NotImplementedException(); }
+TriMesh *BatchedMesh::getInternalMesh() { throw NotImplementedException(); }
 
 TriMesh *BatchedMesh::getInternalMesh(Matrix44f transformMatrix) {
-  throw new NotImplementedException();
+  throw NotImplementedException();
 }
 
 AxisAlignedBox3f BatchedMesh::getBoundingBox() { return _bounds; }

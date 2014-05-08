@@ -24,14 +24,14 @@ filesystem::path Utils::getCurrentExecutablePath() {
   if (ret <= 0) {
     fprintf(stderr, "PID %d: proc_pidpath ();\n", pid);
     fprintf(stderr, "    %s\n", strerror(errno));
-    throw new std::exception(); // Error getting path
+    throw std::exception(); // Error getting path
   } else {
     return filesystem::path(pathbuf);
   }
 
 #else
   // TODO: Implement other OS
-  throw new std::exception();
+  throw std::exception();
 #endif
 }
 
@@ -41,7 +41,7 @@ filesystem::path Utils::getResourcesPath() {
          filesystem::path(OSX_RESOURCE_DIR);
 #else
   // TODO: Implement other OS
-  throw new std::exception();
+  throw std::exception();
 #endif
 }
 
@@ -107,7 +107,7 @@ bool Utils::getChildNode(YAML::Node *childNode, Node node, string key,
   *childNode = node[key];
   if (!childNode->IsDefined()) {
     if (required) {
-      throw new AssetLoadException(
+      throw AssetLoadException(
           AssetLoadException::AssetLoadExceptionReason::AssetDefMissingKey,
           key);
     } else {

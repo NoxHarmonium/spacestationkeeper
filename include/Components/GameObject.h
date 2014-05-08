@@ -72,7 +72,7 @@ private:
 
   // Fields
   set<GameComponent *> _components;
-  RenderInfo *renderer;
+  RenderInfo *_renderer;
 };
 
 typedef std::shared_ptr<GameObject> GameObjectRef;

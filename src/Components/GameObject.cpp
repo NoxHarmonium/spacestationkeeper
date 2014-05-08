@@ -9,15 +9,18 @@
 #include "GameObject.h"
 
 // Constructors/Destructors
-GameObject::GameObject() { renderer = new RenderInfo(); }
-GameObject::~GameObject() { delete renderer; }
+GameObject::GameObject() { _renderer = new RenderInfo(); }
+GameObject::~GameObject() { delete _renderer; }
 
 void GameObject::addComponent(GameComponent *component) {
   _components.insert(component);
 }
+
 void GameObject::removeComponent(GameComponent *component) {
   _components.erase(component);
 }
+
+RenderInfo *GameObject::getRenderer() { return _renderer; }
 
 //! Forwards event to component to perform any application setup after the
 // renderer has been initialized.

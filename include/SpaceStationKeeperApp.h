@@ -15,6 +15,9 @@
 #include "ComponentDrivenApp.h"
 #include "BindingManager.h"
 #include <memory>
+#include "boost/filesystem.hpp"
+#include "FileAssetLoader.h"
+#include "Utils.h"
 
 class SpaceStationKeeperApp : public ComponentDrivenApp {
 
@@ -26,11 +29,15 @@ public:
   void keyDown(KeyEvent event);
 
 private:
+  void scanAssetsAndExecuteScripts();
+  string getRelativePath(filesystem::path p, filesystem::path root);
+
   // GuiManager *_guiManager;
   // GameGrid *_gameGrid;
   GameCamera *_camera;
   // JobManager *_jobManager;
   std::unique_ptr<BindingManager> _bindingManager;
+  std::shared_ptr<FileAssetLoader> _fileAssetLoader;
 };
 
 #endif

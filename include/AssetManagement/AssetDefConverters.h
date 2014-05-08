@@ -30,7 +30,7 @@ template <> struct convert<AssetType> {
 
   static Node encode(const AssetType &assetType) {
     // Not required yet
-    throw new NotImplementedException();
+    throw NotImplementedException();
   }
 
   static bool decode(const Node &node, AssetType &assetType) {
@@ -42,6 +42,8 @@ template <> struct convert<AssetType> {
       assetType = AssetType::Audio;
     } else if (type.compare(ASSET_SHADER) == 0) {
       assetType = AssetType::Shader;
+    } else if (type.compare(ASSET_SCRIPT) == 0) {
+      assetType = AssetType::Script;
     } else {
       assetType = AssetType::Unknown;
     }
@@ -53,7 +55,7 @@ template <> struct convert<AssetType> {
 template <> struct convert<ShaderDef::ShaderType> {
   static Node encode(const ShaderDef::ShaderType &shaderType) {
     // Not required yet
-    throw new NotImplementedException();
+    throw NotImplementedException();
   }
 
   static bool decode(const Node &node, ShaderDef::ShaderType &shaderType) {
@@ -75,7 +77,7 @@ template <> struct convert<ShaderDef::ShaderType> {
 template <> struct convert<Passibility> {
   static Node encode(const AssetType &assetType) {
     // Not required yet
-    throw new NotImplementedException();
+    throw NotImplementedException();
   }
 
   static bool decode(const Node &node, Passibility &passibility) {
