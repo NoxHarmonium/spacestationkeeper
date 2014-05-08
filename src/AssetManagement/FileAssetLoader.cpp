@@ -28,6 +28,11 @@ filesystem::path FileAssetLoader::getAssetRoot() {
 AssetDefBaseRef FileAssetLoader::loadAsset(string assetRef) {
   cout << "FileAssetLoader::loadAsset()" << endl;
 
+  AssetDefBaseRef cachedAsset = AssetLoaderBase::loadAsset(assetRef);
+  if (cachedAsset != nullptr) {
+    return cachedAsset;
+  }
+
   filesystem::ifstream ifs;
   filesystem::path path = getAssetRoot() / filesystem::path(assetRef) /
                           filesystem::path(ASSETDEF_FILE);
@@ -61,7 +66,7 @@ AssetDefBaseRef FileAssetLoader::loadAsset(string assetRef) {
       tDef->setPath(path.parent_path()); // Get directory of asset
       tDef->setAssetRef(assetRef);
       AssetDefBaseRef tDefBase = dynamic_pointer_cast<AssetDefBase>(tDef);
-      saveLoadedAsset(AssetType::Texture, assetRef, tDefBase);
+      saveLoadedAsset(assetRef, tDefBase);
       return tDefBase;
     }
     case AssetType::Shader: {
@@ -69,7 +74,7 @@ AssetDefBaseRef FileAssetLoader::loadAsset(string assetRef) {
       sDef->setPath(path.parent_path()); // Get directory of asset
       sDef->setAssetRef(assetRef);
       AssetDefBaseRef sDefBase = dynamic_pointer_cast<AssetDefBase>(sDef);
-      saveLoadedAsset(AssetType::Shader, assetRef, sDefBase);
+      saveLoadedAsset(assetRef, sDefBase);
       return sDefBase;
     }
     default: {
@@ -84,5 +89,5 @@ AssetDefBaseRef FileAssetLoader::loadAsset(string assetRef) {
 }
 
 void FileAssetLoader::unloadAsset(AssetDefBaseRef asset) {
-  clearLoadedAsset(asset->getAssetType(), asset->getAssetRef());
+  clearLoadedAsset(asset->getAssetRef());
 }

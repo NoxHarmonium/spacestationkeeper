@@ -113,6 +113,56 @@ template <> struct convert<Passibility> {
     return true;
   }
 };
+
+template <typename T> struct convert<Vec2<T>> {
+
+  static Node encode(const Vec2<T> &v) {
+    Node n;
+    n[0] = v.x;
+    n[1] = v.y;
+    return n;
+  }
+
+  static bool decode(const Node &node, Vec2<T> &v) {
+    v.x = node[0].as<T>();
+    v.y = node[1].as<T>();
+    return true;
+  }
+};
+
+template <typename T> struct convert<Vec3<T>> {
+
+  static Node encode(const Vec3<T> &v) {
+    Node n;
+    n[0] = v.x;
+    n[1] = v.y;
+    n[2] = v.z;
+    return n;
+  }
+
+  static bool decode(const Node &node, Vec3<T> &v) {
+    v.x = node[0].as<T>();
+    v.y = node[1].as<T>();
+    v.z = node[2].as<T>();
+    return true;
+  }
+};
+
+template <typename T> struct convert<Quaternion<T>> {
+
+  static Node encode(const Quaternion<T> &q) {
+    Node n;
+    n[0] = q.w;
+    n[1] = q.v;
+    return n;
+  }
+
+  static bool decode(const Node &node, Quaternion<T> &q) {
+    q.w = node[0].as<T>();
+    q.v = Vec3<T>(node[1].as<T>(), node[2].as<T>(), node[3].as<T>());
+    return true;
+  }
+};
 }
 
 #endif

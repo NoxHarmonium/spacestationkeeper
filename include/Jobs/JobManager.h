@@ -13,7 +13,7 @@ enum JobState { Pending, Running, Finished, Cancelled };
 
 class JobManager : public GameComponent {
 public:
-  JobManager(ComponentDrivenApp *parent) : GameComponent(parent) {};
+  JobManager() : GameComponent() {};
   ~JobManager() {}
 
   void update();

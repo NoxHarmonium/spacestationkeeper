@@ -8,17 +8,16 @@
 
 #include "GameGrid.h"
 #include "FileAssetLoader.h"
-#include "MouseOverTrigger.h"
 #include "BehaviourConstructor.h"
 #include "HighlightBehaviour.h"
 #include "ToggleSelectionBehaviour.h"
 #include <math.h>
 #include "ShaderDef.h"
-#include "Events.h"
+#include "ComponentDrivenApp.h"
 
 using namespace std;
 
-GameGrid::GameGrid(ComponentDrivenApp *parent) : RenderComponent(parent) {}
+GameGrid::GameGrid() : RenderInfo() {}
 
 void GameGrid::setup() {
 
@@ -62,14 +61,13 @@ void GameGrid::setup() {
       int frameIndex = asteroidTd->getFrameFromPassibility(
           _gameDef.getMapSquare(MapPoint(i, j)).getPassability());
       Vec3f offset = Vec3f(i * _gridSize.x, j * _gridSize.y, 0.0f);
-      GameTile *t = new GameTile(material, MapPoint(i, j), frameIndex, offset,
-                                 this->_parentApp);
+      GameTile *t = new GameTile(material, MapPoint(i, j), frameIndex, offset);
       t->batch(_batchedMeshRef);
       t->transform->parent = this->transform;
       _gameMap[MapPoint(i, j)] = t;
 
       t->setup();
-      _parentApp->registerComponent(t);
+      ComponentDrivenApp::Instance()->registerComponent(t);
 
       t->classFilter = classFilter;
       // t->setEventManager(_eventManager);

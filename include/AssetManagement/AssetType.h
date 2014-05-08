@@ -15,6 +15,6 @@
 #define ASSET_UNKNOWN "Unknown"
 
 /*! A enum of all the known asset types. */
-enum AssetType { Unknown, Texture, Shader, Audio };
+enum AssetType { Unknown, Texture, Shader, Audio, Script };
 
 #endif

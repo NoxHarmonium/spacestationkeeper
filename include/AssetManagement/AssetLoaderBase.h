@@ -28,39 +28,31 @@ public:
   // Methods
   /*! Loads an asset reference from an AssetRef string (relative path from the
    * assetn directory) and stores it in memory. */
-  virtual AssetDefBaseRef loadAsset(string assetRef) = 0;
+  virtual AssetDefBaseRef loadAsset(string assetRef);
   /*! Unloads an AssetRef file from memory. */
   virtual void unloadAsset(AssetDefBaseRef asset) = 0;
 
-  AssetDefBaseRef getLoadedAsset(AssetType assetType, string assetRef);
+  AssetDefBaseRef getLoadedAsset(string assetRef);
 
   // Template Methods
   /*! Type specific asset load method. */
   // TODO: Implement caching in generic loadAsset() method?
   template <typename T> std::shared_ptr<T> loadAsset(string assetRef) {
-    AssetDefBaseRef storedAsset =
-        getLoadedAsset(GetAssetType<T>::value, assetRef);
-    if (storedAsset) {
-      cout << "Cache hit on: \"" << assetRef << "\". Not loading again."
-           << endl;
-      return std::dynamic_pointer_cast<T>(storedAsset);
-    }
     return std::dynamic_pointer_cast<T>(loadAsset(assetRef));
   }
 
 protected:
   // Methods
   /*! Stores an assetRef in the cache referenced by type and assetRef string. */
-  void saveLoadedAsset(AssetType assetType, string assetRef,
-                       AssetDefBaseRef assetDef);
+  void saveLoadedAsset(string assetRef, AssetDefBaseRef assetDef);
   /*! Removes an asserRef from the cache referenced by type and assetRef string.
    */
-  void clearLoadedAsset(AssetType assetType, string assetRef);
+  void clearLoadedAsset(string assetRef);
 
 private:
   // Fields
   /*! Maps asset types and assetRef strings to assetRefs. */
-  map<AssetType, map<string, AssetDefBaseRef>> _assetMap;
+  map<string, AssetDefBaseRef> _assetMap;
 };
 
 #endif /* defined(__SpaceStationKeeper__AssetLoaderBase__) */

@@ -9,7 +9,8 @@
 #ifndef SpaceStationKeeper_BehaviourConstructor_h
 #define SpaceStationKeeper_BehaviourConstructor_h
 
-#include <stdlib.h>
+#include <functional>
+#include "Behaviour.h"
 
 typedef std::function<Behaviour *(GameComponent *)> constructorFn;
 

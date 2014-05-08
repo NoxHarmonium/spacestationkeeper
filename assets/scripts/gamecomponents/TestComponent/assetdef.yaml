@@ -1,0 +1,6 @@
+--- # Script Def
+id:             1
+type:           Script
+sources:
+    - TestComponent.lua
+    

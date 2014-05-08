@@ -10,13 +10,11 @@
 #define SpaceStationKeeper_SpaceStationKeeper_h
 
 #include "cinder/app/AppNative.h"
-#include "GuiManager.h"
-#include "ComponentDrivenApp.h"
-#include "GameGrid.h"
+#include "BindingManager.h"
 #include "GameCamera.h"
-#include "Resource.h"
-#include "Job.h"
-#include "JobManager.h"
+#include "ComponentDrivenApp.h"
+#include "BindingManager.h"
+#include <memory>
 
 class SpaceStationKeeperApp : public ComponentDrivenApp {
 
@@ -28,10 +26,11 @@ public:
   void keyDown(KeyEvent event);
 
 private:
-  GuiManager *_guiManager;
-  GameGrid *_gameGrid;
+  // GuiManager *_guiManager;
+  // GameGrid *_gameGrid;
   GameCamera *_camera;
-  JobManager *_jobManager;
+  // JobManager *_jobManager;
+  std::unique_ptr<BindingManager> _bindingManager;
 };
 
 #endif

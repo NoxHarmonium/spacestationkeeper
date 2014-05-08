@@ -20,7 +20,7 @@ using namespace cinder::cairo;
 
 class GuiManager : public GameComponent {
 public:
-  GuiManager(ComponentDrivenApp *parent);
+  GuiManager();
   void setup();
   void update();
   void draw();

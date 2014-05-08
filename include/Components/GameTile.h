@@ -9,16 +9,14 @@
 #ifndef SpaceStationKeeper_GameTile_h
 #define SpaceStationKeeper_GameTile_h
 
-#include "RenderComponent.h"
+#include "RenderInfo.h"
 
 using namespace ci;
 
-class GameTile : public RenderComponent {
+class GameTile : public RenderInfo {
 public:
-  GameTile(MaterialRef material, MapPoint mapPoint, int tileIndex,
-           ComponentDrivenApp *parent);
-  GameTile(MaterialRef material, MapPoint mapPoint, int tileIndex, Vec3f offset,
-           ComponentDrivenApp *parent);
+  GameTile(MaterialRef material, MapPoint mapPoint, int tileIndex);
+  GameTile(MaterialRef material, MapPoint mapPoint, int tileIndex, Vec3f offset);
   void setup();
   MapPoint getMapPoint();
   void setTileIndex(int tileIndex);

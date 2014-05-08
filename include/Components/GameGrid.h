@@ -9,24 +9,25 @@
 #ifndef SpaceStationKeeper_GameGrid_h
 #define SpaceStationKeeper_GameGrid_h
 
-#include "GameComponent.h"
+#include "RenderInfo.h"
 #include "GameDef.h"
 #include "GameTile.h"
 #include "Utils.h"
 #include "BatchedMesh.h"
 #include "TypedEvent.h"
 #include <optional.hpp>
+#include <tuple>
 
 using namespace std;
 
-class GameGrid : public RenderComponent {
+class GameGrid : public RenderInfo {
 public:
   // Events
   TypedEvent<Vec2i> MouseOverGridSquareEvent = {EventType::Continuous};
   TypedEvent<Vec2i> MouseClickOnGridSquareEvent;
 
   // Constructors/Destructors
-  GameGrid(ComponentDrivenApp *parent);
+  GameGrid();
 
   // Methods
   void setup();

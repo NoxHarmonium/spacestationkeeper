@@ -9,8 +9,6 @@
 #ifndef SpaceStationKeeper_GameComponent_h
 #define SpaceStationKeeper_GameComponent_h
 
-#include "ComponentDrivenApp.h"
-
 using namespace ci;
 using namespace ci::app;
 using namespace std;
@@ -20,7 +18,7 @@ using namespace std;
 class GameComponent {
 public:
   //! Construct a new GameComponent
-  GameComponent(ComponentDrivenApp *parentApp) : _parentApp(parentApp) {}
+  GameComponent() {}
 
   // Interaction methods
   string classFilter = "";
@@ -62,23 +60,6 @@ public:
   virtual void resize() {}
   //! Override to receive file-drop events.
   virtual void fileDrop(FileDropEvent event) {}
-
-  // Getters and setters
-  ComponentDrivenApp *getParentApp() { return _parentApp; }
-
-protected:
-  ComponentDrivenApp *_parentApp;
-};
-
-// Attempt at creating specific GameComponents tied to a specific app
-// Didn't work due to pesky circular dependencies and my lack of c++ skills
-template <typename T> class GameComponentT : public GameComponent {
-public:
-  //! Construct a new GameComponent
-  GameComponentT(T *parent)
-      : GameComponent(dynamic_cast<ComponentDrivenApp *>(parent)) {}
-
-  T getParent() { return dynamic_cast<T>(_parentApp); }
 };
 
 #endif

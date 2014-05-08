@@ -10,6 +10,7 @@
 #include "Resource.h"
 #include "Job.h"
 #include "JobManager.h"
+#include "ComponentDrivenApp.h"
 
 void JobManager::update() {
   map<JobRef, JobState> jobMapCopy = _registeredJobs;
@@ -27,7 +28,7 @@ void JobManager::update() {
       }
       break;
     case JobState::Running:
-      job->update(_parentApp->getDeltaTime());
+      job->update(ComponentDrivenApp::Instance()->getDeltaTime());
       if (job->isDone()) {
         cout << "JobManager::update(): Switching running job to finished..."
              << endl;

@@ -10,25 +10,30 @@
 
 // Methods
 
-AssetDefBaseRef AssetLoaderBase::getLoadedAsset(AssetType assetType,
-                                                string assetRef) {
-  if (_assetMap.count(assetType)) {
-    map<string, AssetDefBaseRef> idMap = _assetMap[assetType];
-    if (idMap.count(assetRef)) {
-      return idMap[assetRef];
-    }
+AssetDefBaseRef AssetLoaderBase::loadAsset(string assetRef) {
+  AssetDefBaseRef storedAsset = getLoadedAsset(assetRef);
+  if (storedAsset) {
+    cout << "Cache hit on: \"" << assetRef << "\". Not loading again." << endl;
+    return storedAsset;
   }
   return nullptr;
 }
 
-void AssetLoaderBase::saveLoadedAsset(AssetType assetType, string assetRef,
-                                      AssetDefBaseRef assetDef) {
-  _assetMap[assetType][assetRef] = assetDef;
+AssetDefBaseRef AssetLoaderBase::getLoadedAsset(string assetRef) {
+
+  if (_assetMap.count(assetRef)) {
+    return _assetMap[assetRef];
+  }
+
+  return nullptr;
 }
 
-void AssetLoaderBase::clearLoadedAsset(AssetType assetType, string assetRef) {
+void AssetLoaderBase::saveLoadedAsset(string assetRef,
+                                      AssetDefBaseRef assetDef) {
+  _assetMap[assetRef] = assetDef;
+}
 
-  if (_assetMap.count(assetType)) {
-    _assetMap[assetType].erase(assetRef);
-  }
+void AssetLoaderBase::clearLoadedAsset(string assetRef) {
+
+  _assetMap.erase(assetRef);
 }

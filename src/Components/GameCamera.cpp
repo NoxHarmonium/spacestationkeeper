@@ -8,33 +8,34 @@
 
 #include "GameCamera.h"
 #include <math.h>
+#include "ComponentDrivenApp.h"
 
-GameCamera::GameCamera(ComponentDrivenApp *parent) : GameComponent(parent) {}
+GameCamera::GameCamera() : GameComponent() {}
 
 void GameCamera::setup() {}
 
 void GameCamera::update() {
   if (_mousePos.x < _edgeSensitivity) {
     float multiplier = 1.0f - (_mousePos.x / _edgeSensitivity);
-    _velocity +=
-        Vec2f(-_acceleration.x * multiplier, 0.0f) * _parentApp->getDeltaTime();
+    _velocity += Vec2f(-_acceleration.x * multiplier, 0.0f) *
+                 ComponentDrivenApp::Instance()->getDeltaTime();
   }
   if (_mousePos.x > app::getWindowWidth() - _edgeSensitivity) {
     float multiplier =
         1.0f - ((app::getWindowWidth() - _mousePos.x) / _edgeSensitivity);
-    _velocity +=
-        Vec2f(_acceleration.x * multiplier, 0.0f) * _parentApp->getDeltaTime();
+    _velocity += Vec2f(_acceleration.x * multiplier, 0.0f) *
+                 ComponentDrivenApp::Instance()->getDeltaTime();
   }
   if (_mousePos.y < _edgeSensitivity) {
     float multiplier = 1.0f - (_mousePos.y / _edgeSensitivity);
-    _velocity +=
-        Vec2f(0.0f, -_acceleration.y * multiplier) * _parentApp->getDeltaTime();
+    _velocity += Vec2f(0.0f, -_acceleration.y * multiplier) *
+                 ComponentDrivenApp::Instance()->getDeltaTime();
   }
   if (_mousePos.y > app::getWindowHeight() - _edgeSensitivity) {
     float multiplier =
         1.0f - ((app::getWindowHeight() - _mousePos.y) / _edgeSensitivity);
-    _velocity +=
-        Vec2f(0.0f, _acceleration.y * multiplier) * _parentApp->getDeltaTime();
+    _velocity += Vec2f(0.0f, _acceleration.y * multiplier) *
+                 ComponentDrivenApp::Instance()->getDeltaTime();
   }
 
   _velocity.limit(_maxSpeed);

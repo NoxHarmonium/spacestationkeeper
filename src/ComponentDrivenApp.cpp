@@ -8,6 +8,22 @@
 
 #include "ComponentDrivenApp.h"
 #include "GameComponent.h"
+#include "yaml.h"
+#include "Utils.h"
+#include "GameObject.h"
+#include "ScriptDef.h"
+
+using namespace YAML;
+using namespace boost;
+
+ComponentDrivenApp::ComponentDrivenApp() {
+  assert(_instance == nullptr);
+  _instance = this;
+}
+
+ComponentDrivenApp::~ComponentDrivenApp() {}
+
+ComponentDrivenApp *ComponentDrivenApp::Instance() { return _instance; }
 
 //! Registers a component to receive app events
 void ComponentDrivenApp::registerComponent(GameComponent *component) {
@@ -134,3 +150,5 @@ void ComponentDrivenApp::fileDrop(FileDropEvent event) {
 vector<GameComponent *> ComponentDrivenApp::getRegisteredComponentsCopy() {
   return vector<GameComponent *>(_registeredComponents);
 }
+
+ComponentDrivenApp *ComponentDrivenApp::_instance = nullptr;

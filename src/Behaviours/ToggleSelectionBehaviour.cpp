@@ -8,6 +8,7 @@
 
 #include "ToggleSelectionBehaviour.h"
 #include <set>
+#include "ComponentDrivenApp.h"
 
 ToggleSelectionBehaviour::ToggleSelectionBehaviour(GameComponent *component)
     : Behaviour(component) {}
@@ -17,7 +18,7 @@ void ToggleSelectionBehaviour::begin() {
   // cout << "ToggleSelectionBehaviour::begin()" << endl;
   _hasBegun = true;
   _elapsedTime = 0.0f;
-  ComponentDrivenApp *app = _component->getParentApp();
+  ComponentDrivenApp *app = ComponentDrivenApp::Instance();
 
   _pSet = app->getState<ComponentSet *>(stateKeyName);
   if (_pSet == nullptr) {

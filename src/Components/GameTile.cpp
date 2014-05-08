@@ -14,17 +14,16 @@ using namespace ci;
 using namespace std;
 using namespace cinder::gl;
 
-GameTile::GameTile(MaterialRef material, MapPoint mapPoint, int tileIndex,
-                   ComponentDrivenApp *parent)
-    : _mapPoint(mapPoint), RenderComponent(parent) {
+GameTile::GameTile(MaterialRef material, MapPoint mapPoint, int tileIndex)
+    : _mapPoint(mapPoint), RenderInfo() {
   _tileIndex = tileIndex;
   this->material = material;
   this->transform->localPosition = Vec3f();
 }
 
 GameTile::GameTile(MaterialRef material, MapPoint mapPoint, int tileIndex,
-                   Vec3f offset, ComponentDrivenApp *parent)
-    : _mapPoint(mapPoint), RenderComponent(parent) {
+                   Vec3f offset)
+    : _mapPoint(mapPoint), RenderInfo() {
   _tileIndex = tileIndex;
   this->material = material;
   this->transform->localPosition = offset;

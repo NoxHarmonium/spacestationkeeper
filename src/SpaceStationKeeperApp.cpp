@@ -1,20 +1,10 @@
 
 #include "SpaceStationKeeperApp.h"
-#include "Events.h"
-#include "MouseOverTrigger.h"
-#include "MouseClickTrigger.h"
-#include "SelectedTrigger.h"
-#include "ToggleSelectionBehaviour.h"
-#include "GameTile.h"
-#include "Resource.h"
-#include "Job.h"
-#include "MiningJob.h"
-#include "MouseDragAreaTrigger.h"
+#include "Utils.h"
 
 using namespace ci;
 using namespace ci::app;
 using namespace std;
-using namespace cinder::cairo;
 
 void SpaceStationKeeperApp::prepareSettings(Settings *settings) {
   // Utils::printOpenGlVersionInfo();
@@ -30,15 +20,16 @@ void SpaceStationKeeperApp::resize() {
 void SpaceStationKeeperApp::setup() {
   Utils::printOpenGlVersionInfo();
 
-  _camera = new GameCamera(this);
-  _gameGrid = new GameGrid(this);
-  _guiManager = new GuiManager(this);
-  _jobManager = new JobManager(this);
+  _camera = new GameCamera();
+  _bindingManager = std::unique_ptr<BindingManager>(new BindingManager());
+  //_gameGrid = new GameGrid();
+  //_guiManager = new GuiManager();
+  //_jobManager = new JobManager();
 
   registerComponent(_camera);
-  registerComponent(_gameGrid);
+  // registerComponent(_gameGrid);
   // RegisterComponent(_guiManager); Todo: render with quads so depth works
-  registerComponent(_jobManager);
+  // registerComponent(_jobManager);
 
   // Make sure that components get setup
   ComponentDrivenApp::setup();
@@ -56,7 +47,8 @@ void SpaceStationKeeperApp::draw() {
 }
 
 void SpaceStationKeeperApp::keyDown(KeyEvent event) {
-  if (event.getCode() == KeyEvent::KEY_m) { // TODO: Implement proper control
+
+  /*if (event.getCode() == KeyEvent::KEY_m) { // TODO: Implement proper control
                                             // system, this is for debugging
     ComponentSet *pSet =
         getState<ComponentSet *>(ToggleSelectionBehaviour::stateKeyName);
@@ -67,7 +59,7 @@ void SpaceStationKeeperApp::keyDown(KeyEvent event) {
       _jobManager->registerJob(JobRef(job));
     }
     pSet->clear();
-  }
+  }*/
 }
 
 CINDER_APP_NATIVE(SpaceStationKeeperApp, RendererGl)

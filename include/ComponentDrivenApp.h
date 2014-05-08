@@ -22,6 +22,9 @@ template <typename T> class GameComponentT;
 class ComponentDrivenApp : public AppNative {
 
 public:
+  ComponentDrivenApp();
+  ~ComponentDrivenApp();
+
   //! Registers a component to receive app events
   void registerComponent(GameComponent *component);
 
@@ -104,12 +107,19 @@ public:
     return nullptr;
   }
 
+  // Static Getters/Setters
+  static ComponentDrivenApp *Instance();
+
 private:
+  // Fields
   vector<GameComponent *> getRegisteredComponentsCopy();
   vector<GameComponent *> _registeredComponents;
   map<string, void *> _stateMap;
   float _lastElapsedTime = NAN;
   float _deltaTime = 0.0f;
+
+  // Static Fields
+  static ComponentDrivenApp *_instance;
 };
 
 #endif

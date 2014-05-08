@@ -10,7 +10,7 @@
 
 // Constructors/Destructors
 GridHighlighter::GridHighlighter(GameGrid *parentGrid)
-    : _parentGrid(parentGrid), GameComponent(parentGrid->getParentApp()) {}
+    : _parentGrid(parentGrid), GameComponent() {}
 GridHighlighter::~GridHighlighter() {}
 
 // Methods

@@ -16,7 +16,7 @@
 
 class GameCamera : public GameComponent {
 public:
-  GameCamera(ComponentDrivenApp *parent);
+  GameCamera();
   void setup();
   void update();
   void draw();
