@@ -15,6 +15,7 @@ template <> struct ClassBinder<RenderInfo> {
         L)[luabind::class_<RenderInfo>(name)
                .def(luabind::constructor<>())
                .def_readwrite("renderEnabled", &RenderInfo::renderEnabled)
+               .def_readwrite("transform", &RenderInfo::transform)
                .def_readwrite("mesh", &RenderInfo::mesh)
                .def_readwrite("material", &RenderInfo::material)
                .def("clone", &RenderInfo::clone)

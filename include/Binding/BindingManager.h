@@ -11,8 +11,14 @@
 
 #include "LuaBindDeps.h"
 #include <string>
+#include "GameObject.h"
+#include <functional>
 
 extern "C" { int initLuaModules(lua_State *L); }
+
+// Free functions
+float app_getDeltaTime();
+void app_registerGameObject(GameObject *gameObject);
 
 class BindingManager {
 public:
@@ -23,7 +29,13 @@ public:
   void executeString(std::string program);
   void closeBindings();
 
+  bool catchLuaExceptions(std::function<void()> fn);
+
+  static BindingManager *Instance();
+
 private:
+  static BindingManager *_instance;
+
   lua_State *L;
   bool _bound = false;
 };

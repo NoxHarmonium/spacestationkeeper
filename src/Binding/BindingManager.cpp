@@ -10,6 +10,8 @@
 #include "Utils.h"
 #include "LuaExecutionException.h"
 #include "luabind/class_info.hpp"
+#include "ComponentDrivenApp.h"
+#include <luabind/adopt_policy.hpp>
 
 #include "GameComponentBinder.h"
 #include "CinderEventBinders.h"
@@ -27,6 +29,10 @@
 #include "LuaDebugBinder.h"
 #include "CinderQuatBinders.h"
 #include "AssetDefBinders.h"
+#include "GameCameraBinder.h"
+
+using adopt2 = luabind::detail::policy_cons<luabind::detail::adopt_policy<2>,
+                                            luabind::detail::null_type>;
 
 BindingManager::BindingManager() {}
 
@@ -34,6 +40,14 @@ BindingManager::~BindingManager() {
   if (_bound) {
     closeBindings();
   }
+}
+
+float app_getDeltaTime() {
+  return ComponentDrivenApp::Instance()->getDeltaTime();
+}
+
+void app_registerGameObject(GameObject *gameObject) {
+  ComponentDrivenApp::Instance()->registerGameObject(gameObject);
 }
 
 extern "C" int initLuaModules(lua_State *L) {
@@ -47,6 +61,7 @@ extern "C" int initLuaModules(lua_State *L) {
   ClassBinder<GameComponent>::Bind("GameComponent", L);
 
   // Classes directly binded to LUA
+  ClassBinder<GameCamera>::Bind("GameCamera", L);
   ClassBinder<MouseEvent>::Bind("MouseEvent", L);
   ClassBinder<GameObject>::Bind("GameObject", L);
   ClassBinder<Transform>::Bind("Transform", L);
@@ -83,6 +98,12 @@ extern "C" int initLuaModules(lua_State *L) {
 
   ClassBinder<Quatf>::Bind("Quatf", L);
   ClassBinder<Quatd>::Bind("Quatd", L);
+
+  // App static functions
+  module(L)[def("app_getWindowWidth", &ci::app::getWindowWidth)];
+  module(L)[def("app_getWindowHeight", &ci::app::getWindowHeight)];
+  module(L)[def("app_getDeltaTime", &app_getDeltaTime)];
+  module(L)[def("app_registerGameObject", &app_registerGameObject)];
 
   luabind::bind_class_info(L);
 
@@ -122,3 +143,24 @@ void BindingManager::closeBindings() {
   lua_close(L);
   _bound = false;
 }
+
+bool BindingManager::catchLuaExceptions(std::function<void()> fn) {
+  try {
+    fn();
+  }
+  catch (const luabind::error e) {
+    cout << "[ERROR] Lua error in GameComponent script: " << lua_tostring(L, -1)
+         << endl;
+    return true;
+  }
+  return false;
+}
+
+BindingManager *BindingManager::Instance() {
+  if (_instance == nullptr) {
+    _instance = new BindingManager();
+  }
+  return _instance;
+}
+
+BindingManager *BindingManager::_instance = nullptr;

@@ -10,14 +10,23 @@
 #define SpaceStationKeeper_GameObject_h
 
 #include <map>
-#include "RenderInfo.h"
 #include "GameComponent.h"
+#include "RenderInfo.h"
+#include "BindingManager.h"
+
+using namespace ci::app;
+
+// Forward Declarations
+class BindingManager;
 
 class GameObject {
 public:
   // Constructors/Destructors
   GameObject();
   ~GameObject();
+
+  // Public Fields
+  RenderInfo *renderer = nullptr;
 
   // Methods
   void addComponent(GameComponent *component);
@@ -64,7 +73,7 @@ public:
   virtual void fileDrop(FileDropEvent event);
 
   // Getters/Setters
-  virtual RenderInfo *getRenderer();
+  virtual RenderInfo *getRenderer(); // Depricated
 
 private:
   // Methods
@@ -72,7 +81,8 @@ private:
 
   // Fields
   set<GameComponent *> _components;
-  RenderInfo *_renderer;
+
+  BindingManager *_bindingManager = nullptr; // For catching lua exceptions
 };
 
 typedef std::shared_ptr<GameObject> GameObjectRef;

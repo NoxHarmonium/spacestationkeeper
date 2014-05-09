@@ -18,10 +18,10 @@ template <> struct ClassBinder<GameComponent> {
   // special and has a wrapper
 
   static void Bind(const char *name, lua_State *L) {
-    cout << "deffers binding game comp" << endl;
     luabind::module(
         L)[luabind::class_<GameComponent, GameComponentWrapper>(name)
                .def(luabind::constructor<>())
+               .def_readonly("gameObject", &GameComponent::gameObject)
                .def("setup", &GameComponent::setup,
                     &GameComponentWrapper::default_setup)
                .def("shutdown", &GameComponent::shutdown,

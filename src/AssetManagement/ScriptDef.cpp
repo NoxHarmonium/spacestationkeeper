@@ -9,6 +9,8 @@
 #include "ScriptDef.h"
 #include "cinder/Utilities.h"
 #include "Utils.h"
+#include <memory>
+
 
 using namespace std;
 using namespace ci;

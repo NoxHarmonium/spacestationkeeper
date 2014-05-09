@@ -9,12 +9,11 @@
 #ifndef SpaceStationKeeper_Renderer_h
 #define SpaceStationKeeper_Renderer_h
 
+#include "GameComponent.h"
 #include "Transform.h"
 #include "BaseMesh.h"
 #include "Material.h"
-#include "GameComponent.h"
 #include "BatchedMesh.h"
-#include "RenderInfo.h"
 
 // TODO: Rename to renderer
 class RenderInfo : public GameComponent {

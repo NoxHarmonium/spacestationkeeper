@@ -7,6 +7,7 @@
 //
 
 #include "SimpleMesh.h"
+#include <memory>
 
 using namespace ci;
 using namespace std;

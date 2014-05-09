@@ -11,6 +11,7 @@
 
 #include "ClassBinder.h"
 #include "Transform.h"
+#include "FixStdSharedPtrBind.h"
 
 template <> struct ClassBinder<Transform> {
   static void Bind(const char *name, lua_State *L) {

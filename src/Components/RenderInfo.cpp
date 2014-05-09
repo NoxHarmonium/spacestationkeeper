@@ -8,7 +8,9 @@
 
 #include "RenderInfo.h"
 
-RenderInfo::RenderInfo() : GameComponent() {}
+RenderInfo::RenderInfo() : GameComponent() {
+  transform = make_shared<Transform>();
+}
 RenderInfo::~RenderInfo() {}
 
 // Methods

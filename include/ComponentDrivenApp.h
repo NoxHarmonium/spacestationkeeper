@@ -9,6 +9,7 @@
 #ifndef SpaceStationKeeper_ComponentManager_h
 #define SpaceStationKeeper_ComponentManager_h
 
+#include "GameObject.h"
 #include "cinder/app/AppNative.h"
 #include <type_traits>
 
@@ -26,25 +27,25 @@ public:
   ~ComponentDrivenApp();
 
   //! Registers a component to receive app events
-  void registerComponent(GameComponent *component);
+  void registerGameObject(GameObject *component);
 
   //! Get a list of currently registered components
-  vector<GameComponent *> getComponents();
+  vector<GameObject *> getGameObjects();
 
-  template <typename T> vector<GameComponent *> GetComponentsByType() {
-    vector<GameComponent *> selectedComps;
-    for (auto &comp : _registeredComponents) {
-      if (dynamic_cast<T>(comp) != nullptr) {
-        selectedComps.push_back(comp);
+  template <typename T> vector<GameObject *> GetComponentsByType() {
+    vector<GameObject *> selectedGos;
+    for (auto &go : _registeredGameObjects) {
+      if (dynamic_cast<T>(go) != nullptr) {
+        selectedGos.push_back(go);
       }
     }
-    return selectedComps;
+    return selectedGos;
   }
 
   template <typename T> T *GetComponentByType() {
     // TODO: Can I make GetComponentsByType() an iterator and then return the
     // first value here?
-    for (auto &comp : _registeredComponents) {
+    for (auto &comp : _registeredGameObjects) {
       T *compT = dynamic_cast<T *>(comp);
       if (compT != nullptr) {
         return compT;
@@ -112,8 +113,8 @@ public:
 
 private:
   // Fields
-  vector<GameComponent *> getRegisteredComponentsCopy();
-  vector<GameComponent *> _registeredComponents;
+  vector<GameObject *> getRegisteredGameObjectsCopy();
+  vector<GameObject *> _registeredGameObjects;
   map<string, void *> _stateMap;
   float _lastElapsedTime = NAN;
   float _deltaTime = 0.0f;

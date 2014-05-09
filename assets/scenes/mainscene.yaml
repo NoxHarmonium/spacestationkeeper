@@ -1,12 +1,23 @@
 --- # Main Scene
 GameObjects:
-    -   RenderInfo:
-            localPosition: [1.0,2.0,3.5]
+    -   name: Camera
+        RenderInfo:
+            localPosition: [0,0,0]
+            localRotation: [0,0,0,0]
+            localScale:    [1,1,1]
+        Components:
+            - type: GameCamera
+            - type: MouseScroll
+
+    -   name: TestObject
+        RenderInfo:
+            localPosition: [0,0,0]
             localRotation: [0,0,0,0]
             localScale:    [1,1,1]
         Components:
             -   type: TestComponent
                 text: Test Text 1
-            -   ref:  TestComponent
+            -   type: TestComponent
                 text: Test Text 2
+            -   type: TestComponent
 

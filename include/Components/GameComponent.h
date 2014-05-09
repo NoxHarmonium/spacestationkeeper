@@ -13,6 +13,9 @@ using namespace ci;
 using namespace ci::app;
 using namespace std;
 
+// Forwards Decs
+class GameObject;
+
 //! A game component is a child of an app which has all the app events forwarded
 // to it
 class GameComponent {
@@ -22,6 +25,10 @@ public:
 
   // Interaction methods
   string classFilter = "";
+  bool enabled = true;
+
+  // Fields
+  GameObject *gameObject = nullptr;
 
   //! Setup the component
   virtual void setup() {}

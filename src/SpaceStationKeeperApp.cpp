@@ -23,10 +23,10 @@ void SpaceStationKeeperApp::resize() {
 void SpaceStationKeeperApp::setup() {
   Utils::printOpenGlVersionInfo();
 
-  _camera = new GameCamera();
+  //_camera = new GameCamera();
 
   _fileAssetLoader = make_shared<FileAssetLoader>(Utils::getResourcesPath());
-  _bindingManager = std::unique_ptr<BindingManager>(new BindingManager());
+  _bindingManager = BindingManager::Instance();
   _bindingManager->initialiseBindings();
   scanAssetsAndExecuteScripts();
 
@@ -34,7 +34,7 @@ void SpaceStationKeeperApp::setup() {
   //_guiManager = new GuiManager();
   //_jobManager = new JobManager();
 
-  registerComponent(_camera);
+  // registerComponent(_camera);
   // registerComponent(_gameGrid);
   // RegisterComponent(_guiManager); Todo: render with quads so depth works
   // registerComponent(_jobManager);

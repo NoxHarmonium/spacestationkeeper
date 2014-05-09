@@ -36,7 +36,7 @@ private:
   // GameGrid *_gameGrid;
   GameCamera *_camera;
   // JobManager *_jobManager;
-  std::unique_ptr<BindingManager> _bindingManager;
+  BindingManager *_bindingManager;
   std::shared_ptr<FileAssetLoader> _fileAssetLoader;
 };
 
