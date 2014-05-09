@@ -1,0 +1,6 @@
+--- # Script Def
+id:             2
+type:           Script
+order:          0
+sources:
+    - Tests.lua

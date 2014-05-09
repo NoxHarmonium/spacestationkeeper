@@ -22,6 +22,7 @@
 #include "AxisAlignedBoxBinders.h"
 #include "CinderVecBinders.h"
 #include "CinderMatrixBinders.h"
+#include "LuaDebugBinder.h"
 
 BindingManager::BindingManager() {}
 
@@ -34,6 +35,9 @@ BindingManager::~BindingManager() {
 extern "C" int initLuaModules(lua_State *L) {
   using namespace luabind;
   luabind::open(L);
+
+  // Static Utilities
+  ClassBinder<LuaDebug>::Bind("LuaDebug", L);
 
   // Classes that can be inherited by LUA
   ClassBinder<GameComponent>::Bind("GameComponent", L);

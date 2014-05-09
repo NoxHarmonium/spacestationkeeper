@@ -1,0 +1,7 @@
+--- # Script Def
+id:             3
+type:           Script
+order:          0
+sources:
+    - SceneLoader.lua
+    

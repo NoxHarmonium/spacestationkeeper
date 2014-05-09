@@ -1,0 +1,1 @@
+LuaDebug.Log('Log Test');

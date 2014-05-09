@@ -108,13 +108,13 @@ void SpaceStationKeeperApp::scanAssetsAndExecuteScripts() {
     vector<ScriptDefRef> scriptDefs = kvp.second;
     cout << "--> Executing scripts from order: " << order << endl;
     for (ScriptDefRef scriptDef : scriptDefs) {
-      cout << "--> --> Executing script: " << scriptDef->getAssetRef() << endl;
+      cout << "-->     Executing script: " << scriptDef->getAssetRef() << endl;
 
       try {
         _bindingManager->executeString(*scriptDef->getAsset());
       }
       catch (const LuaExecutionException &e) {
-        cout << "--> --> Exception when executing script: " << e.what() << endl;
+        cout << "-->    Exception when executing script: " << e.what() << endl;
         errorOccurred = true;
       }
     }
