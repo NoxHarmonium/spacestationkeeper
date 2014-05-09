@@ -11,7 +11,7 @@
 
 #include <map>
 #include "cinder/gl/GlslProg.h"
-#include "yaml.h"
+#include "yaml-cpp/yaml.h"
 #include "AssetDefBaseT.h"
 
 #define SHADER_UNKNOWN "Unknown"

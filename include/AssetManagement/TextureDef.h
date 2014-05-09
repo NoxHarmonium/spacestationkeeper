@@ -10,7 +10,7 @@
 #define SpaceStationKeeper_TextureDef_h
 
 #include <map>
-#include "yaml.h"
+#include "yaml-cpp/yaml.h"
 #include "cinder/gl/Texture.h"
 #include "AssetDefBaseT.h"
 #include "AssetDefConverters.h"

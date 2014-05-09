@@ -8,7 +8,7 @@
 
 #include "FileAssetLoader.h"
 #include "boost/filesystem/fstream.hpp"
-#include "yaml.h"
+#include "yaml-cpp/yaml.h"
 #include "AssetDefConverters.h"
 #include "TextureDef.h"
 #include "ShaderDef.h"

@@ -9,7 +9,7 @@
 #ifndef SpaceStationKeeper_ScriptDef_h
 #define SpaceStationKeeper_ScriptDef_h
 
-#include "yaml.h"
+#include "yaml-cpp/yaml.h"
 #include "AssetDefBaseT.h"
 
 using namespace ci;

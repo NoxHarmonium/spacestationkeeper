@@ -38,6 +38,7 @@
 		9E28172C191BEEAA00F5E95C /* ScriptDef.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E28172A191BEEAA00F5E95C /* ScriptDef.cpp */; };
 		9E28172F191BFC5400F5E95C /* AssetType.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E28172D191BFC5400F5E95C /* AssetType.cpp */; };
 		9E281738191C5F7D00F5E95C /* LuaDebug.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E281736191C5F7D00F5E95C /* LuaDebug.cpp */; };
+		9E28173E191C7AA600F5E95C /* yaml.so in Resources */ = {isa = PBXBuildFile; fileRef = 9E28173D191C7AA600F5E95C /* yaml.so */; };
 		9E36F8831917CC640098B3C0 /* BatchedMesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E36F8811917CC640098B3C0 /* BatchedMesh.cpp */; };
 		9E36F88619180E8F0098B3C0 /* Transform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E36F88419180E8F0098B3C0 /* Transform.cpp */; };
 		9E3AF3E8190C5943001007F4 /* TranslateModifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E3AF3E1190C5943001007F4 /* TranslateModifier.cpp */; };
@@ -172,6 +173,8 @@
 		9E281735191C5F3300F5E95C /* LuaDebug.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LuaDebug.h; sourceTree = "<group>"; };
 		9E281736191C5F7D00F5E95C /* LuaDebug.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LuaDebug.cpp; sourceTree = "<group>"; };
 		9E281739191C5FDF00F5E95C /* LuaDebugBinder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LuaDebugBinder.h; sourceTree = "<group>"; };
+		9E28173B191C722C00F5E95C /* yaml-lua-0.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "yaml-lua-0.2.dylib"; path = "../libraries/lib/osx/yaml-lua-0.2.dylib"; sourceTree = "<group>"; };
+		9E28173D191C7AA600F5E95C /* yaml.so */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = yaml.so; path = ../libraries/lib/osx/yaml.so; sourceTree = "<group>"; };
 		9E36F8801917CBAC0098B3C0 /* BatchedMesh.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BatchedMesh.h; sourceTree = "<group>"; };
 		9E36F8811917CC640098B3C0 /* BatchedMesh.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BatchedMesh.cpp; sourceTree = "<group>"; };
 		9E36F88419180E8F0098B3C0 /* Transform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Transform.cpp; sourceTree = "<group>"; };
@@ -357,6 +360,7 @@
 		29B97314FDCFA39411CA2CEA /* SpaceStationKeeper */ = {
 			isa = PBXGroup;
 			children = (
+				9E28173D191C7AA600F5E95C /* yaml.so */,
 				9E10054A18EA355F00EC5213 /* assets */,
 				01B97315FEAEA392516A2CEA /* Blocks */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
@@ -381,6 +385,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9E28173B191C722C00F5E95C /* yaml-lua-0.2.dylib */,
 				9E2816F4191AA9AC00F5E95C /* libboost_date_time.1.55.0.a */,
 				9E2816F5191AA9AC00F5E95C /* libboost_filesystem.1.55.0.a */,
 				9E2816F6191AA9AC00F5E95C /* libboost_log.1.55.0.a */,
@@ -808,6 +813,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9E28173E191C7AA600F5E95C /* yaml.so in Resources */,
 				51C21CD6D341426891EE6300 /* CinderApp.icns in Resources */,
 				9E28170D191ACAFD00F5E95C /* init.lua in Resources */,
 				9E10054B18EA355F00EC5213 /* assets in Resources */,

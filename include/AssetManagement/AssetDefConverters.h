@@ -6,7 +6,7 @@
 //
 //
 
-#include "yaml.h"
+#include "yaml-cpp/yaml.h"
 #include "AssetType.h"
 #include "ShaderDef.h"
 #include "Passibility.h"

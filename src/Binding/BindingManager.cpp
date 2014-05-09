@@ -77,6 +77,13 @@ extern "C" int initLuaModules(lua_State *L) {
   ClassBinder<Matrix22f>::Bind("Matrix22f", L);
   ClassBinder<Matrix22d>::Bind("Matrix22d", L);
 
+  // Make sure require path includes are right
+  lua_pushstring(L, "package");
+  lua_gettable(L, LUA_GLOBALSINDEX);
+  lua_pushstring(L, "cpath");
+  lua_pushstring(L, (Utils::getResourcesPath().string() + "/?.so").c_str());
+  lua_settable(L, -3);
+
   // TODO: Deps
   // Vec3f Matrix44f
   return 0;

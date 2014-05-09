@@ -1,0 +1,6 @@
+--- # Script Def
+id:             5
+type:           Script
+order:          -1
+sources:
+    - Init.lua

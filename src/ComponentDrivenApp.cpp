@@ -8,7 +8,7 @@
 
 #include "ComponentDrivenApp.h"
 #include "GameComponent.h"
-#include "yaml.h"
+#include "yaml-cpp/yaml.h"
 #include "Utils.h"
 #include "GameObject.h"
 #include "ScriptDef.h"

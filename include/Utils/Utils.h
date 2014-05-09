@@ -13,7 +13,7 @@
 #include "boost/filesystem/fstream.hpp"
 #include <libproc.h>
 #include "filesystem.hpp"
-#include "yaml.h"
+#include "yaml-cpp/yaml.h"
 #include "AssetLoadException.h"
 
 #define OSX_RESOURCE_DIR "../Resources"

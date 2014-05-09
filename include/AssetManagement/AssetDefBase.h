@@ -11,7 +11,7 @@
 
 #include "AssetType.h"
 #include "AssetLoaderBase.h"
-#include "yaml.h"
+#include "yaml-cpp/yaml.h"
 #include "AssetLoadException.h"
 
 #define ASSETDEF_FILE "assetdef.yaml"
