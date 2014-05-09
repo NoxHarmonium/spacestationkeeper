@@ -7,6 +7,12 @@
 //
 
 #include "FileAssetLoader.h"
+#include "boost/filesystem/fstream.hpp"
+#include "yaml.h"
+#include "AssetDefConverters.h"
+#include "TextureDef.h"
+#include "ShaderDef.h"
+#include "ScriptDef.h"
 
 using namespace std;
 using namespace boost;
@@ -78,6 +84,14 @@ AssetDefBaseRef FileAssetLoader::loadAsset(string assetRef) {
     }
     case AssetType::Shader: {
       ShaderDefRef sDef = ShaderDef::FromYamlNode(node);
+      sDef->setPath(path.parent_path()); // Get directory of asset
+      sDef->setAssetRef(assetRef);
+      AssetDefBaseRef sDefBase = dynamic_pointer_cast<AssetDefBase>(sDef);
+      saveLoadedAsset(assetRef, sDefBase);
+      return sDefBase;
+    }
+    case AssetType::Script: {
+      ScriptDefRef sDef = ScriptDef::FromYamlNode(node);
       sDef->setPath(path.parent_path()); // Get directory of asset
       sDef->setAssetRef(assetRef);
       AssetDefBaseRef sDefBase = dynamic_pointer_cast<AssetDefBase>(sDef);

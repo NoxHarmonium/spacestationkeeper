@@ -10,11 +10,6 @@
 #define __SpaceStationKeeper__FileAssetLoader__
 
 #include "AssetLoaderBase.h"
-#include "boost/filesystem/fstream.hpp"
-#include "yaml.h"
-#include "TextureDef.h"
-#include "AssetDefConverters.h"
-#include "ShaderDef.h"
 
 using namespace boost;
 

@@ -8,6 +8,7 @@
 
 #include "BindingManager.h"
 #include "Utils.h"
+#include "LuaExecutionException.h"
 
 #include "CinderEventBinders.h"
 #include "GameObjectBinder.h"
@@ -86,6 +87,15 @@ void BindingManager::initialiseBindings() {
 
   _bound = true;
   // luaL_dofile(L, Utils::getResourcesPath() / "init.lua");
+}
+
+void BindingManager::executeString(string program) {
+  int errorNo = luaL_dostring(L, program.c_str());
+  if (errorNo == 1) {
+    string errorMessage = lua_tostring(L, -1);
+    lua_pop(L, 1); // remove error message
+    throw LuaExecutionException(errorMessage);
+  }
 }
 
 void BindingManager::closeBindings() {

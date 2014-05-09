@@ -10,6 +10,7 @@
 #define __SpaceStationKeeper__LuaBridge__
 
 #include "LuaBindDeps.h"
+#include <string>
 
 extern "C" { int initLuaModules(lua_State *L); }
 
@@ -19,6 +20,7 @@ public:
   ~BindingManager();
 
   void initialiseBindings();
+  void executeString(std::string program);
   void closeBindings();
 
 private:

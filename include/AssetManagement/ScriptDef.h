@@ -26,6 +26,8 @@ public:
   string getFilename(int index);
   /*! Gets the type definition of this asset definition. */
   virtual AssetType getAssetType();
+  /*! Get the order of the script. */
+  int getOrder();
 
   // Methods
   /*! Loads the asset pointed to by this AssetRef object into memory so it can
@@ -49,8 +51,6 @@ private:
   // Fields
   /* Maps shader types to their source files. */
   vector<string> _filenames;
-  /*! The reference to the OpenGL shader program. (Wrapped by Cinder)*/
-  string _program = nullptr;
   /*! The execution order of this script. Scripts with lower numbers execute
    * first. */
   int _order;

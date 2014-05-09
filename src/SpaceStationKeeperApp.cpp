@@ -1,6 +1,8 @@
 
 #include "SpaceStationKeeperApp.h"
 #include "AssetLoadException.h"
+#include "ScriptDef.h"
+#include "LuaExecutionException.h"
 
 using namespace ci;
 using namespace ci::app;
@@ -69,6 +71,9 @@ void SpaceStationKeeperApp::keyDown(KeyEvent event) {
 }
 
 void SpaceStationKeeperApp::scanAssetsAndExecuteScripts() {
+  cout << "Checking asset definitions..." << endl;
+
+  map<int, vector<ScriptDefRef>> scriptMap;
   filesystem::path rootPath =
       Utils::getResourcesPath() / filesystem::path("assets");
   for (filesystem::recursive_directory_iterator end, dir(rootPath); dir != end;
@@ -79,14 +84,38 @@ void SpaceStationKeeperApp::scanAssetsAndExecuteScripts() {
       string pDir = p.parent_path().string();
       string assetRef =
           getRelativePath(pDir, rootPath); // Get the relative path
-      cout << "Loading asset: " << assetRef << endl;
+      cout << "--> Loading asset: " << assetRef << endl;
       try {
         AssetDefBaseRef asset = _fileAssetLoader->loadAsset(assetRef);
-        cout << "--> Found asset: id: " << asset->getId()
+        cout << "--> --> Found asset: id: " << asset->getId()
              << " type: " << asset->getAssetType() << endl;
+        if (asset->getAssetType() == AssetType::Script) {
+          ScriptDefRef scriptDef = dynamic_pointer_cast<ScriptDef>(asset);
+          scriptMap[scriptDef->getOrder()].push_back(scriptDef);
+        }
       }
       catch (const AssetLoadException &e) {
         cout << "--> Error loading asset: " << e.what() << endl;
+      }
+    }
+  }
+
+  cout << "Executing Scripts..." << endl;
+  bool errorOccurred = false;
+
+  for (auto &kvp : scriptMap) {
+    int order = kvp.first;
+    vector<ScriptDefRef> scriptDefs = kvp.second;
+    cout << "--> Executing scripts from order: " << order << endl;
+    for (ScriptDefRef scriptDef : scriptDefs) {
+      cout << "--> --> Executing script: " << scriptDef->getAssetRef() << endl;
+
+      try {
+        _bindingManager->executeString(*scriptDef->getAsset());
+      }
+      catch (const LuaExecutionException &e) {
+        cout << "--> --> Exception when executing script: " << e.what() << endl;
+        errorOccurred = true;
       }
     }
   }

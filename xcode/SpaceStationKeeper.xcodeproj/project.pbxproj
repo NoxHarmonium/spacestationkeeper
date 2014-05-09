@@ -167,6 +167,7 @@
 		9E281728191BE83700F5E95C /* GameComponentBinder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameComponentBinder.h; sourceTree = "<group>"; };
 		9E28172A191BEEAA00F5E95C /* ScriptDef.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ScriptDef.cpp; sourceTree = "<group>"; };
 		9E28172D191BFC5400F5E95C /* AssetType.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AssetType.cpp; sourceTree = "<group>"; };
+		9E281730191C590900F5E95C /* LuaExecutionException.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LuaExecutionException.h; sourceTree = "<group>"; };
 		9E36F8801917CBAC0098B3C0 /* BatchedMesh.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BatchedMesh.h; sourceTree = "<group>"; };
 		9E36F8811917CC640098B3C0 /* BatchedMesh.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BatchedMesh.cpp; sourceTree = "<group>"; };
 		9E36F88419180E8F0098B3C0 /* Transform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Transform.cpp; sourceTree = "<group>"; };
@@ -681,6 +682,7 @@
 			children = (
 				9EB951F01915311E003B5FED /* AssetLoadException.h */,
 				9EB951F319170B3F003B5FED /* NotImplementedException.h */,
+				9E281730191C590900F5E95C /* LuaExecutionException.h */,
 			);
 			path = Exceptions;
 			sourceTree = "<group>";
