@@ -34,7 +34,6 @@
 		9E281706191AA9AC00F5E95C /* libpixman.0.32.4.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E2816FB191AA9AC00F5E95C /* libpixman.0.32.4.a */; };
 		9E281707191AA9AC00F5E95C /* libpng.1.5.17.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E2816FC191AA9AC00F5E95C /* libpng.1.5.17.a */; };
 		9E281709191AA9AC00F5E95C /* libz.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E2816FE191AA9AC00F5E95C /* libz.a */; };
-		9E28170D191ACAFD00F5E95C /* init.lua in Resources */ = {isa = PBXBuildFile; fileRef = 9E28170C191ACAFD00F5E95C /* init.lua */; };
 		9E28172C191BEEAA00F5E95C /* ScriptDef.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E28172A191BEEAA00F5E95C /* ScriptDef.cpp */; };
 		9E28172F191BFC5400F5E95C /* AssetType.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E28172D191BFC5400F5E95C /* AssetType.cpp */; };
 		9E281738191C5F7D00F5E95C /* LuaDebug.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E281736191C5F7D00F5E95C /* LuaDebug.cpp */; };
@@ -152,7 +151,6 @@
 		9E2816FD191AA9AC00F5E95C /* libpng14.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libpng14.a; path = ../libraries/lib/osx/libpng14.a; sourceTree = "<group>"; };
 		9E2816FE191AA9AC00F5E95C /* libz.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libz.a; path = ../libraries/lib/osx/libz.a; sourceTree = "<group>"; };
 		9E28170B191ABECA00F5E95C /* ScriptDef.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScriptDef.h; sourceTree = "<group>"; };
-		9E28170C191ACAFD00F5E95C /* init.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = init.lua; path = ../resources/init.lua; sourceTree = "<group>"; };
 		9E281718191BB33A00F5E95C /* ClassBinder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClassBinder.h; sourceTree = "<group>"; };
 		9E28171C191BB8D000F5E95C /* CinderEventBinders.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CinderEventBinders.h; sourceTree = "<group>"; };
 		9E28171D191BBAB900F5E95C /* GameObjectBinder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameObjectBinder.h; sourceTree = "<group>"; };
@@ -175,6 +173,7 @@
 		9E281739191C5FDF00F5E95C /* LuaDebugBinder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LuaDebugBinder.h; sourceTree = "<group>"; };
 		9E28173B191C722C00F5E95C /* yaml-lua-0.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "yaml-lua-0.2.dylib"; path = "../libraries/lib/osx/yaml-lua-0.2.dylib"; sourceTree = "<group>"; };
 		9E28173D191C7AA600F5E95C /* yaml.so */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = yaml.so; path = ../libraries/lib/osx/yaml.so; sourceTree = "<group>"; };
+		9E28173F191C871300F5E95C /* CinderQuatBinders.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CinderQuatBinders.h; sourceTree = "<group>"; };
 		9E36F8801917CBAC0098B3C0 /* BatchedMesh.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BatchedMesh.h; sourceTree = "<group>"; };
 		9E36F8811917CC640098B3C0 /* BatchedMesh.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BatchedMesh.cpp; sourceTree = "<group>"; };
 		9E36F88419180E8F0098B3C0 /* Transform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Transform.cpp; sourceTree = "<group>"; };
@@ -375,7 +374,6 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				9E28170C191ACAFD00F5E95C /* init.lua */,
 				D756B7AFE4AB4AE4873DFF67 /* CinderApp.icns */,
 				488B8CB53AA24E43BA540682 /* Info.plist */,
 			);
@@ -584,6 +582,7 @@
 				9E281727191BE29B00F5E95C /* CinderMatrixBinders.h */,
 				9E281728191BE83700F5E95C /* GameComponentBinder.h */,
 				9E281739191C5FDF00F5E95C /* LuaDebugBinder.h */,
+				9E28173F191C871300F5E95C /* CinderQuatBinders.h */,
 			);
 			path = ClassBinders;
 			sourceTree = "<group>";
@@ -815,7 +814,6 @@
 			files = (
 				9E28173E191C7AA600F5E95C /* yaml.so in Resources */,
 				51C21CD6D341426891EE6300 /* CinderApp.icns in Resources */,
-				9E28170D191ACAFD00F5E95C /* init.lua in Resources */,
 				9E10054B18EA355F00EC5213 /* assets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -9,7 +9,9 @@
 #include "BindingManager.h"
 #include "Utils.h"
 #include "LuaExecutionException.h"
+#include "luabind/class_info.hpp"
 
+#include "GameComponentBinder.h"
 #include "CinderEventBinders.h"
 #include "GameObjectBinder.h"
 #include "TransformBinder.h"
@@ -23,6 +25,8 @@
 #include "CinderVecBinders.h"
 #include "CinderMatrixBinders.h"
 #include "LuaDebugBinder.h"
+#include "CinderQuatBinders.h"
+#include "AssetDefBinders.h"
 
 BindingManager::BindingManager() {}
 
@@ -76,6 +80,11 @@ extern "C" int initLuaModules(lua_State *L) {
   ClassBinder<Matrix33d>::Bind("Matrix33d", L);
   ClassBinder<Matrix22f>::Bind("Matrix22f", L);
   ClassBinder<Matrix22d>::Bind("Matrix22d", L);
+
+  ClassBinder<Quatf>::Bind("Quatf", L);
+  ClassBinder<Quatd>::Bind("Quatd", L);
+
+  luabind::bind_class_info(L);
 
   // Make sure require path includes are right
   lua_pushstring(L, "package");

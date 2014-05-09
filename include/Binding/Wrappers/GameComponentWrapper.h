@@ -12,7 +12,7 @@
 #include "GameComponent.h"
 #include "LuaBindDeps.h"
 
-struct GameComponentWrapper : GameComponent, luabind::wrap_base {
+struct GameComponentWrapper : public GameComponent, public luabind::wrap_base {
   GameComponentWrapper() : GameComponent() {}
   // Call registers
   virtual void setup() {

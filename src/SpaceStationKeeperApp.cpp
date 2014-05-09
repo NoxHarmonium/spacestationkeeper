@@ -119,6 +119,16 @@ void SpaceStationKeeperApp::scanAssetsAndExecuteScripts() {
       }
     }
   }
+
+  try {
+    // TODO: Wrap in nicer function
+    _bindingManager->executeString("LoadScene('/Users/seandawson/Development/"
+                                   "spacestationkeeper/assets/scenes/"
+                                   "mainscene.yaml')");
+  }
+  catch (const LuaExecutionException &e) {
+    cout << "-->    Exception when loading scene: " << e.what() << endl;
+  }
 }
 
 string SpaceStationKeeperApp::getRelativePath(

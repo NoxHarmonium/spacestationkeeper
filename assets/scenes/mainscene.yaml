@@ -1,12 +1,12 @@
 --- # Main Scene
 GameObjects:
     -   RenderInfo:
-            localPosition: [0,0,0]
-            localRotatiom: [0,0,0,0]
+            localPosition: [1.0,2.0,3.5]
+            localRotation: [0,0,0,0]
             localScale:    [1,1,1]
         Components:
-            -   ref:  scripts/gamecomponents/TestComponent
+            -   type: TestComponent
                 text: Test Text 1
-            -   ref:  scripts/gamecomponents/TestComponent
-                text: Test Text 1
+            -   ref:  TestComponent
+                text: Test Text 2
 

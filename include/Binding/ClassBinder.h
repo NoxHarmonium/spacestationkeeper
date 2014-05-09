@@ -10,12 +10,14 @@
 #define SpaceStationKeeper_ClassBinder_h
 
 #include "LuaBindDeps.h"
+#include <stdexcept>
 
 // Specialise this template to create binders
 
 template <typename... T> struct ClassBinder {
   static void Bind(const char *name, lua_State *L) {
-    luabind::module(L)[luabind::class_<T...>(name)];
+    throw runtime_error("You need to specialise this class!");
+    // luabind::module(L)[luabind::class_<T...>(name)];
   }
 };
 

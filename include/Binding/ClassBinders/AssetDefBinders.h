@@ -6,8 +6,8 @@
 //
 //
 
-#ifndef SpaceStationKeeper_AssetDefBase_h
-#define SpaceStationKeeper_AssetDefBase_h
+#ifndef SpaceStationKeeper_AssetDefBinders_h
+#define SpaceStationKeeper_AssetDefBinders_h
 
 #include "ClassBinder.h"
 #include "AssetDefBase.h"

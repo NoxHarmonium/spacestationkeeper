@@ -18,38 +18,40 @@ template <> struct ClassBinder<GameComponent> {
   // special and has a wrapper
 
   static void Bind(const char *name, lua_State *L) {
-    module(L)[class_<GameComponent, GameComponentWrapper>(name)
-                  .def(constructor<>())
-                  .def("setup", &GameComponent::setup,
-                       &GameComponentWrapper::default_setup)
-                  .def("shutdown", &GameComponent::shutdown,
-                       &GameComponentWrapper::default_shutdown)
-                  .def("update", &GameComponent::update,
-                       &GameComponentWrapper::default_update)
-                  .def("draw", &GameComponent::draw,
-                       &GameComponentWrapper::default_draw)
-                  .def("mouseDown", &GameComponent::mouseDown,
-                       &GameComponentWrapper::default_mouseDown)
-                  .def("mouseWheel", &GameComponent::mouseWheel,
-                       &GameComponentWrapper::default_mouseWheel)
-                  .def("mouseMove", &GameComponent::mouseMove,
-                       &GameComponentWrapper::default_mouseMove)
-                  .def("mouseDrag", &GameComponent::mouseDrag,
-                       &GameComponentWrapper::default_mouseDrag)
-                  .def("touchesBegan", &GameComponent::touchesBegan,
-                       &GameComponentWrapper::default_touchesBegan)
-                  .def("touchesMoved", &GameComponent::touchesMoved,
-                       &GameComponentWrapper::default_touchesMoved)
-                  .def("touchesEnded", &GameComponent::touchesEnded,
-                       &GameComponentWrapper::default_touchesEnded)
-                  .def("keyDown", &GameComponent::keyDown,
-                       &GameComponentWrapper::default_keyDown)
-                  .def("keyUp", &GameComponent::keyUp,
-                       &GameComponentWrapper::default_keyUp)
-                  .def("resize", &GameComponent::resize,
-                       &GameComponentWrapper::default_resize)
-                  .def("fileDrop", &GameComponent::fileDrop,
-                       &GameComponentWrapper::default_fileDrop)];
+    cout << "deffers binding game comp" << endl;
+    luabind::module(
+        L)[luabind::class_<GameComponent, GameComponentWrapper>(name)
+               .def(luabind::constructor<>())
+               .def("setup", &GameComponent::setup,
+                    &GameComponentWrapper::default_setup)
+               .def("shutdown", &GameComponent::shutdown,
+                    &GameComponentWrapper::default_shutdown)
+               .def("update", &GameComponent::update,
+                    &GameComponentWrapper::default_update)
+               .def("draw", &GameComponent::draw,
+                    &GameComponentWrapper::default_draw)
+               .def("mouseDown", &GameComponent::mouseDown,
+                    &GameComponentWrapper::default_mouseDown)
+               .def("mouseWheel", &GameComponent::mouseWheel,
+                    &GameComponentWrapper::default_mouseWheel)
+               .def("mouseMove", &GameComponent::mouseMove,
+                    &GameComponentWrapper::default_mouseMove)
+               .def("mouseDrag", &GameComponent::mouseDrag,
+                    &GameComponentWrapper::default_mouseDrag)
+               .def("touchesBegan", &GameComponent::touchesBegan,
+                    &GameComponentWrapper::default_touchesBegan)
+               .def("touchesMoved", &GameComponent::touchesMoved,
+                    &GameComponentWrapper::default_touchesMoved)
+               .def("touchesEnded", &GameComponent::touchesEnded,
+                    &GameComponentWrapper::default_touchesEnded)
+               .def("keyDown", &GameComponent::keyDown,
+                    &GameComponentWrapper::default_keyDown)
+               .def("keyUp", &GameComponent::keyUp,
+                    &GameComponentWrapper::default_keyUp)
+               .def("resize", &GameComponent::resize,
+                    &GameComponentWrapper::default_resize)
+               .def("fileDrop", &GameComponent::fileDrop,
+                    &GameComponentWrapper::default_fileDrop)];
   }
 };
 
