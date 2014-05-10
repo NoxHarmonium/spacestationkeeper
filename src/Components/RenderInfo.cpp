@@ -28,9 +28,7 @@ AxisAlignedBox3f RenderInfo::getBounds() {
 
 void RenderInfo::draw() {
   if (renderEnabled) {
-    RenderInfo *renderInfo = this->getRenderInfo();
-
-    startDraw(renderInfo);
+    startDraw(this);
 
     if (_batchMode) {
       if (!_addedToBatch) {
@@ -41,14 +39,18 @@ void RenderInfo::draw() {
       // Rendering of batched mesh should be done elsewhere (where the batched
       // mesh is defined).
     } else {
-      renderInfo->material->bind();
-      if (this->mesh != nullptr) {
-        renderInfo->mesh->render();
+      if (this->material != nullptr) {
+        this->material->bind();
       }
-      renderInfo->material->unbind();
+      if (this->mesh != nullptr) {
+        this->mesh->render();
+      }
+      if (this->material != nullptr) {
+        this->material->unbind();
+      }
     }
 
-    endDraw(renderInfo);
+    endDraw(this);
   }
 }
 void RenderInfo::batch(BatchedMeshRef batchedMeshRef) {

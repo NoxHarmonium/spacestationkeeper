@@ -38,6 +38,7 @@ public:
   /*! Adds a mesh to the batch. */
   virtual void addMesh(MaterialRef material, BaseMeshRef mesh,
                        TransformRef transform = TransformRef());
+
   // TODO: Ability to move mesh to different material or remove mesh
 
 private:

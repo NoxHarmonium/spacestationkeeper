@@ -11,7 +11,10 @@
 #include "LuaExecutionException.h"
 #include "luabind/class_info.hpp"
 #include "ComponentDrivenApp.h"
+
 #include <luabind/adopt_policy.hpp>
+#include <luabind/shared_ptr_converter.hpp>
+#include <luabind/std_shared_ptr_converter.hpp>
 
 #include "GameComponentBinder.h"
 #include "CinderEventBinders.h"
@@ -30,6 +33,9 @@
 #include "CinderQuatBinders.h"
 #include "AssetDefBinders.h"
 #include "GameCameraBinder.h"
+#include "SimpleMeshBinder.h"
+#include "CinderRectBinders.h"
+#include "BatchedMeshBinder.h"
 
 using adopt2 = luabind::detail::policy_cons<luabind::detail::adopt_policy<2>,
                                             luabind::detail::null_type>;
@@ -50,6 +56,10 @@ void app_registerGameObject(GameObject *gameObject) {
   ComponentDrivenApp::Instance()->registerGameObject(gameObject);
 }
 
+AssetLoaderBase *app_getAssetLoader() {
+  return ComponentDrivenApp::Instance()->getAssetLoader();
+}
+
 extern "C" int initLuaModules(lua_State *L) {
   using namespace luabind;
   luabind::open(L);
@@ -66,11 +76,15 @@ extern "C" int initLuaModules(lua_State *L) {
   ClassBinder<GameObject>::Bind("GameObject", L);
   ClassBinder<Transform>::Bind("Transform", L);
   ClassBinder<BaseMesh>::Bind("BaseMesh", L);
+  ClassBinder<SimpleMesh>::Bind("SimpleMesh", L);
   ClassBinder<Material>::Bind("Material", L);
   ClassBinder<RenderInfo>::Bind("RenderInfo", L);
   ClassBinder<AssetDefBase>::Bind("AssetDefBase", L);
+  ClassBinder<TextureDef>::Bind("TextureDef", L);
+  ClassBinder<ShaderDef>::Bind("ShaderDef", L);
   ClassBinder<AssetLoaderBase>::Bind("AssetLoaderBase", L);
   ClassBinder<AxisAlignedBox3f>::Bind("AxisAlignedBox3f", L);
+  ClassBinder<BatchedMesh>::Bind("BatchedMesh", L);
 
   ClassBinder<Color>::Bind("Color", L);
   ClassBinder<Colorf>::Bind("Colorf", L);
@@ -99,11 +113,15 @@ extern "C" int initLuaModules(lua_State *L) {
   ClassBinder<Quatf>::Bind("Quatf", L);
   ClassBinder<Quatd>::Bind("Quatd", L);
 
+  ClassBinder<Rectf>::Bind("Rectf", L);
+  ClassBinder<Rectd>::Bind("Rectd", L);
+
   // App static functions
   module(L)[def("app_getWindowWidth", &ci::app::getWindowWidth)];
   module(L)[def("app_getWindowHeight", &ci::app::getWindowHeight)];
   module(L)[def("app_getDeltaTime", &app_getDeltaTime)];
   module(L)[def("app_registerGameObject", &app_registerGameObject)];
+  module(L)[def("app_getAssetLoader", &app_getAssetLoader)];
 
   luabind::bind_class_info(L);
 

@@ -21,3 +21,15 @@ GameObjects:
                 text: Test Text 2
             -   type: TestComponent
 
+    -   name: GameGridObject
+        RenderInfo:
+            localPosition: [0,0,0]
+            localRotation: [0,0,0,0]
+            localScale:    [1,1,1]
+        Components:
+            -   type: GameGrid
+                defaultTileset: "tilesets/asteroid"
+                defaultShader:  "shaders/default"
+                size: [10,10]
+                depth: 1
+

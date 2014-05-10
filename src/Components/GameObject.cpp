@@ -63,6 +63,9 @@ void GameObject::update() {
 // response to
 // OS-prompted requests for refreshes.
 void GameObject::draw() {
+  // Perform automatic GO rendering
+  renderer->draw();
+
   for (auto &comp : getRegisteredComponentsCopy()) {
     if (comp->enabled &&
         _bindingManager->catchLuaExceptions([comp]() { comp->draw(); })) {

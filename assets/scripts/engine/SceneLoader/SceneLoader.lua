@@ -40,8 +40,10 @@ function LoadComponent(componentNode)
     comp = _G[type]()
 
     for key, value in pairs(componentNode) do
+        convertedValue = ConvertValue(key, value, comp)
+
         if key ~= 'type' then
-            comp[key] = value;
+            comp[key] = convertedValue;
         end
     end
 

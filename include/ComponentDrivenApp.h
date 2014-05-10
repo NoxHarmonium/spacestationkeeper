@@ -57,6 +57,13 @@ public:
   // Get the time in seconds since the last update
   float getDeltaTime() { return _deltaTime; }
 
+  // Sets the asset loader used by this app
+  void setAssetLoader(AssetLoaderBase *assetLoader) {
+    _assetLoader = assetLoader;
+  }
+  // Gets the asset loader used by this app
+  AssetLoaderBase *getAssetLoader() { return _assetLoader; }
+
   //! Override to perform any application setup after the Renderer has been
   // initialized.
   virtual void setup();
@@ -118,6 +125,7 @@ private:
   map<string, void *> _stateMap;
   float _lastElapsedTime = NAN;
   float _deltaTime = 0.0f;
+  AssetLoaderBase *_assetLoader;
 
   // Static Fields
   static ComponentDrivenApp *_instance;

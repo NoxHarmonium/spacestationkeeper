@@ -34,9 +34,9 @@ TriMesh *SimpleMesh::getInternalMesh(Matrix44f transformMatrix) {
   return meshCopy;
 }
 
-SimpleMeshRef SimpleMesh::generateQuad(Rectf dimensions,
-                                       Rectf uvCoords = Rectf(0.0f, 0.0f, 1.0f,
-                                                              1.0f)) {
+BaseMeshRef SimpleMesh::generateQuad(Rectf dimensions,
+                                     Rectf uvCoords = Rectf(0.0f, 0.0f, 1.0f,
+                                                            1.0f)) {
 
   // cout << "SimpleMesh::GenerateQuad(); dims: " << dimensions
   //     << " uvCoords: " << uvCoords << endl;
@@ -74,5 +74,5 @@ SimpleMeshRef SimpleMesh::generateQuad(Rectf dimensions,
 
   SimpleMeshRef meshWrapper = make_shared<SimpleMesh>(mesh);
   meshWrapper->_bounds = mesh.calcBoundingBox();
-  return meshWrapper;
+  return dynamic_pointer_cast<BaseMesh>(meshWrapper);
 }

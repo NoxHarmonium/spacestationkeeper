@@ -38,7 +38,7 @@ public:
   // Static Methods
   /*! Generates a simple quad with the specified dimenstions and UV coordinates.
    */
-  static std::shared_ptr<SimpleMesh> generateQuad(Rectf dimensions, Rectf uv);
+  static std::shared_ptr<BaseMesh> generateQuad(Rectf dimensions, Rectf uv);
 
 private:
   // Fields

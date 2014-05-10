@@ -52,6 +52,9 @@ public:
   int getFrameFromPassibility(const Passibility passability);
   /*! Gets the total number of frames. */
   int getFrameCount();
+  /*! Gets the uv coordinates to render the specified frame. */
+  Rectf getFrameUvCoords(const int frameNumber);
+
   /*! Gets the type definition of this asset definition. */
   virtual AssetType getAssetType();
 

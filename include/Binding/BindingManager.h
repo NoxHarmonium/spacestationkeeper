@@ -19,6 +19,7 @@ extern "C" { int initLuaModules(lua_State *L); }
 // Free functions
 float app_getDeltaTime();
 void app_registerGameObject(GameObject *gameObject);
+AssetLoaderBase *app_getAssetLoader();
 
 class BindingManager {
 public:

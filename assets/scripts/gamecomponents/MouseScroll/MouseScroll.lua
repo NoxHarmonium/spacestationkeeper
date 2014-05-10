@@ -30,8 +30,6 @@ function MouseScroll:setup()
 end
 
 function MouseScroll:update()
-    LuaDebug.Log("1")
-
     mp = self._mousePos;
     dt = app_getDeltaTime()
     ww = app_getWindowWidth()
@@ -74,7 +72,7 @@ function MouseScroll:draw()
     go = self.gameObject;
     rd = go.renderer;
 
-    LuaDebug.Log('Position: x: ' .. rd.transform.localPosition.x .. ' y: ' .. rd.transform.localPosition.y)
+    --LuaDebug.Log('Position: x: ' .. rd.transform.localPosition.x .. ' y: ' .. rd.transform.localPosition.y)
 end
 
 function MouseScroll:mouseMove(event)
@@ -95,10 +93,6 @@ end
 
 function MouseScroll:mouseDown(event)
 
-end
-
-function MouseScroll:resize()
-    LuaDebug.Log('dsddsds')
 end
 
 function MouseScroll:mouseWheel(event)

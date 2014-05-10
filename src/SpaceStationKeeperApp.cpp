@@ -26,6 +26,8 @@ void SpaceStationKeeperApp::setup() {
   //_camera = new GameCamera();
 
   _fileAssetLoader = make_shared<FileAssetLoader>(Utils::getResourcesPath());
+  setAssetLoader(dynamic_pointer_cast<AssetLoaderBase>(_fileAssetLoader)
+                     .get()); // TODO: Should it be a shared ptr?
   _bindingManager = BindingManager::Instance();
   _bindingManager->initialiseBindings();
   scanAssetsAndExecuteScripts();

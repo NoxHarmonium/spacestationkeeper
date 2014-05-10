@@ -18,6 +18,12 @@ template <> struct ClassBinder<AssetLoaderBase> {
                            .def("loadAsset",
                                 (AssetDefBaseRef (AssetLoaderBase::*)(string)) &
                                     AssetLoaderBase::loadAsset)
+                           .def("loadAssetAsTextureDef",
+                                (TextureDefRef (AssetLoaderBase::*)(string)) &
+                                    AssetLoaderBase::loadAsset<TextureDef>)
+                           .def("loadAssetAsShaderDef",
+                                (ShaderDefRef (AssetLoaderBase::*)(string)) &
+                                    AssetLoaderBase::loadAsset<ShaderDef>)
                            .def("unloadAsset", &AssetLoaderBase::unloadAsset)];
   }
 };

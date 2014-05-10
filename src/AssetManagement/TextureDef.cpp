@@ -84,6 +84,21 @@ int TextureDef::getFrameCount() {
   return xFrames * yFrames;
 }
 
+Rectf TextureDef::getFrameUvCoords(const int frameNumber) {
+  int tileXCount = (this->getWidth() / this->getFrameWidth());
+  int tileYCount = (this->getHeight() / this->getFrameHeight());
+  int xIndex = frameNumber % tileXCount;
+  int yIndex = frameNumber / tileYCount;
+  float normalisedBorderX = this->getBorder() / this->getWidth();
+  float normalisedBorderY = this->getBorder() / this->getHeight();
+  Rectf r;
+  r.x1 = (xIndex / (float)tileXCount) + normalisedBorderX;
+  r.x2 = ((xIndex + 1) / (float)tileXCount) - normalisedBorderX;
+  r.y1 = (yIndex / (float)tileYCount) + normalisedBorderY;
+  r.y2 = ((yIndex + 1) / (float)tileYCount) - normalisedBorderY;
+  return r;
+}
+
 AssetType TextureDef::getAssetType() { return GetAssetType<TextureDef>::value; }
 
 // Methods

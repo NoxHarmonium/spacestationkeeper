@@ -8,6 +8,7 @@ function TestComponent:__init()
 
     -- Serialisation properties
     Property(self, 'text', 'string')
+
 end
 
 function TestComponent:setup()
