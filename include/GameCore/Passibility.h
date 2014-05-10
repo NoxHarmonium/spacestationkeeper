@@ -11,15 +11,18 @@
 
 #include "EnumHelper.h"
 
-enum E_Passibility {
-  None = 0,
-  North = 1 << 0,
-  South = 1 << 1,
-  East = 1 << 2,
-  West = 1 << 3,
-  Unused = 1 << 4
+class Passibility : public EnumHelper {
+public:
+  Passibility() : EnumHelper() {}
+  Passibility(int initialValue) : EnumHelper(initialValue) {}
+  enum E_Passibility {
+    None = 0,
+    North = 1 << 0,
+    South = 1 << 1,
+    East = 1 << 2,
+    West = 1 << 3,
+    Unused = 1 << 4
+  };
 };
-
-typedef EnumHelper Passibility;
 
 #endif

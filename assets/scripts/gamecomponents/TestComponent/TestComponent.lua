@@ -16,10 +16,10 @@ function TestComponent:setup()
 end
 
 function TestComponent:update()
-    self.updateCount = self.updateCount + 1
-    if self.updateCount % 120 == 0 then
-        LuaDebug.Log('Update')
-    end
+    --self.updateCount = self.updateCount + 1
+    --if self.updateCount % 120 == 0 then
+    --    LuaDebug.Log('Update')
+    --end
 end
 
 

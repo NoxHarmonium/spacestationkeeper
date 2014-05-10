@@ -87,27 +87,27 @@ template <> struct convert<Passibility> {
 
     if (Utils::existsIn(passString, "-")) {
       // Tile is unused
-      passibility.setFlag(E_Passibility::Unused);
+      passibility.setFlag(Passibility::E_Passibility::Unused);
       return true;
     }
 
     if (passString == "") {
       // No direction is passable
-      passibility.setFlag(E_Passibility::None);
+      passibility.setFlag(Passibility::E_Passibility::None);
       return true;
     }
 
     if (Utils::existsIn(passString, "n")) {
-      passibility.setFlag(E_Passibility::North);
+      passibility.setFlag(Passibility::E_Passibility::North);
     }
     if (Utils::existsIn(passString, "e")) {
-      passibility.setFlag(E_Passibility::East);
+      passibility.setFlag(Passibility::E_Passibility::East);
     }
     if (Utils::existsIn(passString, "s")) {
-      passibility.setFlag(E_Passibility::South);
+      passibility.setFlag(Passibility::E_Passibility::South);
     }
     if (Utils::existsIn(passString, "w")) {
-      passibility.setFlag(E_Passibility::West);
+      passibility.setFlag(Passibility::E_Passibility::West);
     }
 
     //    cout << " " << passibility << endl;

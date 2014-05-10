@@ -36,6 +36,7 @@
 #include "SimpleMeshBinder.h"
 #include "CinderRectBinders.h"
 #include "BatchedMeshBinder.h"
+#include "EnumHelperBinder.h"
 
 using adopt2 = luabind::detail::policy_cons<luabind::detail::adopt_policy<2>,
                                             luabind::detail::null_type>;
@@ -85,6 +86,8 @@ extern "C" int initLuaModules(lua_State *L) {
   ClassBinder<AssetLoaderBase>::Bind("AssetLoaderBase", L);
   ClassBinder<AxisAlignedBox3f>::Bind("AxisAlignedBox3f", L);
   ClassBinder<BatchedMesh>::Bind("BatchedMesh", L);
+  ClassBinder<EnumHelper>::Bind("EnumHelper", L);
+  ClassBinder<Passibility>::Bind("Passibility", L);
 
   ClassBinder<Color>::Bind("Color", L);
   ClassBinder<Colorf>::Bind("Colorf", L);

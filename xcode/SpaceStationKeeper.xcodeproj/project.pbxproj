@@ -117,6 +117,7 @@
 		9E0E1E8119048917009EECFD /* BindingManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BindingManager.h; sourceTree = "<group>"; };
 		9E10054A18EA355F00EC5213 /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; name = assets; path = ../assets; sourceTree = "<group>"; };
 		9E1AE48B191E80E10083E6D2 /* BatchedMeshBinder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BatchedMeshBinder.h; sourceTree = "<group>"; };
+		9E1AE48C191EA3E20083E6D2 /* EnumHelperBinder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EnumHelperBinder.h; sourceTree = "<group>"; };
 		9E21C4B218DA14DE00E927D6 /* libyaml-cpp.0.5.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = "libyaml-cpp.0.5.1.dylib"; sourceTree = "<group>"; };
 		9E238FD91919DB7800F642A5 /* TypedEvent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TypedEvent.h; sourceTree = "<group>"; };
 		9E2816E5191A979000F5E95C /* GameObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameObject.h; sourceTree = "<group>"; };
@@ -496,6 +497,7 @@
 				9E3CD3FB191DD1F7000E6778 /* SimpleMeshBinder.h */,
 				9E3CD3FC191DD2D2000E6778 /* CinderRectBinders.h */,
 				9E1AE48B191E80E10083E6D2 /* BatchedMeshBinder.h */,
+				9E1AE48C191EA3E20083E6D2 /* EnumHelperBinder.h */,
 			);
 			path = ClassBinders;
 			sourceTree = "<group>";

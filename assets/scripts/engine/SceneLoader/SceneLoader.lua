@@ -70,8 +70,12 @@ function LoadScene(path)
                 go:addComponent(comp)
             end
         end
-
-        app_registerGameObject(go)
-        table.insert(gameObjectMap,go)
+        AddGameObject(go)
+        
     end
+end
+
+function AddGameObject(go) 
+    app_registerGameObject(go)
+        table.insert(gameObjectMap,go)
 end

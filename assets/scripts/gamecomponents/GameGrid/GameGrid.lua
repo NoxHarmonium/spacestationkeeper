@@ -31,15 +31,17 @@ function GameGrid:setup()
     for x = 1 , self.size.x do
         for y = 1, self.size.y do
             tile = GameObject()
-                LuaDebug.Log("d");
             tile.renderer.transform.localPosition = Vec3f(
                 x * frameWidth,
                 y * frameHeight,
                 self.depth
             )
             
+            passibility = GetPassibility(x, y, self.size.x, self.size.y)
+            texFrame = mat.texture:getFrameFromPassibility(passibility)
+
             dims = Rectf(0, 0, frameWidth, frameHeight)
-            uvCoords = mat.texture:getFrameUvCoords(1)
+            uvCoords = mat.texture:getFrameUvCoords(texFrame)
 
             mesh = SimpleMesh.generateQuad(dims, uvCoords)
 
@@ -48,8 +50,7 @@ function GameGrid:setup()
 
             tile.renderer:batch(batchedMesh)
 
-            app_registerGameObject(tile)
-            table.insert(gameObjectMap,tile)
+            AddGameObject(tile)
         end
     end
 
@@ -57,6 +58,30 @@ end
 
 function GameGrid:update()
         
+end
+
+function GetPassibility(x, y, maxX, maxY)
+    passibility = Passibility()
+
+    if x == 1 then
+      passibility:setFlag(Passibility.West)
+    end
+    if y == 1 then
+      passibility:setFlag(Passibility.North)
+    end
+    if x == maxX then
+      passibility:setFlag(Passibility.East)
+    end
+    if y == maxY then
+      passibility:setFlag(Passibility.South)
+    end
+    -- All others are set to none
+    if passibility:getInternalValue() == 0  then
+      passibility:setFlag(Passibility.None)
+    end
+
+    return passibility;
+
 end
 
 
