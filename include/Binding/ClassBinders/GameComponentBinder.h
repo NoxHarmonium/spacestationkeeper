@@ -32,6 +32,8 @@ template <> struct ClassBinder<GameComponent> {
                     &GameComponentWrapper::default_draw)
                .def("mouseDown", &GameComponent::mouseDown,
                     &GameComponentWrapper::default_mouseDown)
+               .def("mouseUp", &GameComponent::mouseUp,
+                    &GameComponentWrapper::default_mouseUp)
                .def("mouseWheel", &GameComponent::mouseWheel,
                     &GameComponentWrapper::default_mouseWheel)
                .def("mouseMove", &GameComponent::mouseMove,

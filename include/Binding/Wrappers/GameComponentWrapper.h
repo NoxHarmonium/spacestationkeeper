@@ -30,6 +30,9 @@ struct GameComponentWrapper : public GameComponent, public luabind::wrap_base {
   virtual void mouseDown(MouseEvent event) {
     call<void>("mouseDown", event);
   };
+  virtual void mouseUp(MouseEvent event) {
+    call<void>("mouseUp", event);
+  };
   virtual void mouseWheel(MouseEvent event) {
     call<void>("mouseWheel", event);
   };
@@ -82,6 +85,9 @@ struct GameComponentWrapper : public GameComponent, public luabind::wrap_base {
   }
   static void default_mouseDown(GameComponent *ptr, MouseEvent event) {
     return ptr->GameComponent::mouseDown(event);
+  }
+  static void default_mouseUp(GameComponent *ptr, MouseEvent event) {
+    return ptr->GameComponent::mouseUp(event);
   }
   static void default_mouseWheel(GameComponent *ptr, MouseEvent event) {
     return ptr->GameComponent::mouseWheel(event);
