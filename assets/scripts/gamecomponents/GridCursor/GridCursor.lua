@@ -56,7 +56,6 @@ function GridCursor:mouseMove(event)
         local x = math.floor(mousePos.x / self._frameWidth) * self._frameWidth
         local y = math.floor(mousePos.y / self._frameHeight) * self._frameHeight
         cursorRenderer.transform.localPosition = Vec3f(x, y, self.depth)
-        LuaDebug.Log('Now at: ' .. tostring(renderer.transform.localPosition))
     else
         cursorRenderer.material.baseColor = ColorAf(1,1,1,0)
     end

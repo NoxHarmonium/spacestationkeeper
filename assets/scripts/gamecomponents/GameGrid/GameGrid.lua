@@ -14,37 +14,37 @@ end
 
 function GameGrid:setup()
     LuaDebug.Log('GameGrid:setup()')
-    renderer = self.gameObject.renderer;
+    local renderer = self.gameObject.renderer;
     renderer.transform.localPosition.z = self.depth;
     -- Create the batched mesh
     -- The materials are handled by the batched mesh so 
     -- we don't have to set self.gameObject.renderer.material
-    batchedMesh = BatchedMesh()
+    local batchedMesh = BatchedMesh()
     renderer.mesh = batchedMesh
 
-    frameWidth = self.defaultTileset:getFrameWidth()
-    frameHeight = self.defaultTileset:getFrameHeight()
+    local frameWidth = self.defaultTileset:getFrameWidth()
+    local frameHeight = self.defaultTileset:getFrameHeight()
 
-    mat = Material()
+    local mat = Material()
     mat.texture = self.defaultTileset
     mat.shader = self.shader
 
     for x = 1 , self.size.x do
         for y = 1, self.size.y do
-            tile = GameObject()
+            local tile = GameObject()
             tile.renderer.transform.localPosition = Vec3f(
                 x * frameWidth,
                 y * frameHeight,
                 self.depth
             )
             
-            passibility = GetPassibility(x, y, self.size.x, self.size.y)
-            texFrame = mat.texture:getFrameFromPassibility(passibility)
+            local passibility = GetPassibility(x, y, self.size.x, self.size.y)
+            local texFrame = mat.texture:getFrameFromPassibility(passibility)
 
-            dims = Rectf(0, 0, frameWidth, frameHeight)
-            uvCoords = mat.texture:getFrameUvCoords(texFrame)
+            local dims = Rectf(0, 0, frameWidth, frameHeight)
+            local uvCoords = mat.texture:getFrameUvCoords(texFrame)
 
-            mesh = SimpleMesh.generateQuad(dims, uvCoords)
+            local mesh = SimpleMesh.generateQuad(dims, uvCoords)
 
             tile.renderer.material = mat
             tile.renderer.mesh = mesh
@@ -62,7 +62,7 @@ function GameGrid:update()
 end
 
 function GetPassibility(x, y, maxX, maxY)
-    passibility = Passibility()
+    local passibility = Passibility()
 
     if x == 1 then
       passibility:setFlag(Passibility.West)
