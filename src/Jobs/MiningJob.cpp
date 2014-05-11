@@ -6,6 +6,7 @@
 //
 //
 
+/* // Needs a rewrite for lua
 #include "MapPoint.h"
 #include "GameGrid.h"
 #include "Resource.h"
@@ -56,4 +57,4 @@ void MiningJob::update(float deltaTime) {
 
     _gameGrid->fixMultipleTileFrameFromAdjacent(_targetMapPoint);
   }
-}
+} */

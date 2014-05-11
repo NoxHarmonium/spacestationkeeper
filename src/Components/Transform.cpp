@@ -10,8 +10,14 @@
 
 using namespace ci;
 
-Matrix44f Transform::getTransformMatrix() {
+Matrix44f Transform::getTransformMatrixLocal() {
   Matrix44f tMatrix;
+  recursiveApplyTransformMatrix(this, &tMatrix);
+  return tMatrix;
+}
+
+Matrix44f Transform::getTransformMatrixWorld() {
+  Matrix44f tMatrix = gl::getModelView().inverted();
   recursiveApplyTransformMatrix(this, &tMatrix);
   return tMatrix;
 }

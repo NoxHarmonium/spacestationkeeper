@@ -7,6 +7,7 @@
 //
 
 #include "GameObject.h"
+#include <stdexcept>
 
 // Constructors/Destructors
 GameObject::GameObject() {
@@ -16,12 +17,30 @@ GameObject::GameObject() {
 GameObject::~GameObject() { delete renderer; }
 
 void GameObject::addComponent(GameComponent *component) {
-  _components.insert(component);
+  string id = component->getId();
+  checkIdValidity(id);
+  _components[component->getId()] = component;
   component->gameObject = this; // TODO: Encapsulate more?
 }
 
 void GameObject::removeComponent(GameComponent *component) {
-  _components.erase(component);
+  _components.erase(component->getId());
+}
+
+GameComponent *GameObject::getComponent(string id) {
+  if (_components.count(id) == 0) {
+    throw runtime_error("No component found for id: " + id);
+  }
+  return _components[id];
+}
+
+void GameObject::reassignId(GameComponent *component, string newId) {
+  // This method exists because calling remove and then add again may cause some
+  // unwanted logic to fire
+  // when more functionallity is implemented
+  checkIdValidity(newId);
+  _components.erase(component->getId());
+  _components[component->getId()] = component;
 }
 
 RenderInfo *GameObject::getRenderer() { return renderer; }
@@ -29,7 +48,8 @@ RenderInfo *GameObject::getRenderer() { return renderer; }
 //! Forwards event to component to perform any application setup after the
 // renderer has been initialized.
 void GameObject::setup() {
-  for (auto &comp : getRegisteredComponentsCopy()) {
+  for (auto &kvp : getRegisteredComponentsCopy()) {
+    GameComponent *comp = kvp.second;
     if (comp->enabled &&
         _bindingManager->catchLuaExceptions([comp]() { comp->setup(); })) {
       cout << "Disabling component..." << endl;
@@ -40,7 +60,8 @@ void GameObject::setup() {
 //! Forwards event to component to perform any application cleanup before
 // exiting.
 void GameObject::shutdown() {
-  for (auto &comp : getRegisteredComponentsCopy()) {
+  for (auto &kvp : getRegisteredComponentsCopy()) {
+    GameComponent *comp = kvp.second;
     if (comp->enabled &&
         _bindingManager->catchLuaExceptions([comp]() { comp->shutdown(); })) {
       cout << "Disabling component..." << endl;
@@ -51,7 +72,8 @@ void GameObject::shutdown() {
 
 //! Forwards event to component to perform any once-per-loop computation.
 void GameObject::update() {
-  for (auto &comp : getRegisteredComponentsCopy()) {
+  for (auto &kvp : getRegisteredComponentsCopy()) {
+    GameComponent *comp = kvp.second;
     if (comp->enabled &&
         _bindingManager->catchLuaExceptions([comp]() { comp->update(); })) {
       cout << "Disabling component..." << endl;
@@ -66,7 +88,8 @@ void GameObject::draw() {
   // Perform automatic GO rendering
   renderer->draw();
 
-  for (auto &comp : getRegisteredComponentsCopy()) {
+  for (auto &kvp : getRegisteredComponentsCopy()) {
+    GameComponent *comp = kvp.second;
     if (comp->enabled &&
         _bindingManager->catchLuaExceptions([comp]() { comp->draw(); })) {
       cout << "Disabling component..." << endl;
@@ -77,7 +100,8 @@ void GameObject::draw() {
 
 //! Forwards event to component to receive mouse-down events.
 void GameObject::mouseDown(MouseEvent event) {
-  for (auto &comp : getRegisteredComponentsCopy()) {
+  for (auto &kvp : getRegisteredComponentsCopy()) {
+    GameComponent *comp = kvp.second;
     if (comp->enabled && _bindingManager->catchLuaExceptions([comp, event]() {
                            comp->mouseDown(event);
                          })) {
@@ -88,7 +112,8 @@ void GameObject::mouseDown(MouseEvent event) {
 }
 //! Forwards event to component to receive mouse-up events.
 void GameObject::mouseUp(MouseEvent event) {
-  for (auto &comp : getRegisteredComponentsCopy()) {
+  for (auto &kvp : getRegisteredComponentsCopy()) {
+    GameComponent *comp = kvp.second;
     if (comp->enabled && _bindingManager->catchLuaExceptions([comp, event]() {
                            comp->mouseUp(event);
                          })) {
@@ -99,7 +124,8 @@ void GameObject::mouseUp(MouseEvent event) {
 }
 //! Forwards event to component to receive mouse-wheel events.
 void GameObject::mouseWheel(MouseEvent event) {
-  for (auto &comp : getRegisteredComponentsCopy()) {
+  for (auto &kvp : getRegisteredComponentsCopy()) {
+    GameComponent *comp = kvp.second;
     if (comp->enabled && _bindingManager->catchLuaExceptions([comp, event]() {
                            comp->mouseWheel(event);
                          })) {
@@ -110,7 +136,8 @@ void GameObject::mouseWheel(MouseEvent event) {
 }
 //! Forwards event to component to receive mouse-move events.
 void GameObject::mouseMove(MouseEvent event) {
-  for (auto &comp : getRegisteredComponentsCopy()) {
+  for (auto &kvp : getRegisteredComponentsCopy()) {
+    GameComponent *comp = kvp.second;
     if (comp->enabled && _bindingManager->catchLuaExceptions([comp, event]() {
                            comp->mouseMove(event);
                          })) {
@@ -121,7 +148,8 @@ void GameObject::mouseMove(MouseEvent event) {
 }
 //! Forwards event to component to receive mouse-drag events.
 void GameObject::mouseDrag(MouseEvent event) {
-  for (auto &comp : getRegisteredComponentsCopy()) {
+  for (auto &kvp : getRegisteredComponentsCopy()) {
+    GameComponent *comp = kvp.second;
     if (comp->enabled && _bindingManager->catchLuaExceptions([comp, event]() {
                            comp->mouseDrag(event);
                          })) {
@@ -134,7 +162,8 @@ void GameObject::mouseDrag(MouseEvent event) {
 //! Forwards event to component to respond to the beginning of a multitouch
 // sequence
 void GameObject::touchesBegan(TouchEvent event) {
-  for (auto &comp : getRegisteredComponentsCopy()) {
+  for (auto &kvp : getRegisteredComponentsCopy()) {
+    GameComponent *comp = kvp.second;
     if (comp->enabled && _bindingManager->catchLuaExceptions([comp, event]() {
                            comp->touchesBegan(event);
                          })) {
@@ -146,7 +175,8 @@ void GameObject::touchesBegan(TouchEvent event) {
 //! Forwards event to component to respond to movement (drags) during a
 // multitouch sequence
 void GameObject::touchesMoved(TouchEvent event) {
-  for (auto &comp : getRegisteredComponentsCopy()) {
+  for (auto &kvp : getRegisteredComponentsCopy()) {
+    GameComponent *comp = kvp.second;
     if (comp->enabled && _bindingManager->catchLuaExceptions([comp, event]() {
                            comp->touchesMoved(event);
                          })) {
@@ -157,7 +187,8 @@ void GameObject::touchesMoved(TouchEvent event) {
 }
 //! Forwards event to component to respond to the end of a multitouch sequence
 void GameObject::touchesEnded(TouchEvent event) {
-  for (auto &comp : getRegisteredComponentsCopy()) {
+  for (auto &kvp : getRegisteredComponentsCopy()) {
+    GameComponent *comp = kvp.second;
     if (comp->enabled && _bindingManager->catchLuaExceptions([comp, event]() {
                            comp->touchesEnded(event);
                          })) {
@@ -169,7 +200,8 @@ void GameObject::touchesEnded(TouchEvent event) {
 
 //! Forwards event to component to receive key-down events.
 void GameObject::keyDown(KeyEvent event) {
-  for (auto &comp : getRegisteredComponentsCopy()) {
+  for (auto &kvp : getRegisteredComponentsCopy()) {
+    GameComponent *comp = kvp.second;
     if (comp->enabled && _bindingManager->catchLuaExceptions([comp, event]() {
                            comp->keyDown(event);
                          })) {
@@ -180,7 +212,8 @@ void GameObject::keyDown(KeyEvent event) {
 }
 //! Forwards event to component to receive key-up events.
 void GameObject::keyUp(KeyEvent event) {
-  for (auto &comp : getRegisteredComponentsCopy()) {
+  for (auto &kvp : getRegisteredComponentsCopy()) {
+    GameComponent *comp = kvp.second;
     if (comp->enabled && _bindingManager->catchLuaExceptions([comp, event]() {
                            comp->keyUp(event);
                          })) {
@@ -191,7 +224,8 @@ void GameObject::keyUp(KeyEvent event) {
 }
 //! Forwards event to component to receive window resize events.
 void GameObject::resize() {
-  for (auto &comp : getRegisteredComponentsCopy()) {
+  for (auto &kvp : getRegisteredComponentsCopy()) {
+    GameComponent *comp = kvp.second;
     if (comp->enabled &&
         _bindingManager->catchLuaExceptions([comp]() { comp->resize(); })) {
       cout << "Disabling component..." << endl;
@@ -201,7 +235,8 @@ void GameObject::resize() {
 }
 //! Forwards event to component to receive file-drop events.
 void GameObject::fileDrop(FileDropEvent event) {
-  for (auto &comp : getRegisteredComponentsCopy()) {
+  for (auto &kvp : getRegisteredComponentsCopy()) {
+    GameComponent *comp = kvp.second;
     if (comp->enabled && _bindingManager->catchLuaExceptions([comp, event]() {
                            comp->fileDrop(event);
                          })) {
@@ -211,6 +246,17 @@ void GameObject::fileDrop(FileDropEvent event) {
   }
 }
 
-set<GameComponent *> GameObject::getRegisteredComponentsCopy() {
-  return set<GameComponent *>(_components);
+map<string, GameComponent *> GameObject::getRegisteredComponentsCopy() {
+  return map<string, GameComponent *>(_components);
+}
+
+void GameObject::checkIdValidity(string id) {
+  if (id.length() == 0) {
+    throw runtime_error("An ID is required for GameComponent objects.");
+  }
+  if (_components.count(id) > 0) {
+    throw runtime_error(
+        "The component ID: " + id +
+        " already exists on this gameObject. A unique ID is required.");
+  }
 }

@@ -18,6 +18,10 @@ template <> struct ClassBinder<Transform> {
     luabind::module(
         L)[luabind::class_<Transform, TransformRef>(name)
                .def(luabind::constructor<>())
+               .def("getTransformMatrixLocal",
+                    &Transform::getTransformMatrixLocal)
+               .def("getTransformMatrixWorld",
+                    &Transform::getTransformMatrixWorld)
                .def_readwrite("localPosition", &Transform::localPosition)
                .def_readwrite("localRotation", &Transform::localPosition)
                .def_readwrite("localScale", &Transform::localPosition)

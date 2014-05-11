@@ -11,14 +11,13 @@
 #include "Utils.h"
 #include <memory>
 
-
 using namespace std;
 using namespace ci;
 using namespace ci::app;
 using namespace boost;
 
 ScriptDef::ScriptDef(int id, int order, vector<string> filenames)
-    : _filenames(filenames), _order(order), AssetDefBaseT<string>(id) {}
+    : _filenames(filenames), _order(order), AssetDefBaseT<vector<string>>(id) {}
 
 ScriptDef::~ScriptDef() {}
 
@@ -29,14 +28,14 @@ int ScriptDef::getOrder() { return _order; }
 AssetType ScriptDef::getAssetType() { return GetAssetType<ScriptDef>::value; }
 
 void ScriptDef::loadAsset() {
-  std::shared_ptr<string> program = make_shared<string>();
+  std::shared_ptr<vector<string>> scripts = make_shared<vector<string>>();
 
   for (string filename : _filenames) {
     filesystem::path p = getPath() / filename;
     string code = loadString(loadFile(p.string()));
-    *program += code;
+    scripts->push_back(code);
   }
-  setAssetPointer(program);
+  setAssetPointer(scripts);
 }
 
 void ScriptDef::unloadAsset() { setAssetPointer(nullptr); }

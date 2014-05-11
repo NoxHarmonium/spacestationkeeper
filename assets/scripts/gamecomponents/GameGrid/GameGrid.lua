@@ -7,26 +7,27 @@ function GameGrid:__init()
 
     -- Serialisation properties
     Property(self, 'defaultTileset', 'TextureDef')
-    Property(self, 'defaultShader', 'ShaderDef')
+    Property(self, 'shader', 'ShaderDef')
     Property(self, 'size', 'Vec2i')
     Property(self, 'depth', 'number')
 end
 
 function GameGrid:setup()
     LuaDebug.Log('GameGrid:setup()')
-
+    renderer = self.gameObject.renderer;
+    renderer.transform.localPosition.z = self.depth;
     -- Create the batched mesh
     -- The materials are handled by the batched mesh so 
     -- we don't have to set self.gameObject.renderer.material
     batchedMesh = BatchedMesh()
-    self.gameObject.renderer.mesh = batchedMesh
+    renderer.mesh = batchedMesh
 
     frameWidth = self.defaultTileset:getFrameWidth()
     frameHeight = self.defaultTileset:getFrameHeight()
 
     mat = Material()
     mat.texture = self.defaultTileset
-    mat.shader = self.defaultShader
+    mat.shader = self.shader
 
     for x = 1 , self.size.x do
         for y = 1, self.size.y do

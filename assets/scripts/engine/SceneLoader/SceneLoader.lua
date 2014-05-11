@@ -8,16 +8,16 @@ require 'yaml'
 gameObjectMap = {}
 
 function GetString(path)
-    file = io.open(path, 'r')
-    text = file:read('*a')
+    local file = io.open(path, 'r')
+    local text = file:read('*a')
     return text;
 end
 
 function LoadRenderer(go, gameObjectNode) 
-    renderer = go.renderer;
-    posNode = gameObjectNode.RenderInfo.localPosition
-    rotNode = gameObjectNode.RenderInfo.localRotation
-    sclNode = gameObjectNode.RenderInfo.localScale
+    local renderer = go.renderer;
+    local posNode = gameObjectNode.RenderInfo.localPosition
+    local rotNode = gameObjectNode.RenderInfo.localRotation
+    local sclNode = gameObjectNode.RenderInfo.localScale
 
     renderer.localPosition = Vec3f(posNode[1], posNode[2], posNode[3])
     renderer.localRotation = Quatf(rotNode[1], rotNode[2], rotNode[3], rotNode[4])
@@ -25,8 +25,8 @@ function LoadRenderer(go, gameObjectNode)
 
 end
 
-function LoadComponent(componentNode) 
-    type = componentNode.type
+function LoadComponent(componentNode, go) 
+    local type = componentNode.type
     if not type then
         LuaDebug.Log('Component node has no type key. Skipping...')
         return nil
@@ -37,12 +37,19 @@ function LoadComponent(componentNode)
         return nil
     end
 
-    comp = _G[type]()
+    local comp = _G[type]()
 
+    -- First pass to set ids
     for key, value in pairs(componentNode) do
-        convertedValue = ConvertValue(key, value, comp)
+        if key == 'id' then
+            comp:setId(value)
+        end
+    end
 
-        if key ~= 'type' then
+    -- Second pass to set fields that may depend on ids
+    for key, value in pairs(componentNode) do
+        if key ~= 'type' and key ~= 'id' then  -- Ignore type and id field
+            local convertedValue = ConvertValue(key, value, comp, go)
             comp[key] = convertedValue;
         end
     end
@@ -57,15 +64,15 @@ end
 
 
 function LoadScene(path) 
-    scene = {gameObjects = {}}
-    source = GetString(path)
-    result = yaml.load(source)
+    local scene = {gameObjects = {}}
+    local source = GetString(path)
+    local result = yaml.load(source)
     for key, gameObjectNode in pairs(result.GameObjects) do
-        go = GameObject()
+        local go = GameObject()
         LoadRenderer(go, gameObjectNode) 
         
         for key, componentNode in pairs(gameObjectNode.Components) do
-            comp = LoadComponent(componentNode)
+            comp = LoadComponent(componentNode, go)
             if (comp) then
                 go:addComponent(comp)
             end
@@ -77,5 +84,5 @@ end
 
 function AddGameObject(go) 
     app_registerGameObject(go)
-        table.insert(gameObjectMap,go)
+    table.insert(gameObjectMap,go)
 end

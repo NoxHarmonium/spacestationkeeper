@@ -14,7 +14,11 @@ using namespace ci;
 class Transform {
 public:
   // Methods
-  Matrix44f getTransformMatrix();
+  /*! Gets a Matrix44 object which represents the transform in local space. */
+  Matrix44f getTransformMatrixLocal();
+  /*! Gets a Matrix44 object which represents the transform in global space
+   * (adjusted for camera). */
+  Matrix44f getTransformMatrixWorld();
 
   // Fields
   Vec3f localPosition = Vec3f(0.0f, 0.0f, 0.0f);

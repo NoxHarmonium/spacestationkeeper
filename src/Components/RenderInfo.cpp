@@ -19,7 +19,8 @@ AxisAlignedBox3f RenderInfo::getBounds() {
     if (!_boundsDirty) {
       return _cachedBounds;
     }
-    _cachedBounds = mesh->getBoundingBox(this->transform->getTransformMatrix());
+    _cachedBounds =
+        mesh->getBoundingBox(this->transform->getTransformMatrixWorld());
     _boundsDirty = false;
     return _cachedBounds;
   }
@@ -81,5 +82,6 @@ RenderInfo *RenderInfo::clone() {
   // Make sure that contents is cloned, not just the reference
   rClone->transform = TransformRef(new Transform{*this->transform});
   rClone->material = MaterialRef(new Material{*this->material});
+
   return rClone;
 }

@@ -25,7 +25,8 @@ template <typename T> struct ClassBinder<Vec2<T>> {
                            .def(self * T())
                            .def(self / T())
                            .def(self / Vec2<T>())
-                           .def(self == Vec2<T>())];
+                           .def(self == Vec2<T>())
+                           .def(tostring(self))];
   }
 };
 
@@ -43,7 +44,8 @@ template <typename T> struct ClassBinder<Vec3<T>> {
                            .def(self * T())
                            .def(self / T())
                            .def(self / Vec3<T>())
-                           .def(self == Vec3<T>())];
+                           .def(self == Vec3<T>())
+                           .def(tostring(self))];
   }
 };
 
@@ -62,7 +64,8 @@ template <typename T> struct ClassBinder<Vec4<T>> {
                            .def(self * T())
                            .def(self / T())
                            .def(self / Vec4<T>())
-                           .def(self == Vec4<T>())];
+                           .def(self == Vec4<T>())
+                           .def(tostring(self))];
   }
 };
 

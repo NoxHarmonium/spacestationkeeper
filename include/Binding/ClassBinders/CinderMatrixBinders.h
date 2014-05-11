@@ -25,7 +25,9 @@ template <typename T> struct ClassBinder<Matrix44<T>> {
              .def_readwrite("rotate", (void (Matrix44<T>::*)(const Vec3<T> &)) &
                                           Matrix44<T>::rotate)
              .def_readwrite("scale", (void (Matrix44<T>::*)(const Vec3<T> &)) &
-                                         Matrix44<T>::scale)];
+                                         Matrix44<T>::scale)
+             .def(self * other<Vec3<T>>())
+             .def(self * T())];
     // TODO: Operators? More methods?
     // Vec 4 overloads?
   }

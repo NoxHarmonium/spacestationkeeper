@@ -26,8 +26,10 @@ template <> struct ClassBinder<GameObject> {
                   luabind::detail::policy_cons<luabind::detail::adopt_policy<2>,
                                                luabind::detail::null_type>())
              .def("removeComponent", &GameObject::removeComponent)
+             .def("getComponent", &GameObject::getComponent)
+             .def("reassignId", &GameObject::reassignId)
          //.def("getRenderer", &GameObject::getRenderer)]; // Depricated for
-         //nicer
+         // nicer
          // looking code
     ];
   }

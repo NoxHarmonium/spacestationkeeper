@@ -31,6 +31,8 @@ public:
   // Methods
   void addComponent(GameComponent *component);
   void removeComponent(GameComponent *component);
+  void reassignId(GameComponent *component, string newId);
+  GameComponent *getComponent(string id);
 
   // Event Methods
   //! Override to perform any application setup after the Renderer has been
@@ -77,10 +79,11 @@ public:
 
 private:
   // Methods
-  set<GameComponent *> getRegisteredComponentsCopy();
+  map<string, GameComponent *> getRegisteredComponentsCopy();
+  void checkIdValidity(string id);
 
   // Fields
-  set<GameComponent *> _components;
+  map<string, GameComponent *> _components;
 
   BindingManager *_bindingManager = nullptr; // For catching lua exceptions
 };

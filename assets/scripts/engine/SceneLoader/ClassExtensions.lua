@@ -27,11 +27,25 @@ function CheckRequiredProperties(instance, className)
     return true
 end
 
-function ConvertValue(key, value, instance)
+function ConvertValue(key, value, instance, go)
     if not pTable[instance] then return value end;
-    propInfo = pTable[instance][key]
-    if not propInfo then return value end
-    pType = propInfo.type;
+    local propInfo = pTable[instance][key]
+    if not propInfo then 
+        LuaDebug.Log('Warning: No registered field for key: ' .. key)
+        return value 
+    end
+    local pType = propInfo.type;
+
+    if type(value)=="table" and value["type"] then
+        -- If there is a subType then it is a reference to another component
+        local pType = value["type"] 
+        local targetId = value["id"]
+        local component = go:getComponent(targetId)
+        if pType ~= class_info(component).name then
+            error('Component referenced by id: ' .. targetId .. ' is not of type: ' .. pType)
+        end
+        return component
+    end
 
     LuaDebug.Log('ptype: ' .. pType)
     if pType == 'Vec2f' then 

@@ -28,8 +28,18 @@ GameObjects:
             localScale:    [1,1,1]
         Components:
             -   type: GameGrid
+                id: gameGrid
                 defaultTileset: "tilesets/asteroid"
-                defaultShader:  "shaders/default"
+                shader:  "shaders/default"
                 size: [10,10]
                 depth: 1
+
+            -   type: GridCursor
+                gameGrid: 
+                    type: GameGrid
+                    id: gameGrid
+                cursorTileset: "tilesets/cursors"
+                shader: "shaders/default"
+                depth: 2
+                frame: 0
 

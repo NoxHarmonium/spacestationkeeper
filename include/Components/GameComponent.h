@@ -9,6 +9,8 @@
 #ifndef SpaceStationKeeper_GameComponent_h
 #define SpaceStationKeeper_GameComponent_h
 
+#include <boost/uuid/random_generator.hpp>
+
 using namespace ci;
 using namespace ci::app;
 using namespace std;
@@ -21,11 +23,16 @@ class GameObject;
 class GameComponent {
 public:
   //! Construct a new GameComponent
-  GameComponent() {}
+  GameComponent();
+  GameComponent(string id);
 
   // Interaction methods
-  string classFilter = "";
   bool enabled = true;
+
+  /*! Gets the unique ID of this component. */
+  string getId();
+  /*! Sets the unique ID of this component. */
+  void setId(string id);
 
   // Fields
   GameObject *gameObject = nullptr;
@@ -67,6 +74,10 @@ public:
   virtual void resize() {}
   //! Override to receive file-drop events.
   virtual void fileDrop(FileDropEvent event) {}
+
+private:
+  string _id;
+  static boost::uuids::random_generator _uuidGenerator;
 };
 
 #endif

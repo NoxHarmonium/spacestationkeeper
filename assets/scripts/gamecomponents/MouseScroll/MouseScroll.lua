@@ -30,30 +30,30 @@ function MouseScroll:setup()
 end
 
 function MouseScroll:update()
-    mp = self._mousePos;
-    dt = app_getDeltaTime()
-    ww = app_getWindowWidth()
-    wh = app_getWindowHeight()
-    go = self.gameObject;
-    rd = go.renderer;
+    local mp = self._mousePos;
+    local dt = app_getDeltaTime()
+    local ww = app_getWindowWidth()
+    local wh = app_getWindowHeight()
+    local go = self.gameObject;
+    local rd = go.renderer;
 
     if mp.x < self.EdgeSensitivity then
-        multiplier = 1.0 - (mp.x / self.EdgeSensitivity)
+        local multiplier = 1.0 - (mp.x / self.EdgeSensitivity)
         self._velocity = self._velocity + Vec2f(-self.Acceleration.x * multiplier, 0) * dt
     end
 
     if mp.x > ww - self.EdgeSensitivity then
-        multiplier = 1.0 - ((ww - mp.x) / self.EdgeSensitivity)
+        local multiplier = 1.0 - ((ww - mp.x) / self.EdgeSensitivity)
         self._velocity = self._velocity + Vec2f(self.Acceleration.x * multiplier, 0) * dt
     end
 
     if (mp.y < self.EdgeSensitivity) then
-        multiplier = 1.0 - (mp.y / self.EdgeSensitivity);
+        local multiplier = 1.0 - (mp.y / self.EdgeSensitivity);
         self._velocity = self._velocity +  Vec2f(0, -self.Acceleration.y * multiplier) * dt
     end
 
     if mp.y > wh - self.EdgeSensitivity then
-        multiplier = 1.0 - ((wh - mp.y) / self.EdgeSensitivity)
+        local multiplier = 1.0 - ((wh - mp.y) / self.EdgeSensitivity)
         self._velocity  = self._velocity + Vec2f(0.0, self.Acceleration.y * multiplier) * dt
     end
 
@@ -69,18 +69,18 @@ function MouseScroll:update()
 end
 
 function MouseScroll:draw()
-    go = self.gameObject;
-    rd = go.renderer;
+    --go = self.gameObject;
+    --rd = go.renderer;
 
     --LuaDebug.Log('Position: x: ' .. rd.transform.localPosition.x .. ' y: ' .. rd.transform.localPosition.y)
 end
 
 function MouseScroll:mouseMove(event)
-    ww = app_getWindowWidth()
-    wh = app_getWindowHeight()
-    pos = event:getPos()
-    x = pos.x;
-    y = pos.y;
+    local ww = app_getWindowWidth()
+    local wh = app_getWindowHeight()
+    local pos = event:getPos()
+    local x = pos.x;
+    local y = pos.y;
 
     -- Clamp within screen bounds
     x = math.max(0, x);
@@ -96,8 +96,8 @@ function MouseScroll:mouseDown(event)
 end
 
 function MouseScroll:mouseWheel(event)
-    rd = self.gameObject.renderer;
-    scale = event.getWheelIncrement() * self.MouseWheelMult
+    local rd = self.gameObject.renderer;
+    local scale = event.getWheelIncrement() * self.MouseWheelMult
     rd.transform.localScale = rd.transform.localScale + Vec3f(scale, scale, scale);
 end
 

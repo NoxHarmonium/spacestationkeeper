@@ -51,7 +51,11 @@ template <> struct ClassBinder<GameComponent> {
                .def("resize", &GameComponent::resize,
                     &GameComponentWrapper::default_resize)
                .def("fileDrop", &GameComponent::fileDrop,
-                    &GameComponentWrapper::default_fileDrop)];
+                    &GameComponentWrapper::default_fileDrop)
+               .def("getId", &GameComponent::getId,
+                    &GameComponentWrapper::default_getId)
+               .def("setId", &GameComponent::setId,
+                    &GameComponentWrapper::default_setId)];
   }
 };
 

@@ -59,7 +59,7 @@ void BatchedMesh::addMesh(MaterialRef material, BaseMeshRef mesh,
   //     << material << " Mesh: " << mesh << endl;
 
   _meshes[material].push_back(
-      mesh->getInternalMesh(transform->getTransformMatrix()));
+      mesh->getInternalMesh(transform->getTransformMatrixLocal()));
   _dirty[material] = true;
 }
 
@@ -75,6 +75,7 @@ void BatchedMesh::regenerateVboMesh(MaterialRef material) {
   vector<Vec2f> texCoords;
   vector<uint32_t> indices;
   uint32_t vertCount = 0;
+  _bounds = AxisAlignedBox3f();
 
   for (TriMesh *&mesh : _meshes[material]) {
     TriMesh *internalMesh = mesh;
@@ -94,8 +95,9 @@ void BatchedMesh::regenerateVboMesh(MaterialRef material) {
     combinedMesh.appendIndices(indices.data(), indices.size());
 
     vertCount += vertices.size();
+
+    _bounds.include(mesh->calcBoundingBox());
   }
 
-  _bounds = Utils::combineBounds(_bounds, combinedMesh.calcBoundingBox());
   _vboMeshes[material] = gl::VboMesh::create(combinedMesh);
 }

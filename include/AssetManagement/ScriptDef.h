@@ -15,7 +15,7 @@
 using namespace ci;
 
 /*! Encapsulates a LUA script. */
-class ScriptDef : public AssetDefBaseT<string> {
+class ScriptDef : public AssetDefBaseT<vector<string>> {
 public:
   // Constructors/Destructors
   ScriptDef(int id, int order, vector<string> filenames);

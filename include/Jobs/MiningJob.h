@@ -5,7 +5,7 @@
 //  Created by Sean Dawson on 28/04/2014.
 //
 //
-
+/* // Needs rewrite for lua
 #ifndef SpaceStationKeeper_MiningJob_h
 #define SpaceStationKeeper_MiningJob_h
 
@@ -35,4 +35,4 @@ private:
   AssetLoaderBase *_assetLoader = nullptr;
 };
 
-#endif
+#endif*/

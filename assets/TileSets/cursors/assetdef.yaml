@@ -1,0 +1,11 @@
+--- # Texture Def
+id:             5
+type:           Texture
+subtype:        Sprite
+width:          256
+height:         256
+frameHeight:    64
+frameWidth:     64
+filename:       tileset_cursors.png
+canWalk:        false
+border:         1
