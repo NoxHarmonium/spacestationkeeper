@@ -45,7 +45,8 @@ function GridCursor:update()
 end
 
 function GridCursor:mouseDown(event)
-    self._anchor = Vec3f(event:getX(), event:getY(), self.gameGrid.depth)
+    local coords = self:snapToGrid(event:getPos())
+    self._anchor = Vec3f(coords.x, coords.y, self.gameGrid.depth)
     self._cursorSize = Vec3f(1,1,0)
     self._mouseDown = true
 end
@@ -72,9 +73,8 @@ function GridCursor:mouseMove(event)
     -- Need a Vec2f to use the 2D overload of isInside()
     if Utils.isInside(bounds, Vec2f(mousePos.x, mousePos.y)) then
         cursorRenderer.material.baseColor = ColorAf(1,1,1,1)
-        local x = math.floor(mousePos.x / self._frameWidth) * self._frameWidth
-        local y = math.floor(mousePos.y / self._frameHeight) * self._frameHeight
-        cursorRenderer.transform.localPosition = Vec3f(x, y, self.depth)
+        local coords = self:snapToGrid(mousePos)
+        cursorRenderer.transform.localPosition = Vec3f(coords.x, coords.y, self.depth)
     else
         cursorRenderer.material.baseColor = ColorAf(1,1,1,0)
     end
@@ -83,11 +83,17 @@ end
 
 function GridCursor:mouseDrag(event) 
     self._cursorSize = Vec3f(
-            math.floor(math.abs(event:getX() - self._anchor.x) / self._frameWidth) + 1,
-            math.floor(math.abs(event:getY() - self._anchor.y) / self._frameHeight) + 1,
+            math.floor((event:getX() - self._anchor.x) / self._frameWidth),
+            math.floor((event:getY() - self._anchor.y) / self._frameHeight),
             0
             )
     self:rebuildMeshIfNeeded()
+end
+
+function GridCursor:snapToGrid(mousePos)
+    local x = math.floor(mousePos.x / self._frameWidth) * self._frameWidth
+    local y = math.floor(mousePos.y / self._frameHeight) * self._frameHeight
+    return Vec2i(x,y)
 end
 
 function GridCursor:rebuildMeshIfNeeded()
