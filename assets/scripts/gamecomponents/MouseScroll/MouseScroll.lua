@@ -62,9 +62,7 @@ function MouseScroll:update()
     rd.transform.localPosition = rd.transform.localPosition + Vec3f(self._velocity.x, self._velocity.y, 0)
 
     self._velocity = self._velocity * self.Deceleration
-   
-    -- Do usual camera stuff
-    GameCamera.update(self)
+
 
 end
 
