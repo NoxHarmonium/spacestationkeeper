@@ -76,6 +76,8 @@ public:
 
   // Getters/Setters
   virtual RenderInfoRef getRenderer(); // Depricated
+  string getId();
+  void setId(string id);
 
 private:
   // Methods
@@ -84,8 +86,12 @@ private:
 
   // Fields
   map<string, GameComponentRef> _components;
+  string _id;
 
   BindingManager *_bindingManager = nullptr; // For catching lua exceptions
+
+  // Static Fields
+  static boost::uuids::random_generator _uuidGenerator;
 };
 
 typedef std::shared_ptr<GameObject> GameObjectRef;

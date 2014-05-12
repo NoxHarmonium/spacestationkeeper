@@ -26,6 +26,8 @@ template <> struct ClassBinder<GameObject> {
                .def("removeComponent", &GameObject::removeComponent)
                .def("getComponent", &GameObject::getComponent)
                .def("reassignId", &GameObject::reassignId)
+               .def("getId", &GameObject::getId)
+               .def("setId", &GameObject::setId)
            //.def("getRenderer", &GameObject::getRenderer)]; // Depricated for
            // nicer
            // looking code

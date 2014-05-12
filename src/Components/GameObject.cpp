@@ -8,9 +8,11 @@
 
 #include "GameObject.h"
 #include <stdexcept>
+#include <boost/uuid/uuid_io.hpp>
 
 // Constructors/Destructors
 GameObject::GameObject() {
+  _id = to_string(_uuidGenerator());
   renderer = make_shared<RenderInfo>();
   _bindingManager = BindingManager::Instance();
 }
@@ -45,6 +47,9 @@ void GameObject::reassignId(GameComponentRef component, string newId) {
 }
 
 RenderInfoRef GameObject::getRenderer() { return renderer; }
+
+string GameObject::getId() { return _id; }
+void GameObject::setId(string id) { _id = id; }
 
 //! Forwards event to component to perform any application setup after the
 // renderer has been initialized.
@@ -261,3 +266,6 @@ void GameObject::checkIdValidity(string id) {
         " already exists on this gameObject. A unique ID is required.");
   }
 }
+
+boost::uuids::random_generator GameObject::_uuidGenerator =
+    boost::uuids::random_generator();

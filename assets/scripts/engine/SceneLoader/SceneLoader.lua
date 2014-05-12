@@ -69,6 +69,11 @@ function LoadScene(path)
     local result = yaml.load(source)
     for key, gameObjectNode in pairs(result.GameObjects) do
         local go = GameObject()
+        local name = gameObjectNode["name"]
+        if name then
+            go:setId(name)
+        end
+
         LoadRenderer(go, gameObjectNode) 
         
         for key, componentNode in pairs(gameObjectNode.Components) do
