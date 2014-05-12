@@ -41,7 +41,7 @@ GameObjects:
                     id: gameGrid
                 cursorTileset: "tilesets/cursors"
                 shader: "shaders/default"
-                depth: 10
+                depth: 20
                 cursorFrame: 0
 
             -   type: ToggleSelectTileOnClick
@@ -54,6 +54,6 @@ GameObjects:
                 timeThreshold: 0.33
                 distanceThreshold: 20
                 selectedFrame: 1
-                depth: 25
+                depth: 10
 
 

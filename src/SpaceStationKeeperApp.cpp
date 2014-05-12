@@ -50,7 +50,7 @@ void SpaceStationKeeperApp::draw() {
   gl::clear(Color(0, 0, 0), true);
 
   gl::enableDepthRead();
-  gl::enableDepthWrite();
+  // gl::enableDepthWrite();
   gl::enableAlphaBlending();
   // Make sure that the components get drawn
   ComponentDrivenApp::draw();

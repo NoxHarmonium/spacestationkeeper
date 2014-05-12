@@ -72,7 +72,21 @@ void ComponentDrivenApp::update() {
 // response to
 // OS-prompted requests for refreshes.
 void ComponentDrivenApp::draw() {
-  for (auto &comp : getRegisteredGameObjectsCopy()) {
+  // z-depth sorting // TODO: Make more efficient
+  set<GameObject *> gameObjects = getRegisteredGameObjectsCopy();
+
+  // Copy set into vector
+  std::vector<GameObject *> vector =
+      std::vector<GameObject *>(gameObjects.begin(), gameObjects.end());
+
+  // Depth sort the vector
+  sort(std::begin(vector), std::end(vector), [](GameObject *a, GameObject *b) {
+    return b->renderer->transform->localPosition.z >
+           a->renderer->transform->localPosition.z;
+  });
+
+  // Draw in order
+  for (auto &comp : vector) {
     comp->draw();
   }
 }
