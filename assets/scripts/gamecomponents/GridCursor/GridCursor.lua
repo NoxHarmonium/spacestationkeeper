@@ -53,7 +53,8 @@ function GridCursor:mouseUp(event)
     self._cursorSize = Vec3f(1,1,0)
     self._mouseDown = false
 
-    self:rebuildMeshIfNeeded()
+    -- Move cursor back to the right spot
+    self:mouseMove(event)
 end
 
 function GridCursor:mouseMove(event)
