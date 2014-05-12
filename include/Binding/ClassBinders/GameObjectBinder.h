@@ -18,19 +18,17 @@ using namespace luabind;
 
 template <> struct ClassBinder<GameObject> {
   static void Bind(const char *name, lua_State *L) {
-    luabind::module(L)
-        [luabind::class_<GameObject>(name)
-             .def(luabind::constructor<>())
-             .def_readonly("renderer", &GameObject::renderer)
-             .def("addComponent", &GameObject::addComponent,
-                  luabind::detail::policy_cons<luabind::detail::adopt_policy<2>,
-                                               luabind::detail::null_type>())
-             .def("removeComponent", &GameObject::removeComponent)
-             .def("getComponent", &GameObject::getComponent)
-             .def("reassignId", &GameObject::reassignId)
-         //.def("getRenderer", &GameObject::getRenderer)]; // Depricated for
-         // nicer
-         // looking code
+    luabind::module(
+        L)[luabind::class_<GameObject, GameObjectRef>(name)
+               .def(luabind::constructor<>())
+               .def_readonly("renderer", &GameObject::renderer)
+               .def("addComponent", &GameObject::addComponent)
+               .def("removeComponent", &GameObject::removeComponent)
+               .def("getComponent", &GameObject::getComponent)
+               .def("reassignId", &GameObject::reassignId)
+           //.def("getRenderer", &GameObject::getRenderer)]; // Depricated for
+           // nicer
+           // looking code
     ];
   }
 };

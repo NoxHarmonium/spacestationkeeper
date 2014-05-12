@@ -11,51 +11,46 @@
 
 // Constructors/Destructors
 GameObject::GameObject() {
-  renderer = new RenderInfo();
+  renderer = make_shared<RenderInfo>();
   _bindingManager = BindingManager::Instance();
 }
-GameObject::~GameObject() {
-  delete renderer;
-  for (auto &kvp : getRegisteredComponentsCopy()) {
-    GameComponent *comp = kvp.second;
-    delete comp;
-  }
-}
+GameObject::~GameObject() {}
 
-void GameObject::addComponent(GameComponent *component) {
-  string id = component->getId();
+void GameObject::addComponent(GameComponentRef component) {
+  string id = GameComponent::getId(component);
   checkIdValidity(id);
-  _components[component->getId()] = component;
-  component->gameObject = this; // TODO: Encapsulate more?
+  _components[GameComponent::getId(component)] = component;
+  component->gameObject = this; // TODO: Encapsulate more? i.e. setGameObject()?
 }
 
-void GameObject::removeComponent(GameComponent *component) {
-  _components.erase(component->getId());
+void GameObject::removeComponent(GameComponentRef component) {
+  _components.erase(GameComponent::getId(component));
+  component->gameObject = nullptr; // End null reference
 }
 
-GameComponent *GameObject::getComponent(string id) {
+GameComponentRef GameObject::getComponent(string id) {
   if (_components.count(id) == 0) {
     throw runtime_error("No component found for id: " + id);
   }
   return _components[id];
 }
 
-void GameObject::reassignId(GameComponent *component, string newId) {
+void GameObject::reassignId(GameComponentRef component, string newId) {
   // This method exists because calling remove and then add again may cause some
   // unwanted logic to fire
   // when more functionallity is implemented
   checkIdValidity(newId);
-  _components.erase(component->getId());
-  _components[component->getId()] = component;
+  _components.erase(GameComponent::getId(component));
+  _components[GameComponent::getId(component)] = component;
 }
 
-RenderInfo *GameObject::getRenderer() { return renderer; }
+RenderInfoRef GameObject::getRenderer() { return renderer; }
 
 //! Forwards event to component to perform any application setup after the
 // renderer has been initialized.
 void GameObject::setup() {
   for (auto &kvp : getRegisteredComponentsCopy()) {
-    GameComponent *comp = kvp.second;
+    GameComponentRef comp = kvp.second;
     if (comp->enabled &&
         _bindingManager->catchLuaExceptions([comp]() { comp->setup(); })) {
       cout << "Disabling component..." << endl;
@@ -67,7 +62,7 @@ void GameObject::setup() {
 // exiting.
 void GameObject::shutdown() {
   for (auto &kvp : getRegisteredComponentsCopy()) {
-    GameComponent *comp = kvp.second;
+    GameComponentRef comp = kvp.second;
     if (comp->enabled &&
         _bindingManager->catchLuaExceptions([comp]() { comp->shutdown(); })) {
       cout << "Disabling component..." << endl;
@@ -79,7 +74,7 @@ void GameObject::shutdown() {
 //! Forwards event to component to perform any once-per-loop computation.
 void GameObject::update() {
   for (auto &kvp : getRegisteredComponentsCopy()) {
-    GameComponent *comp = kvp.second;
+    GameComponentRef comp = kvp.second;
     if (comp->enabled &&
         _bindingManager->catchLuaExceptions([comp]() { comp->update(); })) {
       cout << "Disabling component..." << endl;
@@ -95,7 +90,7 @@ void GameObject::draw() {
   renderer->draw();
 
   for (auto &kvp : getRegisteredComponentsCopy()) {
-    GameComponent *comp = kvp.second;
+    GameComponentRef comp = kvp.second;
     if (comp->enabled &&
         _bindingManager->catchLuaExceptions([comp]() { comp->draw(); })) {
       cout << "Disabling component..." << endl;
@@ -107,7 +102,7 @@ void GameObject::draw() {
 //! Forwards event to component to receive mouse-down events.
 void GameObject::mouseDown(MouseEvent event) {
   for (auto &kvp : getRegisteredComponentsCopy()) {
-    GameComponent *comp = kvp.second;
+    GameComponentRef comp = kvp.second;
     if (comp->enabled && _bindingManager->catchLuaExceptions([comp, event]() {
                            comp->mouseDown(event);
                          })) {
@@ -119,7 +114,7 @@ void GameObject::mouseDown(MouseEvent event) {
 //! Forwards event to component to receive mouse-up events.
 void GameObject::mouseUp(MouseEvent event) {
   for (auto &kvp : getRegisteredComponentsCopy()) {
-    GameComponent *comp = kvp.second;
+    GameComponentRef comp = kvp.second;
     if (comp->enabled && _bindingManager->catchLuaExceptions([comp, event]() {
                            comp->mouseUp(event);
                          })) {
@@ -131,7 +126,7 @@ void GameObject::mouseUp(MouseEvent event) {
 //! Forwards event to component to receive mouse-wheel events.
 void GameObject::mouseWheel(MouseEvent event) {
   for (auto &kvp : getRegisteredComponentsCopy()) {
-    GameComponent *comp = kvp.second;
+    GameComponentRef comp = kvp.second;
     if (comp->enabled && _bindingManager->catchLuaExceptions([comp, event]() {
                            comp->mouseWheel(event);
                          })) {
@@ -143,7 +138,7 @@ void GameObject::mouseWheel(MouseEvent event) {
 //! Forwards event to component to receive mouse-move events.
 void GameObject::mouseMove(MouseEvent event) {
   for (auto &kvp : getRegisteredComponentsCopy()) {
-    GameComponent *comp = kvp.second;
+    GameComponentRef comp = kvp.second;
     if (comp->enabled && _bindingManager->catchLuaExceptions([comp, event]() {
                            comp->mouseMove(event);
                          })) {
@@ -155,7 +150,7 @@ void GameObject::mouseMove(MouseEvent event) {
 //! Forwards event to component to receive mouse-drag events.
 void GameObject::mouseDrag(MouseEvent event) {
   for (auto &kvp : getRegisteredComponentsCopy()) {
-    GameComponent *comp = kvp.second;
+    GameComponentRef comp = kvp.second;
     if (comp->enabled && _bindingManager->catchLuaExceptions([comp, event]() {
                            comp->mouseDrag(event);
                          })) {
@@ -169,7 +164,7 @@ void GameObject::mouseDrag(MouseEvent event) {
 // sequence
 void GameObject::touchesBegan(TouchEvent event) {
   for (auto &kvp : getRegisteredComponentsCopy()) {
-    GameComponent *comp = kvp.second;
+    GameComponentRef comp = kvp.second;
     if (comp->enabled && _bindingManager->catchLuaExceptions([comp, event]() {
                            comp->touchesBegan(event);
                          })) {
@@ -182,7 +177,7 @@ void GameObject::touchesBegan(TouchEvent event) {
 // multitouch sequence
 void GameObject::touchesMoved(TouchEvent event) {
   for (auto &kvp : getRegisteredComponentsCopy()) {
-    GameComponent *comp = kvp.second;
+    GameComponentRef comp = kvp.second;
     if (comp->enabled && _bindingManager->catchLuaExceptions([comp, event]() {
                            comp->touchesMoved(event);
                          })) {
@@ -194,7 +189,7 @@ void GameObject::touchesMoved(TouchEvent event) {
 //! Forwards event to component to respond to the end of a multitouch sequence
 void GameObject::touchesEnded(TouchEvent event) {
   for (auto &kvp : getRegisteredComponentsCopy()) {
-    GameComponent *comp = kvp.second;
+    GameComponentRef comp = kvp.second;
     if (comp->enabled && _bindingManager->catchLuaExceptions([comp, event]() {
                            comp->touchesEnded(event);
                          })) {
@@ -207,7 +202,7 @@ void GameObject::touchesEnded(TouchEvent event) {
 //! Forwards event to component to receive key-down events.
 void GameObject::keyDown(KeyEvent event) {
   for (auto &kvp : getRegisteredComponentsCopy()) {
-    GameComponent *comp = kvp.second;
+    GameComponentRef comp = kvp.second;
     if (comp->enabled && _bindingManager->catchLuaExceptions([comp, event]() {
                            comp->keyDown(event);
                          })) {
@@ -219,7 +214,7 @@ void GameObject::keyDown(KeyEvent event) {
 //! Forwards event to component to receive key-up events.
 void GameObject::keyUp(KeyEvent event) {
   for (auto &kvp : getRegisteredComponentsCopy()) {
-    GameComponent *comp = kvp.second;
+    GameComponentRef comp = kvp.second;
     if (comp->enabled && _bindingManager->catchLuaExceptions([comp, event]() {
                            comp->keyUp(event);
                          })) {
@@ -231,7 +226,7 @@ void GameObject::keyUp(KeyEvent event) {
 //! Forwards event to component to receive window resize events.
 void GameObject::resize() {
   for (auto &kvp : getRegisteredComponentsCopy()) {
-    GameComponent *comp = kvp.second;
+    GameComponentRef comp = kvp.second;
     if (comp->enabled &&
         _bindingManager->catchLuaExceptions([comp]() { comp->resize(); })) {
       cout << "Disabling component..." << endl;
@@ -242,7 +237,7 @@ void GameObject::resize() {
 //! Forwards event to component to receive file-drop events.
 void GameObject::fileDrop(FileDropEvent event) {
   for (auto &kvp : getRegisteredComponentsCopy()) {
-    GameComponent *comp = kvp.second;
+    GameComponentRef comp = kvp.second;
     if (comp->enabled && _bindingManager->catchLuaExceptions([comp, event]() {
                            comp->fileDrop(event);
                          })) {
@@ -252,8 +247,8 @@ void GameObject::fileDrop(FileDropEvent event) {
   }
 }
 
-map<string, GameComponent *> GameObject::getRegisteredComponentsCopy() {
-  return map<string, GameComponent *>(_components);
+map<string, GameComponentRef> GameObject::getRegisteredComponentsCopy() {
+  return map<string, GameComponentRef>(_components);
 }
 
 void GameObject::checkIdValidity(string id) {

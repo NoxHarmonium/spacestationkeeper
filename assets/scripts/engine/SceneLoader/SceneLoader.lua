@@ -42,7 +42,7 @@ function LoadComponent(componentNode, go)
     -- First pass to set ids
     for key, value in pairs(componentNode) do
         if key == 'id' then
-            comp:setId(value)
+            GameComponent.setId(comp, value)
         end
     end
 

@@ -35,7 +35,6 @@ void ComponentDrivenApp::registerGameObject(GameObject *gameObject) {
 
 void ComponentDrivenApp::destroyGameObject(GameObject *gameObject) {
   _registeredGameObjects.erase(gameObject);
-  delete gameObject;
 }
 
 //! Get a list of currently registered components

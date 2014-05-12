@@ -52,7 +52,7 @@ function ToggleSelectTileOnClick:mouseUp(event)
             local y = math.floor(mousePos.y / self._frameHeight)
             local coord = x..y -- hacky way to have a 2d key but it works!
             local selectedTiles = self.gameGrid.selectedTiles;
-            LuaDebug.Log('a')
+            
             if selectedTiles[coord] then
                 app_destroyGameObject(selectedTiles[coord])
                 selectedTiles[coord] = nil -- remove value

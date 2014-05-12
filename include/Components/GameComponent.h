@@ -17,6 +17,7 @@ using namespace std;
 
 // Forwards Decs
 class GameObject;
+typedef shared_ptr<GameObject> GameObjectRef;
 
 //! A game component is a child of an app which has all the app events forwarded
 // to it
@@ -28,11 +29,6 @@ public:
 
   // Interaction methods
   bool enabled = true;
-
-  /*! Gets the unique ID of this component. */
-  string getId();
-  /*! Sets the unique ID of this component. */
-  void setId(string id);
 
   // Fields
   GameObject *gameObject = nullptr;
@@ -75,9 +71,17 @@ public:
   //! Override to receive file-drop events.
   virtual void fileDrop(FileDropEvent event) {}
 
+  // Static Methods
+  /*! Gets the unique ID of this component. */
+  static string getId(std::shared_ptr<GameComponent> component);
+  /*! Sets the unique ID of this component. */
+  static void setId(std::shared_ptr<GameComponent> component, string id);
+
 private:
   string _id;
   static boost::uuids::random_generator _uuidGenerator;
 };
+
+typedef std::shared_ptr<GameComponent> GameComponentRef;
 
 #endif

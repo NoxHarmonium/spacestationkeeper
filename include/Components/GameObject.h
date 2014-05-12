@@ -26,13 +26,13 @@ public:
   ~GameObject();
 
   // Public Fields
-  RenderInfo *renderer = nullptr;
+  RenderInfoRef renderer = nullptr;
 
   // Methods
-  void addComponent(GameComponent *component);
-  void removeComponent(GameComponent *component);
-  void reassignId(GameComponent *component, string newId);
-  GameComponent *getComponent(string id);
+  void addComponent(GameComponentRef component);
+  void removeComponent(GameComponentRef component);
+  void reassignId(GameComponentRef component, string newId);
+  GameComponentRef getComponent(string id);
 
   // Event Methods
   //! Override to perform any application setup after the Renderer has been
@@ -75,15 +75,15 @@ public:
   virtual void fileDrop(FileDropEvent event);
 
   // Getters/Setters
-  virtual RenderInfo *getRenderer(); // Depricated
+  virtual RenderInfoRef getRenderer(); // Depricated
 
 private:
   // Methods
-  map<string, GameComponent *> getRegisteredComponentsCopy();
+  map<string, GameComponentRef> getRegisteredComponentsCopy();
   void checkIdValidity(string id);
 
   // Fields
-  map<string, GameComponent *> _components;
+  map<string, GameComponentRef> _components;
 
   BindingManager *_bindingManager = nullptr; // For catching lua exceptions
 };

@@ -12,7 +12,7 @@
 template <> struct ClassBinder<RenderInfo> {
   static void Bind(const char *name, lua_State *L) {
     luabind::module(
-        L)[luabind::class_<RenderInfo>(name)
+        L)[luabind::class_<RenderInfo, RenderInfoRef>(name)
                .def(luabind::constructor<>())
                .def_readwrite("renderEnabled", &RenderInfo::renderEnabled)
                .def_readwrite("transform", &RenderInfo::transform)

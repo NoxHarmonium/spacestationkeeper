@@ -10,17 +10,19 @@
 #include "GameComponent.h"
 #include <boost/uuid/uuid_io.hpp>
 
-GameComponent::GameComponent() { setId(to_string(_uuidGenerator())); }
+GameComponent::GameComponent() { _id = to_string(_uuidGenerator()); }
 
 GameComponent::GameComponent(string id) : _id(id) {}
 
-string GameComponent::getId() { return _id; }
+string GameComponent::getId(std::shared_ptr<GameComponent> component) {
+  return component->_id;
+}
 
-void GameComponent::setId(string id) {
-  if (gameObject != nullptr) {
-    gameObject->reassignId(this, id);
+void GameComponent::setId(std::shared_ptr<GameComponent> component, string id) {
+  if (component->gameObject != nullptr) {
+    component->gameObject->reassignId(component, id);
   }
-  _id = id;
+  component->_id = id;
 }
 
 boost::uuids::random_generator GameComponent::_uuidGenerator =

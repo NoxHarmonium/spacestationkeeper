@@ -19,7 +19,8 @@ template <> struct ClassBinder<GameComponent> {
 
   static void Bind(const char *name, lua_State *L) {
     luabind::module(
-        L)[luabind::class_<GameComponent, GameComponentWrapper>(name)
+        L)[luabind::class_<GameComponent, GameComponentWrapper,
+                           GameComponentRef>(name)
                .def(luabind::constructor<>())
                .def_readonly("gameObject", &GameComponent::gameObject)
                .def("setup", &GameComponent::setup,
@@ -54,10 +55,10 @@ template <> struct ClassBinder<GameComponent> {
                     &GameComponentWrapper::default_resize)
                .def("fileDrop", &GameComponent::fileDrop,
                     &GameComponentWrapper::default_fileDrop)
-               .def("getId", &GameComponent::getId,
-                    &GameComponentWrapper::default_getId)
-               .def("setId", &GameComponent::setId,
-                    &GameComponentWrapper::default_setId)];
+               .scope[
+                 luabind::def("getId", &GameComponent::getId),
+                 luabind::def("setId", &GameComponent::setId)
+               ]];
   }
 };
 

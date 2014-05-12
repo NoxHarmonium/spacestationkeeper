@@ -63,12 +63,12 @@ struct GameComponentWrapper : public GameComponent, public luabind::wrap_base {
   virtual void fileDrop(FileDropEvent event) {
     call<void>("fileDrop", event);
   };
-  virtual string getId() {
-    return call<string>("getId");
-  };
-  virtual void setId(string id) {
-    call<void>("setId", id);
-  };
+  // virtual string getId() {
+  //  return call<string>("getId");
+  //};
+  // virtual void setId(string id) {
+  //  call<void>("setId", id);
+  //};
 
   // Call pointers
   static void default_setup(GameComponent *ptr) {
@@ -119,12 +119,12 @@ struct GameComponentWrapper : public GameComponent, public luabind::wrap_base {
   static void default_fileDrop(GameComponent *ptr, FileDropEvent event) {
     return ptr->GameComponent::fileDrop(event);
   }
-  static string default_getId(GameComponent *ptr) {
-    return ptr->GameComponent::getId();
-  }
-  static void default_setId(GameComponent *ptr, string id) {
-    return ptr->GameComponent::setId(id);
-  }
+  // static string default_getId(GameComponent *ptr) {
+  // return ptr->GameComponent::getId();
+  //}
+  // static void default_setId(GameComponent *ptr, string id) {
+  //  return ptr->GameComponent::setId(id);
+  //}
 };
 
 #endif

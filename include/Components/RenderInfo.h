@@ -66,4 +66,6 @@ private:
   AxisAlignedBox3f _cachedBounds;
 };
 
+typedef std::shared_ptr<RenderInfo> RenderInfoRef;
+
 #endif
