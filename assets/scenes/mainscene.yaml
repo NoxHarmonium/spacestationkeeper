@@ -35,11 +35,25 @@ GameObjects:
                 depth: 1
 
             -   type: GridCursor
+                id: gridCursor
                 gameGrid: 
                     type: GameGrid
                     id: gameGrid
                 cursorTileset: "tilesets/cursors"
                 shader: "shaders/default"
-                depth: 2
-                frame: 0
+                depth: 10
+                cursorFrame: 0
+
+            -   type: ToggleSelectTileOnClick
+                gameGrid: 
+                    type: GameGrid
+                    id: gameGrid
+                gridCursor:
+                    type: GridCursor
+                    id: gridCursor
+                timeThreshold: 0.33
+                distanceThreshold: 20
+                selectedFrame: 1
+                depth: 25
+
 

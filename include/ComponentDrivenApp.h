@@ -29,8 +29,11 @@ public:
   //! Registers a component to receive app events
   void registerGameObject(GameObject *component);
 
+  //! Deregisters a GameObject and frees the memory used by it.
+  void destroyGameObject(GameObject *gameObject);
+
   //! Get a list of currently registered components
-  vector<GameObject *> getGameObjects();
+  set<GameObject *> getGameObjects();
 
   template <typename T> vector<GameObject *> GetComponentsByType() {
     vector<GameObject *> selectedGos;
@@ -119,9 +122,11 @@ public:
   static ComponentDrivenApp *Instance();
 
 private:
+  // Methods
+  set<GameObject *> getRegisteredGameObjectsCopy();
+
   // Fields
-  vector<GameObject *> getRegisteredGameObjectsCopy();
-  vector<GameObject *> _registeredGameObjects;
+  set<GameObject *> _registeredGameObjects;
   map<string, void *> _stateMap;
   float _lastElapsedTime = NAN;
   float _deltaTime = 0.0f;

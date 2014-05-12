@@ -19,6 +19,7 @@ template <typename T> struct ClassBinder<Vec2<T>> {
                            .def_readwrite("x", &Vec2<T>::x)
                            .def_readwrite("y", &Vec2<T>::y)
                            .def("limit", &Vec2<T>::limit)
+                           .def("length", &Vec2<T>::length)
                            // Operators
                            .def(self + Vec2<T>())
                            .def(self - Vec2<T>())

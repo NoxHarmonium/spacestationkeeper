@@ -86,3 +86,8 @@ function AddGameObject(go)
     app_registerGameObject(go)
     table.insert(gameObjectMap,go)
 end
+
+function RemoveGameObject(go) 
+    app_destroyGameObject(go)
+    table.remove(gameObjectMap,go)
+end

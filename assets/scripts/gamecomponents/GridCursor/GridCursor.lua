@@ -12,7 +12,8 @@ function GridCursor:__init()
     Property(self, 'cursorTileset', 'TextureDef')
     Property(self, 'shader', 'ShaderDef')
     Property(self, 'depth', 'number')
-    Property(self, 'frame', 'number')
+    Property(self, 'cursorFrame', 'number')
+    
 
     self._cursorSize = Vec3f(1,1,0)
     self._oldCursorSize = Vec3f(0,0,0)
@@ -94,7 +95,7 @@ function GridCursor:rebuildMeshIfNeeded()
         local renderer = self._cursorGameObject.renderer;
         local mat = renderer.material
         local dims = Rectf(0, 0, self._cursorSize.x * self._frameWidth, self._cursorSize.y * self._frameHeight)
-        local uvCoords = mat.texture:getFrameUvCoords(self.frame)
+        local uvCoords = mat.texture:getFrameUvCoords(self.cursorFrame)
         renderer.mesh = SimpleMesh.generateQuad(dims, uvCoords)
         self._oldCursorSize = self._cursorSize
     end

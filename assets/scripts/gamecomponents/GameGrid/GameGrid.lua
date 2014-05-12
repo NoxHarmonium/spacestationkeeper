@@ -10,6 +10,8 @@ function GameGrid:__init()
     Property(self, 'shader', 'ShaderDef')
     Property(self, 'size', 'Vec2i')
     Property(self, 'depth', 'number')
+
+    self.selectedTiles = {}
 end
 
 function GameGrid:setup()

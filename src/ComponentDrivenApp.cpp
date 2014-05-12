@@ -27,11 +27,19 @@ ComponentDrivenApp *ComponentDrivenApp::Instance() { return _instance; }
 
 //! Registers a component to receive app events
 void ComponentDrivenApp::registerGameObject(GameObject *gameObject) {
-  _registeredGameObjects.push_back(gameObject);
+  if (_registeredGameObjects.count(gameObject)) {
+    throw runtime_error("This gameObject is already registered.");
+  }
+  _registeredGameObjects.insert(gameObject);
+}
+
+void ComponentDrivenApp::destroyGameObject(GameObject *gameObject) {
+  _registeredGameObjects.erase(gameObject);
+  delete gameObject;
 }
 
 //! Get a list of currently registered components
-vector<GameObject *> ComponentDrivenApp::getGameObjects() {
+set<GameObject *> ComponentDrivenApp::getGameObjects() {
   return this->_registeredGameObjects;
 }
 
@@ -147,8 +155,8 @@ void ComponentDrivenApp::fileDrop(FileDropEvent event) {
   }
 }
 
-vector<GameObject *> ComponentDrivenApp::getRegisteredGameObjectsCopy() {
-  return vector<GameObject *>(_registeredGameObjects);
+set<GameObject *> ComponentDrivenApp::getRegisteredGameObjectsCopy() {
+  return set<GameObject *>(_registeredGameObjects);
 }
 
 ComponentDrivenApp *ComponentDrivenApp::_instance = nullptr;

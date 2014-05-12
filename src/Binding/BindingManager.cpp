@@ -54,8 +54,14 @@ float app_getDeltaTime() {
   return ComponentDrivenApp::Instance()->getDeltaTime();
 }
 
+double app_getElapsedSeconds() { return ci::app::getElapsedSeconds(); }
+
 void app_registerGameObject(GameObject *gameObject) {
   ComponentDrivenApp::Instance()->registerGameObject(gameObject);
+}
+
+void app_destroyGameObject(GameObject *gameObject) {
+  ComponentDrivenApp::Instance()->destroyGameObject(gameObject);
 }
 
 AssetLoaderBase *app_getAssetLoader() {
@@ -126,7 +132,9 @@ extern "C" int initLuaModules(lua_State *L) {
   module(L)[def("app_getWindowHeight", &ci::app::getWindowHeight)];
   module(L)[def("app_getDeltaTime", &app_getDeltaTime)];
   module(L)[def("app_registerGameObject", &app_registerGameObject)];
+  module(L)[def("app_destroyGameObject", &app_destroyGameObject)];
   module(L)[def("app_getAssetLoader", &app_getAssetLoader)];
+  module(L)[def("app_getElapsedSeconds", &app_getElapsedSeconds)];
 
   luabind::bind_class_info(L);
 

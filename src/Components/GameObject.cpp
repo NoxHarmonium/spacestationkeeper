@@ -14,7 +14,13 @@ GameObject::GameObject() {
   renderer = new RenderInfo();
   _bindingManager = BindingManager::Instance();
 }
-GameObject::~GameObject() { delete renderer; }
+GameObject::~GameObject() {
+  delete renderer;
+  for (auto &kvp : getRegisteredComponentsCopy()) {
+    GameComponent *comp = kvp.second;
+    delete comp;
+  }
+}
 
 void GameObject::addComponent(GameComponent *component) {
   string id = component->getId();

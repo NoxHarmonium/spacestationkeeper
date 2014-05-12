@@ -1,0 +1,7 @@
+--- # Script Def
+id:             12
+type:           Script
+order:          1
+sources:
+    - ToggleSelectTileOnClick.lua
+    
