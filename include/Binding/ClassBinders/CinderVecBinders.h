@@ -54,10 +54,10 @@ template <typename T> struct ClassBinder<Vec4<T>> {
   static void Bind(const char *name, lua_State *L) {
     luabind::module(L)[luabind::class_<Vec4<T>>(name)
                            .def(luabind::constructor<T, T, T, T>())
-                           .def_readwrite("w", &Vec4<T>::x)
-                           .def_readwrite("x", &Vec4<T>::y)
+                           .def_readwrite("w", &Vec4<T>::w)
+                           .def_readwrite("x", &Vec4<T>::x)
                            .def_readwrite("y", &Vec4<T>::y)
-                           .def_readwrite("x", &Vec4<T>::y)
+                           .def_readwrite("z", &Vec4<T>::z)
                            .def("limit", &Vec4<T>::limit)
                            // Operators
                            .def(self + Vec4<T>())
