@@ -89,10 +89,10 @@ end
 
 function AddGameObject(go) 
     app_registerGameObject(go)
-    table.insert(gameObjectMap,go)
+    gameObjectMap[go:getId()] = go
 end
 
 function RemoveGameObject(go) 
+    gameObjectMap[go:getId()] = nil
     app_destroyGameObject(go)
-    table.remove(gameObjectMap,go)
 end
