@@ -45,7 +45,11 @@ function GridCursor:update()
 end
 
 function GridCursor:mouseDown(event)
-    local coords = self:snapToGrid(event:getPos())
+    
+    local gridRenderer = self.gameObject.renderer
+    local mousePos = Vec3f(event:getX(), event:getY(), self.gameGrid.depth)
+    local mousePos = gridRenderer.transform:getTransformMatrixWorld() * mousePos
+    local coords = self:snapToGrid(mousePos)
     self._anchor = Vec3f(coords.x, coords.y, self.gameGrid.depth)
     self._cursorSize = Vec3f(1,1,0)
     self._mouseDown = true
@@ -82,9 +86,21 @@ function GridCursor:mouseMove(event)
 end
 
 function GridCursor:mouseDrag(event) 
+    local downX = math.floor(self._anchor.x / self._frameWidth)
+    local downY = math.floor(self._anchor.y / self._frameHeight)
+    local upX = math.floor(event:getX() / self._frameWidth)
+    local upY = math.floor(event:getY() / self._frameHeight)
+    
+    local minX = math.min(downX, upX)
+    local maxX = math.max(downX, upX) + 1
+    local minY = math.min(downY, upY)
+    local maxY = math.max(downY, upY) + 1
+
+    local cursorRenderer = self._cursorGameObject.renderer
+    cursorRenderer.transform.localPosition = Vec3f(minX * self._frameWidth, minY * self._frameWidth, self.depth)
     self._cursorSize = Vec3f(
-            math.floor((event:getX() - self._anchor.x) / self._frameWidth),
-            math.floor((event:getY() - self._anchor.y) / self._frameHeight),
+            maxX - minX,
+            maxY - minY,
             0
             )
     self:rebuildMeshIfNeeded()

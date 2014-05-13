@@ -40,33 +40,58 @@ function ToggleSelectTileOnClick:mouseUp(event)
    local timeDelta = app_getElapsedSeconds() - self._cursorDownTime
    local posDelta = self._cursorDownPosition - event:getPos()
    local gridRenderer = self.gameObject.renderer
-   
+    local bounds = gridRenderer.mesh:getBoundingBox()
+    
+    local mousePos = Vec3f(event:getX(), event:getY(), self.gameGrid.depth)
+    mousePos = gridRenderer.transform:getTransformMatrixWorld() * mousePos
 
-   if timeDelta < self.timeThreshold and posDelta:length() < self.distanceThreshold then
-        local mousePos = Vec3f(event:getX(), event:getY(), self.gameGrid.depth)
+    if timeDelta < self.timeThreshold and posDelta:length() < self.distanceThreshold then
+        self:toggleBlock(bounds, mousePos)
+    else
+        local downMousePos = Vec3f(self._cursorDownPosition.x, self._cursorDownPosition.y, self.gameGrid.depth)
+        downMousePos = gridRenderer.transform:getTransformMatrixWorld() * downMousePos
 
-        local bounds = gridRenderer.mesh:getBoundingBox()
-        local mousePos = gridRenderer.transform:getTransformMatrixWorld() * mousePos
-        if Utils.isInside(bounds, Vec2f(mousePos.x, mousePos.y)) then
-            local x = math.floor(mousePos.x / self._frameWidth) 
-            local y = math.floor(mousePos.y / self._frameHeight)
-            local coord = x..y -- hacky way to have a 2d key but it works!
-            local selectedTiles = self.gameGrid.selectedTiles;
-            
-            if selectedTiles[coord] then
-                app_destroyGameObject(selectedTiles[coord])
-                selectedTiles[coord] = nil -- remove value
-            else
-                local go = GameObject()
-                selectedTiles[coord] = go
-                self:setupGameObject(go, x, y)
-                AddGameObject(go)
+        local downX = math.floor(downMousePos.x / self._frameWidth) 
+        local downY = math.floor(downMousePos.y / self._frameHeight)
+        local upX = math.floor(mousePos.x / self._frameWidth) 
+        local upY = math.floor(mousePos.y / self._frameHeight)
+
+        if math.abs(upX-downX) > 0 and math.abs(upY-downY) > 0 then 
+            local minX = math.min(downX, upX)
+            local maxX = math.max(downX, upX)
+            local minY = math.min(downY, upY)
+            local maxY = math.max(downY, upY)
+           
+
+            for x = minX, maxX do
+                for y = minY, maxY do
+                    self:toggleBlock(bounds, Vec2i(x * self._frameWidth, y * self._frameHeight))
+                end
             end
         end
-   end
+    end
 
     -- Move cursor back to the right spot
     self:mouseMove(event)
+end
+
+function ToggleSelectTileOnClick:toggleBlock(bounds, mousePos) 
+    if Utils.isInside(bounds, Vec2f(mousePos.x, mousePos.y)) then
+        local x = math.floor(mousePos.x / self._frameWidth) 
+        local y = math.floor(mousePos.y / self._frameHeight)
+        local coord = x..y -- hacky way to have a 2d key but it works!
+        local selectedTiles = self.gameGrid.selectedTiles;
+        
+        if selectedTiles[coord] then
+            app_destroyGameObject(selectedTiles[coord])
+            selectedTiles[coord] = nil -- remove value
+        else
+            local go = GameObject()
+            selectedTiles[coord] = go
+            self:setupGameObject(go, x, y)
+            AddGameObject(go)
+        end
+    end
 end
 
 function ToggleSelectTileOnClick:setupGameObject(go, x, y) 
