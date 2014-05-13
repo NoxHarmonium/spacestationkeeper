@@ -31,8 +31,8 @@ function GameGrid:setup()
     mat.texture = self.defaultTileset
     mat.shader = self.shader
 
-    for x = 1 , self.size.x do
-        for y = 1, self.size.y do
+    for x = 0 , self.size.x do
+        for y = 0, self.size.y do
             local tile = GameObject()
             tile.renderer.transform.localPosition = Vec3f(
                 x * frameWidth,
@@ -66,10 +66,10 @@ end
 function GetPassibility(x, y, maxX, maxY)
     local passibility = Passibility()
 
-    if x == 1 then
+    if x == 0 then
       passibility:setFlag(Passibility.West)
     end
-    if y == 1 then
+    if y == 0 then
       passibility:setFlag(Passibility.North)
     end
     if x == maxX then
