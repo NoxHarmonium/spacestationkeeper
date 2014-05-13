@@ -1,8 +1,0 @@
---- # Script Def
-id:             5
-type:           Script
-order:          -1
-sources:
-    - Tuple.lua
-    - Init.lua
-    
