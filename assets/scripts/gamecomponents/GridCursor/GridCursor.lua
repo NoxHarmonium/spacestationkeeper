@@ -82,13 +82,19 @@ function GridCursor:mouseUp(event)
         self:toggleBlock(bounds, mousePos)
     else 
         if self.selectionRange then
+            local selectedTiles = self.gameGrid.selectedTiles;
             local minX = self.selectionRange.x
             local minY = self.selectionRange.y
             local maxX = self.selectionRange.z
             local maxY = self.selectionRange.w
+            local firstTileSwitchedOn = nil
             for x = minX, maxX, self._frameWidth do
                 for y = minY, maxY, self._frameHeight do
-                    self:toggleBlock(bounds, Vec2i(x, y))
+                    if firstTileSwitchedOn == nil then
+                        firstTileSwitchedOn = self:toggleBlock(bounds, Vec2i(x, y))
+                    else 
+                        self:toggleBlock(bounds, Vec2i(x, y), firstTileSwitchedOn)
+                    end
                 end
             end
         end
@@ -173,21 +179,29 @@ function GridCursor:rebuildMeshIfNeeded()
     end
 end
 
-function GridCursor:toggleBlock(bounds, mousePos) 
+function GridCursor:toggleBlock(bounds, mousePos, switchOn) 
     if Utils.isInside(bounds, Vec2f(mousePos.x, mousePos.y)) then
         local x = mousePos.x
         local y = mousePos.y
         local coord = x..y -- hacky way to have a 2d key but it works!
         local selectedTiles = self.gameGrid.selectedTiles;
         
-        if selectedTiles[coord] then
+        if switchOn == nil then
+            switchOn = not selectedTiles[coord]
+        end
+
+
+        if selectedTiles[coord] and not switchOn then
             RemoveGameObject(selectedTiles[coord])
             selectedTiles[coord] = nil -- remove value
-        else
+            return false
+        end
+        if not selectedTiles[coord] and switchOn then
             local go = GameObject()
             selectedTiles[coord] = go
             self:setupSelectedGameObject(go, x, y)
             AddGameObject(go)
+            return true
         end
     end
 end
