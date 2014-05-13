@@ -82,15 +82,12 @@ function GridCursor:mouseUp(event)
         self:toggleBlock(bounds, mousePos)
     else 
         if self.selectionRange then
-            LuaDebug.Log('selectedRange: ' .. tostring(self.selectionRange))
             local minX = self.selectionRange.x
             local minY = self.selectionRange.y
             local maxX = self.selectionRange.z
             local maxY = self.selectionRange.w
-            LuaDebug.Log('minX: ' .. minX .. 'minY: ' .. minY .. 'maxX: ' .. maxX .. 'maxY: ' .. maxY )
             for x = minX, maxX, self._frameWidth do
                 for y = minY, maxY, self._frameHeight do
-                    LuaDebug.Log('x: ' .. x .. ' y: ' .. y)
                     self:toggleBlock(bounds, Vec2i(x, y))
                 end
             end
