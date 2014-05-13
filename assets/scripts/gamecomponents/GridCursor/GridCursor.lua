@@ -11,11 +11,16 @@ function GridCursor:__init()
     Property(self, 'gameGrid', 'GameGrid')
     Property(self, 'cursorTileset', 'TextureDef')
     Property(self, 'shader', 'ShaderDef')
-    Property(self, 'depth', 'number')
+    Property(self, 'timeThreshold', 'number')
+    Property(self, 'distanceThreshold', 'number')
+    Property(self, 'selectedFrame', 'number')
+    Property(self, 'selectedDepth', 'number')
+    Property(self, 'cursorDepth', 'number')
     Property(self, 'cursorFrame', 'number')
     
-
-    self._cursorSize = Vec3f(1,1,0)
+    self._cursorDownPosition = Vec2i(0,0)
+    self._cursorDownTime = Vec2i(0,0)
+    self._cursorSize = Vec3f(0,0,0)
     self._oldCursorSize = Vec3f(0,0,0)
     self._mouseDown = false
 end
@@ -27,6 +32,7 @@ function GridCursor:setup()
 
     self._frameWidth = self.cursorTileset:getFrameWidth()
     self._frameHeight = self.cursorTileset:getFrameHeight()
+    self._cursorSize = Vec3f(self._frameWidth, self._frameHeight,0)
 
     local mat = Material()
     mat.texture = self.cursorTileset
@@ -38,6 +44,11 @@ function GridCursor:setup()
 
     AddGameObject(self._cursorGameObject)
 
+    local selectionMat = Material()
+    selectionMat.texture = self.cursorTileset
+    selectionMat.shader = self.shader
+    self._selectionMat = selectionMat
+
 end
 
 function GridCursor:update()
@@ -45,20 +56,49 @@ function GridCursor:update()
 end
 
 function GridCursor:mouseDown(event)
-    
-    local gridRenderer = self.gameObject.renderer
-    local mousePos = Vec3f(event:getX(), event:getY(), self.gameGrid.depth)
-    local mousePos = gridRenderer.transform:getTransformMatrixWorld() * mousePos
-    local coords = self:snapToGrid(mousePos)
-    self._anchor = Vec3f(coords.x, coords.y, self.gameGrid.depth)
-    self._cursorSize = Vec3f(1,1,0)
+    local mousePos = self:transformMousePos(event:getPos())
+    self._anchor = mousePos
+    self._cursorSize = Vec3f(self._frameWidth, self._frameHeight, 0)
     self._mouseDown = true
+    self._cursorDownPosition = event:getPos()
+    self._cursorDownTime = app_getElapsedSeconds()
 end
 
 function GridCursor:mouseUp(event)
-    self._cursorSize = Vec3f(1,1,0)
     self._mouseDown = false
 
+    local gridRenderer = self.gameObject.renderer
+    local cursorRenderer = self._cursorGameObject.renderer
+
+    local timeDelta = app_getElapsedSeconds() - self._cursorDownTime
+    local posDelta = self._cursorDownPosition - event:getPos()
+
+    local mousePos = self:snapToGrid(
+        self:transformMousePos(event:getPos())
+        )
+    local bounds = gridRenderer.mesh:getBoundingBox()
+
+    if timeDelta < self.timeThreshold and posDelta:length() < self.distanceThreshold then
+        self:toggleBlock(bounds, mousePos)
+    else 
+        if self.selectionRange then
+            LuaDebug.Log('selectedRange: ' .. tostring(self.selectionRange))
+            local minX = self.selectionRange.x
+            local minY = self.selectionRange.y
+            local maxX = self.selectionRange.z
+            local maxY = self.selectionRange.w
+            LuaDebug.Log('minX: ' .. minX .. 'minY: ' .. minY .. 'maxX: ' .. maxX .. 'maxY: ' .. maxY )
+            for x = minX, maxX, self._frameWidth do
+                for y = minY, maxY, self._frameHeight do
+                    LuaDebug.Log('x: ' .. x .. ' y: ' .. y)
+                    self:toggleBlock(bounds, Vec2i(x, y))
+                end
+            end
+        end
+    end
+
+    self._cursorSize = Vec3f(self._frameWidth, self._frameHeight, 0)
+    self.selectionRange = nil
     -- Move cursor back to the right spot
     self:mouseMove(event)
 end
@@ -67,10 +107,9 @@ function GridCursor:mouseMove(event)
     local cursorRenderer = self._cursorGameObject.renderer
     local gridRenderer = self.gameObject.renderer
 
-    local mousePos = Vec3f(event:getX(), event:getY(), self.gameGrid.depth)
+    local mousePos = self:transformMousePos(event:getPos())
 
     local bounds = gridRenderer.mesh:getBoundingBox()
-    local mousePos = gridRenderer.transform:getTransformMatrixWorld() * mousePos
     
     self:rebuildMeshIfNeeded()
     
@@ -78,7 +117,7 @@ function GridCursor:mouseMove(event)
     if Utils.isInside(bounds, Vec2f(mousePos.x, mousePos.y)) then
         cursorRenderer.material.baseColor = ColorAf(1,1,1,1)
         local coords = self:snapToGrid(mousePos)
-        cursorRenderer.transform.localPosition = Vec3f(coords.x, coords.y, self.depth)
+        cursorRenderer.transform.localPosition = Vec3f(coords.x, coords.y, self.cursorDepth)
     else
         cursorRenderer.material.baseColor = ColorAf(1,1,1,0)
     end
@@ -86,24 +125,38 @@ function GridCursor:mouseMove(event)
 end
 
 function GridCursor:mouseDrag(event) 
-    local downX = math.floor(self._anchor.x / self._frameWidth)
-    local downY = math.floor(self._anchor.y / self._frameHeight)
-    local upX = math.floor(event:getX() / self._frameWidth)
-    local upY = math.floor(event:getY() / self._frameHeight)
+    local mousePos = self:snapToGrid(
+        self:transformMousePos(event:getPos())
+        )
+    local anchorPos = self:snapToGrid(self._anchor)
+
+
+    local downX = anchorPos.x 
+    local downY = anchorPos.y 
+    local upX = mousePos.x 
+    local upY = mousePos.y 
     
     local minX = math.min(downX, upX)
-    local maxX = math.max(downX, upX) + 1
+    local maxX = math.max(downX, upX)
     local minY = math.min(downY, upY)
-    local maxY = math.max(downY, upY) + 1
-
+    local maxY = math.max(downY, upY)
+ 
     local cursorRenderer = self._cursorGameObject.renderer
-    cursorRenderer.transform.localPosition = Vec3f(minX * self._frameWidth, minY * self._frameWidth, self.depth)
+    cursorRenderer.transform.localPosition = Vec3f(minX, minY, self.cursorDepth)
     self._cursorSize = Vec3f(
-            maxX - minX,
-            maxY - minY,
+            ((maxX + self._frameWidth) - minX),
+            ((maxY + self._frameHeight) - minY),
             0
             )
+
+    self.selectionRange = Vec4f(minX, minY, maxX, maxY)
     self:rebuildMeshIfNeeded()
+end
+
+function GridCursor:transformMousePos(mousePos) 
+    local pos = Vec3f(mousePos.x, mousePos.y, 0) -- Allow for multiple vector types to be passed in
+    local gridRenderer = self.gameObject.renderer
+    return gridRenderer.transform:getTransformMatrixWorld() * pos
 end
 
 function GridCursor:snapToGrid(mousePos)
@@ -116,9 +169,38 @@ function GridCursor:rebuildMeshIfNeeded()
     if (self._cursorSize ~= self._oldCursorSize) then
         local renderer = self._cursorGameObject.renderer;
         local mat = renderer.material
-        local dims = Rectf(0, 0, self._cursorSize.x * self._frameWidth, self._cursorSize.y * self._frameHeight)
+        local dims = Rectf(0, 0, self._cursorSize.x, self._cursorSize.y)
         local uvCoords = mat.texture:getFrameUvCoords(self.cursorFrame)
         renderer.mesh = SimpleMesh.generateQuad(dims, uvCoords)
         self._oldCursorSize = self._cursorSize
     end
+end
+
+function GridCursor:toggleBlock(bounds, mousePos) 
+    if Utils.isInside(bounds, Vec2f(mousePos.x, mousePos.y)) then
+        local x = mousePos.x
+        local y = mousePos.y
+        local coord = x..y -- hacky way to have a 2d key but it works!
+        local selectedTiles = self.gameGrid.selectedTiles;
+        
+        if selectedTiles[coord] then
+            RemoveGameObject(selectedTiles[coord])
+            selectedTiles[coord] = nil -- remove value
+        else
+            local go = GameObject()
+            selectedTiles[coord] = go
+            self:setupSelectedGameObject(go, x, y)
+            AddGameObject(go)
+        end
+    end
+end
+
+function GridCursor:setupSelectedGameObject(go, x, y) 
+    local renderer = go.renderer
+    local dims = Rectf(0, 0, 1 * self._frameWidth, 1 * self._frameHeight)
+    local uvCoords = self._selectionMat.texture:getFrameUvCoords(self.selectedFrame)
+    renderer.mesh = SimpleMesh.generateQuad(dims, uvCoords)
+    renderer.material = self._selectionMat 
+    renderer.transform.localPosition = Vec3f(x, y, self.selectedDepth)
+    renderer.transform.parent = self.gameObject.renderer.transform
 end
