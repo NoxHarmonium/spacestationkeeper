@@ -26,19 +26,19 @@ ComponentDrivenApp::~ComponentDrivenApp() {}
 ComponentDrivenApp *ComponentDrivenApp::Instance() { return _instance; }
 
 //! Registers a component to receive app events
-void ComponentDrivenApp::registerGameObject(GameObject *gameObject) {
+void ComponentDrivenApp::registerGameObject(GameObjectRef gameObject) {
   if (_registeredGameObjects.count(gameObject)) {
     throw runtime_error("This gameObject is already registered.");
   }
   _registeredGameObjects.insert(gameObject);
 }
 
-void ComponentDrivenApp::destroyGameObject(GameObject *gameObject) {
+void ComponentDrivenApp::destroyGameObject(GameObjectRef gameObject) {
   _registeredGameObjects.erase(gameObject);
 }
 
 //! Get a list of currently registered components
-set<GameObject *> ComponentDrivenApp::getGameObjects() {
+set<GameObjectRef> ComponentDrivenApp::getGameObjects() {
   return this->_registeredGameObjects;
 }
 
@@ -73,14 +73,15 @@ void ComponentDrivenApp::update() {
 // OS-prompted requests for refreshes.
 void ComponentDrivenApp::draw() {
   // z-depth sorting // TODO: Make more efficient
-  set<GameObject *> gameObjects = getRegisteredGameObjectsCopy();
+  set<GameObjectRef> gameObjects = getRegisteredGameObjectsCopy();
 
   // Copy set into vector
-  std::vector<GameObject *> vector =
-      std::vector<GameObject *>(gameObjects.begin(), gameObjects.end());
+  std::vector<GameObjectRef> vector =
+      std::vector<GameObjectRef>(gameObjects.begin(), gameObjects.end());
 
   // Depth sort the vector
-  sort(std::begin(vector), std::end(vector), [](GameObject *a, GameObject *b) {
+  sort(std::begin(vector), std::end(vector),
+       [](GameObjectRef a, GameObjectRef b) {
     return b->renderer->transform->localPosition.z >
            a->renderer->transform->localPosition.z;
   });
@@ -168,8 +169,8 @@ void ComponentDrivenApp::fileDrop(FileDropEvent event) {
   }
 }
 
-set<GameObject *> ComponentDrivenApp::getRegisteredGameObjectsCopy() {
-  return set<GameObject *>(_registeredGameObjects);
+set<GameObjectRef> ComponentDrivenApp::getRegisteredGameObjectsCopy() {
+  return set<GameObjectRef>(_registeredGameObjects);
 }
 
 ComponentDrivenApp *ComponentDrivenApp::_instance = nullptr;

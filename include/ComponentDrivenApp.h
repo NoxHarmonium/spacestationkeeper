@@ -27,16 +27,16 @@ public:
   ~ComponentDrivenApp();
 
   //! Registers a component to receive app events
-  void registerGameObject(GameObject *component);
+  void registerGameObject(GameObjectRef component);
 
   //! Deregisters a GameObject and frees the memory used by it.
-  void destroyGameObject(GameObject *gameObject);
+  void destroyGameObject(GameObjectRef gameObject);
 
   //! Get a list of currently registered components
-  set<GameObject *> getGameObjects();
+  set<GameObjectRef> getGameObjects();
 
-  template <typename T> vector<GameObject *> GetComponentsByType() {
-    vector<GameObject *> selectedGos;
+  template <typename T> vector<GameObjectRef> GetComponentsByType() {
+    vector<GameObjectRef> selectedGos;
     for (auto &go : _registeredGameObjects) {
       if (dynamic_cast<T>(go) != nullptr) {
         selectedGos.push_back(go);
@@ -45,11 +45,11 @@ public:
     return selectedGos;
   }
 
-  template <typename T> T *GetComponentByType() {
+  template <typename T> std::shared_ptr<T> GetComponentByType() {
     // TODO: Can I make GetComponentsByType() an iterator and then return the
     // first value here?
     for (auto &comp : _registeredGameObjects) {
-      T *compT = dynamic_cast<T *>(comp);
+      std::shared_ptr<T> compT = dynamic_pointer_cast<T>(comp);
       if (compT != nullptr) {
         return compT;
       }
@@ -66,6 +66,13 @@ public:
   }
   // Gets the asset loader used by this app
   AssetLoaderBase *getAssetLoader() { return _assetLoader; }
+
+  /*! Sets the job manager used by this app. */
+  void setJobManager(std::shared_ptr<JobManager> jobManager) {
+    _jobManager = jobManager;
+  }
+
+  std::shared_ptr<JobManager> getJobManager() { return _jobManager; }
 
   //! Override to perform any application setup after the Renderer has been
   // initialized.
@@ -123,10 +130,10 @@ public:
 
 private:
   // Methods
-  set<GameObject *> getRegisteredGameObjectsCopy();
+  set<GameObjectRef> getRegisteredGameObjectsCopy();
 
   // Fields
-  set<GameObject *> _registeredGameObjects;
+  set<GameObjectRef> _registeredGameObjects;
   map<string, void *> _stateMap;
   float _lastElapsedTime = NAN;
   float _deltaTime = 0.0f;
