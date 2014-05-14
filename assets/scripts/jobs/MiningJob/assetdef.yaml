@@ -1,0 +1,7 @@
+--- # Script Def
+id:             14
+type:           Script
+order:          1
+sources:
+    - MiningJob.lua
+    

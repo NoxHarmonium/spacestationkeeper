@@ -96,3 +96,11 @@ function RemoveGameObject(go)
     gameObjectMap[go:getId()] = nil
     app_destroyGameObject(go)
 end
+
+function RegisterJob(job) 
+    app_registerJob(job)
+end
+
+function CancelJob(job) 
+    app_cancelJob(job)
+end

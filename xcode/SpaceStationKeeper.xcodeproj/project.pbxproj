@@ -164,7 +164,6 @@
 		9E28173D191C7AA600F5E95C /* yaml.so */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = yaml.so; path = ../libraries/lib/osx/yaml.so; sourceTree = "<group>"; };
 		9E28173F191C871300F5E95C /* CinderQuatBinders.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CinderQuatBinders.h; sourceTree = "<group>"; };
 		9E281740191D348000F5E95C /* GameCameraBinder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameCameraBinder.h; sourceTree = "<group>"; };
-		9E281741191D4B6B00F5E95C /* GameCameraWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameCameraWrapper.h; sourceTree = "<group>"; };
 		9E36F8801917CBAC0098B3C0 /* BatchedMesh.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BatchedMesh.h; sourceTree = "<group>"; };
 		9E36F8811917CC640098B3C0 /* BatchedMesh.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BatchedMesh.cpp; sourceTree = "<group>"; };
 		9E36F88419180E8F0098B3C0 /* Transform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Transform.cpp; sourceTree = "<group>"; };
@@ -186,6 +185,8 @@
 		9E3CD3FA191D9B95000E6778 /* FixStdSharedPtrBind.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FixStdSharedPtrBind.h; sourceTree = "<group>"; };
 		9E3CD3FB191DD1F7000E6778 /* SimpleMeshBinder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SimpleMeshBinder.h; sourceTree = "<group>"; };
 		9E3CD3FC191DD2D2000E6778 /* CinderRectBinders.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CinderRectBinders.h; sourceTree = "<group>"; };
+		9E5D3B101922D8AC0011FA66 /* JobWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobWrapper.h; sourceTree = "<group>"; };
+		9E5D3B111922DB2F0011FA66 /* JobBinder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobBinder.h; sourceTree = "<group>"; };
 		9E72B0E4190C4E0E00F9935A /* Modifier.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Modifier.h; sourceTree = "<group>"; };
 		9E72B0E5190C4E3400F9935A /* RenderInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RenderInfo.h; sourceTree = "<group>"; };
 		9E92628E18D48232001AB5D6 /* GameComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameComponent.cpp; sourceTree = "<group>"; };
@@ -500,6 +501,7 @@
 				9E1AE48B191E80E10083E6D2 /* BatchedMeshBinder.h */,
 				9E1AE48C191EA3E20083E6D2 /* EnumHelperBinder.h */,
 				9E1AE48D191EB8F00083E6D2 /* UtilsBinder.h */,
+				9E5D3B111922DB2F0011FA66 /* JobBinder.h */,
 			);
 			path = ClassBinders;
 			sourceTree = "<group>";
@@ -508,7 +510,7 @@
 			isa = PBXGroup;
 			children = (
 				9E2816E9191AA60400F5E95C /* GameComponentWrapper.h */,
-				9E281741191D4B6B00F5E95C /* GameCameraWrapper.h */,
+				9E5D3B101922D8AC0011FA66 /* JobWrapper.h */,
 			);
 			path = Wrappers;
 			sourceTree = "<group>";

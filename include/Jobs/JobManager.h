@@ -9,11 +9,13 @@
 #ifndef SpaceStationKeeper_JobManager_h
 #define SpaceStationKeeper_JobManager_h
 
+#include "Job.h"
+
 enum JobState { Pending, Running, Finished, Cancelled };
 
-class JobManager : public GameComponent {
+class JobManager {
 public:
-  JobManager() : GameComponent() {};
+  JobManager() {};
   ~JobManager() {}
 
   void update();

@@ -38,6 +38,7 @@ private:
   // JobManager *_jobManager;
   BindingManager *_bindingManager;
   std::shared_ptr<FileAssetLoader> _fileAssetLoader;
+  std::shared_ptr<JobManager> _jobManager;
 };
 
 #endif

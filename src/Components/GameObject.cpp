@@ -21,7 +21,7 @@ GameObject::~GameObject() {}
 void GameObject::addComponent(GameComponentRef component) {
   string id = GameComponent::getId(component);
   checkIdValidity(id);
-  _components[GameComponent::getId(component)] = component;
+  _components[id] = component;
   component->gameObject = this; // TODO: Encapsulate more? i.e. setGameObject()?
 }
 

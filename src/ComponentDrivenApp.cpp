@@ -19,6 +19,7 @@ using namespace boost;
 ComponentDrivenApp::ComponentDrivenApp() {
   assert(_instance == nullptr);
   _instance = this;
+  _bindingManager = BindingManager::Instance();
 }
 
 ComponentDrivenApp::~ComponentDrivenApp() {}
@@ -63,6 +64,12 @@ void ComponentDrivenApp::update() {
     _deltaTime = ci::app::getElapsedSeconds() - _lastElapsedTime;
   }
   _lastElapsedTime = ci::app::getElapsedSeconds();
+
+  if (_jobManager != nullptr) {
+    std::shared_ptr<JobManager> jobMan =
+        _jobManager; // Need to make local copy for lambda capture
+    _bindingManager->catchLuaExceptions([jobMan]() { jobMan->update(); });
+  }
 
   for (auto &comp : getRegisteredGameObjectsCopy()) {
     comp->update();

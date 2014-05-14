@@ -12,6 +12,7 @@
 #include "GameObject.h"
 #include "cinder/app/AppNative.h"
 #include <type_traits>
+#include "JobManager.h"
 
 using namespace ci;
 using namespace ci::app;
@@ -138,6 +139,8 @@ private:
   float _lastElapsedTime = NAN;
   float _deltaTime = 0.0f;
   AssetLoaderBase *_assetLoader;
+  std::shared_ptr<JobManager> _jobManager;
+  BindingManager *_bindingManager;
 
   // Static Fields
   static ComponentDrivenApp *_instance;

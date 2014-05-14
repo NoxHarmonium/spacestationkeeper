@@ -31,6 +31,7 @@ GameObjects:
             -   type: GameGrid
                 id: gameGrid
                 defaultTileset: "tilesets/asteroid"
+                targetTileset: "tilesets/corridor"
                 shader:  "shaders/default"
                 size: [10,10]
                 depth: 1

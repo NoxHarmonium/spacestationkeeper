@@ -37,6 +37,7 @@
 #include "CinderRectBinders.h"
 #include "BatchedMeshBinder.h"
 #include "EnumHelperBinder.h"
+#include "JobBinder.h"
 #include "UtilsBinder.h"
 
 using adopt2 = luabind::detail::policy_cons<luabind::detail::adopt_policy<2>,
@@ -56,12 +57,20 @@ float app_getDeltaTime() {
 
 double app_getElapsedSeconds() { return ci::app::getElapsedSeconds(); }
 
-void app_registerGameObject(GameObject *gameObject) {
+void app_registerGameObject(GameObjectRef gameObject) {
   ComponentDrivenApp::Instance()->registerGameObject(gameObject);
 }
 
-void app_destroyGameObject(GameObject *gameObject) {
+void app_destroyGameObject(GameObjectRef gameObject) {
   ComponentDrivenApp::Instance()->destroyGameObject(gameObject);
+}
+
+void app_registerJob(JobRef job) {
+  ComponentDrivenApp::Instance()->getJobManager()->registerJob(job);
+}
+
+void app_cancelJob(JobRef job) {
+  ComponentDrivenApp::Instance()->getJobManager()->cancelJob(job);
 }
 
 AssetLoaderBase *app_getAssetLoader() {
@@ -77,6 +86,7 @@ extern "C" int initLuaModules(lua_State *L) {
 
   // Classes that can be inherited by LUA
   ClassBinder<GameComponent>::Bind("GameComponent", L);
+  ClassBinder<Job>::Bind("Job", L);
 
   // Classes directly binded to LUA
   ClassBinder<GameCamera>::Bind("GameCamera", L);
@@ -135,6 +145,8 @@ extern "C" int initLuaModules(lua_State *L) {
   module(L)[def("app_destroyGameObject", &app_destroyGameObject)];
   module(L)[def("app_getAssetLoader", &app_getAssetLoader)];
   module(L)[def("app_getElapsedSeconds", &app_getElapsedSeconds)];
+  module(L)[def("app_registerJob", &app_registerJob)];
+  module(L)[def("app_cancelJob", &app_cancelJob)];
 
   luabind::bind_class_info(L);
 

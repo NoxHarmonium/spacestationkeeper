@@ -13,14 +13,17 @@
 #include <string>
 #include "GameObject.h"
 #include <functional>
+#include "Job.h"
 
 extern "C" { int initLuaModules(lua_State *L); }
 
 // Free functions
 float app_getDeltaTime();
 double app_getElapsedSeconds();
-void app_registerGameObject(GameObject *gameObject);
-void app_destroyGameObject(GameObject *gameObject);
+void app_registerGameObject(GameObjectRef gameObject);
+void app_destroyGameObject(GameObjectRef gameObject);
+void app_registerJob(JobRef job);
+void app_cancelJob(JobRef job);
 AssetLoaderBase *app_getAssetLoader();
 
 class BindingManager {

@@ -9,6 +9,8 @@
 #ifndef SpaceStationKeeper_Job_h
 #define SpaceStationKeeper_Job_h
 
+#include "Resource.h"
+
 using namespace std;
 
 typedef map<Resource *, int> ResourceAllocation;

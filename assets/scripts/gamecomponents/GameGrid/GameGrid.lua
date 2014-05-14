@@ -7,6 +7,7 @@ function GameGrid:__init()
 
     -- Serialisation properties
     Property(self, 'defaultTileset', 'TextureDef')
+    Property(self, 'targetTileset', 'TextureDef')
     Property(self, 'shader', 'ShaderDef')
     Property(self, 'size', 'Vec2i')
     Property(self, 'depth', 'number')
@@ -31,6 +32,8 @@ function GameGrid:setup()
     mat.texture = self.defaultTileset
     mat.shader = self.shader
 
+    self.tiles = {}
+
     for x = 0 , self.size.x do
         for y = 0, self.size.y do
             local tile = GameObject()
@@ -53,6 +56,8 @@ function GameGrid:setup()
 
             tile.renderer:batch(batchedMesh)
 
+            self.tiles[x..y] = tile
+
             AddGameObject(tile)
         end
     end
@@ -61,6 +66,18 @@ end
 
 function GameGrid:update()
         
+end
+
+function GameGrid:keyUp(keyEvent)
+    local frameWidth = self.defaultTileset:getFrameWidth()
+    local frameHeight = self.defaultTileset:getFrameHeight()
+
+    for id, tile in pairs(self.selectedTiles) do
+        local tilePos = tile.renderer.transform.localPosition
+        local coord = Vec2i(tilePos.x / frameWidth, tilePos.y / frameHeight)
+        local job = MiningJob(self, coord, self.defaultTileset, self.targetTileset)
+        RegisterJob(job)
+    end
 end
 
 function GetPassibility(x, y, maxX, maxY)
