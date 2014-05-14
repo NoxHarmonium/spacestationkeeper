@@ -11,7 +11,6 @@
 
 #include "ClassBinder.h"
 #include "GameCamera.h"
-#include "GameCameraWrapper.h"
 
 template <> struct ClassBinder<GameCamera> {
   static void Bind(const char *name, lua_State *L) {
