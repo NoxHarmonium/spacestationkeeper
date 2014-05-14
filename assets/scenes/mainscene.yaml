@@ -8,6 +8,7 @@ GameObjects:
         Components:
             - type: GameCamera
             - type: MouseScroll
+              EdgeSensitivity: 100
 
     -   name: TestObject
         RenderInfo:

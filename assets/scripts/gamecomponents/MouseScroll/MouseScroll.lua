@@ -10,9 +10,9 @@ function MouseScroll:__init()
     self._mousePos = Vec2f(0, 0)
 
     -- Serialisation properties
-    Property(self, 'EdgeSensitivity', 'Vec2f', false)
+    Property(self, 'EdgeSensitivity', 'number', false)
     Property(self, 'Acceleration', 'Vec2f', false)
-    Property(self, 'Deceleration', 'Vec2f', false)
+    Property(self, 'Deceleration', 'number', false)
     Property(self, 'MaxSpeed', 'number', false)
     Property(self, 'MouseWheelMult', 'number', false)
 
@@ -37,24 +37,26 @@ function MouseScroll:update()
     local go = self.gameObject;
     local rd = go.renderer;
 
-    if mp.x < self.EdgeSensitivity then
-        local multiplier = 1.0 - (mp.x / self.EdgeSensitivity)
-        self._velocity = self._velocity + Vec2f(-self.Acceleration.x * multiplier, 0) * dt
-    end
+    if (mp.x > 0 and mp.x < ww and mp.y > 0 and mp.y < wh) then
+        if mp.x < self.EdgeSensitivity then
+            local multiplier = 1.0 - (mp.x / self.EdgeSensitivity)
+            self._velocity = self._velocity + Vec2f(-self.Acceleration.x * multiplier, 0) * dt
+        end
 
-    if mp.x > ww - self.EdgeSensitivity then
-        local multiplier = 1.0 - ((ww - mp.x) / self.EdgeSensitivity)
-        self._velocity = self._velocity + Vec2f(self.Acceleration.x * multiplier, 0) * dt
-    end
+        if mp.x > ww - self.EdgeSensitivity then
+            local multiplier = 1.0 - ((ww - mp.x) / self.EdgeSensitivity)
+            self._velocity = self._velocity + Vec2f(self.Acceleration.x * multiplier, 0) * dt
+        end
 
-    if (mp.y < self.EdgeSensitivity) then
-        local multiplier = 1.0 - (mp.y / self.EdgeSensitivity);
-        self._velocity = self._velocity +  Vec2f(0, -self.Acceleration.y * multiplier) * dt
-    end
+        if (mp.y < self.EdgeSensitivity) then
+            local multiplier = 1.0 - (mp.y / self.EdgeSensitivity);
+            self._velocity = self._velocity +  Vec2f(0, -self.Acceleration.y * multiplier) * dt
+        end
 
-    if mp.y > wh - self.EdgeSensitivity then
-        local multiplier = 1.0 - ((wh - mp.y) / self.EdgeSensitivity)
-        self._velocity  = self._velocity + Vec2f(0.0, self.Acceleration.y * multiplier) * dt
+        if mp.y > wh - self.EdgeSensitivity then
+            local multiplier = 1.0 - ((wh - mp.y) / self.EdgeSensitivity)
+            self._velocity  = self._velocity + Vec2f(0.0, self.Acceleration.y * multiplier) * dt
+        end
     end
 
     self._velocity:limit(self.MaxSpeed)
