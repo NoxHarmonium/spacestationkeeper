@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?fileVersion 4.0.0?>
+
+<cproject storage_type_id="org.eclipse.cdt.core.XmlProjectDescriptionStorage">
+	<storageModule moduleId="org.eclipse.cdt.core.settings">
+		<cconfiguration id="cdt.managedbuild.config.gnu.macosx.exe.debug.2129648955">
+			<storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="cdt.managedbuild.config.gnu.macosx.exe.debug.2129648955" moduleId="org.eclipse.cdt.core.settings" name="Debug">
+				<externalSettings/>
+				<extensions>
+					<extension id="org.eclipse.cdt.core.MachO64" point="org.eclipse.cdt.core.BinaryParser"/>
+					<extension id="org.eclipse.cdt.core.GmakeErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.CWDLocator" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.GCCErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.GASErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.GLDErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+				</extensions>
+			</storageModule>
+			<storageModule moduleId="cdtBuildSystem" version="4.0.0">
+				<configuration artifactName="${ProjName}" buildArtefactType="org.eclipse.cdt.build.core.buildArtefactType.exe" buildProperties="org.eclipse.cdt.build.core.buildType=org.eclipse.cdt.build.core.buildType.debug,org.eclipse.cdt.build.core.buildArtefactType=org.eclipse.cdt.build.core.buildArtefactType.exe" cleanCommand="rm -rf" description="" id="cdt.managedbuild.config.gnu.macosx.exe.debug.2129648955" name="Debug" parent="cdt.managedbuild.config.gnu.macosx.exe.debug">
+					<folderInfo id="cdt.managedbuild.config.gnu.macosx.exe.debug.2129648955." name="/" resourcePath="">
+						<toolChain id="cdt.managedbuild.toolchain.gnu.macosx.exe.debug.87949636" name="MacOSX GCC" superClass="cdt.managedbuild.toolchain.gnu.macosx.exe.debug">
+							<targetPlatform id="cdt.managedbuild.target.gnu.platform.macosx.exe.debug.1140824804" name="Debug Platform" superClass="cdt.managedbuild.target.gnu.platform.macosx.exe.debug"/>
+							<builder buildPath="${workspace_loc:/spacestationkeeper}/Debug" id="cdt.managedbuild.target.gnu.builder.macosx.exe.debug.878945344" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="Gnu Make Builder" superClass="cdt.managedbuild.target.gnu.builder.macosx.exe.debug"/>
+							<tool id="cdt.managedbuild.tool.macosx.c.linker.macosx.exe.debug.104022065" name="MacOS X C Linker" superClass="cdt.managedbuild.tool.macosx.c.linker.macosx.exe.debug"/>
+							<tool command="gcc-4.8" id="cdt.managedbuild.tool.macosx.cpp.linker.macosx.exe.debug.535753798" name="MacOS X C++ Linker" superClass="cdt.managedbuild.tool.macosx.cpp.linker.macosx.exe.debug">
+								<option id="macosx.cpp.link.option.paths.2039226095" name="Library search path (-L)" superClass="macosx.cpp.link.option.paths" valueType="libPaths">
+									<listOptionValue builtIn="false" value="../../libraries/lib"/>
+								</option>
+								<inputType id="cdt.managedbuild.tool.macosx.cpp.linker.input.1538719470" superClass="cdt.managedbuild.tool.macosx.cpp.linker.input">
+									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
+									<additionalInput kind="additionalinput" paths="$(LIBS)"/>
+								</inputType>
+							</tool>
+							<tool id="cdt.managedbuild.tool.gnu.assembler.macosx.exe.debug.1353706578" name="GCC Assembler" superClass="cdt.managedbuild.tool.gnu.assembler.macosx.exe.debug">
+								<inputType id="cdt.managedbuild.tool.gnu.assembler.input.2116249075" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
+							</tool>
+							<tool id="cdt.managedbuild.tool.gnu.archiver.macosx.base.1509435529" name="GCC Archiver" superClass="cdt.managedbuild.tool.gnu.archiver.macosx.base"/>
+							<tool command="gcc-4.8" id="cdt.managedbuild.tool.gnu.cpp.compiler.macosx.exe.debug.1220652573" name="GCC C++ Compiler" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.macosx.exe.debug">
+								<option id="gnu.cpp.compilermacosx.exe.debug.option.optimization.level.1358145489" name="Optimization Level" superClass="gnu.cpp.compilermacosx.exe.debug.option.optimization.level" value="gnu.cpp.compiler.optimization.level.none" valueType="enumerated"/>
+								<option id="gnu.cpp.compiler.macosx.exe.debug.option.debugging.level.242123501" name="Debug Level" superClass="gnu.cpp.compiler.macosx.exe.debug.option.debugging.level" value="gnu.cpp.compiler.debugging.level.max" valueType="enumerated"/>
+								<option id="gnu.cpp.compiler.option.include.paths.1651405259" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
+									<listOptionValue builtIn="false" value="../../include/"/>
+									<listOptionValue builtIn="false" value="../../include/AssetManagement/"/>
+									<listOptionValue builtIn="false" value="../../include/Behaviours/"/>
+									<listOptionValue builtIn="false" value="../../include/Binding/"/>
+									<listOptionValue builtIn="false" value="../../include/Binding/ClassBinders/"/>
+									<listOptionValue builtIn="false" value="../../include/Binding/Wrappers/"/>
+									<listOptionValue builtIn="false" value="../../include/Components/"/>
+									<listOptionValue builtIn="false" value="../../include/DataStructures/"/>
+									<listOptionValue builtIn="false" value="../../include/Events/"/>
+									<listOptionValue builtIn="false" value="../../include/Exceptions/"/>
+									<listOptionValue builtIn="false" value="../../include/GameCore/"/>
+									<listOptionValue builtIn="false" value="../../include/Gui/"/>
+									<listOptionValue builtIn="false" value="../../include/Jobs/"/>
+									<listOptionValue builtIn="false" value="../../include/Modifiers/"/>
+									<listOptionValue builtIn="false" value="../../include/Resources/"/>
+									<listOptionValue builtIn="false" value="../../include/Triggers/"/>
+									<listOptionValue builtIn="false" value="../../include/Utils/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/bind/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/concept/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/concept/detail/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/concept_check/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/config/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/config/abi/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/config/compiler/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/config/no_tr1/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/config/platform/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/config/stdlib/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/container/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/container/detail/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/detail/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/detail/winapi/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/exception/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/exception/detail/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/filesystem/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/filesystem/detail/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/function/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/function/detail/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/functional/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/functional/hash/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/functional/hash/detail/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/functional/overloaded_function/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/functional/overloaded_function/detail/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/integer/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/io/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/io/detail/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/iostreams/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/iostreams/detail/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/iostreams/detail/adapter/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/iostreams/detail/broken_overload_resolution/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/iostreams/detail/config/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/iostreams/detail/streambuf/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/iostreams/detail/vc6/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/iostreams/device/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/iostreams/filter/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/iterator/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/iterator/detail/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/logic/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/math/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/math/bindings/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/math/bindings/detail/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/math/complex/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/math/concepts/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/math/constants/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/math/distributions/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/math/distributions/detail/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/math/policies/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/math/special_functions/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/math/special_functions/detail/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/math/tools/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/math/tools/detail/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/move/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/move/detail/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/mpl/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/mpl/aux_/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/mpl/aux_/config/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/mpl/aux_/preprocessed/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/mpl/aux_/preprocessed/bcc/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/mpl/aux_/preprocessed/bcc551/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/mpl/aux_/preprocessed/bcc_pre590/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/mpl/aux_/preprocessed/dmc/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/mpl/aux_/preprocessed/gcc/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/mpl/aux_/preprocessed/msvc60/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/mpl/aux_/preprocessed/msvc70/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/mpl/aux_/preprocessed/mwcw/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/mpl/aux_/preprocessed/no_ctps/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/mpl/aux_/preprocessed/no_ttp/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/mpl/aux_/preprocessed/plain/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/mpl/aux_/preprocessor/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/mpl/aux_/range_c/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/mpl/aux_/test/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/mpl/limits/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/mpl/list/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/mpl/list/aux_/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/mpl/list/aux_/preprocessed/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/mpl/list/aux_/preprocessed/plain/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/mpl/map/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/mpl/map/aux_/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/mpl/map/aux_/preprocessed/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/mpl/map/aux_/preprocessed/no_ctps/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/mpl/map/aux_/preprocessed/plain/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/mpl/map/aux_/preprocessed/typeof_based/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/mpl/math/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/mpl/multiset/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/mpl/multiset/aux_/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/mpl/set/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/mpl/set/aux_/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/mpl/set/aux_/preprocessed/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/mpl/set/aux_/preprocessed/plain/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/mpl/vector/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/mpl/vector/aux_/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/mpl/vector/aux_/preprocessed/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/mpl/vector/aux_/preprocessed/no_ctps/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/mpl/vector/aux_/preprocessed/plain/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/mpl/vector/aux_/preprocessed/typeof_based/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/multi_index/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/multi_index/detail/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/numeric/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/numeric/conversion/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/numeric/conversion/detail/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/numeric/conversion/detail/preprocessed/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/numeric/interval/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/numeric/interval/compare/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/numeric/interval/detail/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/numeric/interval/ext/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/numeric/odeint/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/numeric/odeint/algebra/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/numeric/odeint/algebra/detail/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/numeric/odeint/external/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/numeric/odeint/external/gsl/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/numeric/odeint/external/mkl/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/numeric/odeint/external/mtl4/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/numeric/odeint/external/thrust/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/numeric/odeint/external/vexcl/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/numeric/odeint/external/viennacl/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/numeric/odeint/integrate/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/numeric/odeint/integrate/detail/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/numeric/odeint/stepper/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/numeric/odeint/stepper/base/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/numeric/odeint/stepper/detail/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/numeric/odeint/stepper/generation/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/numeric/odeint/util/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/numeric/odeint/util/detail/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/numeric/ublas/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/numeric/ublas/detail/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/numeric/ublas/experimental/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/numeric/ublas/operation/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/numeric/ublas/traits/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/optional/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/parameter/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/parameter/aux_/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/parameter/aux_/preprocessor/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/parameter/aux_/python/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/pending/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/predef/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/predef/architecture/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/predef/architecture/x86/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/predef/compiler/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/predef/detail/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/predef/language/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/predef/library/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/predef/library/c/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/predef/library/std/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/predef/os/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/predef/os/bsd/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/predef/other/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/predef/platform/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/preprocessor/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/preprocessor/arithmetic/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/preprocessor/arithmetic/detail/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/preprocessor/array/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/preprocessor/comparison/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/preprocessor/config/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/preprocessor/control/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/preprocessor/control/detail/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/preprocessor/control/detail/dmc/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/preprocessor/control/detail/edg/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/preprocessor/control/detail/msvc/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/preprocessor/debug/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/preprocessor/detail/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/preprocessor/detail/dmc/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/preprocessor/facilities/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/preprocessor/iteration/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/preprocessor/iteration/detail/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/preprocessor/iteration/detail/bounds/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/preprocessor/iteration/detail/iter/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/preprocessor/list/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/preprocessor/list/detail/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/preprocessor/list/detail/dmc/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/preprocessor/list/detail/edg/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/preprocessor/logical/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/preprocessor/punctuation/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/preprocessor/repetition/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/preprocessor/repetition/detail/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/preprocessor/repetition/detail/dmc/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/preprocessor/repetition/detail/edg/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/preprocessor/repetition/detail/msvc/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/preprocessor/selection/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/preprocessor/seq/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/preprocessor/seq/detail/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/preprocessor/slot/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/preprocessor/slot/detail/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/preprocessor/tuple/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/preprocessor/variadic/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/random/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/random/detail/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/range/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/range/adaptor/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/range/algorithm/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/range/algorithm_ext/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/range/detail/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/range/detail/vc6/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/signals2/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/signals2/detail/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/smart_ptr/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/smart_ptr/detail/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/system/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/tuple/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/tuple/detail/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/type_traits/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/type_traits/detail/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/type_traits/msvc/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/utility/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/utility/detail/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/uuid/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/variant/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/boost/variant/detail/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/cinder/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/cinder/cairo/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/cinder/cairo/macosx/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/cinder/cinder/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/cinder/cinder/app/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/cinder/cinder/audio/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/cinder/cinder/cocoa/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/cinder/cinder/gl/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/cinder/cinder/ip/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/cinder/cinder/params/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/cinder/cinder/qtime/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/cinder/cinder/svg/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/cinder/json/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/cinder/rapidxml/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/libyaml/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/lua/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/luabind/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/luabind/detail/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/yaml-cpp/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/yaml-cpp/contrib/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/yaml-cpp/node/"/>
+									<listOptionValue builtIn="false" value="../../libraries/Include/osx/yaml-cpp/node/detail/"/>
+								</option>
+								<option id="gnu.cpp.compiler.option.dialect.std.2134260523" name="Language standard" superClass="gnu.cpp.compiler.option.dialect.std" value="gnu.cpp.compiler.dialect.default" valueType="enumerated"/>
+								<option id="gnu.cpp.compiler.option.other.other.1538462572" name="Other flags" superClass="gnu.cpp.compiler.option.other.other" value="-c -fmessage-length=0 -std=c++11 -x c++ ../xcode/SpaceStationKeeper_Prefix.pch" valueType="string"/>
+								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.2108623238" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
+							</tool>
+							<tool command="gcc-4.8" id="cdt.managedbuild.tool.gnu.c.compiler.macosx.exe.debug.134914432" name="GCC C Compiler" superClass="cdt.managedbuild.tool.gnu.c.compiler.macosx.exe.debug">
+								<option defaultValue="gnu.c.optimization.level.none" id="gnu.c.compiler.macosx.exe.debug.option.optimization.level.858101190" name="Optimization Level" superClass="gnu.c.compiler.macosx.exe.debug.option.optimization.level" valueType="enumerated"/>
+								<option id="gnu.c.compiler.macosx.exe.debug.option.debugging.level.1670449958" name="Debug Level" superClass="gnu.c.compiler.macosx.exe.debug.option.debugging.level" value="gnu.c.debugging.level.max" valueType="enumerated"/>
+								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.575774901" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
+							</tool>
+						</toolChain>
+					</folderInfo>
+				</configuration>
+			</storageModule>
+			<storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>
+		</cconfiguration>
+		<cconfiguration id="cdt.managedbuild.config.macosx.exe.release.1301423577">
+			<storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="cdt.managedbuild.config.macosx.exe.release.1301423577" moduleId="org.eclipse.cdt.core.settings" name="Release">
+				<externalSettings/>
+				<extensions>
+					<extension id="org.eclipse.cdt.core.MachO64" point="org.eclipse.cdt.core.BinaryParser"/>
+					<extension id="org.eclipse.cdt.core.GmakeErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.CWDLocator" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.GCCErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.GASErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.GLDErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+				</extensions>
+			</storageModule>
+			<storageModule moduleId="cdtBuildSystem" version="4.0.0">
+				<configuration artifactName="${ProjName}" buildArtefactType="org.eclipse.cdt.build.core.buildArtefactType.exe" buildProperties="org.eclipse.cdt.build.core.buildType=org.eclipse.cdt.build.core.buildType.release,org.eclipse.cdt.build.core.buildArtefactType=org.eclipse.cdt.build.core.buildArtefactType.exe" cleanCommand="rm -rf" description="" id="cdt.managedbuild.config.macosx.exe.release.1301423577" name="Release" parent="cdt.managedbuild.config.macosx.exe.release">
+					<folderInfo id="cdt.managedbuild.config.macosx.exe.release.1301423577." name="/" resourcePath="">
+						<toolChain id="cdt.managedbuild.toolchain.gnu.macosx.exe.release.970939096" name="MacOSX GCC" superClass="cdt.managedbuild.toolchain.gnu.macosx.exe.release">
+							<targetPlatform id="cdt.managedbuild.target.gnu.platform.macosx.exe.release.18538144" name="Debug Platform" superClass="cdt.managedbuild.target.gnu.platform.macosx.exe.release"/>
+							<builder buildPath="${workspace_loc:/spacestationkeeper}/Release" id="cdt.managedbuild.target.gnu.builder.macosx.exe.release.929812630" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="Gnu Make Builder" superClass="cdt.managedbuild.target.gnu.builder.macosx.exe.release"/>
+							<tool id="cdt.managedbuild.tool.macosx.c.linker.macosx.exe.release.1684383031" name="MacOS X C Linker" superClass="cdt.managedbuild.tool.macosx.c.linker.macosx.exe.release"/>
+							<tool id="cdt.managedbuild.tool.macosx.cpp.linker.macosx.exe.release.1414785463" name="MacOS X C++ Linker" superClass="cdt.managedbuild.tool.macosx.cpp.linker.macosx.exe.release">
+								<option id="macosx.cpp.link.option.paths.1149975918" name="Library search path (-L)" superClass="macosx.cpp.link.option.paths" valueType="libPaths">
+									<listOptionValue builtIn="false" value="../../libraries/lib"/>
+								</option>
+								<inputType id="cdt.managedbuild.tool.macosx.cpp.linker.input.439123499" superClass="cdt.managedbuild.tool.macosx.cpp.linker.input">
+									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
+									<additionalInput kind="additionalinput" paths="$(LIBS)"/>
+								</inputType>
+							</tool>
+							<tool id="cdt.managedbuild.tool.gnu.assembler.macosx.exe.release.42294325" name="GCC Assembler" superClass="cdt.managedbuild.tool.gnu.assembler.macosx.exe.release">
+								<inputType id="cdt.managedbuild.tool.gnu.assembler.input.208268445" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
+							</tool>
+							<tool id="cdt.managedbuild.tool.gnu.archiver.macosx.base.853714598" name="GCC Archiver" superClass="cdt.managedbuild.tool.gnu.archiver.macosx.base"/>
+							<tool id="cdt.managedbuild.tool.gnu.cpp.compiler.macosx.exe.release.278371931" name="GCC C++ Compiler" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.macosx.exe.release">
+								<option id="gnu.cpp.compiler.macosx.exe.release.option.optimization.level.841439419" name="Optimization Level" superClass="gnu.cpp.compiler.macosx.exe.release.option.optimization.level" value="gnu.cpp.compiler.optimization.level.most" valueType="enumerated"/>
+								<option id="gnu.cpp.compiler.macosx.exe.release.option.debugging.level.715770041" name="Debug Level" superClass="gnu.cpp.compiler.macosx.exe.release.option.debugging.level" value="gnu.cpp.compiler.debugging.level.none" valueType="enumerated"/>
+								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.267386240" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
+							</tool>
+							<tool id="cdt.managedbuild.tool.gnu.c.compiler.macosx.exe.release.238279236" name="GCC C Compiler" superClass="cdt.managedbuild.tool.gnu.c.compiler.macosx.exe.release">
+								<option defaultValue="gnu.c.optimization.level.most" id="gnu.c.compiler.macosx.exe.release.option.optimization.level.1904559855" name="Optimization Level" superClass="gnu.c.compiler.macosx.exe.release.option.optimization.level" valueType="enumerated"/>
+								<option id="gnu.c.compiler.macosx.exe.release.option.debugging.level.781071770" name="Debug Level" superClass="gnu.c.compiler.macosx.exe.release.option.debugging.level" value="gnu.c.debugging.level.none" valueType="enumerated"/>
+								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.1384617043" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
+							</tool>
+						</toolChain>
+					</folderInfo>
+				</configuration>
+			</storageModule>
+			<storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>
+		</cconfiguration>
+	</storageModule>
+	<storageModule moduleId="cdtBuildSystem" version="4.0.0">
+		<project id="spacestationkeeper.cdt.managedbuild.target.macosx.exe.5907990" name="Executable" projectType="cdt.managedbuild.target.macosx.exe"/>
+	</storageModule>
+	<storageModule moduleId="scannerConfiguration">
+		<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
+		<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.macosx.exe.release.1301423577;cdt.managedbuild.config.macosx.exe.release.1301423577.;cdt.managedbuild.tool.gnu.cpp.compiler.macosx.exe.release.278371931;cdt.managedbuild.tool.gnu.cpp.compiler.input.267386240">
+			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
+		</scannerConfigBuildInfo>
+		<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.gnu.macosx.exe.debug.2129648955;cdt.managedbuild.config.gnu.macosx.exe.debug.2129648955.;cdt.managedbuild.tool.gnu.cpp.compiler.macosx.exe.debug.1220652573;cdt.managedbuild.tool.gnu.cpp.compiler.input.2108623238">
+			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
+		</scannerConfigBuildInfo>
+		<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.macosx.exe.release.1301423577;cdt.managedbuild.config.macosx.exe.release.1301423577.;cdt.managedbuild.tool.gnu.c.compiler.macosx.exe.release.238279236;cdt.managedbuild.tool.gnu.c.compiler.input.1384617043">
+			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
+		</scannerConfigBuildInfo>
+		<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.gnu.macosx.exe.debug.2129648955;cdt.managedbuild.config.gnu.macosx.exe.debug.2129648955.;cdt.managedbuild.tool.gnu.c.compiler.macosx.exe.debug.134914432;cdt.managedbuild.tool.gnu.c.compiler.input.575774901">
+			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
+		</scannerConfigBuildInfo>
+	</storageModule>
+	<storageModule moduleId="org.eclipse.cdt.core.LanguageSettingsProviders"/>
+	<storageModule moduleId="refreshScope" versionNumber="2">
+		<configuration configurationName="Release">
+			<resource resourceType="PROJECT" workspacePath="/spacestationkeeper"/>
+		</configuration>
+		<configuration configurationName="Debug">
+			<resource resourceType="PROJECT" workspacePath="/spacestationkeeper"/>
+		</configuration>
+	</storageModule>
+	<storageModule moduleId="org.eclipse.cdt.internal.ui.text.commentOwnerProjectMappings"/>
+</cproject>
