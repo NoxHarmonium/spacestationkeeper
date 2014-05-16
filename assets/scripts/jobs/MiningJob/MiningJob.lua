@@ -1,13 +1,13 @@
 -- Mining Job
 class 'MiningJob' (Job)
 
-function MiningJob:__init(gameGrid, coord, preReqAssetDef, targetAssetDef)
+function MiningJob:__init(gameGrid, coord, preReqMaterial, postReqMaterial)
     Job.__init(self)
     LuaDebug.Log('MiningJob:__init() called!')
     self._gameGrid = gameGrid
     self._coord = coord
-    self._preReqAssetDef = preReqAssetDef
-    self._targetAssetDef = targetAssetDef
+    self._preReqMaterial = preReqMaterial
+    self._postReqMaterial = postReqMaterial
     self._workUnitsDone = 0
     self._maxWorkUnits = 8
     self._workUnitPerWorker = 1 --TODO: put in config
@@ -16,14 +16,14 @@ end
 
 function MiningJob:preRequisitesAreMet()
     local tile = self._gameGrid.tiles[self._coord.x..self._coord.y]
-    local tex = tile.renderer.material.texture
-    return tile ~= nil and tex:getAssetRef() == self._preReqAssetDef:getAssetRef()
+    local mat = tile.renderer.material
+    return tile ~= nil and mat == self._preReqMaterial
 end
 
 function MiningJob:postRequistesAreMet()
     local tile = self._gameGrid.tiles[self._coord.x..self._coord.y]
-    local tex = tile.renderer.material.texture
-    return tile ~= nil and tex:getAssetRef() == self._targetAssetDef:getAssetRef()
+    local mat = tile.renderer.material
+    return tile ~= nil and mat == self._postReqMaterial
 end
 
 function MiningJob:isDone()
@@ -46,10 +46,7 @@ function MiningJob:update(deltaTime)
 
     if (self:isDone()) then
         local tile = self._gameGrid.tiles[self._coord.x..self._coord.y]
-        local tex = self._targetAssetDef
-        local mat = Material()
-        mat.shader = tile.renderer.material.shader
-        mat.texture = tex
-        tile.renderer.material = mat -- TODO: Use same material so batching work
+        tile.renderer.material = self._postReqMaterial
+        tile.renderer:invalidateBatch()
     end
 end

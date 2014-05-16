@@ -14,6 +14,7 @@
 #include "BaseMesh.h"
 #include "Material.h"
 #include "BatchedMesh.h"
+#include "BatchInfo.h"
 
 // TODO: Rename to renderer
 class RenderInfo : public GameComponent {
@@ -36,6 +37,9 @@ public:
   void draw();
   /*! Add this RenderComponent to a render batch. */
   void batch(BatchedMeshRef batchedMeshRef);
+  /*! Called when the properties of this object have changed and the batch needs
+   * to be regenerated to reflect them. */
+  void invalidateBatch();
 
 protected:
   // Methods
@@ -50,15 +54,17 @@ private:
   void endDraw(RenderInfo *renderInfo);
   /*! Applies a nested transform to the current transform stack. */
   void applyTransfromRecursive(TransformRef t);
+  /*! Sets the values of _batchInfoRef to reflect this current object. */
+  void updateBatchInfo();
 
   // Fields
   /*! Determines whether this RenderComponent is batched or not. */
   bool _batchMode = false;
-  /*! Determines whether this RenderComponent has been added to the batch or
-   * not. */
-  bool _addedToBatch = false;
   /*! The reference to BatchedMesh used for batching. */
   BatchedMeshRef _batchedMeshRef = nullptr;
+  /*! A reference to the information sent to the batcher. If this is modified
+   * the batcher should be notified to regenerate the required batches. */
+  BatchInfoRef _batchInfoRef = nullptr;
   /*! Determines whether the bounds need to be recalculated. */
   bool _boundsDirty = true;
   /*! A cached reference to this object's bounds (invalidated once per frame);

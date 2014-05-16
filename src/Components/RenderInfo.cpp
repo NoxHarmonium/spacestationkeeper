@@ -7,6 +7,7 @@
 //
 
 #include "RenderInfo.h"
+#include <stdexcept>
 
 RenderInfo::RenderInfo() : GameComponent() {
   transform = make_shared<Transform>();
@@ -32,10 +33,11 @@ void RenderInfo::draw() {
     startDraw(this);
 
     if (_batchMode) {
-      if (!_addedToBatch) {
-        _batchedMeshRef->addMesh(this->material, this->mesh,
-                                 this->transform); // material without modifiers
-        _addedToBatch = true;
+      if (_batchInfoRef == nullptr) {
+        _batchInfoRef = make_shared<BatchInfo>();
+        updateBatchInfo();
+
+        _batchedMeshRef->addMesh(_batchInfoRef); // material without modifiers
       }
       // Rendering of batched mesh should be done elsewhere (where the batched
       // mesh is defined).
@@ -54,9 +56,19 @@ void RenderInfo::draw() {
     endDraw(this);
   }
 }
+
 void RenderInfo::batch(BatchedMeshRef batchedMeshRef) {
   _batchMode = true;
   _batchedMeshRef = batchedMeshRef;
+}
+
+void RenderInfo::invalidateBatch() {
+  if (!_batchMode || _batchedMeshRef == nullptr || _batchInfoRef == nullptr) {
+    throw runtime_error("Cannot invalidate a non batched RenderInfo object. "
+                        "Call batch() first.");
+  }
+  updateBatchInfo();
+  _batchedMeshRef->invalidate(_batchInfoRef);
 }
 
 void RenderInfo::startDraw(RenderInfo *renderInfo) {
@@ -75,6 +87,17 @@ void RenderInfo::applyTransfromRecursive(TransformRef t) {
   gl::translate(t->localPosition);
   gl::rotate(t->localRotation);
   gl::scale(t->localScale);
+}
+
+void RenderInfo::updateBatchInfo() {
+  if (!_batchMode || _batchedMeshRef == nullptr || _batchInfoRef == nullptr) {
+    throw runtime_error("Cannot update BatchInfo if this object is not "
+                        "batched. Call batch() first.");
+  }
+
+  _batchInfoRef->material = this->material;
+  _batchInfoRef->mesh = this->mesh;
+  _batchInfoRef->transform = this->transform;
 }
 
 RenderInfo *RenderInfo::clone() {

@@ -9,6 +9,11 @@
 #ifndef SpaceStationKeeper_MaterialBinder_h
 #define SpaceStationKeeper_MaterialBinder_h
 
+#include "ClassBinder.h"
+#include "luabind/operator.hpp"
+
+using namespace luabind;
+
 template <> struct ClassBinder<Material> {
   static void Bind(const char *name, lua_State *L) {
     luabind::module(L)[luabind::class_<Material, MaterialRef>(name)
@@ -16,7 +21,8 @@ template <> struct ClassBinder<Material> {
                            .def_readwrite("texture", &Material::texture)
                            .def_readwrite("shader", &Material::shader)
                            .def_readwrite("brightness", &Material::brightness)
-                           .def_readwrite("baseColor", &Material::baseColor)];
+                           .def_readwrite("baseColor", &Material::baseColor)
+                           .def(const_self == const_self)];
   }
 };
 

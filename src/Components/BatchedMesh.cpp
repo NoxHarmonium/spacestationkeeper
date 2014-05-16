@@ -53,21 +53,37 @@ AxisAlignedBox3f BatchedMesh::getBoundingBox(Matrix44f transformMatrix) {
   return _bounds.transformed(transformMatrix);
 }
 
-void BatchedMesh::addMesh(MaterialRef material, BaseMeshRef mesh,
-                          TransformRef transform) {
+void BatchedMesh::addMesh(BatchInfoRef batchInfo) {
   // cout << "BatchedMesh::addMesh(): Adding mesh to batcher: Material: "
   //     << material << " Mesh: " << mesh << endl;
+  MaterialRef mat = batchInfo->material;
+  _batchMaterials[batchInfo] = mat;
+  _meshes[mat].insert(batchInfo);
+  _dirty[mat] = true;
+}
 
-  _meshes[material].push_back(
-      mesh->getInternalMesh(transform->getTransformMatrixLocal()));
-  _dirty[material] = true;
+void BatchedMesh::invalidate(BatchInfoRef batchInfo) {
+  cout << "BatchedMesh::invalidate(): Invalidating mesh..." << endl;
+  MaterialRef oldMaterial = _batchMaterials[batchInfo];
+  MaterialRef newMaterial = batchInfo->material;
+
+  if (oldMaterial != batchInfo->material) {
+    cout
+        << "BatchedMesh::invalidate(): BatchInfo has new material. Switching..."
+        << endl;
+
+    _dirty[oldMaterial] = true;            // Invalidate old material
+    _meshes[oldMaterial].erase(batchInfo); // Switch info to new material layer
+    _meshes[newMaterial].insert(batchInfo);
+    _batchMaterials[batchInfo] = batchInfo->material; // Set new material
+  }
+
+  _dirty[batchInfo->material] = true;
 }
 
 void BatchedMesh::regenerateVboMesh(MaterialRef material) {
-  // cout
-  //    << "BatchedMesh::regenerateVboMesh(): Regenerating VboMesh for material:
-  // "
-  //    << material << endl;
+  cout << "BatchedMesh::regenerateVboMesh(): Regenerating VboMesh for material:"
+       << material << endl;
 
   TriMesh combinedMesh;
   vector<Vec3f> vertices;
@@ -75,10 +91,11 @@ void BatchedMesh::regenerateVboMesh(MaterialRef material) {
   vector<Vec2f> texCoords;
   vector<uint32_t> indices;
   uint32_t vertCount = 0;
-  _bounds = AxisAlignedBox3f();
+  _materialBounds[material] = AxisAlignedBox3f();
 
-  for (TriMesh *&mesh : _meshes[material]) {
-    TriMesh *internalMesh = mesh;
+  for (BatchInfoRef batchInfo : _meshes[material]) {
+    TriMesh *internalMesh = batchInfo->mesh->getInternalMesh(
+        batchInfo->transform->getTransformMatrixLocal());
 
     vertices = internalMesh->getVertices();
     combinedMesh.appendVertices(vertices.data(), vertices.size());
@@ -96,8 +113,14 @@ void BatchedMesh::regenerateVboMesh(MaterialRef material) {
 
     vertCount += vertices.size();
 
-    _bounds.include(mesh->calcBoundingBox());
+    _materialBounds[material].include(internalMesh->calcBoundingBox());
   }
 
   _vboMeshes[material] = gl::VboMesh::create(combinedMesh);
+
+  // Recalculate master bounds
+  _bounds = AxisAlignedBox3f();
+  for (auto &kvp : _materialBounds) {
+    _bounds.include(kvp.second);
+  }
 }

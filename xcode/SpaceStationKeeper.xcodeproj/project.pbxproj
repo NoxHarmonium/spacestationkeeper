@@ -182,6 +182,7 @@
 		9E3AF3E6190C5943001007F4 /* ShaderModifier.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ShaderModifier.cpp; sourceTree = "<group>"; };
 		9E3AF3E7190C5943001007F4 /* TextureModifier.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TextureModifier.cpp; sourceTree = "<group>"; };
 		9E3AF3F3190DBBC6001007F4 /* RenderInfo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RenderInfo.cpp; sourceTree = "<group>"; };
+		9E3BD6C41926A500008F9297 /* BatchInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BatchInfo.h; sourceTree = "<group>"; };
 		9E3CD3FA191D9B95000E6778 /* FixStdSharedPtrBind.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FixStdSharedPtrBind.h; sourceTree = "<group>"; };
 		9E3CD3FB191DD1F7000E6778 /* SimpleMeshBinder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SimpleMeshBinder.h; sourceTree = "<group>"; };
 		9E3CD3FC191DD2D2000E6778 /* CinderRectBinders.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CinderRectBinders.h; sourceTree = "<group>"; };
@@ -425,6 +426,7 @@
 				9E0E1E35190488C5009EECFD /* GameDef.h */,
 				9E0E1E36190488C5009EECFD /* GameMapSquare.h */,
 				9E0E1E37190488C5009EECFD /* MapPoint.h */,
+				9E3BD6C41926A500008F9297 /* BatchInfo.h */,
 			);
 			path = DataStructures;
 			sourceTree = "<group>";

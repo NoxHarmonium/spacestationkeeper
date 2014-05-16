@@ -28,9 +28,15 @@ function GameGrid:setup()
     local frameWidth = self.defaultTileset:getFrameWidth()
     local frameHeight = self.defaultTileset:getFrameHeight()
 
-    local mat = Material()
-    mat.texture = self.defaultTileset
-    mat.shader = self.shader
+    local defaultMat = Material()
+    defaultMat.texture = self.defaultTileset
+    defaultMat.shader = self.shader
+    self._defaultMaterial = defaultMat;
+
+    local targetMat = Material()
+    targetMat.texture = self.targetTileset
+    targetMat.shader = self.shader
+    self._targetMaterial = targetMat
 
     self.tiles = {}
 
@@ -44,14 +50,14 @@ function GameGrid:setup()
             )
             
             local passibility = GetPassibility(x, y, self.size.x, self.size.y)
-            local texFrame = mat.texture:getFrameFromPassibility(passibility)
+            local texFrame = defaultMat.texture:getFrameFromPassibility(passibility)
 
             local dims = Rectf(0, 0, frameWidth, frameHeight)
-            local uvCoords = mat.texture:getFrameUvCoords(texFrame)
+            local uvCoords = defaultMat.texture:getFrameUvCoords(texFrame)
 
             local mesh = SimpleMesh.generateQuad(dims, uvCoords)
 
-            tile.renderer.material = mat
+            tile.renderer.material = defaultMat
             tile.renderer.mesh = mesh
 
             tile.renderer:batch(batchedMesh)
@@ -75,7 +81,7 @@ function GameGrid:keyUp(keyEvent)
     for id, tile in pairs(self.selectedTiles) do
         local tilePos = tile.renderer.transform.localPosition
         local coord = Vec2i(tilePos.x / frameWidth, tilePos.y / frameHeight)
-        local job = MiningJob(self, coord, self.defaultTileset, self.targetTileset)
+        local job = MiningJob(self, coord, self._defaultMaterial, self._targetMaterial)
         RegisterJob(job)
     end
 end

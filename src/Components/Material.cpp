@@ -46,3 +46,5 @@ void Material::unbind() {
   _tRef = nullptr;
   _pRef = nullptr;
 }
+
+bool operator==(const Material &a, const Material &b) { return &a == &b; }

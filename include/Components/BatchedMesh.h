@@ -10,6 +10,7 @@
 #include "cinder/gl/Vbo.h"
 #include "Material.h"
 #include "Transform.h"
+#include "BatchInfo.h"
 
 #ifndef SpaceStationKeeper_BatchedMesh_h
 #define SpaceStationKeeper_BatchedMesh_h
@@ -36,8 +37,9 @@ public:
   /*! Gets the bounds of the mesh translated according to a transform matrix. */
   virtual AxisAlignedBox3f getBoundingBox(Matrix44f transformMatrix);
   /*! Adds a mesh to the batch. */
-  virtual void addMesh(MaterialRef material, BaseMeshRef mesh,
-                       TransformRef transform = TransformRef());
+  virtual void addMesh(BatchInfoRef batchInfo);
+  /*! Notifies that the information in a BatchInfo has changed. */
+  virtual void invalidate(BatchInfoRef batchInfo);
 
   // TODO: Ability to move mesh to different material or remove mesh
 
@@ -52,8 +54,13 @@ private:
   AxisAlignedBox3f _bounds;
   /*! The VBO representation of the mesh. */
   map<MaterialRef, gl::VboMeshRef> _vboMeshes;
+  /*! Stores the current material that the BatchInfo represents. */
+  map<BatchInfoRef, MaterialRef> _batchMaterials;
   /*! The list of meshes that will be batched. */
-  map<MaterialRef, vector<TriMesh *>> _meshes;
+  map<MaterialRef, set<BatchInfoRef>> _meshes;
+  /*! Stores the bounds of each material that can be combined for the primary
+   * bounds. */
+  map<MaterialRef, AxisAlignedBox3f> _materialBounds;
   /*! Determines whether the batched mesh needs to be regenerated on the next
    * update cycle. */
   map<MaterialRef, bool> _dirty;

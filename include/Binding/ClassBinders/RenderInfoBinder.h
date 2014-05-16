@@ -20,7 +20,8 @@ template <> struct ClassBinder<RenderInfo> {
                .def_readwrite("material", &RenderInfo::material)
                .def("clone", &RenderInfo::clone)
                .def("getBounds", &RenderInfo::getBounds)
-               .def("batch", &RenderInfo::batch)];
+               .def("batch", &RenderInfo::batch)
+               .def("invalidateBatch", &RenderInfo::invalidateBatch)];
   }
 };
 

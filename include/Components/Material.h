@@ -36,4 +36,7 @@ private:
 
 typedef std::shared_ptr<Material> MaterialRef;
 
+// Can't seem to compare instances without this in Lua land.
+bool operator==(const Material &a, const Material &b);
+
 #endif
