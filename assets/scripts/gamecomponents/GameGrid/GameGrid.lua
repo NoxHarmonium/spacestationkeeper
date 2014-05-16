@@ -76,7 +76,10 @@ function GameGrid:keyUp(keyEvent)
         local coord = Vec2i(tilePos.x / frameWidth, tilePos.y / frameHeight)
         local job = MiningJob(self, coord, self._defaultMaterial, self._targetMaterial)
         RegisterJob(job)
+        RemoveGameObject(tile) -- Remove selection gameobject
     end
+
+    self.selectedTiles = {} -- Deselect all
 end
 
 function GameGrid:SetupTileMesh(tile, passibility) 
