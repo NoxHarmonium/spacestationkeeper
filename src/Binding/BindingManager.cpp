@@ -107,7 +107,7 @@ extern "C" int initLuaModules(lua_State *L) {
 
   // Classes directly binded to LUA
   ClassBinder<GameCamera>::Bind("GameCamera", L);
-  ClassBinder<MouseEvent>::Bind("MouseEvent", L);
+
   ClassBinder<GameObject>::Bind("GameObject", L);
   ClassBinder<Transform>::Bind("Transform", L);
   ClassBinder<BaseMesh>::Bind("BaseMesh", L);
@@ -123,6 +123,10 @@ extern "C" int initLuaModules(lua_State *L) {
   ClassBinder<EnumHelper>::Bind("EnumHelper", L);
   ClassBinder<Passibility>::Bind("Passibility", L);
   ClassBinder<Utils>::Bind("Utils", L);
+
+  // Cinder event classes
+  ClassBinder<MouseEvent>::Bind("MouseEvent", L);
+  ClassBinder<KeyEvent>::Bind("KeyEvent", L);
 
   ClassBinder<Color>::Bind("Color", L);
   ClassBinder<Colorf>::Bind("Colorf", L);

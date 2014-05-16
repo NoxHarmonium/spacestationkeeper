@@ -31,7 +31,11 @@ template <> struct ClassBinder<MouseEvent> {
                            .def("isControlDown", &MouseEvent::isControlDown)
                            .def("isMetaDown", &MouseEvent::isMetaDown)
                            .def("isAccelDown", &MouseEvent::isAccelDown)];
+  }
+};
 
+template <> struct ClassBinder<KeyEvent> {
+  static void Bind(const char *name, lua_State *L) {
     luabind::module(
         L)[luabind::class_<KeyEvent>(name)
                .def("getChar", &KeyEvent::getChar)

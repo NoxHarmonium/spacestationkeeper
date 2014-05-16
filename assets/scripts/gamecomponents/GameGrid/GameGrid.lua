@@ -68,6 +68,14 @@ function GameGrid:update()
 end
 
 function GameGrid:keyUp(keyEvent)
+    -- Filter out every key but m
+    -- TODO: Make this key configurable (under confirm action?)
+    LuaDebug.Log(tostring(keyEvent:getCode()))
+    LuaDebug.Log(tostring(keyEvent.KEY_m));
+    if (keyEvent:getCode() ~= KeyEvent.KEY_m) then
+        return
+    end
+
     local frameWidth = self.defaultTileset:getFrameWidth()
     local frameHeight = self.defaultTileset:getFrameHeight()
 
