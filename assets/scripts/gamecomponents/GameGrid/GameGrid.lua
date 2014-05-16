@@ -18,7 +18,6 @@ end
 
 function GameGrid:setup()
     LuaDebug.Log('GameGrid:setup()')
-    LuaDebug.Log('a')
     local renderer = self.gameObject.renderer;
     renderer.transform.localPosition.z = self.depth;
     -- Create the batched mesh
@@ -26,8 +25,6 @@ function GameGrid:setup()
     -- we don't have to set self.gameObject.renderer.material
     local batchedMesh = BatchedMesh()
     renderer.mesh = batchedMesh
-
-    LuaDebug.Log('b')
 
     local frameWidth = self.defaultTileset:getFrameWidth()
     local frameHeight = self.defaultTileset:getFrameHeight()
@@ -37,16 +34,12 @@ function GameGrid:setup()
     defaultMat.shader = self.shader
     self._defaultMaterial = defaultMat;
 
-    LuaDebug.Log('c')
-
     local targetMat = Material()
     targetMat.texture = self.targetTileset
     targetMat.shader = self.shader
     self._targetMaterial = targetMat
 
     self.tiles = {}
-
-    LuaDebug.Log('d')
 
     for x = 0 , self.size.x do
         for y = 0, self.size.y do
@@ -57,21 +50,12 @@ function GameGrid:setup()
                 self.depth
             )
 
-            LuaDebug.Log('e')
-
             tile.renderer.material = defaultMat
 
-            LuaDebug.Log('f')
-
             local passibility = self:GetPassibility(x, y, self.size.x, self.size.y)
-            LuaDebug.Log('g')
             self:SetupTileMesh(tile, passibility)
-LuaDebug.Log('h')
             tile.renderer:batch(batchedMesh)
-            LuaDebug.Log('i')
             self.tiles[x..y] = tile
-
-            LuaDebug.Log('j')
 
             AddGameObject(tile)
         end
@@ -102,6 +86,7 @@ function GameGrid:SetupTileMesh(tile, passibility)
     local texFrame = tex:getFrameFromPassibility(passibility)
     local dims = Rectf(0, 0, frameWidth, frameHeight)
     local uvCoords = tex:getFrameUvCoords(texFrame)
+    LuaDebug.Log('texFrame: ' .. texFrame)
     local mesh = SimpleMesh.generateQuad(dims, uvCoords)
     tile.renderer.mesh = mesh
 end
@@ -140,10 +125,12 @@ function GameGrid:FixTileFrames(point)
 end
 
 function GameGrid:FixTileFrame(point)
-   
+    
     if (not self:TileIsPassable(point)) then
         return
     end
+
+    LuaDebug.Log('GameGrid:FixTileFrame: point: ' .. point.x .. ',' .. point.y)
 
     local p = Passibility()
     local checks = {
@@ -153,8 +140,7 @@ function GameGrid:FixTileFrame(point)
         tuple(0, 1, Passibility.South)
     }
 
-    for i = 1, 4  do
-        local check = checks[i]
+    for i, check in ipairs(checks) do
         if self:TileIsPassable(Vec2i(point.x + check[1], point.y + check[2])) then
             p:setFlag(check[3])
         end
@@ -162,11 +148,10 @@ function GameGrid:FixTileFrame(point)
 
     local tile = self.tiles[point.x..point.y]
     self:SetupTileMesh(tile, p)
+    tile.renderer:invalidateBatch()
 end
 
 function GameGrid:TileIsPassable(point)
     local tile = self.tiles[point.x..point.y]
     return tile and tile.renderer.material.texture:getCanWalk()
-
-
 end

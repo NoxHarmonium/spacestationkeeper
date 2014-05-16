@@ -48,6 +48,5 @@ function MiningJob:update(deltaTime)
         local tile = self._gameGrid.tiles[self._coord.x..self._coord.y]
         tile.renderer.material = self._postReqMaterial
         self._gameGrid:FixTileFrames(self._coord)
-        tile.renderer:invalidateBatch()
     end
 end

@@ -61,11 +61,11 @@ function ConvertValue(key, value, instance, go)
         return Vec3i(math.floor(value[1]), math.floor(value[2]), math.floor(value[3]))
     end
     if pType == 'TextureDef' then 
-        assetLoader = app_getAssetLoader()
+        local assetLoader = app_getAssetLoader()
         return assetLoader:loadAssetAsTextureDef(value)
     end
     if pType == 'ShaderDef' then 
-        assetLoader = app_getAssetLoader()
+        local assetLoader = app_getAssetLoader()
         return assetLoader:loadAssetAsShaderDef(value)
     end
 

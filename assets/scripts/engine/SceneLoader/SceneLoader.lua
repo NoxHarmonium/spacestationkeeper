@@ -1,5 +1,6 @@
 -- Lua Script to load scene files
 require 'yaml'
+require 'strict'
 
 --result = yaml.load("lua: rocks\npeppers: [ habanero, chipotle, jalapeno ]\n")
 --LuaDebug.Log(result.lua) 
@@ -77,7 +78,7 @@ function LoadScene(path)
         LoadRenderer(go, gameObjectNode) 
         
         for key, componentNode in pairs(gameObjectNode.Components) do
-            comp = LoadComponent(componentNode, go)
+            local comp = LoadComponent(componentNode, go)
             if (comp) then
                 go:addComponent(comp)
             end
