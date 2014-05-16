@@ -25,6 +25,7 @@ void app_destroyGameObject(GameObjectRef gameObject);
 void app_registerJob(JobRef job);
 void app_cancelJob(JobRef job);
 AssetLoaderBase *app_getAssetLoader();
+int setLuaPath(lua_State *L, const std::string path);
 
 class BindingManager {
 public:

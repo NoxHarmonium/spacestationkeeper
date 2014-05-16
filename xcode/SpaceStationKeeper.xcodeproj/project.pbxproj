@@ -46,6 +46,7 @@
 		9E3AF3ED190C5943001007F4 /* ShaderModifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E3AF3E6190C5943001007F4 /* ShaderModifier.cpp */; };
 		9E3AF3EE190C5943001007F4 /* TextureModifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E3AF3E7190C5943001007F4 /* TextureModifier.cpp */; };
 		9E3AF3F5190DBBC6001007F4 /* RenderInfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E3AF3F3190DBBC6001007F4 /* RenderInfo.cpp */; };
+		9E3BD6C71926B6CD008F9297 /* lua in Resources */ = {isa = PBXBuildFile; fileRef = 9E3BD6C61926B6CD008F9297 /* lua */; };
 		9E92628F18D48232001AB5D6 /* GameComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E92628E18D48232001AB5D6 /* GameComponent.cpp */; };
 		9E92629218D4EDA0001AB5D6 /* ComponentDrivenApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E92629118D4EDA0001AB5D6 /* ComponentDrivenApp.cpp */; };
 		9EA476CA18F7589A00C6BD1D /* EnumHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EA476C818F7589A00C6BD1D /* EnumHelper.cpp */; };
@@ -183,6 +184,7 @@
 		9E3AF3E7190C5943001007F4 /* TextureModifier.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TextureModifier.cpp; sourceTree = "<group>"; };
 		9E3AF3F3190DBBC6001007F4 /* RenderInfo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RenderInfo.cpp; sourceTree = "<group>"; };
 		9E3BD6C41926A500008F9297 /* BatchInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BatchInfo.h; sourceTree = "<group>"; };
+		9E3BD6C61926B6CD008F9297 /* lua */ = {isa = PBXFileReference; lastKnownFileType = folder; name = lua; path = ../libraries/lua; sourceTree = "<group>"; };
 		9E3CD3FA191D9B95000E6778 /* FixStdSharedPtrBind.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FixStdSharedPtrBind.h; sourceTree = "<group>"; };
 		9E3CD3FB191DD1F7000E6778 /* SimpleMeshBinder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SimpleMeshBinder.h; sourceTree = "<group>"; };
 		9E3CD3FC191DD2D2000E6778 /* CinderRectBinders.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CinderRectBinders.h; sourceTree = "<group>"; };
@@ -309,6 +311,7 @@
 		29B97314FDCFA39411CA2CEA /* SpaceStationKeeper */ = {
 			isa = PBXGroup;
 			children = (
+				9E3BD6C61926B6CD008F9297 /* lua */,
 				9E28173D191C7AA600F5E95C /* yaml.so */,
 				9E10054A18EA355F00EC5213 /* assets */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
@@ -715,6 +718,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9E28173E191C7AA600F5E95C /* yaml.so in Resources */,
+				9E3BD6C71926B6CD008F9297 /* lua in Resources */,
 				51C21CD6D341426891EE6300 /* CinderApp.icns in Resources */,
 				9E10054B18EA355F00EC5213 /* assets in Resources */,
 			);
