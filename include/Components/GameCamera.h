@@ -9,6 +9,7 @@
 #ifndef __SpaceStationKeeper__Camera__
 #define __SpaceStationKeeper__Camera__
 
+#include "pch.h"
 #include "GameComponent.h"
 #include "cinder/Camera.h"
 #include "cinder/gl/gl.h"

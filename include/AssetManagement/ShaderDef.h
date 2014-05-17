@@ -9,6 +9,7 @@
 #ifndef SpaceStationKeeper_GameShader_h
 #define SpaceStationKeeper_GameShader_h
 
+#include "pch.h"
 #include <map>
 #include "cinder/gl/GlslProg.h"
 #include "yaml-cpp/yaml.h"

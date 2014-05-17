@@ -9,6 +9,7 @@
 #ifndef __SpaceStationKeeper__LuaBridge__
 #define __SpaceStationKeeper__LuaBridge__
 
+#include "pch.h"
 #include "LuaBindDeps.h"
 #include <string>
 #include "GameObject.h"

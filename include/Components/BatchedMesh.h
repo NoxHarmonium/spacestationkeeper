@@ -5,15 +5,15 @@
 //  Created by Sean Dawson on 5/05/2014.
 //
 //
+#ifndef SpaceStationKeeper_BatchedMesh_h
+#define SpaceStationKeeper_BatchedMesh_h
 
+#include "pch.h"
 #include "BaseMesh.h"
 #include "cinder/gl/Vbo.h"
 #include "Material.h"
 #include "Transform.h"
 #include "BatchInfo.h"
-
-#ifndef SpaceStationKeeper_BatchedMesh_h
-#define SpaceStationKeeper_BatchedMesh_h
 
 using namespace ci;
 using namespace std;

@@ -9,6 +9,7 @@
 #ifndef __SpaceStationKeeper__AssetLoaderBase__
 #define __SpaceStationKeeper__AssetLoaderBase__
 
+#include "pch.h"
 #include <stdlib.h>
 #include "AssetDefBase.h"
 #include "AssetType.h"

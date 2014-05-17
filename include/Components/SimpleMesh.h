@@ -9,6 +9,7 @@
 #ifndef SpaceStationKeeper_SimpleMesh_h
 #define SpaceStationKeeper_SimpleMesh_h
 
+#include "pch.h"
 #include "BaseMesh.h"
 #include "cinder/gl/gl.h"
 #include "cinder/TriMesh.h"

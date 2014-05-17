@@ -9,6 +9,8 @@
 #ifndef SpaceStationKeeper_Transform_h
 #define SpaceStationKeeper_Transform_h
 
+#include "pch.h"
+
 using namespace ci;
 
 class Transform {

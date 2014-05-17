@@ -9,6 +9,7 @@
 #ifndef SpaceStationKeeper_AssetDefBaseT_h
 #define SpaceStationKeeper_AssetDefBaseT_h
 
+#include "pch.h"
 #include "AssetDefBase.h"
 
 //

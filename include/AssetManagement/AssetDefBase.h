@@ -9,6 +9,7 @@
 #ifndef SpaceStationKeeper_AssetDefBase_h
 #define SpaceStationKeeper_AssetDefBase_h
 
+#include "pch.h"
 #include "AssetType.h"
 #include "AssetLoaderBase.h"
 #include "yaml-cpp/yaml.h"

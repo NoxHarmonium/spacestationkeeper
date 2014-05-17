@@ -9,6 +9,7 @@
 #ifndef SpaceStationKeeper_SpaceStationKeeper_h
 #define SpaceStationKeeper_SpaceStationKeeper_h
 
+#include "pch.h"
 #include "cinder/app/AppNative.h"
 #include "BindingManager.h"
 #include "GameCamera.h"

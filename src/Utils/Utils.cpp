@@ -6,7 +6,7 @@
 //
 //
 
-#include "Utils.h"
+#include "Utils/Utils.h"
 
 using namespace boost;
 using namespace ci;
@@ -52,7 +52,7 @@ std::string Utils::strToUpper(std::string inputString) {
   return s;
 }
 
-BOOL Utils::existsIn(std::string sourceString, std::string searchString) {
+bool Utils::existsIn(std::string sourceString, std::string searchString) {
   return strToUpper(sourceString).find(strToUpper(searchString)) !=
          std::string::npos;
 }
@@ -87,7 +87,7 @@ AxisAlignedBox3f Utils::combineBounds(AxisAlignedBox3f first,
 }
 
 void Utils::printOpenGlVersionInfo() {
-
+/*
   const GLubyte *renderer = glGetString(GL_RENDERER);
   const GLubyte *vendor = glGetString(GL_VENDOR);
   const GLubyte *version = glGetString(GL_VERSION);
@@ -100,7 +100,7 @@ void Utils::printOpenGlVersionInfo() {
   printf("GL Renderer  : %s\n", renderer);
   printf("GL Version (string)  : %s\n", version);
   // printf("GL Version (integer) : %d.%d\n", major, minor);
-  printf("GLSL Version : %s\n\n", glslVersion);
+  printf("GLSL Version : %s\n\n", glslVersion);*/
 }
 
 bool Utils::getChildNode(YAML::Node *childNode, Node node, string key,

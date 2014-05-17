@@ -9,6 +9,7 @@
 #ifndef __SpaceStationKeeper__Utils__
 #define __SpaceStationKeeper__Utils__
 
+#include "pch.h"
 #include <stdlib.h>
 #include "boost/filesystem/fstream.hpp"
 #include <libproc.h>
@@ -28,7 +29,7 @@ public:
   // Static Methods
   static filesystem::path getCurrentExecutablePath();
   static filesystem::path getResourcesPath();
-  static BOOL existsIn(std::string sourceString, std::string searchString);
+  static bool existsIn(std::string sourceString, std::string searchString);
   static std::string strToUpper(std::string inputString);
   static bool isInside(ci::AxisAlignedBox3f bounds, ci::Vec2f point);
   static bool isInside(ci::AxisAlignedBox3f bounds, ci::Vec3f point);

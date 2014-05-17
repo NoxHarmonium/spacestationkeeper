@@ -9,6 +9,7 @@
 #ifndef SpaceStationKeeper_ClassBinder_h
 #define SpaceStationKeeper_ClassBinder_h
 
+#include "pch.h"
 #include "LuaBindDeps.h"
 #include <stdexcept>
 

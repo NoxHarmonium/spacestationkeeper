@@ -9,6 +9,7 @@
 #ifndef SpaceStationKeeper_ComponentManager_h
 #define SpaceStationKeeper_ComponentManager_h
 
+#include "pch.h"
 #include "GameObject.h"
 #include "cinder/app/AppNative.h"
 #include <type_traits>

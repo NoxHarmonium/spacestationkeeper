@@ -9,6 +9,7 @@
 #ifndef SpaceStationKeeper_GameComponent_h
 #define SpaceStationKeeper_GameComponent_h
 
+#include "pch.h"
 #include <boost/uuid/random_generator.hpp>
 
 using namespace ci;

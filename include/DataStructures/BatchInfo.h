@@ -9,6 +9,7 @@
 #ifndef SpaceStationKeeper_BatchInfo_h
 #define SpaceStationKeeper_BatchInfo_h
 
+#include "pch.h"
 #include <memory>
 
 // Forward decs

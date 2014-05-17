@@ -9,6 +9,7 @@
 #ifndef SpaceStationKeeper_Material_h
 #define SpaceStationKeeper_Material_h
 
+#include "pch.h"
 #include "TextureDef.h"
 #include "ShaderDef.h"
 

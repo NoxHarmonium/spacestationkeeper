@@ -9,6 +9,7 @@
 #ifndef SpaceStationKeeper_AssetType_h
 #define SpaceStationKeeper_AssetType_h
 
+#include "pch.h"
 #include <ostream>
 
 using namespace std;

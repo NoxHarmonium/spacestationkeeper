@@ -6,15 +6,18 @@
 //
 //
 
+
+
+#ifndef __SpaceStationKeeper__AssetDefConverters__
+#define __SpaceStationKeeper__AssetDefConverters__
+
 #include "yaml-cpp/yaml.h"
 #include "AssetType.h"
 #include "ShaderDef.h"
 #include "Passibility.h"
 #include "Utils.h"
 #include "NotImplementedException.h"
-
-#ifndef __SpaceStationKeeper__AssetDefConverters__
-#define __SpaceStationKeeper__AssetDefConverters__
+#include "pch.h"
 
 //
 // YAML node conversion specializations

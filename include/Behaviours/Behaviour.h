@@ -9,6 +9,7 @@
 #ifndef SpaceStationKeeper_Behaviour_h
 #define SpaceStationKeeper_Behaviour_h
 
+#include "pch.h"
 #include "GameComponent.h"
 #include "Modifier.h"
 

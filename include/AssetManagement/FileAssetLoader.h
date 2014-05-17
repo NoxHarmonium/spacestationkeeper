@@ -9,6 +9,7 @@
 #ifndef __SpaceStationKeeper__FileAssetLoader__
 #define __SpaceStationKeeper__FileAssetLoader__
 
+#include "pch.h"
 #include "AssetLoaderBase.h"
 
 using namespace boost;

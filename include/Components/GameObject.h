@@ -9,6 +9,7 @@
 #ifndef SpaceStationKeeper_GameObject_h
 #define SpaceStationKeeper_GameObject_h
 
+#include "pch.h"
 #include <map>
 #include "GameComponent.h"
 #include "RenderInfo.h"

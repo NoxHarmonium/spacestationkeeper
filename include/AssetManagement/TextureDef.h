@@ -9,6 +9,7 @@
 #ifndef SpaceStationKeeper_TextureDef_h
 #define SpaceStationKeeper_TextureDef_h
 
+#include "pch.h"
 #include <map>
 #include "yaml-cpp/yaml.h"
 #include "cinder/gl/Texture.h"

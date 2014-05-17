@@ -9,6 +9,7 @@
 #ifndef SpaceStationKeeper_HighlightTileOnMouseOver_cpp
 #define SpaceStationKeeper_HighlightTileOnMouseOver_cpp
 
+#include "pch.h"
 #include "Behaviour.h"
 
 class HighlightBehaviour : public Behaviour {

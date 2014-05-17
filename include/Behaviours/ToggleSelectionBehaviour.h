@@ -9,6 +9,7 @@
 #ifndef SpaceStationKeeper_ToggleSelectionBehaviour_h
 #define SpaceStationKeeper_ToggleSelectionBehaviour_h
 
+#include "pch.h"
 #include "Behaviour.h"
 #include <set>
 

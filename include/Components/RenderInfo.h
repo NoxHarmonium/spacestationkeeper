@@ -9,6 +9,7 @@
 #ifndef SpaceStationKeeper_Renderer_h
 #define SpaceStationKeeper_Renderer_h
 
+#include "pch.h"
 #include "GameComponent.h"
 #include "Transform.h"
 #include "BaseMesh.h"
