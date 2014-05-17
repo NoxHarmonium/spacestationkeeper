@@ -97,8 +97,8 @@ end
 
 function MouseScroll:mouseWheel(event)
     local rd = self.gameObject.renderer;
-    local scale = event.getWheelIncrement() * self.MouseWheelMult
-    rd.transform.localScale = rd.transform.localScale + Vec3f(scale, scale, scale);
+    local scale = event:getWheelIncrement() * self.MouseWheelMult
+    rd.transform.localScale = rd.transform.localScale + Vec3f(scale, scale, 0);
 end
 
 

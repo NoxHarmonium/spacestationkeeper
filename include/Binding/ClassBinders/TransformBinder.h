@@ -23,8 +23,8 @@ template <> struct ClassBinder<Transform> {
                .def("getTransformMatrixWorld",
                     &Transform::getTransformMatrixWorld)
                .def_readwrite("localPosition", &Transform::localPosition)
-               .def_readwrite("localRotation", &Transform::localPosition)
-               .def_readwrite("localScale", &Transform::localPosition)
+               .def_readwrite("localRotation", &Transform::localRotation)
+               .def_readwrite("localScale", &Transform::localScale)
                .def_readwrite("parent", &Transform::parent)];
   }
 };
