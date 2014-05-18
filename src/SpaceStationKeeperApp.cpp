@@ -3,6 +3,7 @@
 #include "AssetLoadException.h"
 #include "ScriptDef.h"
 #include "LuaExecutionException.h"
+#include "NotImplementedException.h"
 
 using namespace ci;
 using namespace ci::app;
@@ -99,6 +100,10 @@ void SpaceStationKeeperApp::scanAssetsAndExecuteScripts() {
       }
       catch (const AssetLoadException &e) {
         cout << "--> Error loading asset: " << e.what() << endl;
+      }
+      catch (const NotImplementedException &e) {
+        cout << "--> Error loading asset: Asset loader for this type is not "
+                "yet implemented. " << endl;
       }
     }
   }

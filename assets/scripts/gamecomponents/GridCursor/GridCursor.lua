@@ -9,7 +9,7 @@ function GridCursor:__init()
 
     -- Serialisation properties
     Property(self, 'gameGrid', 'GameGrid')
-    Property(self, 'cursorTileset', 'TextureDef')
+    Property(self, 'cursorTileset', 'TileDef')
     Property(self, 'shader', 'ShaderDef')
     Property(self, 'timeThreshold', 'number')
     Property(self, 'distanceThreshold', 'number')

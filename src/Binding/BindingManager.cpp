@@ -105,24 +105,28 @@ extern "C" int initLuaModules(lua_State *L) {
   ClassBinder<GameComponent>::Bind("GameComponent", L);
   ClassBinder<Job>::Bind("Job", L);
 
-  // Classes directly binded to LUA
+  // Rendering Classes
   ClassBinder<GameCamera>::Bind("GameCamera", L);
-
   ClassBinder<GameObject>::Bind("GameObject", L);
   ClassBinder<Transform>::Bind("Transform", L);
   ClassBinder<BaseMesh>::Bind("BaseMesh", L);
   ClassBinder<SimpleMesh>::Bind("SimpleMesh", L);
   ClassBinder<Material>::Bind("Material", L);
   ClassBinder<RenderInfo>::Bind("RenderInfo", L);
-  ClassBinder<AssetDefBase>::Bind("AssetDefBase", L);
-  ClassBinder<TextureDef>::Bind("TextureDef", L);
-  ClassBinder<ShaderDef>::Bind("ShaderDef", L);
-  ClassBinder<AssetLoaderBase>::Bind("AssetLoaderBase", L);
   ClassBinder<AxisAlignedBox3f>::Bind("AxisAlignedBox3f", L);
   ClassBinder<BatchedMesh>::Bind("BatchedMesh", L);
+
+  // Misc
   ClassBinder<EnumHelper>::Bind("EnumHelper", L);
   ClassBinder<Passibility>::Bind("Passibility", L);
   ClassBinder<Utils>::Bind("Utils", L);
+
+  // Asset Management
+  ClassBinder<AssetDefBase>::Bind("AssetDefBase", L);
+  ClassBinder<TextureDef>::Bind("TextureDef", L);
+  ClassBinder<TileDef>::Bind("TileDef", L);
+  ClassBinder<ShaderDef>::Bind("ShaderDef", L);
+  ClassBinder<AssetLoaderBase>::Bind("AssetLoaderBase", L);
 
   // Cinder event classes
   ClassBinder<MouseEvent>::Bind("MouseEvent", L);

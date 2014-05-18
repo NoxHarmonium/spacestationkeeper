@@ -11,6 +11,8 @@
 
 #include "ClassBinder.h"
 #include "AssetLoaderBase.h"
+#include "TileDef.h"
+#include "ShaderDef.h"
 
 template <> struct ClassBinder<AssetLoaderBase> {
   static void Bind(const char *name, lua_State *L) {
@@ -18,9 +20,9 @@ template <> struct ClassBinder<AssetLoaderBase> {
                            .def("loadAsset",
                                 (AssetDefBaseRef (AssetLoaderBase::*)(string)) &
                                     AssetLoaderBase::loadAsset)
-                           .def("loadAssetAsTextureDef",
-                                (TextureDefRef (AssetLoaderBase::*)(string)) &
-                                    AssetLoaderBase::loadAsset<TextureDef>)
+                           .def("loadAssetAsTileDef",
+                                (TileDefRef (AssetLoaderBase::*)(string)) &
+                                    AssetLoaderBase::loadAsset<TileDef>)
                            .def("loadAssetAsShaderDef",
                                 (ShaderDefRef (AssetLoaderBase::*)(string)) &
                                     AssetLoaderBase::loadAsset<ShaderDef>)

@@ -60,9 +60,9 @@ function ConvertValue(key, value, instance, go)
     if pType == 'Vec3i' then 
         return Vec3i(math.floor(value[1]), math.floor(value[2]), math.floor(value[3]))
     end
-    if pType == 'TextureDef' then 
+    if pType == 'TileDef' then 
         local assetLoader = app_getAssetLoader()
-        return assetLoader:loadAssetAsTextureDef(value)
+        return assetLoader:loadAssetAsTileDef(value)
     end
     if pType == 'ShaderDef' then 
         local assetLoader = app_getAssetLoader()

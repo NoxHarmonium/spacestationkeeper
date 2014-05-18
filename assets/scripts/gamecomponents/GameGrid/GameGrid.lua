@@ -7,8 +7,8 @@ function GameGrid:__init()
     LuaDebug.Log('GameGrid:__init() called!')
 
     -- Serialisation properties
-    Property(self, 'defaultTileset', 'TextureDef')
-    Property(self, 'targetTileset', 'TextureDef')
+    Property(self, 'defaultTileset', 'TileDef')
+    Property(self, 'targetTileset', 'TileDef')
     Property(self, 'shader', 'ShaderDef')
     Property(self, 'size', 'Vec2i')
     Property(self, 'depth', 'number')

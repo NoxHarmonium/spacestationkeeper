@@ -12,6 +12,7 @@
 #include "ClassBinder.h"
 #include "AssetDefBase.h"
 #include "FixStdSharedPtrBind.h"
+#include "TileDef.h"
 
 template <> struct ClassBinder<AssetDefBase> {
   static void Bind(const char *name, lua_State *L) {
@@ -61,6 +62,35 @@ template <> struct ClassBinder<TextureDef> {
                //.def("getPassiblity", &TextureDef::getPassiblity)
                .def("getHeight", &TextureDef::getHeight)
                .def("getFrameUvCoords", &TextureDef::getFrameUvCoords)];
+  }
+};
+
+template <> struct ClassBinder<TileDef> {
+  static void Bind(const char *name, lua_State *L) {
+    luabind::module(L)
+        [luabind::class_<TileDef, TextureDef, TileDefRef>(name)
+             .def("getAssetRef", &TileDef::getAssetRef)
+             .def("setAssetRef", &TileDef::setAssetRef)
+             .def("getId", &TileDef::getId)
+             //.def("getPath", &AssetDefBase::getPath) boost?
+             //.def("setPath", &AssetDefBase::setPath) boost?
+             .def("getAsset", &TextureDef::getAsset)
+             .def("assetLoaded", &TileDef::assetLoaded)
+             .def("getAssetType", &TileDef::getAssetType)
+             .def("loadAsset", &TileDef::loadAsset)
+             .def("unloadAsset", &TileDef::unloadAsset)
+             .def("getBorder", &TileDef::getBorder)
+             .def("getCanWalk", &TileDef::getCanWalk)
+             .def("getFrameCount", &TileDef::getFrameCount)
+             .def("getFrameFromPassibility", &TileDef::getFrameFromPassibility)
+             .def("getFrameHeight", &TileDef::getFrameHeight)
+             .def("getFrameSize", &TileDef::getFrameSize)
+             .def("getFrameWidth", &TileDef::getFrameWidth)
+             .def("getWidth", &TileDef::getWidth)
+             .def("getHeight", &TileDef::getHeight)
+             .def("getPassiblity", &TileDef::getPassiblity)
+             .def("getHeight", &TileDef::getHeight)
+             .def("getFrameUvCoords", &TileDef::getFrameUvCoords)];
   }
 };
 
