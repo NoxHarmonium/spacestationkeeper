@@ -93,7 +93,6 @@
 		5323E6B50EAFCA7E003A9687 /* QTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QTKit.framework; path = /System/Library/Frameworks/QTKit.framework; sourceTree = "<absolute>"; };
 		8D1107320486CEB800E47090 /* SpaceStationKeeper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpaceStationKeeper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E09867318FFFFD200480FA7 /* Material.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Material.cpp; sourceTree = "<group>"; };
-		9E0E1CF819048854009EECFD /* liblua.5.1.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = liblua.5.1.5.dylib; sourceTree = "<group>"; };
 		9E0E1E1F190488C5009EECFD /* AssetDefBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetDefBase.h; sourceTree = "<group>"; };
 		9E0E1E20190488C5009EECFD /* AssetDefConverters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetDefConverters.h; sourceTree = "<group>"; };
 		9E0E1E21190488C5009EECFD /* AssetLoaderBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetLoaderBase.h; sourceTree = "<group>"; };
@@ -108,8 +107,6 @@
 		9E0E1E2F190488C5009EECFD /* Material.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Material.h; sourceTree = "<group>"; };
 		9E0E1E32190488C5009EECFD /* SimpleMesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleMesh.h; sourceTree = "<group>"; };
 		9E0E1E33190488C5009EECFD /* Transform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Transform.h; sourceTree = "<group>"; };
-		9E0E1E35190488C5009EECFD /* GameDef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameDef.h; sourceTree = "<group>"; };
-		9E0E1E36190488C5009EECFD /* GameMapSquare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameMapSquare.h; sourceTree = "<group>"; };
 		9E0E1E37190488C5009EECFD /* MapPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapPoint.h; sourceTree = "<group>"; };
 		9E0E1E3A190488C5009EECFD /* Passibility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Passibility.h; sourceTree = "<group>"; };
 		9E0E1E78190488C5009EECFD /* Resources.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Resources.h; sourceTree = "<group>"; };
@@ -121,7 +118,6 @@
 		9E1AE48B191E80E10083E6D2 /* BatchedMeshBinder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BatchedMeshBinder.h; sourceTree = "<group>"; };
 		9E1AE48C191EA3E20083E6D2 /* EnumHelperBinder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EnumHelperBinder.h; sourceTree = "<group>"; };
 		9E1AE48D191EB8F00083E6D2 /* UtilsBinder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UtilsBinder.h; sourceTree = "<group>"; };
-		9E21C4B218DA14DE00E927D6 /* libyaml-cpp.0.5.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = "libyaml-cpp.0.5.1.dylib"; sourceTree = "<group>"; };
 		9E238FD91919DB7800F642A5 /* TypedEvent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TypedEvent.h; sourceTree = "<group>"; };
 		9E2816E5191A979000F5E95C /* GameObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameObject.h; sourceTree = "<group>"; };
 		9E2816E6191AA1B000F5E95C /* GameObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameObject.cpp; sourceTree = "<group>"; };
@@ -135,11 +131,8 @@
 		9E2816F6191AA9AC00F5E95C /* libboost_log.1.55.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_log.1.55.0.a; path = ../libraries/lib/osx/libboost_log.1.55.0.a; sourceTree = "<group>"; };
 		9E2816F7191AA9AC00F5E95C /* libboost_system.1.55.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_system.1.55.0.a; path = ../libraries/lib/osx/libboost_system.1.55.0.a; sourceTree = "<group>"; };
 		9E2816F8191AA9AC00F5E95C /* libcairo.1.12.16.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcairo.1.12.16.a; path = ../libraries/lib/osx/libcairo.1.12.16.a; sourceTree = "<group>"; };
-		9E2816F9191AA9AC00F5E95C /* libcairo.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcairo.a; path = ../libraries/lib/osx/libcairo.a; sourceTree = "<group>"; };
-		9E2816FA191AA9AC00F5E95C /* libpixman-1.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpixman-1.a"; path = "../libraries/lib/osx/libpixman-1.a"; sourceTree = "<group>"; };
 		9E2816FB191AA9AC00F5E95C /* libpixman.0.32.4.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libpixman.0.32.4.a; path = ../libraries/lib/osx/libpixman.0.32.4.a; sourceTree = "<group>"; };
 		9E2816FC191AA9AC00F5E95C /* libpng.1.5.17.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libpng.1.5.17.a; path = ../libraries/lib/osx/libpng.1.5.17.a; sourceTree = "<group>"; };
-		9E2816FD191AA9AC00F5E95C /* libpng14.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libpng14.a; path = ../libraries/lib/osx/libpng14.a; sourceTree = "<group>"; };
 		9E2816FE191AA9AC00F5E95C /* libz.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libz.a; path = ../libraries/lib/osx/libz.a; sourceTree = "<group>"; };
 		9E28170B191ABECA00F5E95C /* ScriptDef.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScriptDef.h; sourceTree = "<group>"; };
 		9E281718191BB33A00F5E95C /* ClassBinder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClassBinder.h; sourceTree = "<group>"; };
@@ -162,7 +155,6 @@
 		9E281735191C5F3300F5E95C /* LuaDebug.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LuaDebug.h; sourceTree = "<group>"; };
 		9E281736191C5F7D00F5E95C /* LuaDebug.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LuaDebug.cpp; sourceTree = "<group>"; };
 		9E281739191C5FDF00F5E95C /* LuaDebugBinder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LuaDebugBinder.h; sourceTree = "<group>"; };
-		9E28173B191C722C00F5E95C /* yaml-lua-0.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "yaml-lua-0.2.dylib"; path = "../libraries/lib/osx/yaml-lua-0.2.dylib"; sourceTree = "<group>"; };
 		9E28173D191C7AA600F5E95C /* yaml.so */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = yaml.so; path = ../libraries/lib/osx/yaml.so; sourceTree = "<group>"; };
 		9E28173F191C871300F5E95C /* CinderQuatBinders.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CinderQuatBinders.h; sourceTree = "<group>"; };
 		9E281740191D348000F5E95C /* GameCameraBinder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameCameraBinder.h; sourceTree = "<group>"; };
@@ -219,10 +211,6 @@
 		9EDF4D001929659E0051DCE3 /* TileDef.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TileDef.cpp; sourceTree = "<group>"; };
 		9EE7AED418E2F262008A9C83 /* GameCamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameCamera.cpp; sourceTree = "<group>"; };
 		9EE7AEED18E36737008A9C83 /* Utils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Utils.cpp; sourceTree = "<group>"; };
-		9EE7AEFF18E37281008A9C83 /* libboost_filesystem.1.55.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libboost_filesystem.1.55.0.a; sourceTree = "<group>"; };
-		9EE7AF0018E37281008A9C83 /* libcairo.1.12.16.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcairo.1.12.16.a; sourceTree = "<group>"; };
-		9EE7AF0118E37281008A9C83 /* libpng.1.5.17.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libpng.1.5.17.a; sourceTree = "<group>"; };
-		9EE7AF0518E372AB008A9C83 /* libpixman.0.32.4.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libpixman.0.32.4.a; sourceTree = "<group>"; };
 		9EEE83E018E8FAEB006F2B49 /* FileAssetLoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FileAssetLoader.cpp; sourceTree = "<group>"; };
 		9EF8762D1906F1A2005824D9 /* BehaviourConstructor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BehaviourConstructor.h; sourceTree = "<group>"; };
 		9EF876311907FF4C005824D9 /* SpaceStationKeeperApp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpaceStationKeeperApp.h; sourceTree = "<group>"; };
@@ -339,22 +327,17 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				9E28173B191C722C00F5E95C /* yaml-lua-0.2.dylib */,
 				9E2816F4191AA9AC00F5E95C /* libboost_date_time.1.55.0.a */,
 				9E2816F5191AA9AC00F5E95C /* libboost_filesystem.1.55.0.a */,
 				9E2816F6191AA9AC00F5E95C /* libboost_log.1.55.0.a */,
 				9E2816F7191AA9AC00F5E95C /* libboost_system.1.55.0.a */,
 				9E2816F8191AA9AC00F5E95C /* libcairo.1.12.16.a */,
-				9E2816F9191AA9AC00F5E95C /* libcairo.a */,
-				9E2816FA191AA9AC00F5E95C /* libpixman-1.a */,
 				9E2816FB191AA9AC00F5E95C /* libpixman.0.32.4.a */,
 				9E2816FC191AA9AC00F5E95C /* libpng.1.5.17.a */,
-				9E2816FD191AA9AC00F5E95C /* libpng14.a */,
 				9E2816FE191AA9AC00F5E95C /* libz.a */,
 				9E2816EF191AA99000F5E95C /* libyaml-cpp.0.5.1.dylib */,
 				9E2816EB191AA98000F5E95C /* liblua.5.1.5.dylib */,
 				9E2816EC191AA98000F5E95C /* libluabind.0.9.1.dylib */,
-				9E645D4718E0F2D20032E7A7 /* Libs */,
 				1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */,
 				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
 			);
@@ -432,8 +415,6 @@
 		9E0E1E34190488C5009EECFD /* DataStructures */ = {
 			isa = PBXGroup;
 			children = (
-				9E0E1E35190488C5009EECFD /* GameDef.h */,
-				9E0E1E36190488C5009EECFD /* GameMapSquare.h */,
 				9E0E1E37190488C5009EECFD /* MapPoint.h */,
 				9E3BD6C41926A500008F9297 /* BatchInfo.h */,
 			);
@@ -553,20 +534,6 @@
 				9E3AF3E7190C5943001007F4 /* TextureModifier.cpp */,
 			);
 			path = Modifiers;
-			sourceTree = "<group>";
-		};
-		9E645D4718E0F2D20032E7A7 /* Libs */ = {
-			isa = PBXGroup;
-			children = (
-				9E0E1CF819048854009EECFD /* liblua.5.1.5.dylib */,
-				9EE7AF0518E372AB008A9C83 /* libpixman.0.32.4.a */,
-				9EE7AEFF18E37281008A9C83 /* libboost_filesystem.1.55.0.a */,
-				9EE7AF0018E37281008A9C83 /* libcairo.1.12.16.a */,
-				9EE7AF0118E37281008A9C83 /* libpng.1.5.17.a */,
-				9E21C4B218DA14DE00E927D6 /* libyaml-cpp.0.5.1.dylib */,
-			);
-			name = Libs;
-			path = ../libs;
 			sourceTree = "<group>";
 		};
 		9E92628C18D47F87001AB5D6 /* Components */ = {
@@ -830,10 +797,7 @@
 					"../libraries/lib/**",
 					/Users/seandawson/Development/spacestationkeeper/libraries/lib/osx,
 				);
-				OTHER_LDFLAGS = (
-					"\"$(CINDER_PATH)/lib/libcinder_d.a\"",
-					../blocks/FMOD/lib/macosx/libfmodex.dylib,
-				);
+				OTHER_LDFLAGS = ../libraries/lib/osx/libcinder_d.a;
 				PRODUCT_NAME = SpaceStationKeeper;
 				SYMROOT = ./build;
 				USER_HEADER_SEARCH_PATHS = "../include/**";
@@ -874,10 +838,7 @@
 					"../libraries/lib/**",
 					/Users/seandawson/Development/spacestationkeeper/libraries/lib/osx,
 				);
-				OTHER_LDFLAGS = (
-					"\"$(CINDER_PATH)/lib/libcinder.a\"",
-					../blocks/FMOD/lib/macosx/libfmodex.dylib,
-				);
+				OTHER_LDFLAGS = ../libraries/lib/osx/libcinder.a;
 				PRODUCT_NAME = SpaceStationKeeper;
 				STRIP_INSTALLED_PRODUCT = YES;
 				SYMROOT = ./build;
