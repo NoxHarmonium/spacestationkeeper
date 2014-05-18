@@ -11,6 +11,7 @@
 #include "yaml-cpp/yaml.h"
 #include "AssetDefConverters.h"
 #include "TextureDef.h"
+#include "TileDef.h"
 #include "ShaderDef.h"
 #include "ScriptDef.h"
 
@@ -75,7 +76,25 @@ AssetDefBaseRef FileAssetLoader::loadAsset(string assetRef) {
 
     switch (assetType) {
     case AssetType::Texture: {
-      TextureDefRef tDef = TextureDef::FromYamlNode(node);
+      TextureDef::TextureType subType;
+      TextureDefRef tDef;
+      Utils::parseNode(&subType, node, "subtype");
+
+      switch (subType) {
+      case TextureDef::TextureType::Tile: {
+        tDef = dynamic_pointer_cast<TextureDef>(TileDef::FromYamlNode(node));
+        break;
+      }
+      case TextureDef::TextureType::Animation: {
+        throw NotImplementedException();
+        break;
+      }
+      default: {
+        throw NotImplementedException();
+        break;
+      }
+      }
+
       tDef->setPath(path.parent_path()); // Get directory of asset
       tDef->setAssetRef(assetRef);
       AssetDefBaseRef tDefBase = dynamic_pointer_cast<AssetDefBase>(tDef);

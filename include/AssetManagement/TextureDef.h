@@ -13,10 +13,12 @@
 #include "yaml-cpp/yaml.h"
 #include "cinder/gl/Texture.h"
 #include "AssetDefBaseT.h"
-#include "AssetDefConverters.h"
 #include "AssetLoadException.h"
-
 #include "Passibility.h"
+
+#define TEXTURE_UNKNOWN "Unknown"
+#define TEXTURE_TILE "Tile"
+#define TEXTURE_ANIMATION "Animation"
 
 using namespace std;
 using namespace ci;
@@ -24,36 +26,29 @@ using namespace YAML;
 
 class TextureDef : public AssetDefBaseT<gl::Texture> {
 public:
+  // Enums
+  enum class TextureType { Unknown, Tile, Animation };
+
   // Constructors/Destructors
-  ~TextureDef();
+  virtual ~TextureDef();
 
   // Getters/Setters
   /*! Gets the total width of the texture. */
-  int getWidth();
+  virtual int getWidth();
   /*! Gets the total height of the texture. */
-  int getHeight();
+  virtual int getHeight();
   /*! Gets the width of a frame within the texture (for defining sprites). */
-  int getFrameWidth();
+  virtual int getFrameWidth();
   /*! Gets the height of a frame within the texture (for defining sprites). */
-  int getFrameHeight();
+  virtual int getFrameHeight();
   /*! Gets the size of a frame within the texture (for defining sprites). */
-  Rectf getFrameSize();
-  /*! Gets if the texture can have things on top of it. */
-  bool getCanWalk();
+  virtual Rectf getFrameSize();
   /*! Gets the border around each frame in a texture. */
-  float getBorder();
-  /*! Gets the filename of the source texture file (not the full path). */
-  string getFilename();
-  /*! Gets the Passability enum for a particular frame. */
-  Passibility getPassiblity(const int frameNumber);
-  /*! Sets the Passabilty enum for a particular frame. */
-  void setPassiblity(const int frameNumber, const Passibility passability);
-  /*! Gets the first frame that matches the provided Passability enum. */
-  int getFrameFromPassibility(const Passibility passability);
+  virtual float getBorder();
   /*! Gets the total number of frames. */
-  int getFrameCount();
+  virtual int getFrameCount();
   /*! Gets the uv coordinates to render the specified frame. */
-  Rectf getFrameUvCoords(const int frameNumber);
+  virtual Rectf getFrameUvCoords(const int frameNumber);
 
   /*! Gets the type definition of this asset definition. */
   virtual AssetType getAssetType();
@@ -61,23 +56,19 @@ public:
   // Methods
   /*! Loads the asset pointed to by this AssetRef object into memory so it can
    * be used. */
-  void loadAsset();
+  virtual void loadAsset() = 0;
   /*! Unloads the asset pointed to by this AssetRef object making it unavailable
    * for use. */
-  void unloadAsset();
+  virtual void unloadAsset() = 0;
 
-  // Static Methods
-  /*! Constructs an instance of TextureDef from a loaded YAML node. This should
-   * be called by an AssetLoader and not directly through scripts. */
-  static std::shared_ptr<TextureDef> FromYamlNode(Node node);
-
-private:
+protected:
   // Constructors/Destructors
   /*! Constructs a new instance of TextureDef with values provided through the
    * static method FromYamlNode(). */
   TextureDef(int id, int width, int height, int frameHeight, int frameWidth,
-             string filename, bool canWalk, float border);
+             float border);
 
+private:
   // Fields
   /*! The total width of the texture. */
   int _width;
@@ -87,20 +78,8 @@ private:
   int _frameWidth;
   /*! The height of a frame within the texture (for defining sprites). */
   int _frameHeight;
-  /*! Determines if the texture can have things on top of it. */
-  bool _canWalk;
   /*! Determines the border around each frame in a texture. */
   float _border;
-  /*! The filename of the source texture file (not the full path). */
-  string _filename;
-  /*! The reference to the OpenGL texture. (Wrapped by Cinder)*/
-  gl::TextureRef _texture = nullptr;
-  /*! The an array of enum which defines the passability of each edge. The index
-   * refers to the frame number. */
-  vector<Passibility> _passibilities;
-  /*! Maps passability values to frames. (opposite of the _passibilities
-   * field)*/
-  map<int, int> _passabilityMap;
 };
 
 /*! A shared pointer reference to a TextureDef object. */

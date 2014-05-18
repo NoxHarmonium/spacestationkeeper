@@ -5,16 +5,16 @@
 //  Created by Sean Dawson on 30/03/2014.
 //
 //
+#ifndef __SpaceStationKeeper__AssetDefConverters__
+#define __SpaceStationKeeper__AssetDefConverters__
 
 #include "yaml-cpp/yaml.h"
 #include "AssetType.h"
 #include "ShaderDef.h"
+#include "TextureDef.h"
 #include "Passibility.h"
 #include "Utils.h"
 #include "NotImplementedException.h"
-
-#ifndef __SpaceStationKeeper__AssetDefConverters__
-#define __SpaceStationKeeper__AssetDefConverters__
 
 //
 // YAML node conversion specializations
@@ -74,6 +74,28 @@ template <> struct convert<ShaderDef::ShaderType> {
     return true;
   }
 };
+
+template <> struct convert<TextureDef::TextureType> {
+  static Node encode(const TextureDef::TextureType &textureType) {
+    // Not required yet
+    throw NotImplementedException();
+  }
+
+  static bool decode(const Node &node, TextureDef::TextureType &textureType) {
+
+    string type = node.as<string>();
+    if (type.compare(TEXTURE_TILE) == 0) {
+      textureType = TextureDef::TextureType::Tile;
+    } else if (type.compare(TEXTURE_ANIMATION) == 0) {
+      textureType = TextureDef::TextureType::Animation;
+    } else {
+      textureType = TextureDef::TextureType::Unknown;
+    }
+
+    return true;
+  }
+};
+
 template <> struct convert<Passibility> {
   static Node encode(const AssetType &assetType) {
     // Not required yet

@@ -59,6 +59,7 @@
 		9ED6DF7219106B70002D286C /* TextureDef.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ED6DF7019106B70002D286C /* TextureDef.cpp */; };
 		9ED6DF7319106B70002D286C /* ShaderDef.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ED6DF7119106B70002D286C /* ShaderDef.cpp */; };
 		9ED6DF771910707A002D286C /* JobManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ED6DF751910707A002D286C /* JobManager.cpp */; };
+		9EDF4D021929659E0051DCE3 /* TileDef.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EDF4D001929659E0051DCE3 /* TileDef.cpp */; };
 		9EE7AED618E2F262008A9C83 /* GameCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EE7AED418E2F262008A9C83 /* GameCamera.cpp */; };
 		9EE7AEEF18E36737008A9C83 /* Utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EE7AEED18E36737008A9C83 /* Utils.cpp */; };
 		9EEE83E218E8FAEB006F2B49 /* FileAssetLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EEE83E018E8FAEB006F2B49 /* FileAssetLoader.cpp */; };
@@ -213,6 +214,9 @@
 		9ED6DF7119106B70002D286C /* ShaderDef.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ShaderDef.cpp; sourceTree = "<group>"; };
 		9ED6DF7419106F77002D286C /* JobManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobManager.h; sourceTree = "<group>"; };
 		9ED6DF751910707A002D286C /* JobManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JobManager.cpp; sourceTree = "<group>"; };
+		9EDF4CFE1928FBAB0051DCE3 /* AnimationDef.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnimationDef.h; sourceTree = "<group>"; };
+		9EDF4CFF1928FC4B0051DCE3 /* TileDef.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TileDef.h; sourceTree = "<group>"; };
+		9EDF4D001929659E0051DCE3 /* TileDef.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TileDef.cpp; sourceTree = "<group>"; };
 		9EE7AED418E2F262008A9C83 /* GameCamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameCamera.cpp; sourceTree = "<group>"; };
 		9EE7AEED18E36737008A9C83 /* Utils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Utils.cpp; sourceTree = "<group>"; };
 		9EE7AEFF18E37281008A9C83 /* libboost_filesystem.1.55.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libboost_filesystem.1.55.0.a; sourceTree = "<group>"; };
@@ -392,6 +396,8 @@
 				9E0E1E22190488C5009EECFD /* AssetType.h */,
 				9E0E1E23190488C5009EECFD /* FileAssetLoader.h */,
 				9E28170B191ABECA00F5E95C /* ScriptDef.h */,
+				9EDF4CFE1928FBAB0051DCE3 /* AnimationDef.h */,
+				9EDF4CFF1928FC4B0051DCE3 /* TileDef.h */,
 			);
 			path = AssetManagement;
 			sourceTree = "<group>";
@@ -658,6 +664,7 @@
 				9EB951EB19152837003B5FED /* AssetDefBase.cpp */,
 				9E28172A191BEEAA00F5E95C /* ScriptDef.cpp */,
 				9E28172D191BFC5400F5E95C /* AssetType.cpp */,
+				9EDF4D001929659E0051DCE3 /* TileDef.cpp */,
 			);
 			path = AssetManagement;
 			sourceTree = "<group>";
@@ -753,6 +760,7 @@
 				9ED6DF7319106B70002D286C /* ShaderDef.cpp in Sources */,
 				9E28172C191BEEAA00F5E95C /* ScriptDef.cpp in Sources */,
 				9E36F8831917CC640098B3C0 /* BatchedMesh.cpp in Sources */,
+				9EDF4D021929659E0051DCE3 /* TileDef.cpp in Sources */,
 				9E0E1E8219048917009EECFD /* BindingManager.cpp in Sources */,
 				9E36F88619180E8F0098B3C0 /* Transform.cpp in Sources */,
 				9E3AF3ED190C5943001007F4 /* ShaderModifier.cpp in Sources */,

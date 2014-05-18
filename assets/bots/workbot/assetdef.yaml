@@ -1,0 +1,19 @@
+--- # Texture Def
+id:             99
+type:           Texture
+subtype:        Animation
+width:          512
+height:         512
+frameHeight:    64
+frameWidth:     64
+border:         0
+defaultAnimation: idle
+animations:
+    -   name: idle
+        filename: idle.png
+        frameStart: 0
+        frameEnd: 1
+        rate: 15
+
+
+#passibility here just defines which frames are edges

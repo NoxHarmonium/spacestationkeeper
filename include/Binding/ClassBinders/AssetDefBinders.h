@@ -49,16 +49,16 @@ template <> struct ClassBinder<TextureDef> {
                .def("loadAsset", &TextureDef::loadAsset)
                .def("unloadAsset", &TextureDef::unloadAsset)
                .def("getBorder", &TextureDef::getBorder)
-               .def("getCanWalk", &TextureDef::getCanWalk)
+               //.def("getCanWalk", &TextureDef::getCanWalk)
                .def("getFrameCount", &TextureDef::getFrameCount)
-               .def("getFrameFromPassibility",
-                    &TextureDef::getFrameFromPassibility)
+               //.def("getFrameFromPassibility",
+               //     &TextureDef::getFrameFromPassibility)
                .def("getFrameHeight", &TextureDef::getFrameHeight)
                .def("getFrameSize", &TextureDef::getFrameSize)
                .def("getFrameWidth", &TextureDef::getFrameWidth)
                .def("getWidth", &TextureDef::getWidth)
                .def("getHeight", &TextureDef::getHeight)
-               .def("getPassiblity", &TextureDef::getPassiblity)
+               //.def("getPassiblity", &TextureDef::getPassiblity)
                .def("getHeight", &TextureDef::getHeight)
                .def("getFrameUvCoords", &TextureDef::getFrameUvCoords)];
   }

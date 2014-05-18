@@ -1,7 +1,7 @@
 --- # Texture Def
 id:             1
 type:           Texture
-subtype:        Sprite
+subtype:        Tile
 width:          256
 height:         256
 frameHeight:    64
