@@ -8,6 +8,7 @@
 # include <boost/type_traits/is_polymorphic.hpp>
 # include <luabind/detail/inheritance.hpp>
 # include <luabind/detail/object_rep.hpp>
+# include <string>
 
 namespace luabind { namespace detail {
 
@@ -77,7 +78,9 @@ void make_instance(lua_State* L, P p)
 
     if (!cls)
     {
-        throw std::runtime_error("Trying to use unregistered class");
+      std::string msg("Trying to use unregistered class: ");
+      
+      throw std::runtime_error(msg + typeid(*p).name());
     }
 
     object_rep* instance = push_new_instance(L, cls);
