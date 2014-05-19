@@ -97,7 +97,7 @@ function GameGrid:SetupTileMesh(tile, passibility)
     local texFrame = tex:getFrameFromPassibility(passibility)
     local dims = Rectf(0, 0, frameWidth, frameHeight)
     local uvCoords = tex:getFrameUvCoords(texFrame)
-    LuaDebug.Log('texFrame: ' .. texFrame)
+    --LuaDebug.Log('texFrame: ' .. texFrame)
     local mesh = SimpleMesh.generateQuad(dims, uvCoords)
     tile.renderer.mesh = mesh
 end
