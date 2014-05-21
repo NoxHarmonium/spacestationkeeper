@@ -18,7 +18,7 @@
 
 #define TEXTURE_UNKNOWN "Unknown"
 #define TEXTURE_TILE "Tile"
-#define TEXTURE_ANIMATION "Animation"
+#define TEXTURE_SIMPLE "Simple"
 
 using namespace std;
 using namespace ci;
@@ -27,7 +27,7 @@ using namespace YAML;
 class TextureDef : public AssetDefBaseT<gl::Texture> {
 public:
   // Enums
-  enum class TextureType { Unknown, Tile, Animation };
+  enum class TextureType { Unknown, Tile, Simple };
 
   // Constructors/Destructors
   TextureDef(Node node);

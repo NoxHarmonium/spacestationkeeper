@@ -1,7 +1,7 @@
 --- # Texture Def
 id:             99
-type:           Texture
-subtype:        Animation
+type:           Animation
+subtype:        Texture
 width:          512
 height:         512
 frameHeight:    64

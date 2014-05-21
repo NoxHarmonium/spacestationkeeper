@@ -25,6 +25,10 @@ ostream &operator<<(ostream &os, const AssetType &assetType) {
   case AssetType::Script:
     os << "Script";
     break;
+  case AssetType::AnimationSet:
+    os << "AnimationSet";
+    break;
   }
+
   return os;
 }

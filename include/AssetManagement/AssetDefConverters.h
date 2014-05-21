@@ -44,6 +44,8 @@ template <> struct convert<AssetType> {
       assetType = AssetType::Shader;
     } else if (type.compare(ASSET_SCRIPT) == 0) {
       assetType = AssetType::Script;
+    } else if (type.compare(ASSET_ANIMATIONSET) == 0) {
+      assetType = AssetType::AnimationSet;
     } else {
       assetType = AssetType::Unknown;
     }
@@ -86,8 +88,8 @@ template <> struct convert<TextureDef::TextureType> {
     string type = node.as<string>();
     if (type.compare(TEXTURE_TILE) == 0) {
       textureType = TextureDef::TextureType::Tile;
-    } else if (type.compare(TEXTURE_ANIMATION) == 0) {
-      textureType = TextureDef::TextureType::Animation;
+    } else if (type.compare(TEXTURE_SIMPLE) == 0) {
+      textureType = TextureDef::TextureType::Simple;
     } else {
       textureType = TextureDef::TextureType::Unknown;
     }

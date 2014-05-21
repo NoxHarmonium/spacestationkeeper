@@ -17,10 +17,11 @@ using namespace std;
 #define ASSET_SHADER "Shader"
 #define ASSET_AUDIO "Audio"
 #define ASSET_SCRIPT "Script"
+#define ASSET_ANIMATIONSET "AnimationSet"
 #define ASSET_UNKNOWN "Unknown"
 
 /*! A enum of all the known asset types. */
-enum AssetType { Unknown, Texture, Shader, Audio, Script };
+enum AssetType { Unknown, Texture, Shader, Audio, Script, AnimationSet };
 
 ostream &operator<<(ostream &os, const AssetType &assetType);
 

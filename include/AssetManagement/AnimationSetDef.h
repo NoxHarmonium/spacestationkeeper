@@ -1,5 +1,5 @@
 //
-//  AnimationDef.h
+//  AnimationSetDef.h
 //  SpaceStationKeeper
 //
 //  Created by Sean Dawson on 18/05/2014.
@@ -11,12 +11,13 @@
 
 #include "TextureDef.h"
 
-typedef map<string, TextureDefRef> AnimationMap;
+typedef map<string, TextureDefRef> AnimationSetMap;
 
-class AnimationDef : public AssetDefBaseT<AnimationMap> {
+class AnimationSetDef : public AssetDefBaseT<AnimationSetMap> {
 public:
   // Constructors/Destructors
-  virtual ~AnimationDef();
+  AnimationSetDef(Node node);
+  virtual ~AnimationSetDef();
 
   // Methods
   /*! Loads the asset pointed to by this AssetRef object into memory so it can
@@ -29,23 +30,20 @@ public:
   // Static Methods
   /*! Constructs an instance of TextureDef from a loaded YAML node. This should
    * be called by an AssetLoader and not directly through scripts. */
-  static std::shared_ptr<AnimationDef> FromYamlNode(Node node);
+  static std::shared_ptr<AnimationSetDef> FromYamlNode(Node node);
 
 private:
-  // Constructors/Destructors
-  /*! Constructs a new instance of SpriteDef with values provided through the
-   * static method FromYamlNode(). */
-  AnimationDef(int id, int width, int height, int frameHeight, int frameWidth,
-               float border, map<string, TextureDefRef> animationFileMap);
+  // Fields
+  string _defaultAnimation;
 };
 
 /*! A shared pointer reference to a TextureDef object. */
-typedef std::shared_ptr<AnimationDef> AnimationDefRef;
+typedef std::shared_ptr<AnimationSetDef> AnimationDefRef;
 
 /*! A specilization of GetAssetType to allow compile time definition of this
  * classes AssetType. */
-template <> struct GetAssetType<AnimationDef> {
-  static const AssetType value = AssetType::Texture;
+template <> struct GetAssetType<AnimationSetDef> {
+  static const AssetType value = AssetType::AnimationSet;
 };
 
 #endif

@@ -81,12 +81,12 @@ AssetDefBaseRef FileAssetLoader::loadAsset(string assetRef) {
       Utils::parseNode(&subType, node, "subtype");
 
       switch (subType) {
-      case TextureDef::TextureType::Tile: {
-        tDef = dynamic_pointer_cast<TextureDef>(TileDef::FromYamlNode(node));
+      case TextureDef::TextureType::Simple: {
+        tDef = TextureDef::FromYamlNode(node);
         break;
       }
-      case TextureDef::TextureType::Animation: {
-        throw NotImplementedException();
+      case TextureDef::TextureType::Tile: {
+        tDef = dynamic_pointer_cast<TextureDef>(TileDef::FromYamlNode(node));
         break;
       }
       default: {
