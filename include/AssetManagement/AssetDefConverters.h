@@ -46,6 +46,8 @@ template <> struct convert<AssetType> {
       assetType = AssetType::Script;
     } else if (type.compare(ASSET_ANIMATIONSET) == 0) {
       assetType = AssetType::AnimationSet;
+    } else if (type.compare(ASSET_ANIMATION) == 0) {
+      assetType = AssetType::Animation;
     } else {
       assetType = AssetType::Unknown;
     }

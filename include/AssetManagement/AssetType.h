@@ -18,10 +18,19 @@ using namespace std;
 #define ASSET_AUDIO "Audio"
 #define ASSET_SCRIPT "Script"
 #define ASSET_ANIMATIONSET "AnimationSet"
+#define ASSET_ANIMATION "Animation"
 #define ASSET_UNKNOWN "Unknown"
 
 /*! A enum of all the known asset types. */
-enum AssetType { Unknown, Texture, Shader, Audio, Script, AnimationSet };
+enum AssetType {
+  Unknown,
+  Texture,
+  Shader,
+  Audio,
+  Script,
+  AnimationSet,
+  Animation
+};
 
 ostream &operator<<(ostream &os, const AssetType &assetType);
 

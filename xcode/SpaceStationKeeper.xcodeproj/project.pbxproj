@@ -47,6 +47,7 @@
 		9E3AF3EE190C5943001007F4 /* TextureModifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E3AF3E7190C5943001007F4 /* TextureModifier.cpp */; };
 		9E3AF3F5190DBBC6001007F4 /* RenderInfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E3AF3F3190DBBC6001007F4 /* RenderInfo.cpp */; };
 		9E3BD6C71926B6CD008F9297 /* lua in Resources */ = {isa = PBXBuildFile; fileRef = 9E3BD6C61926B6CD008F9297 /* lua */; };
+		9E619797192D19BB0013CB63 /* AnimationDef.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E619795192D19BB0013CB63 /* AnimationDef.cpp */; };
 		9E92628F18D48232001AB5D6 /* GameComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E92628E18D48232001AB5D6 /* GameComponent.cpp */; };
 		9E92629218D4EDA0001AB5D6 /* ComponentDrivenApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E92629118D4EDA0001AB5D6 /* ComponentDrivenApp.cpp */; };
 		9EA476CA18F7589A00C6BD1D /* EnumHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EA476C818F7589A00C6BD1D /* EnumHelper.cpp */; };
@@ -184,6 +185,8 @@
 		9E3CD3FC191DD2D2000E6778 /* CinderRectBinders.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CinderRectBinders.h; sourceTree = "<group>"; };
 		9E5D3B101922D8AC0011FA66 /* JobWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobWrapper.h; sourceTree = "<group>"; };
 		9E5D3B111922DB2F0011FA66 /* JobBinder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobBinder.h; sourceTree = "<group>"; };
+		9E619794192D18B60013CB63 /* AnimationDef.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnimationDef.h; sourceTree = "<group>"; };
+		9E619795192D19BB0013CB63 /* AnimationDef.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AnimationDef.cpp; sourceTree = "<group>"; };
 		9E72B0E4190C4E0E00F9935A /* Modifier.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Modifier.h; sourceTree = "<group>"; };
 		9E72B0E5190C4E3400F9935A /* RenderInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RenderInfo.h; sourceTree = "<group>"; };
 		9E92628E18D48232001AB5D6 /* GameComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameComponent.cpp; sourceTree = "<group>"; };
@@ -383,6 +386,7 @@
 				9E28170B191ABECA00F5E95C /* ScriptDef.h */,
 				9EDF4CFE1928FBAB0051DCE3 /* AnimationSetDef.h */,
 				9EDF4CFF1928FC4B0051DCE3 /* TileDef.h */,
+				9E619794192D18B60013CB63 /* AnimationDef.h */,
 			);
 			path = AssetManagement;
 			sourceTree = "<group>";
@@ -635,6 +639,7 @@
 				9E28172D191BFC5400F5E95C /* AssetType.cpp */,
 				9EDF4D001929659E0051DCE3 /* TileDef.cpp */,
 				9EDF4D05192ADF2C0051DCE3 /* AnimationSetDef.cpp */,
+				9E619795192D19BB0013CB63 /* AnimationDef.cpp */,
 			);
 			path = AssetManagement;
 			sourceTree = "<group>";
@@ -740,6 +745,7 @@
 				9E3AF3EE190C5943001007F4 /* TextureModifier.cpp in Sources */,
 				9EA476CA18F7589A00C6BD1D /* EnumHelper.cpp in Sources */,
 				9EA476D618F9FEFA00C6BD1D /* SimpleMesh.cpp in Sources */,
+				9E619797192D19BB0013CB63 /* AnimationDef.cpp in Sources */,
 				9E3AF3EA190C5943001007F4 /* RotateModifier.cpp in Sources */,
 				9EA476CC18F8ABC300C6BD1D /* AssetLoaderBase.cpp in Sources */,
 				9E3AF3E9190C5943001007F4 /* ScaleModifier.cpp in Sources */,

@@ -14,6 +14,7 @@ animations:
         frameStart: 0
         frameEnd: 1
         rate: 15
+        loop: true
 
 
 #passibility here just defines which frames are edges

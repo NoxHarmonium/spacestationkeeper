@@ -28,6 +28,9 @@ ostream &operator<<(ostream &os, const AssetType &assetType) {
   case AssetType::AnimationSet:
     os << "AnimationSet";
     break;
+  case AssetType::Animation:
+    os << "Animation";
+    break;
   }
 
   return os;
