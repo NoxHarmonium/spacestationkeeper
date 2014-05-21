@@ -16,27 +16,20 @@ using namespace std;
 class TileDef : public TextureDef {
 public:
   // Constructors/Destructors
+  TileDef(Node node);
   virtual ~TileDef();
 
   // Getters/Setters
   /*! Gets if the texture can have things on top of it. */
   bool getCanWalk();
-  /*! Gets the filename of the tile texture. */
-  string getFilename();
   /*! Gets the Passability enum for a particular frame. */
   Passibility getPassiblity(const int frameNumber);
   /*! Sets the Passabilty enum for a particular frame. */
   void setPassiblity(const int frameNumber, const Passibility passability);
   /*! Gets the first frame that matches the provided Passability enum. */
   int getFrameFromPassibility(const Passibility passability);
-
-  // Methods
-  /*! Loads the asset pointed to by this AssetRef object into memory so it can
-   * be used. */
-  virtual void loadAsset();
-  /*! Unloads the asset pointed to by this AssetRef object making it unavailable
-   * for use. */
-  virtual void unloadAsset();
+  /*! Gets if the TextureDef can be used for animation. */
+  bool getIsAnimated();
 
   // Static Methods
   /*! Constructs an instance of TextureDef from a loaded YAML node. This should
@@ -44,17 +37,9 @@ public:
   static std::shared_ptr<TileDef> FromYamlNode(Node node);
 
 private:
-  // Constructors/Destructors
-  /*! Constructs a new instance of SpriteDef with values provided through the
-   * static method FromYamlNode(). */
-  TileDef(int id, int width, int height, int frameHeight, int frameWidth,
-          string filename, bool canWalk, float border);
-
   // Fields
   /*! Determines if the texture can have things on top of it. */
   bool _canWalk;
-  /*! The filename of the source texture file (not the full path). */
-  string _filename;
   /*! The an array of enum which defines the passability of each edge. The index
    * refers to the frame number. */
   vector<Passibility> _passibilities;

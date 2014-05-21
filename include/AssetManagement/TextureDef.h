@@ -30,6 +30,7 @@ public:
   enum class TextureType { Unknown, Tile, Animation };
 
   // Constructors/Destructors
+  TextureDef(Node node);
   virtual ~TextureDef();
 
   // Getters/Setters
@@ -49,24 +50,25 @@ public:
   virtual int getFrameCount();
   /*! Gets the uv coordinates to render the specified frame. */
   virtual Rectf getFrameUvCoords(const int frameNumber);
-
+  /*! Gets if the TextureDef can be used for animation. */
+  virtual bool getIsAnimated();
+  /*! Gets the filename of the tile texture. */
+  string getFilename();
   /*! Gets the type definition of this asset definition. */
   virtual AssetType getAssetType();
 
   // Methods
   /*! Loads the asset pointed to by this AssetRef object into memory so it can
    * be used. */
-  virtual void loadAsset() = 0;
+  virtual void loadAsset();
   /*! Unloads the asset pointed to by this AssetRef object making it unavailable
    * for use. */
-  virtual void unloadAsset() = 0;
+  virtual void unloadAsset();
 
-protected:
-  // Constructors/Destructors
-  /*! Constructs a new instance of TextureDef with values provided through the
-   * static method FromYamlNode(). */
-  TextureDef(int id, int width, int height, int frameHeight, int frameWidth,
-             float border);
+  // Static Methods
+  /*! Constructs an instance of TextureDef from a loaded YAML node. This should
+   * be called by an AssetLoader and not directly through scripts. */
+  static std::shared_ptr<TextureDef> FromYamlNode(Node node);
 
 private:
   // Fields
@@ -80,6 +82,8 @@ private:
   int _frameHeight;
   /*! Determines the border around each frame in a texture. */
   float _border;
+  /*! The filename of the source texture file (not the full path). */
+  string _filename;
 };
 
 /*! A shared pointer reference to a TextureDef object. */
