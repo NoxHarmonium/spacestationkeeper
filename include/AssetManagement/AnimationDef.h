@@ -36,7 +36,8 @@ public:
   // Static Methods
   /*! Constructs an instance of TextureDef from a loaded YAML node. This should
    * be called by an AssetLoader and not directly through scripts. */
-  static std::shared_ptr<AnimationDef> FromYamlNode(Node node);
+  static std::shared_ptr<AnimationDef> FromYamlNode(Node node,
+                                                    string animationName);
 
 private:
   // Fields

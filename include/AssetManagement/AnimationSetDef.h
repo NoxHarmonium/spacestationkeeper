@@ -6,12 +6,15 @@
 //
 //
 
-#ifndef SpaceStationKeeper_AnimationDef_h
-#define SpaceStationKeeper_AnimationDef_h
+#ifndef SpaceStationKeeper_AnimationSetDef_h
+#define SpaceStationKeeper_AnimationSetDef_h
 
-#include "TextureDef.h"
+#include <map>
+#include "AssetDefBaseT.h"
+#include "AnimationDef.h"
 
-typedef map<string, TextureDefRef> AnimationSetMap;
+// Type defs
+typedef map<string, AnimationDefRef> AnimationSetMap;
 
 class AnimationSetDef : public AssetDefBaseT<AnimationSetMap> {
 public:
@@ -34,11 +37,14 @@ public:
 
 private:
   // Fields
+  /*! The animation that is active by default. */
   string _defaultAnimation;
+  /*! The map of animation names to animation definitions. */
+  AnimationSetMap _animationSetMap;
 };
 
 /*! A shared pointer reference to a TextureDef object. */
-typedef std::shared_ptr<AnimationSetDef> AnimationDefRef;
+typedef std::shared_ptr<AnimationSetDef> AnimationSetDefRef;
 
 /*! A specilization of GetAssetType to allow compile time definition of this
  * classes AssetType. */

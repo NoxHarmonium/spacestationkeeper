@@ -69,7 +69,7 @@ bool AnimationDef::getLoop() { return _loop; }
 bool AnimationDef::getIsAnimated() { return true; }
 
 // Static Methods
-static std::shared_ptr<AnimationDef> FromYamlNode(Node node,
-                                                  string animationName) {
+std::shared_ptr<AnimationDef> AnimationDef::FromYamlNode(Node node,
+                                                         string animationName) {
   return make_shared<AnimationDef>(node, animationName);
 }

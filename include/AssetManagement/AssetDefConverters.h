@@ -92,6 +92,8 @@ template <> struct convert<TextureDef::TextureType> {
       textureType = TextureDef::TextureType::Tile;
     } else if (type.compare(TEXTURE_SIMPLE) == 0) {
       textureType = TextureDef::TextureType::Simple;
+    } else if (type.compare(TEXTURE_ANIMATION) == 0) {
+      textureType = TextureDef::TextureType::Animation;
     } else {
       textureType = TextureDef::TextureType::Unknown;
     }

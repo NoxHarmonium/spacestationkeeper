@@ -10,15 +10,24 @@
 #include "Utils.h"
 
 // Constructors/Destructors
-AnimationSetDef::AnimationSetDef(Node node) : AssetDefBaseT(-1) {
+AnimationSetDef::AnimationSetDef(Node node)
+    : AssetDefBaseT<AnimationSetMap>(-1) {
   string defaultAnimation;
   Utils::parseNode<string>(&defaultAnimation, node, "defaultAnimation");
 
   this->_defaultAnimation = defaultAnimation;
 
   Node animations;
-  bool passabilityDefined =
-      Utils::getChildNode(&animations, node, "animations");
+  Utils::getChildNode(&animations, node, "animations");
+  for (Node animation : animations) {
+    string animationName;
+    Utils::parseNode(&animationName, animation, "name");
+
+    // Pass in root node so that animation definitions can extract common
+    // texture data.
+    AnimationDefRef animRef = AnimationDef::FromYamlNode(node, animationName);
+    this->_animationSetMap[animationName] = animRef;
+  }
 }
 
 AnimationSetDef::~AnimationSetDef() {}

@@ -14,6 +14,8 @@
 #include "TileDef.h"
 #include "ShaderDef.h"
 #include "ScriptDef.h"
+#include "AnimationDef.h"
+#include "AnimationSetDef.h"
 
 using namespace std;
 using namespace boost;
@@ -89,6 +91,12 @@ AssetDefBaseRef FileAssetLoader::loadAsset(string assetRef) {
         tDef = dynamic_pointer_cast<TextureDef>(TileDef::FromYamlNode(node));
         break;
       }
+      case TextureDef::TextureType::Animation: {
+        throw AssetLoadException(
+            AssetLoadException::AssetLoadExceptionReason::UnsupportedAssetType,
+            "You can only load animation definitions through an AnimationSet "
+            "object.");
+      }
       default: {
         throw NotImplementedException();
         break;
@@ -111,6 +119,14 @@ AssetDefBaseRef FileAssetLoader::loadAsset(string assetRef) {
     }
     case AssetType::Script: {
       ScriptDefRef sDef = ScriptDef::FromYamlNode(node);
+      sDef->setPath(path.parent_path()); // Get directory of asset
+      sDef->setAssetRef(assetRef);
+      AssetDefBaseRef sDefBase = dynamic_pointer_cast<AssetDefBase>(sDef);
+      saveLoadedAsset(assetRef, sDefBase);
+      return sDefBase;
+    }
+    case AssetType::AnimationSet: {
+      AnimationSetDefRef sDef = AnimationSetDef::FromYamlNode(node);
       sDef->setPath(path.parent_path()); // Get directory of asset
       sDef->setAssetRef(assetRef);
       AssetDefBaseRef sDefBase = dynamic_pointer_cast<AssetDefBase>(sDef);
