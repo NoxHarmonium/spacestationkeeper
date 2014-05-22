@@ -13,7 +13,9 @@ using namespace boost;
 // Constructors/Destructors
 AssetDefBase::AssetDefBase(int id) { _id = id; }
 
-AssetDefBase::~AssetDefBase() {};
+AssetDefBase::~AssetDefBase() {
+  _assetPointer = nullptr;
+};
 
 // Getters/Setters
 
