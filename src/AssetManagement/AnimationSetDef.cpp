@@ -13,6 +13,8 @@
 AnimationSetDef::AnimationSetDef(Node node)
     : AssetDefBaseT<AnimationSetMap>(-1) {
   string defaultAnimation;
+  AnimationSetMapRef animationSet;
+
   Utils::parseNode<string>(&defaultAnimation, node, "defaultAnimation");
 
   this->_defaultAnimation = defaultAnimation;
@@ -26,11 +28,15 @@ AnimationSetDef::AnimationSetDef(Node node)
     // Pass in root node so that animation definitions can extract common
     // texture data.
     AnimationDefRef animRef = AnimationDef::FromYamlNode(node, animationName);
-    this->_animationSetMap[animationName] = animRef;
+    (*animationSet)[animationName] = animRef;
   }
+  setAssetPointer(animationSet);
 }
 
-AnimationSetDef::~AnimationSetDef() {}
+AnimationSetDef::~AnimationSetDef() { setAssetRef(nullptr); }
+
+// Getters/Setters
+string AnimationSetDef::getDefaultAnimation() { return _defaultAnimation; }
 
 // Methods
 void AnimationSetDef::loadAsset() {}

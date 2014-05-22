@@ -68,6 +68,10 @@ function ConvertValue(key, value, instance, go)
         local assetLoader = app_getAssetLoader()
         return assetLoader:loadAssetAsShaderDef(value)
     end
+    if pType == 'AnimationSetDef' then
+        local assetLoader = app_getAssetLoader()
+        return assetLoader:loadAssetAsAnimationSetDef(value)
+    end
 
     return value
 

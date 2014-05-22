@@ -15,12 +15,16 @@
 
 // Type defs
 typedef map<string, AnimationDefRef> AnimationSetMap;
+typedef std::shared_ptr<AnimationSetMap> AnimationSetMapRef;
 
 class AnimationSetDef : public AssetDefBaseT<AnimationSetMap> {
 public:
   // Constructors/Destructors
   AnimationSetDef(Node node);
   virtual ~AnimationSetDef();
+
+  // Getters/Setters
+  string getDefaultAnimation();
 
   // Methods
   /*! Loads the asset pointed to by this AssetRef object into memory so it can
@@ -39,8 +43,6 @@ private:
   // Fields
   /*! The animation that is active by default. */
   string _defaultAnimation;
-  /*! The map of animation names to animation definitions. */
-  AnimationSetMap _animationSetMap;
 };
 
 /*! A shared pointer reference to a TextureDef object. */

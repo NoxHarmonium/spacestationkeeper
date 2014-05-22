@@ -18,9 +18,7 @@ GameObjects:
         Components:
             -   type: TestComponent
                 text: Test Text 1
-            -   type: TestComponent
-                text: Test Text 2
-            -   type: TestComponent
+                testanim: "animations/testanim"
 
     -   name: GameGridObject
         RenderInfo:

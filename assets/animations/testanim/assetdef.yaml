@@ -1,0 +1,19 @@
+--- # Texture Def
+id:             98
+type:           Animation
+subtype:        Texture
+width:          256
+height:         256
+frameHeight:    64
+frameWidth:     64
+border:         0
+defaultAnimation: test
+animations:
+    -   name: test
+        filename: testanim.png
+        frameStart: 0
+        frameEnd: 15
+        rate: 2
+        loop: true
+
+

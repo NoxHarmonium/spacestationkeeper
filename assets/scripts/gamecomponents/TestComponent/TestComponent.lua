@@ -8,6 +8,7 @@ function TestComponent:__init()
 
     -- Serialisation properties
     Property(self, 'text', 'string')
+    Property(self, 'testanim', 'AnimationSetDef')
 
 end
 

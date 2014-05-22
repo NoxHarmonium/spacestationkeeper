@@ -122,11 +122,13 @@ extern "C" int initLuaModules(lua_State *L) {
   ClassBinder<Utils>::Bind("Utils", L);
 
   // Asset Management
+  ClassBinder<AssetLoaderBase>::Bind("AssetLoaderBase", L);
   ClassBinder<AssetDefBase>::Bind("AssetDefBase", L);
   ClassBinder<TextureDef>::Bind("TextureDef", L);
   ClassBinder<TileDef>::Bind("TileDef", L);
+  ClassBinder<AnimationDef>::Bind("AnimationDef", L);
+  ClassBinder<AnimationSetDef>::Bind("AnimationSetDef", L);
   ClassBinder<ShaderDef>::Bind("ShaderDef", L);
-  ClassBinder<AssetLoaderBase>::Bind("AssetLoaderBase", L);
 
   // Cinder event classes
   ClassBinder<MouseEvent>::Bind("MouseEvent", L);

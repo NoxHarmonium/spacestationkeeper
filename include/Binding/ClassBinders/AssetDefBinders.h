@@ -13,6 +13,8 @@
 #include "AssetDefBase.h"
 #include "FixStdSharedPtrBind.h"
 #include "TileDef.h"
+#include "AnimationDef.h"
+#include "AnimationSetDef.h"
 
 template <> struct ClassBinder<AssetDefBase> {
   static void Bind(const char *name, lua_State *L) {
@@ -91,6 +93,57 @@ template <> struct ClassBinder<TileDef> {
              .def("getPassiblity", &TileDef::getPassiblity)
              .def("getHeight", &TileDef::getHeight)
              .def("getFrameUvCoords", &TileDef::getFrameUvCoords)];
+  }
+};
+
+template <> struct ClassBinder<AnimationDef> {
+  static void Bind(const char *name, lua_State *L) {
+    luabind::module(
+        L)[luabind::class_<AnimationDef, TextureDef, AnimationDefRef>(name)
+               .def("getAssetRef", &TextureDef::getAssetRef)
+               .def("setAssetRef", &TextureDef::setAssetRef)
+               .def("getId", &TextureDef::getId)
+               //.def("getPath", &AssetDefBase::getPath) boost?
+               //.def("setPath", &AssetDefBase::setPath) boost?
+               .def("getAsset", &AssetDefBaseT<TextureDef>::getAsset)
+               .def("assetLoaded", &TextureDef::assetLoaded)
+               .def("getAssetType", &TextureDef::getAssetType)
+               .def("loadAsset", &TextureDef::loadAsset)
+               .def("unloadAsset", &TextureDef::unloadAsset)
+               .def("getBorder", &TextureDef::getBorder)
+               .def("getFrameCount", &TextureDef::getFrameCount)
+               .def("getFrameHeight", &TextureDef::getFrameHeight)
+               .def("getFrameSize", &TextureDef::getFrameSize)
+               .def("getFrameWidth", &TextureDef::getFrameWidth)
+               .def("getWidth", &TextureDef::getWidth)
+               .def("getHeight", &TextureDef::getHeight)
+               .def("getHeight", &TextureDef::getHeight)
+               .def("getFrameUvCoords", &TextureDef::getFrameUvCoords)
+               .def("getName", &AnimationDef::getName)
+               .def("getFrameStart", &AnimationDef::getFrameStart)
+               .def("getFrameEnd", &AnimationDef::getFrameEnd)
+               .def("getRate", &AnimationDef::getFrameUvCoords)
+               .def("getLoop", &AnimationDef::getFrameUvCoords)];
+  }
+};
+
+template <> struct ClassBinder<AnimationSetDef> {
+  static void Bind(const char *name, lua_State *L) {
+    luabind::module(
+        L)[luabind::class_<AnimationSetDef, AssetDefBaseT<AnimationSetMap>,
+                           AnimationSetDefRef>(name)
+               .def("getAssetRef", &AssetDefBase::getAssetRef)
+               .def("setAssetRef", &AssetDefBase::setAssetRef)
+               .def("getId", &AssetDefBase::getId)
+               //.def("getPath", &AssetDefBase::getPath) boost?
+               //.def("setPath", &AssetDefBase::setPath) boost?
+               .def("getAsset", &AssetDefBaseT<AnimationSetMap>::getAsset)
+               .def("assetLoaded", &AssetDefBase::assetLoaded)
+               .def("getAssetType", &AssetDefBase::getAssetType)
+               .def("loadAsset", &AssetDefBase::loadAsset)
+               .def("unloadAsset", &AssetDefBase::unloadAsset)
+               .def("getDefaultAnimation",
+                    &AnimationSetDef::getDefaultAnimation)];
   }
 };
 
