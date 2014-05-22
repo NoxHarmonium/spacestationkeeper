@@ -10,8 +10,9 @@
 #include "Utils.h"
 
 // Constructors/Destructors
-AnimationDef::AnimationDef(Node node, string animationName) : TextureDef(node) {
-  string name;
+AnimationDef::AnimationDef(Node node, string animationName)
+    : TextureDef(node, false) {
+  string name, filename;
   int frameStart, frameEnd;
   float rate;
   bool loop;
@@ -27,7 +28,7 @@ AnimationDef::AnimationDef(Node node, string animationName) : TextureDef(node) {
   }
 
   for (Node n : animations) {
-    Utils::parseNode<string>(&name, animation, "name");
+    Utils::parseNode<string>(&name, n, "name");
     if (name == animationName) {
       animation = n;
       keyFound = true;
@@ -45,12 +46,14 @@ AnimationDef::AnimationDef(Node node, string animationName) : TextureDef(node) {
   Utils::parseNode<int>(&frameEnd, animation, "frameEnd");
   Utils::parseNode<float>(&rate, animation, "rate");
   Utils::parseNode<bool>(&loop, animation, "loop");
+  Utils::parseNode<string>(&filename, animation, "filename");
 
   this->_name = name;
   this->_frameStart = frameStart;
   this->_frameEnd = frameEnd;
   this->_rate = rate;
   this->_loop = loop;
+  this->_filename = filename;
 }
 
 AnimationDef::~AnimationDef() {}

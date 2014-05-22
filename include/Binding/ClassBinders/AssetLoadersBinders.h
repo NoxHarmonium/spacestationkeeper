@@ -13,20 +13,24 @@
 #include "AssetLoaderBase.h"
 #include "TileDef.h"
 #include "ShaderDef.h"
+#include "AnimationSetDef.h"
 
 template <> struct ClassBinder<AssetLoaderBase> {
   static void Bind(const char *name, lua_State *L) {
-    luabind::module(L)[luabind::class_<AssetLoaderBase>(name)
-                           .def("loadAsset",
-                                (AssetDefBaseRef (AssetLoaderBase::*)(string)) &
-                                    AssetLoaderBase::loadAsset)
-                           .def("loadAssetAsTileDef",
-                                (TileDefRef (AssetLoaderBase::*)(string)) &
-                                    AssetLoaderBase::loadAsset<TileDef>)
-                           .def("loadAssetAsShaderDef",
-                                (ShaderDefRef (AssetLoaderBase::*)(string)) &
-                                    AssetLoaderBase::loadAsset<ShaderDef>)
-                           .def("unloadAsset", &AssetLoaderBase::unloadAsset)];
+    luabind::module(L)
+        [luabind::class_<AssetLoaderBase>(name)
+             .def("loadAsset", (AssetDefBaseRef (AssetLoaderBase::*)(string)) &
+                                   AssetLoaderBase::loadAsset)
+             .def("loadAssetAsTileDef",
+                  (TileDefRef (AssetLoaderBase::*)(string)) &
+                      AssetLoaderBase::loadAsset<TileDef>)
+             .def("loadAssetAsShaderDef",
+                  (ShaderDefRef (AssetLoaderBase::*)(string)) &
+                      AssetLoaderBase::loadAsset<ShaderDef>)
+             .def("loadAssetAsAnimationSetDef",
+                  (AnimationSetDefRef (AssetLoaderBase::*)(string)) &
+                      AssetLoaderBase::loadAsset<AnimationSetDef>)
+             .def("unloadAsset", &AssetLoaderBase::unloadAsset)];
   }
 };
 

@@ -32,6 +32,7 @@ public:
 
   // Constructors/Destructors
   TextureDef(Node node);
+  TextureDef(Node node, bool loadFilename);
   virtual ~TextureDef();
 
   // Getters/Setters
@@ -71,6 +72,10 @@ public:
    * be called by an AssetLoader and not directly through scripts. */
   static std::shared_ptr<TextureDef> FromYamlNode(Node node);
 
+protected:
+  /*! The filename of the source texture file (not the full path). */
+  string _filename;
+
 private:
   // Fields
   /*! The total width of the texture. */
@@ -83,8 +88,6 @@ private:
   int _frameHeight;
   /*! Determines the border around each frame in a texture. */
   float _border;
-  /*! The filename of the source texture file (not the full path). */
-  string _filename;
 };
 
 /*! A shared pointer reference to a TextureDef object. */

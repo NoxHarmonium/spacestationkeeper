@@ -13,7 +13,7 @@
 AnimationSetDef::AnimationSetDef(Node node)
     : AssetDefBaseT<AnimationSetMap>(-1) {
   string defaultAnimation;
-  AnimationSetMapRef animationSet;
+  AnimationSetMapRef animationSet = make_shared<AnimationSetMap>();
 
   Utils::parseNode<string>(&defaultAnimation, node, "defaultAnimation");
 
@@ -33,7 +33,7 @@ AnimationSetDef::AnimationSetDef(Node node)
   setAssetPointer(animationSet);
 }
 
-AnimationSetDef::~AnimationSetDef() { setAssetRef(nullptr); }
+AnimationSetDef::~AnimationSetDef() {}
 
 // Getters/Setters
 string AnimationSetDef::getDefaultAnimation() { return _defaultAnimation; }

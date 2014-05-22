@@ -127,17 +127,22 @@ template <> struct ClassBinder<AnimationDef> {
   }
 };
 
+// TODO: These bindings are incorrect. They specify inheritance from
+// AssetDefBaseT<ChildClass> where it should be AssetDefBaseT<AssetType> where
+// asset type is the type that is returned by get asset (e.g. glslprog or
+// texture) If it is specified correctly there is an access violation for some
+// reason that needs to be determined. getAsset() will probably crash if called.
 template <> struct ClassBinder<AnimationSetDef> {
   static void Bind(const char *name, lua_State *L) {
     luabind::module(
-        L)[luabind::class_<AnimationSetDef, AssetDefBaseT<AnimationSetMap>,
+        L)[luabind::class_<AnimationSetDef, AssetDefBaseT<AnimationSetDef>,
                            AnimationSetDefRef>(name)
                .def("getAssetRef", &AssetDefBase::getAssetRef)
                .def("setAssetRef", &AssetDefBase::setAssetRef)
                .def("getId", &AssetDefBase::getId)
                //.def("getPath", &AssetDefBase::getPath) boost?
                //.def("setPath", &AssetDefBase::setPath) boost?
-               .def("getAsset", &AssetDefBaseT<AnimationSetMap>::getAsset)
+               .def("getAsset", &AssetDefBaseT<AnimationSetDef>::getAsset)
                .def("assetLoaded", &AssetDefBase::assetLoaded)
                .def("getAssetType", &AssetDefBase::getAssetType)
                .def("loadAsset", &AssetDefBase::loadAsset)

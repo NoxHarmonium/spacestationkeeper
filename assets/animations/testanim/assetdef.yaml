@@ -1,6 +1,6 @@
 --- # Texture Def
 id:             98
-type:           Animation
+type:           AnimationSet
 subtype:        Texture
 width:          256
 height:         256

@@ -15,12 +15,16 @@ using namespace YAML;
 
 // Constructors/Destructors
 
-TextureDef::TextureDef(Node node)
+TextureDef::TextureDef(Node node) : TextureDef(node, true) {}
+
+TextureDef::TextureDef(Node node, bool loadFilename)
     : AssetDefBaseT(
-          -1) { // TODO: ID isn't used and probably should be depricated
+          this->_id) { // TODO: ID isn't used and probably should be depricated
+
   // Load in values from YAML file.
   int id, width, height, frameHeight, frameWidth;
   string filename;
+
   float border = 0.0f;
 
   // cout << "Deserialising TextureDef..." << endl;
@@ -30,8 +34,8 @@ TextureDef::TextureDef(Node node)
   Utils::parseNode<int>(&height, node, "height");
   Utils::parseNode<int>(&frameWidth, node, "frameHeight");
   Utils::parseNode<int>(&frameHeight, node, "frameHeight");
-  Utils::parseNode<string>(&filename, node, "filename");
   Utils::parseNode<float>(&border, node, "border", false);
+  Utils::parseNode<string>(&filename, node, "filename", loadFilename);
 
   this->_id = id;
   this->_width = width;
