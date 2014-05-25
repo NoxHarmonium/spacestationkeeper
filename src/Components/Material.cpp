@@ -49,6 +49,5 @@ void Material::unbind() {
 
 bool operator==(const Material &a, const Material &b) {
   // cout << a.shader << " == " << b.shader << endl;
-  return &a.texture == &b.texture && &a.shader == &b.shader &&
-         a.baseColor == b.baseColor && a.brightness == b.brightness;
+  return &a == &b;
 }

@@ -59,13 +59,13 @@ void Sprite::setup() {
     renderer->mesh = SimpleMesh::generateQuad(dims, uvCoords);
 
     MaterialRef mat = getOrCreateCacheEntry();
-    cout << "Sprite using tex: " << mat->texture << endl;
+    // cout << "Sprite using tex: " << mat->texture << endl;
 
     renderer->material = mat;
 
     if (renderer->getIsBatched()) {
       renderer->invalidateBatch();
-      cout << "Invalidate batch because sprite regenerated." << endl;
+      // cout << "Invalidate batch because sprite regenerated." << endl;
     }
   }
 }

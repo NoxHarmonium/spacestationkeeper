@@ -126,7 +126,7 @@ function GameGrid:FixTileFrame(point)
         return
     end
 
-    LuaDebug.Log('GameGrid:FixTileFrame: point: ' .. point.x .. ',' .. point.y)
+    --LuaDebug.Log('GameGrid:FixTileFrame: point: ' .. point.x .. ',' .. point.y)
 
     local p = Passibility()
     local checks = {
