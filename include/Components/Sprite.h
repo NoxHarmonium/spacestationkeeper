@@ -14,6 +14,16 @@
 #include <string>
 #include <memory>
 #include "AssetLoaderBase.h"
+#include "Material.h"
+
+struct SpriteCacheEntry {
+  SpriteCacheEntry(MaterialRef mat) : material(mat), useCount(1) {}
+
+  MaterialRef material;
+  int useCount;
+};
+
+typedef std::unique_ptr<SpriteCacheEntry> SpriteCacheEntryPtr;
 
 class Sprite : public GameComponent {
 public:
@@ -40,6 +50,13 @@ private:
   TextureDefRef _spriteTexture;
   int _spriteFrame = 0;
   AssetLoaderBase *_assetLoader;
+
+  // Static Fields
+  static map<TextureDefRef, SpriteCacheEntryPtr> _materialCache;
+
+  // Methods
+  MaterialRef getOrCreateCacheEntry();
+  void releaseCache();
 };
 
 typedef std::shared_ptr<Sprite> SpriteRef;

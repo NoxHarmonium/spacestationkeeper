@@ -56,34 +56,29 @@ AxisAlignedBox3f BatchedMesh::getBoundingBox(Matrix44f transformMatrix) {
 void BatchedMesh::addMesh(BatchInfoRef batchInfo) {
   // cout << "BatchedMesh::addMesh(): Adding mesh to batcher: Material: "
   //     << material << " Mesh: " << mesh << endl;
-  MaterialRef mat = getBatchMaterial(batchInfo->material);
-  BaseMeshRef mesh = batchInfo->mesh;
+  MaterialRef mat = batchInfo->material;
   _batchMaterials[batchInfo] = mat;
-  _batchMeshes[batchInfo] = mesh;
   _meshes[mat].insert(batchInfo);
-
   _dirty[mat] = true;
 }
 
 void BatchedMesh::invalidate(BatchInfoRef batchInfo) {
   cout << "BatchedMesh::invalidate(): Invalidating mesh..." << endl;
   MaterialRef oldMaterial = _batchMaterials[batchInfo];
-  MaterialRef newMaterial = getBatchMaterial(batchInfo->material);
-  BaseMeshRef oldMesh = _batchMeshes[batchInfo];
-  BaseMeshRef newMesh = batchInfo->mesh;
+  MaterialRef newMaterial = batchInfo->material;
 
-  if (oldMaterial != batchInfo->material || oldMesh != newMesh) {
-    cout << "BatchedMesh::invalidate(): BatchInfo has new material or mesh. "
-            "Switching..." << endl;
+  if (oldMaterial != batchInfo->material) {
+    cout
+        << "BatchedMesh::invalidate(): BatchInfo has new material. Switching..."
+        << endl;
 
     _dirty[oldMaterial] = true;            // Invalidate old material
     _meshes[oldMaterial].erase(batchInfo); // Switch info to new material layer
     _meshes[newMaterial].insert(batchInfo);
-    _batchMaterials[batchInfo] = newMaterial; // Set new material
-    _batchMeshes[batchInfo] = newMesh;
+    _batchMaterials[batchInfo] = batchInfo->material; // Set new material
   }
 
-  _dirty[newMaterial] = true;
+  _dirty[batchInfo->material] = true;
 }
 
 void BatchedMesh::regenerateVboMesh(MaterialRef material) {
@@ -128,16 +123,4 @@ void BatchedMesh::regenerateVboMesh(MaterialRef material) {
   for (auto &kvp : _materialBounds) {
     _bounds.include(kvp.second);
   }
-}
-
-MaterialRef BatchedMesh::getBatchMaterial(MaterialRef material) {
-  if (_meshes.count(material) > 0) {
-    return material; // This material is currently the reference material
-  }
-  for (auto &kvp : _meshes) {
-    if (*kvp.first == *material) {
-      return kvp.first; // Found material with same properties
-    }
-  }
-  return material;
 }
