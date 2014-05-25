@@ -122,7 +122,7 @@ end
 
 function GameGrid:FixTileFrame(point)
 
-    if not self:TileIsPassable(point) then
+    if not self:PointInRange(point) or not self:TileIsPassable(point) then
         return
     end
 
@@ -137,7 +137,8 @@ function GameGrid:FixTileFrame(point)
     }
 
     for i, check in ipairs(checks) do
-        if self:TileIsPassable(Vec2i(point.x + check[1], point.y + check[2])) then
+        local checkPoint = Vec2i(point.x + check[1], point.y + check[2])
+        if self:PointInRange(checkPoint) and self:TileIsPassable(checkPoint) then
             p:setFlag(check[3])
         end
     end
@@ -157,4 +158,8 @@ function GameGrid:TileIsPassable(point)
     local sprite = GetComponentFromType(tile, 'Sprite')
     local texture = sprite:getSpriteTexture()
     return tile and texture:getCanWalk()
+end
+
+function GameGrid:PointInRange(point) 
+    return point.x >= 0 and point.x <= self.size.x and point.y > 0 and point.y < self.size.y;
 end
