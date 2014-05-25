@@ -36,7 +36,8 @@ private:
 
 typedef std::shared_ptr<Material> MaterialRef;
 
-// Can't seem to compare instances without this in Lua land.
+// Override to compare on values so that batcher can batch materials together
+// more efficiently
 bool operator==(const Material &a, const Material &b);
 
 #endif

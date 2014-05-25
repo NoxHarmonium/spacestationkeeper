@@ -15,6 +15,7 @@
 #include "TileDef.h"
 #include "AnimationDef.h"
 #include "AnimationSetDef.h"
+#include "luabind/operator.hpp"
 
 template <> struct ClassBinder<AssetDefBase> {
   static void Bind(const char *name, lua_State *L) {
@@ -63,7 +64,9 @@ template <> struct ClassBinder<TextureDef> {
                .def("getHeight", &TextureDef::getHeight)
                //.def("getPassiblity", &TextureDef::getPassiblity)
                .def("getHeight", &TextureDef::getHeight)
-               .def("getFrameUvCoords", &TextureDef::getFrameUvCoords)];
+               .def("getFrameUvCoords", &TextureDef::getFrameUvCoords)
+               .def(self == self)
+               .def(tostring(self))];
   }
 };
 

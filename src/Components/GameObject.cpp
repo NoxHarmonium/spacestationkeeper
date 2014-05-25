@@ -16,25 +16,40 @@ GameObject::GameObject() {
   renderer = make_shared<RenderInfo>();
   _bindingManager = BindingManager::Instance();
 }
+
 GameObject::~GameObject() {}
 
 void GameObject::addComponent(GameComponentRef component) {
   string id = GameComponent::getId(component);
   checkIdValidity(id);
-  _components[id] = component;
+  _componentMap[id] = component;
   component->gameObject = this; // TODO: Encapsulate more? i.e. setGameObject()?
+  _componentListDirty = true;
 }
 
 void GameObject::removeComponent(GameComponentRef component) {
-  _components.erase(GameComponent::getId(component));
+  _componentMap.erase(GameComponent::getId(component));
   component->gameObject = nullptr; // End null reference
+  _componentListDirty = true;
 }
 
 GameComponentRef GameObject::getComponent(string id) {
-  if (_components.count(id) == 0) {
+  if (_componentMap.count(id) == 0) {
     throw runtime_error("No component found for id: " + id);
   }
-  return _components[id];
+  return _componentMap[id];
+}
+
+void GameObject::refreshComponentList() {
+  if (_componentListDirty) {
+    componentList.clear();
+    // Generate a vector that lua can iterate through because I'm not sure how
+    // to get it to support maps yet.
+    for (auto &kvp : _componentMap) {
+      componentList.push_back(kvp.second);
+    }
+    _componentListDirty = false;
+  }
 }
 
 void GameObject::reassignId(GameComponentRef component, string newId) {
@@ -42,8 +57,8 @@ void GameObject::reassignId(GameComponentRef component, string newId) {
   // unwanted logic to fire
   // when more functionallity is implemented
   checkIdValidity(newId);
-  _components.erase(GameComponent::getId(component));
-  _components[GameComponent::getId(component)] = component;
+  _componentMap.erase(GameComponent::getId(component));
+  _componentMap[GameComponent::getId(component)] = component;
 }
 
 RenderInfoRef GameObject::getRenderer() { return renderer; }
@@ -253,14 +268,14 @@ void GameObject::fileDrop(FileDropEvent event) {
 }
 
 map<string, GameComponentRef> GameObject::getRegisteredComponentsCopy() {
-  return map<string, GameComponentRef>(_components);
+  return map<string, GameComponentRef>(_componentMap);
 }
 
 void GameObject::checkIdValidity(string id) {
   if (id.length() == 0) {
     throw runtime_error("An ID is required for GameComponent objects.");
   }
-  if (_components.count(id) > 0) {
+  if (_componentMap.count(id) > 0) {
     throw runtime_error(
         "The component ID: " + id +
         " already exists on this gameObject. A unique ID is required.");

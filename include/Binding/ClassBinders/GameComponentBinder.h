@@ -61,5 +61,15 @@ template <> struct ClassBinder<GameComponent> {
                ]];
   }
 };
+/*
+template <> struct ClassBinder<vector<GameComponentRef>> {
+  static void Bind(const char *name, lua_State *L) {
+    luabind::module(
+        L)[luabind::class_<vector<GameComponentRef>,
+                           std::shared_ptr<vector<GameComponentRef>>>(name)
+               .def(luabind::constructor<>())
+               .def(luabind::constructor<int>())];
+  }
+};*/
 
 #endif

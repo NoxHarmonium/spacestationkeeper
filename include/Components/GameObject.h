@@ -27,12 +27,14 @@ public:
 
   // Public Fields
   RenderInfoRef renderer = nullptr;
+  vector<GameComponentRef> componentList;
 
   // Methods
   void addComponent(GameComponentRef component);
   void removeComponent(GameComponentRef component);
   void reassignId(GameComponentRef component, string newId);
   GameComponentRef getComponent(string id);
+  void refreshComponentList();
 
   // Event Methods
   //! Override to perform any application setup after the Renderer has been
@@ -85,7 +87,8 @@ private:
   void checkIdValidity(string id);
 
   // Fields
-  map<string, GameComponentRef> _components;
+  bool _componentListDirty = true;
+  map<string, GameComponentRef> _componentMap;
   string _id;
 
   BindingManager *_bindingManager = nullptr; // For catching lua exceptions

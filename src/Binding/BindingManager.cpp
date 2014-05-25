@@ -39,6 +39,7 @@
 #include "EnumHelperBinder.h"
 #include "JobBinder.h"
 #include "UtilsBinder.h"
+#include "SpriteBinder.h"
 
 using adopt2 = luabind::detail::policy_cons<luabind::detail::adopt_policy<2>,
                                             luabind::detail::null_type>;
@@ -133,6 +134,7 @@ extern "C" int initLuaModules(lua_State *L) {
   ClassBinder<RenderInfo>::Bind("RenderInfo", L);
   ClassBinder<AxisAlignedBox3f>::Bind("AxisAlignedBox3f", L);
   ClassBinder<BatchedMesh>::Bind("BatchedMesh", L);
+  ClassBinder<Sprite>::Bind("Sprite", L);
 
   // Misc
   ClassBinder<EnumHelper>::Bind("EnumHelper", L);
@@ -181,6 +183,9 @@ extern "C" int initLuaModules(lua_State *L) {
 
   ClassBinder<Rectf>::Bind("Rectf", L);
   ClassBinder<Rectd>::Bind("Rectd", L);
+
+  // Containers
+  // ClassBinder<vector<GameComponentRef>>::Bind("Vector_GameComponent", L);
 
   // App static functions
   module(L)[def("app_getWindowWidth", &ci::app::getWindowWidth)];

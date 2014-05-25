@@ -120,3 +120,15 @@ void TextureDef::unloadAsset() {
 std::shared_ptr<TextureDef> TextureDef::FromYamlNode(YAML::Node node) {
   return make_shared<TextureDef>(node);
 }
+
+// Operators
+
+bool operator==(const TextureDef &a, const TextureDef &b) {
+  cout << "a: " << a << endl;
+  cout << "b: " << b << endl;
+  return &a == &b;
+}
+std::ostream &operator<<(std::ostream &lhs, const TextureDef &rhs) {
+  lhs << &rhs;
+  return lhs;
+}

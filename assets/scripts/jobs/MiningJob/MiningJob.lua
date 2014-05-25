@@ -1,13 +1,13 @@
 -- Mining Job
 class 'MiningJob' (Job)
 
-function MiningJob:__init(gameGrid, coord, preReqMaterial, postReqMaterial)
+function MiningJob:__init(gameGrid, coord, preReqTexture, postReqTexture)
     Job.__init(self)
     LuaDebug.Log('MiningJob:__init() called!')
     self._gameGrid = gameGrid
     self._coord = coord
-    self._preReqMaterial = preReqMaterial
-    self._postReqMaterial = postReqMaterial
+    self._preReqTexture = preReqTexture
+    self._postReqTexture = postReqTexture
     self._workUnitsDone = 0
     self._maxWorkUnits = 8
     self._workUnitPerWorker = 1 --TODO: put in config
@@ -16,14 +16,14 @@ end
 
 function MiningJob:preRequisitesAreMet()
     local tile = self._gameGrid.tiles[self._coord.x..self._coord.y]
-    local mat = tile.renderer.material
-    return tile ~= nil and mat == self._preReqMaterial
+    local tex = tile.renderer.material.texture
+    return tile ~= nil and tex == self._preReqTexture
 end
 
 function MiningJob:postRequistesAreMet()
     local tile = self._gameGrid.tiles[self._coord.x..self._coord.y]
-    local mat = tile.renderer.material
-    return tile ~= nil and mat == self._postReqMaterial
+    local tex = tile.renderer.material.texture
+    return tile ~= nil and tex == self._postReqTexture
 end
 
 function MiningJob:isDone()
@@ -46,7 +46,9 @@ function MiningJob:update(deltaTime)
 
     if (self:isDone()) then
         local tile = self._gameGrid.tiles[self._coord.x..self._coord.y]
-        tile.renderer.material = self._postReqMaterial
+        local sprite = GetComponentFromType(tile, 'Sprite')
+        sprite:setSpriteTexture(self._postReqTexture)
+        --sprite:setup()
         self._gameGrid:FixTileFrames(self._coord)
     end
 end

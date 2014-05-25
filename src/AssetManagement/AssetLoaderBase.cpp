@@ -13,7 +13,8 @@
 AssetDefBaseRef AssetLoaderBase::loadAsset(string assetRef) {
   AssetDefBaseRef storedAsset = getLoadedAsset(assetRef);
   if (storedAsset) {
-    cout << "Cache hit on: \"" << assetRef << "\". Not loading again." << endl;
+    // cout << "Cache hit on: \"" << assetRef << "\". Not loading again." <<
+    // endl;
     return storedAsset;
   }
   return nullptr;

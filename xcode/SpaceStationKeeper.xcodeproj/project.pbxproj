@@ -48,6 +48,7 @@
 		9E3AF3F5190DBBC6001007F4 /* RenderInfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E3AF3F3190DBBC6001007F4 /* RenderInfo.cpp */; };
 		9E3BD6C71926B6CD008F9297 /* lua in Resources */ = {isa = PBXBuildFile; fileRef = 9E3BD6C61926B6CD008F9297 /* lua */; };
 		9E619797192D19BB0013CB63 /* AnimationDef.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E619795192D19BB0013CB63 /* AnimationDef.cpp */; };
+		9E74DA8B1930F57C006B323E /* Sprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E74DA891930F57C006B323E /* Sprite.cpp */; };
 		9E92628F18D48232001AB5D6 /* GameComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E92628E18D48232001AB5D6 /* GameComponent.cpp */; };
 		9E92629218D4EDA0001AB5D6 /* ComponentDrivenApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E92629118D4EDA0001AB5D6 /* ComponentDrivenApp.cpp */; };
 		9EA476CA18F7589A00C6BD1D /* EnumHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EA476C818F7589A00C6BD1D /* EnumHelper.cpp */; };
@@ -189,6 +190,10 @@
 		9E619795192D19BB0013CB63 /* AnimationDef.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AnimationDef.cpp; sourceTree = "<group>"; };
 		9E72B0E4190C4E0E00F9935A /* Modifier.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Modifier.h; sourceTree = "<group>"; };
 		9E72B0E5190C4E3400F9935A /* RenderInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RenderInfo.h; sourceTree = "<group>"; };
+		9E74DA881930F4A8006B323E /* Sprite.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Sprite.h; sourceTree = "<group>"; };
+		9E74DA891930F57C006B323E /* Sprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sprite.cpp; sourceTree = "<group>"; };
+		9E74DA8C1930FB9C006B323E /* SpriteBinder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpriteBinder.h; sourceTree = "<group>"; };
+		9E74DA8D1931139F006B323E /* StlBinders.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StlBinders.h; sourceTree = "<group>"; };
 		9E92628E18D48232001AB5D6 /* GameComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameComponent.cpp; sourceTree = "<group>"; };
 		9E92629118D4EDA0001AB5D6 /* ComponentDrivenApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ComponentDrivenApp.cpp; sourceTree = "<group>"; };
 		9EA476C818F7589A00C6BD1D /* EnumHelper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EnumHelper.cpp; sourceTree = "<group>"; };
@@ -407,13 +412,14 @@
 			children = (
 				9E0E1E2A190488C5009EECFD /* BaseMesh.h */,
 				9E0E1E2B190488C5009EECFD /* GameCamera.h */,
-				9E0E1E2C190488C5009EECFD /* GameComponent.h */,
 				9E0E1E32190488C5009EECFD /* SimpleMesh.h */,
+				9E0E1E2C190488C5009EECFD /* GameComponent.h */,
 				9E0E1E33190488C5009EECFD /* Transform.h */,
 				9E0E1E2F190488C5009EECFD /* Material.h */,
 				9E72B0E5190C4E3400F9935A /* RenderInfo.h */,
 				9E36F8801917CBAC0098B3C0 /* BatchedMesh.h */,
 				9E2816E5191A979000F5E95C /* GameObject.h */,
+				9E74DA881930F4A8006B323E /* Sprite.h */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -500,6 +506,8 @@
 				9E1AE48C191EA3E20083E6D2 /* EnumHelperBinder.h */,
 				9E1AE48D191EB8F00083E6D2 /* UtilsBinder.h */,
 				9E5D3B111922DB2F0011FA66 /* JobBinder.h */,
+				9E74DA8C1930FB9C006B323E /* SpriteBinder.h */,
+				9E74DA8D1931139F006B323E /* StlBinders.h */,
 			);
 			path = ClassBinders;
 			sourceTree = "<group>";
@@ -553,6 +561,7 @@
 				9E36F8811917CC640098B3C0 /* BatchedMesh.cpp */,
 				9E36F88419180E8F0098B3C0 /* Transform.cpp */,
 				9E2816E6191AA1B000F5E95C /* GameObject.cpp */,
+				9E74DA891930F57C006B323E /* Sprite.cpp */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -731,6 +740,7 @@
 			files = (
 				9E09867518FFFFD200480FA7 /* Material.cpp in Sources */,
 				8C08550A160647279CE5BCF2 /* SpaceStationKeeperApp.cpp in Sources */,
+				9E74DA8B1930F57C006B323E /* Sprite.cpp in Sources */,
 				9E28172F191BFC5400F5E95C /* AssetType.cpp in Sources */,
 				9EDF4D07192ADF2C0051DCE3 /* AnimationSetDef.cpp in Sources */,
 				9ED6DF7319106B70002D286C /* ShaderDef.cpp in Sources */,

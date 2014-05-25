@@ -41,6 +41,9 @@ public:
    * to be regenerated to reflect them. */
   void invalidateBatch();
 
+  // Getters/Setters
+  bool getIsBatched();
+
 protected:
   // Methods
   /*! Gets the RenderInfo component of this object. */

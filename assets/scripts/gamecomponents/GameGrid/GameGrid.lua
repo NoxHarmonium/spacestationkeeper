@@ -29,31 +29,20 @@ function GameGrid:setup()
     local frameWidth = self.defaultTileset:getFrameWidth()
     local frameHeight = self.defaultTileset:getFrameHeight()
 
-    local defaultMat = Material()
-    defaultMat.texture = self.defaultTileset
-    defaultMat.shader = self.shader
-    self._defaultMaterial = defaultMat;
-
-    local targetMat = Material()
-    targetMat.texture = self.targetTileset
-    targetMat.shader = self.shader
-    self._targetMaterial = targetMat
-
     self.tiles = {}
 
     for x = 0 , self.size.x do
         for y = 0, self.size.y do
             local tile = GameObject()
+            
             tile.renderer.transform.localPosition = Vec3f(
                 x * frameWidth,
                 y * frameHeight,
                 self.depth
             )
 
-            tile.renderer.material = defaultMat
-
             local passibility = self:GetPassibility(x, y, self.size.x, self.size.y)
-            self:SetupTileMesh(tile, passibility)
+            self:SetupTile(tile, passibility, self.defaultTileset)
             tile.renderer:batch(batchedMesh)
             self.tiles[x..y] = tile
 
@@ -82,7 +71,7 @@ function GameGrid:keyUp(keyEvent)
     for id, tile in pairs(self.selectedTiles) do
         local tilePos = tile.renderer.transform.localPosition
         local coord = Vec2i(tilePos.x / frameWidth, tilePos.y / frameHeight)
-        local job = MiningJob(self, coord, self._defaultMaterial, self._targetMaterial)
+        local job = MiningJob(self, coord, self.defaultTileset, self.targetTileset)
         RegisterJob(job)
         RemoveGameObject(tile) -- Remove selection gameobject
     end
@@ -90,16 +79,12 @@ function GameGrid:keyUp(keyEvent)
     self.selectedTiles = {} -- Deselect all
 end
 
-function GameGrid:SetupTileMesh(tile, passibility) 
-    local tex = tile.renderer.material.texture
-    local frameWidth = tex:getFrameWidth()
-    local frameHeight = tex:getFrameHeight()
-    local texFrame = tex:getFrameFromPassibility(passibility)
-    local dims = Rectf(0, 0, frameWidth, frameHeight)
-    local uvCoords = tex:getFrameUvCoords(texFrame)
-    --LuaDebug.Log('texFrame: ' .. texFrame)
-    local mesh = SimpleMesh.generateQuad(dims, uvCoords)
-    tile.renderer.mesh = mesh
+function GameGrid:SetupTile(tile, passibility, texture) 
+    
+    local texFrame = texture:getFrameFromPassibility(passibility)
+    local sprite = Sprite(texture, texFrame)
+    tile:addComponent(sprite)
+   
 end
 
 function GameGrid:GetPassibility(x, y, maxX, maxY)
@@ -136,8 +121,8 @@ function GameGrid:FixTileFrames(point)
 end
 
 function GameGrid:FixTileFrame(point)
-    
-    if (not self:TileIsPassable(point)) then
+
+    if not self:TileIsPassable(point) then
         return
     end
 
@@ -158,11 +143,18 @@ function GameGrid:FixTileFrame(point)
     end
 
     local tile = self.tiles[point.x..point.y]
-    self:SetupTileMesh(tile, p)
-    tile.renderer:invalidateBatch()
+    local sprite = GetComponentFromType(tile, 'Sprite')
+    local texture = sprite:getSpriteTexture()
+    local texFrame = texture:getFrameFromPassibility(p)
+    sprite:setSpriteFrame(texFrame)
+
+    --self:SetupTile(tile, p)
+    --tile.renderer:invalidateBatch()
 end
 
 function GameGrid:TileIsPassable(point)
     local tile = self.tiles[point.x..point.y]
-    return tile and tile.renderer.material.texture:getCanWalk()
+    local sprite = GetComponentFromType(tile, 'Sprite')
+    local texture = sprite:getSpriteTexture()
+    return tile and texture:getCanWalk()
 end

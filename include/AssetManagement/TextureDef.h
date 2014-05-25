@@ -90,6 +90,11 @@ private:
   float _border;
 };
 
+// Needed for Lua to compare instances
+bool operator==(const TextureDef &a, const TextureDef &b);
+// Needed for Lua to print address
+std::ostream &operator<<(std::ostream &lhs, const TextureDef &rhs);
+
 /*! A shared pointer reference to a TextureDef object. */
 typedef std::shared_ptr<TextureDef> TextureDefRef;
 

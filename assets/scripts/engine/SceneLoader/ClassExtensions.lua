@@ -74,6 +74,20 @@ function ConvertValue(key, value, instance, go)
     end
 
     return value
+end
 
+function GetComponentFromType(go, type)
+    if (go == nil or type == nil) then
+        error("GameObject or GameComponent type was passed in as nil.")
+    end
 
+    go:refreshComponentList();
+
+    local components = go.componentList
+    for comp in components do
+        if type == class_info(comp).name then
+            return comp
+        end
+    end
+    return nil
 end

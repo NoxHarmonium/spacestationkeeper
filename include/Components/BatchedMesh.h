@@ -46,6 +46,9 @@ public:
 private:
   // Methods
   void regenerateVboMesh(MaterialRef material);
+  /*! Coeleces different materials with the same properties into a single
+   * material for batching. */
+  MaterialRef getBatchMaterial(MaterialRef material);
 
   // Fields
   /*! The internal mesh respresentation if the mesh. */
@@ -56,6 +59,8 @@ private:
   map<MaterialRef, gl::VboMeshRef> _vboMeshes;
   /*! Stores the current material that the BatchInfo represents. */
   map<BatchInfoRef, MaterialRef> _batchMaterials;
+  /*! Stores the current mesh that the BatchInfo represents. */
+  map<BatchInfoRef, BaseMeshRef> _batchMeshes;
   /*! The list of meshes that will be batched. */
   map<MaterialRef, set<BatchInfoRef>> _meshes;
   /*! Stores the bounds of each material that can be combined for the primary

@@ -33,7 +33,8 @@ void RenderInfo::draw() {
     startDraw(this);
 
     if (_batchMode) {
-      if (_batchInfoRef == nullptr) {
+      if (_batchInfoRef == nullptr && this->mesh != nullptr &&
+          this->material != nullptr) {
         _batchInfoRef = make_shared<BatchInfo>();
         updateBatchInfo();
 
@@ -63,12 +64,16 @@ void RenderInfo::batch(BatchedMeshRef batchedMeshRef) {
 }
 
 void RenderInfo::invalidateBatch() {
-  if (!_batchMode || _batchedMeshRef == nullptr || _batchInfoRef == nullptr) {
+  if (!getIsBatched()) {
     throw runtime_error("Cannot invalidate a non batched RenderInfo object. "
                         "Call batch() first.");
   }
   updateBatchInfo();
   _batchedMeshRef->invalidate(_batchInfoRef);
+}
+
+bool RenderInfo::getIsBatched() {
+  return _batchMode && _batchedMeshRef != nullptr && _batchInfoRef != nullptr;
 }
 
 void RenderInfo::startDraw(RenderInfo *renderInfo) {
@@ -90,7 +95,7 @@ void RenderInfo::applyTransfromRecursive(TransformRef t) {
 }
 
 void RenderInfo::updateBatchInfo() {
-  if (!_batchMode || _batchedMeshRef == nullptr || _batchInfoRef == nullptr) {
+  if (!getIsBatched()) {
     throw runtime_error("Cannot update BatchInfo if this object is not "
                         "batched. Call batch() first.");
   }
