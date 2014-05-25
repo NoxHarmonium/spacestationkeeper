@@ -25,6 +25,7 @@ void GameObject::addComponent(GameComponentRef component) {
   _componentMap[id] = component;
   component->gameObject = this; // TODO: Encapsulate more? i.e. setGameObject()?
   _componentListDirty = true;
+  _setupQueue.push_back(component);
 }
 
 void GameObject::removeComponent(GameComponentRef component) {
@@ -66,18 +67,6 @@ RenderInfoRef GameObject::getRenderer() { return renderer; }
 string GameObject::getId() { return _id; }
 void GameObject::setId(string id) { _id = id; }
 
-//! Forwards event to component to perform any application setup after the
-// renderer has been initialized.
-void GameObject::setup() {
-  for (auto &kvp : getRegisteredComponentsCopy()) {
-    GameComponentRef comp = kvp.second;
-    if (comp->enabled &&
-        _bindingManager->catchLuaExceptions([comp]() { comp->setup(); })) {
-      cout << "Disabling component..." << endl;
-      comp->enabled = false;
-    };
-  }
-}
 //! Forwards event to component to perform any application cleanup before
 // exiting.
 void GameObject::shutdown() {
@@ -93,6 +82,19 @@ void GameObject::shutdown() {
 
 //! Forwards event to component to perform any once-per-loop computation.
 void GameObject::update() {
+
+  // Make sure that new objects get set up properly
+  // Setup() could be called when the component is added but it is better for it
+  // to be dispached in the main flow for compatibility with later features.
+  for (auto &comp : _setupQueue) {
+    if (_bindingManager->catchLuaExceptions([comp]() { comp->setup(); })) {
+      cout << "Disabling component..." << endl;
+      comp->enabled = false;
+      return;
+    };
+  }
+  _setupQueue.clear();
+
   for (auto &kvp : getRegisteredComponentsCopy()) {
     GameComponentRef comp = kvp.second;
     if (comp->enabled &&

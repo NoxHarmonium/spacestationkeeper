@@ -75,9 +75,6 @@ public:
 
   std::shared_ptr<JobManager> getJobManager() { return _jobManager; }
 
-  //! Override to perform any application setup after the Renderer has been
-  // initialized.
-  virtual void setup();
   //! Override to perform any application cleanup before exiting.
   virtual void shutdown();
 

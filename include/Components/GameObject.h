@@ -37,9 +37,6 @@ public:
   void refreshComponentList();
 
   // Event Methods
-  //! Override to perform any application setup after the Renderer has been
-  // initialized.
-  virtual void setup();
   //! Override to perform any application cleanup before exiting.
   virtual void shutdown();
 
@@ -90,6 +87,7 @@ private:
   bool _componentListDirty = true;
   map<string, GameComponentRef> _componentMap;
   string _id;
+  vector<GameComponentRef> _setupQueue;
 
   BindingManager *_bindingManager = nullptr; // For catching lua exceptions
 

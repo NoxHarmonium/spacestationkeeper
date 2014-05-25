@@ -43,13 +43,6 @@ set<GameObjectRef> ComponentDrivenApp::getGameObjects() {
   return this->_registeredGameObjects;
 }
 
-//! Forwards event to component to perform any application setup after the
-// renderer has been initialized.
-void ComponentDrivenApp::setup() {
-  for (auto &comp : getRegisteredGameObjectsCopy()) {
-    comp->setup();
-  }
-}
 //! Forwards event to component to perform any application cleanup before
 // exiting.
 void ComponentDrivenApp::shutdown() {
