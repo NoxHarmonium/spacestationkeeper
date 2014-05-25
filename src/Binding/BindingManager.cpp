@@ -90,6 +90,24 @@ int setLuaPath(lua_State *L, const std::string path) {
   return 0;      // all done!
 }
 
+// adds filename/line to luabind errors
+int add_file_and_line(lua_State *L) {
+  lua_Debug d;
+  lua_getstack(L, 1, &d);
+  lua_getinfo(L, "Sln", &d);
+  std::string err = lua_tostring(L, -1);
+  lua_pop(L, 1);
+  std::stringstream msg;
+  msg << d.short_src << ":" << d.currentline;
+
+  if (d.name != 0) {
+    msg << "(" << d.namewhat << " " << d.name << ")";
+  }
+  msg << " " << err;
+  lua_pushstring(L, msg.str().c_str());
+  return 1;
+}
+
 AssetLoaderBase *app_getAssetLoader() {
   return ComponentDrivenApp::Instance()->getAssetLoader();
 }
@@ -197,6 +215,7 @@ void BindingManager::initialiseBindings() {
 
   luaL_openlibs(L);
   luabind::open(L);
+  set_pcall_callback(add_file_and_line);
   initLuaModules(L);
 
   _bound = true;

@@ -26,6 +26,7 @@ void app_registerJob(JobRef job);
 void app_cancelJob(JobRef job);
 AssetLoaderBase *app_getAssetLoader();
 int setLuaPath(lua_State *L, const std::string path);
+int add_file_and_line(lua_State *L);
 
 class BindingManager {
 public:
