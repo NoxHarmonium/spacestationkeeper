@@ -18,7 +18,9 @@ GameObjects:
         Components:
             -   type: TestComponent
                 text: Test Text 1
-                testanim: "animations/testanim"
+            #-   type: AnimatedSprite
+            #    animationSet: "animations/testanim"
+            #    playOnLoad: true
 
     -   name: GameGridObject
         RenderInfo:

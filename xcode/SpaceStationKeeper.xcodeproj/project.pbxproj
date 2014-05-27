@@ -20,6 +20,7 @@
 		9E09867518FFFFD200480FA7 /* Material.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E09867318FFFFD200480FA7 /* Material.cpp */; };
 		9E0E1E8219048917009EECFD /* BindingManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E0E1E8019048917009EECFD /* BindingManager.cpp */; };
 		9E10054B18EA355F00EC5213 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = 9E10054A18EA355F00EC5213 /* assets */; };
+		9E1B33DC19329A75006C3F8C /* AnimatedSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E1B33DA19329A75006C3F8C /* AnimatedSprite.cpp */; };
 		9E2816E8191AA1B000F5E95C /* GameObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E2816E6191AA1B000F5E95C /* GameObject.cpp */; };
 		9E2816F1191AA9AC00F5E95C /* liblua.5.1.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E2816EB191AA98000F5E95C /* liblua.5.1.5.dylib */; };
 		9E2816F2191AA9AC00F5E95C /* libluabind.0.9.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E2816EC191AA98000F5E95C /* libluabind.0.9.1.dylib */; };
@@ -121,6 +122,8 @@
 		9E1AE48B191E80E10083E6D2 /* BatchedMeshBinder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BatchedMeshBinder.h; sourceTree = "<group>"; };
 		9E1AE48C191EA3E20083E6D2 /* EnumHelperBinder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EnumHelperBinder.h; sourceTree = "<group>"; };
 		9E1AE48D191EB8F00083E6D2 /* UtilsBinder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UtilsBinder.h; sourceTree = "<group>"; };
+		9E1B33D91932979D006C3F8C /* AnimatedSprite.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnimatedSprite.h; sourceTree = "<group>"; };
+		9E1B33DA19329A75006C3F8C /* AnimatedSprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AnimatedSprite.cpp; sourceTree = "<group>"; };
 		9E238FD91919DB7800F642A5 /* TypedEvent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TypedEvent.h; sourceTree = "<group>"; };
 		9E2816E5191A979000F5E95C /* GameObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameObject.h; sourceTree = "<group>"; };
 		9E2816E6191AA1B000F5E95C /* GameObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameObject.cpp; sourceTree = "<group>"; };
@@ -193,7 +196,6 @@
 		9E74DA881930F4A8006B323E /* Sprite.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Sprite.h; sourceTree = "<group>"; };
 		9E74DA891930F57C006B323E /* Sprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sprite.cpp; sourceTree = "<group>"; };
 		9E74DA8C1930FB9C006B323E /* SpriteBinder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpriteBinder.h; sourceTree = "<group>"; };
-		9E74DA8D1931139F006B323E /* StlBinders.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StlBinders.h; sourceTree = "<group>"; };
 		9E92628E18D48232001AB5D6 /* GameComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameComponent.cpp; sourceTree = "<group>"; };
 		9E92629118D4EDA0001AB5D6 /* ComponentDrivenApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ComponentDrivenApp.cpp; sourceTree = "<group>"; };
 		9EA476C818F7589A00C6BD1D /* EnumHelper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EnumHelper.cpp; sourceTree = "<group>"; };
@@ -420,6 +422,7 @@
 				9E36F8801917CBAC0098B3C0 /* BatchedMesh.h */,
 				9E2816E5191A979000F5E95C /* GameObject.h */,
 				9E74DA881930F4A8006B323E /* Sprite.h */,
+				9E1B33D91932979D006C3F8C /* AnimatedSprite.h */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -507,7 +510,6 @@
 				9E1AE48D191EB8F00083E6D2 /* UtilsBinder.h */,
 				9E5D3B111922DB2F0011FA66 /* JobBinder.h */,
 				9E74DA8C1930FB9C006B323E /* SpriteBinder.h */,
-				9E74DA8D1931139F006B323E /* StlBinders.h */,
 			);
 			path = ClassBinders;
 			sourceTree = "<group>";
@@ -562,6 +564,7 @@
 				9E36F88419180E8F0098B3C0 /* Transform.cpp */,
 				9E2816E6191AA1B000F5E95C /* GameObject.cpp */,
 				9E74DA891930F57C006B323E /* Sprite.cpp */,
+				9E1B33DA19329A75006C3F8C /* AnimatedSprite.cpp */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -743,6 +746,7 @@
 				9E74DA8B1930F57C006B323E /* Sprite.cpp in Sources */,
 				9E28172F191BFC5400F5E95C /* AssetType.cpp in Sources */,
 				9EDF4D07192ADF2C0051DCE3 /* AnimationSetDef.cpp in Sources */,
+				9E1B33DC19329A75006C3F8C /* AnimatedSprite.cpp in Sources */,
 				9ED6DF7319106B70002D286C /* ShaderDef.cpp in Sources */,
 				9E28172C191BEEAA00F5E95C /* ScriptDef.cpp in Sources */,
 				9E36F8831917CC640098B3C0 /* BatchedMesh.cpp in Sources */,
