@@ -29,21 +29,29 @@ TextureDefRef Sprite::getSpriteTexture() { return _spriteTexture; }
 int Sprite::getSpriteFrame() { return _spriteFrame; }
 
 void Sprite::setSpriteTexture(TextureDefRef texture) {
-  releaseCache();
-  _spriteTexture = texture;
-  refresh();
+  if (_spriteTexture != texture) {
+    releaseCache();
+    _spriteTexture = texture;
+    refresh();
+  }
 }
 
 void Sprite::setSpriteFrame(int frame) {
-  _spriteFrame = frame;
-  refresh();
+  if (_spriteFrame != frame) {
+    _spriteFrame = frame;
+    refresh();
+  }
 }
 
 // Methods
 void Sprite::setup() {
   _assetLoader = ComponentDrivenApp::Instance()->getAssetLoader();
+  RenderInfoRef renderer = this->gameObject->renderer;
 
-  if (_spriteTexture != nullptr) {
+  if (_spriteTexture == nullptr) {
+    renderer->mesh = nullptr;
+    renderer->material = nullptr;
+  } else {
     if (_spriteFrame < 0 || _spriteFrame >= _spriteTexture->getFrameCount()) {
       cout << "Warning: Frame '" << _spriteFrame
            << "' is out of range for texture '" << _spriteTexture->getAssetRef()
@@ -55,7 +63,6 @@ void Sprite::setup() {
                        _spriteTexture->getFrameHeight());
     Rectf uvCoords = _spriteTexture->getFrameUvCoords(_spriteFrame);
 
-    RenderInfoRef renderer = this->gameObject->renderer;
     renderer->mesh = SimpleMesh::generateQuad(dims, uvCoords);
 
     MaterialRef mat = getOrCreateCacheEntry();
