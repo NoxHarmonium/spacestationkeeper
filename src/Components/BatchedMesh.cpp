@@ -81,6 +81,13 @@ void BatchedMesh::invalidate(BatchInfoRef batchInfo) {
   _dirty[batchInfo->material] = true;
 }
 
+void BatchedMesh::removeMesh(BatchInfoRef batchInfo) {
+  MaterialRef mat = _batchMaterials[batchInfo];
+  _batchMaterials.erase(batchInfo);
+  _meshes.erase(mat);
+  _dirty[mat] = true;
+}
+
 void BatchedMesh::regenerateVboMesh(MaterialRef material) {
   cout << "BatchedMesh::regenerateVboMesh(): Regenerating VboMesh for material:"
        << material << endl;

@@ -33,12 +33,17 @@ void RenderInfo::draw() {
     startDraw(this);
 
     if (_batchMode) {
-      if (_batchInfoRef == nullptr && this->mesh != nullptr &&
-          this->material != nullptr) {
-        _batchInfoRef = make_shared<BatchInfo>();
-        updateBatchInfo();
+      if (this->mesh != nullptr && this->material != nullptr) {
+        if (_batchInfoRef == nullptr) { // Only add if not already
+          _batchInfoRef = make_shared<BatchInfo>();
+          updateBatchInfo();
 
-        _batchedMeshRef->addMesh(_batchInfoRef); // material without modifiers
+          _batchedMeshRef->addMesh(_batchInfoRef); // material without modifiers
+        }
+      } else if (_batchInfoRef != nullptr) {
+        // If the mesh is now invalid, remove it from the batch
+        _batchedMeshRef->removeMesh(_batchInfoRef);
+        _batchInfoRef = nullptr;
       }
       // Rendering of batched mesh should be done elsewhere (where the batched
       // mesh is defined).

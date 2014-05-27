@@ -40,6 +40,8 @@ public:
   virtual void addMesh(BatchInfoRef batchInfo);
   /*! Notifies that the information in a BatchInfo has changed. */
   virtual void invalidate(BatchInfoRef batchInfo);
+  /*! Removes a mesh from the batch. */
+  virtual void removeMesh(BatchInfoRef batchInfo);
 
   // TODO: Ability to move mesh to different material or remove mesh
 
