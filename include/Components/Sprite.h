@@ -42,7 +42,8 @@ public:
   void setSpriteFrame(int frame);
 
   // Methods
-  void setup();
+  virtual void setup() override;
+
   void refresh();
 
 private:
