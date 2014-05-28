@@ -45,6 +45,10 @@ void Sprite::setSpriteFrame(int frame) {
 
 // Methods
 void Sprite::setup() {
+  if (this->gameObject == nullptr) {
+    return; // Not added to gameobject yet
+  }
+
   _assetLoader = ComponentDrivenApp::Instance()->getAssetLoader();
   RenderInfoRef renderer = this->gameObject->renderer;
 

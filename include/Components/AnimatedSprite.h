@@ -17,8 +17,6 @@ class AnimatedSprite : public Sprite {
 public:
   // Constructors/Destructors
   AnimatedSprite();
-  AnimatedSprite(AnimationSetDefRef animation);
-  AnimatedSprite(AnimationSetDefRef animation, string animationName);
   virtual ~AnimatedSprite();
 
   // Getters/Setters
@@ -30,6 +28,8 @@ public:
   void setFrameRate(float rate);
   bool getLoop();
   void setLoop(bool loop);
+  bool getPlaying();
+  void setPlaying(bool playing);
 
   // Methods
   void reset();
@@ -42,13 +42,14 @@ public:
 private:
   // Methods
   void updateSprite();
+  void loadAnimation();
 
   // Fields
   float _t;
   bool _loop;
-  AnimationSetDefRef _currentAnimationSet = nullptr;
-  string _currentAnimationName = nullptr;
-  AnimationDefRef _currentAnimation = nullptr;
+  AnimationSetDefRef _currentAnimationSet;
+  string _currentAnimationName;
+  AnimationDefRef _currentAnimation;
   int _currentFrame;
   float _frameRate;
   bool _playing;

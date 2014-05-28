@@ -7,11 +7,11 @@ function GameGrid:__init()
     LuaDebug.Log('GameGrid:__init() called!')
 
     -- Serialisation properties
-    Property(self, 'defaultTileset', 'TileDef')
-    Property(self, 'targetTileset', 'TileDef')
-    Property(self, 'shader', 'ShaderDef')
-    Property(self, 'size', 'Vec2i')
-    Property(self, 'depth', 'number')
+    self:serialiseField('defaultTileset', 'TileDef')
+    self:serialiseField('targetTileset', 'TileDef')
+    self:serialiseField('shader', 'ShaderDef')
+    self:serialiseField('size', 'Vec2i')
+    self:serialiseField('depth', 'number')
 
     self.selectedTiles = {}
 end

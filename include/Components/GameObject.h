@@ -27,6 +27,8 @@ public:
 
   // Public Fields
   RenderInfoRef renderer = nullptr;
+  // This has to be public and not exposed through a getter because LuaBind
+  // breaks if you return an iterator from a function
   vector<GameComponentRef> componentList;
 
   // Methods

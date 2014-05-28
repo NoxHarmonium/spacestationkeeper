@@ -19,6 +19,25 @@ using namespace std;
 class GameObject;
 typedef shared_ptr<GameObject> GameObjectRef;
 
+struct SerialisedField {
+  SerialisedField() {}
+  SerialisedField(string name, string type, bool required)
+      : name(name), type(type), required(required), useAccessors(false) {}
+  SerialisedField(string name, string type, string getterName,
+                  string setterName, bool required)
+      : name(name), type(type), getterName(getterName), setterName(setterName),
+        required(required), useAccessors(true) {}
+
+  string name;
+  string type;
+  string getterName;
+  string setterName;
+  bool required = true;
+  bool useAccessors = false;
+};
+
+typedef std::shared_ptr<SerialisedField> SerialisedFieldRef;
+
 //! A game component is a child of an app which has all the app events forwarded
 // to it
 class GameComponent {
@@ -27,11 +46,14 @@ public:
   GameComponent();
   GameComponent(string id);
 
-  // Interaction methods
-  bool enabled = true;
-
   // Fields
+  bool enabled = true;
   GameObject *gameObject = nullptr;
+  // This has to be public and not exposed through a getter because LuaBind
+  // breaks if you return an iterator from a function
+  vector<SerialisedFieldRef> serialisedFields;
+
+  // Cinder Event Methods
 
   //! Setup the component
   virtual void setup() {}
@@ -71,6 +93,24 @@ public:
   //! Override to receive file-drop events.
   virtual void fileDrop(FileDropEvent event) {}
 
+  // Getters/Setters
+  //! Gets a list of fields that are marked for auto serialisation.
+  vector<SerialisedFieldRef> getSerialisedFields();
+
+  // Methods
+  //! Mark a field for auto serialisation.
+  void serialiseField(string name, string type);
+  //! Mark a field for auto serialisation and specify if the field is required.
+  void serialiseField(string name, string type, bool required);
+  //! Mark a field for auto serialisation and specify what methods Lua should
+  // call to access the field.
+  void serialiseField(string name, string type, string getterName,
+                      string setterName);
+  //! Mark a field for auto serialisation and specify what methods Lua should
+  // call to access the field and specify if the field is required.
+  void serialiseField(string name, string type, string getterName,
+                      string setterName, bool required);
+
   // Static Methods
   /*! Gets the unique ID of this component. */
   static string getId(std::shared_ptr<GameComponent> component);
@@ -78,7 +118,10 @@ public:
   static void setId(std::shared_ptr<GameComponent> component, string id);
 
 private:
+  // Fields
   string _id;
+
+  // Static fields
   static boost::uuids::random_generator _uuidGenerator;
 };
 

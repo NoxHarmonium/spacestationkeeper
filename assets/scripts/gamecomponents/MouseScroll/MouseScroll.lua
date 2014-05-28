@@ -10,11 +10,11 @@ function MouseScroll:__init()
     self._mousePos = Vec2f(0, 0)
 
     -- Serialisation properties
-    Property(self, 'EdgeSensitivity', 'number', false)
-    Property(self, 'Acceleration', 'Vec2f', false)
-    Property(self, 'Deceleration', 'number', false)
-    Property(self, 'MaxSpeed', 'number', false)
-    Property(self, 'MouseWheelMult', 'number', false)
+    self:serialiseField('EdgeSensitivity', 'number', false)
+    self:serialiseField('Acceleration', 'Vec2f', false)
+    self:serialiseField('Deceleration', 'number', false)
+    self:serialiseField('MaxSpeed', 'number', false)
+    self:serialiseField('MouseWheelMult', 'number', false)
 
     -- Property default values
     self.EdgeSensitivity = 25.0            -- Pixels

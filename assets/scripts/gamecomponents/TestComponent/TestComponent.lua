@@ -7,8 +7,7 @@ function TestComponent:__init()
     self.updateCount = 0;
 
     -- Serialisation properties
-    Property(self, 'text', 'string')
-    Property(self, 'testanim', 'AnimationSetDef')
+    self:serialiseField('text', 'string')
 
 end
 

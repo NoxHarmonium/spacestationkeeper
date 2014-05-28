@@ -13,6 +13,40 @@
 GameComponent::GameComponent() { _id = to_string(_uuidGenerator()); }
 
 GameComponent::GameComponent(string id) : _id(id) {}
+vector<SerialisedFieldRef> GameComponent::getSerialisedFields() {
+  return serialisedFields;
+}
+
+void GameComponent::serialiseField(string name, string type) {
+  cout << "GameComponent::serialiseField: name: " << name << " type: " << type
+       << endl;
+  serialisedFields.push_back(make_shared<SerialisedField>(name, type, true));
+}
+
+void GameComponent::serialiseField(string name, string type, bool required) {
+  cout << "GameComponent::serialiseField: name: " << name << " type: " << type
+       << endl;
+  serialisedFields.push_back(
+      make_shared<SerialisedField>(name, type, required));
+}
+
+void GameComponent::serialiseField(string name, string type, string getterName,
+                                   string setterName) {
+  cout << "GameComponent::serialiseField: name: " << name << " type: " << type
+       << " getterName: " << getterName << " setterName: " << setterName
+       << endl;
+  serialisedFields.push_back(
+      make_shared<SerialisedField>(name, type, getterName, setterName, true));
+}
+
+void GameComponent::serialiseField(string name, string type, string getterName,
+                                   string setterName, bool required) {
+  cout << "GameComponent::serialiseField: name: " << name << " type: " << type
+       << " getterName: " << getterName << " setterName: " << setterName
+       << endl;
+  serialisedFields.push_back(make_shared<SerialisedField>(
+      name, type, getterName, setterName, required));
+}
 
 string GameComponent::getId(std::shared_ptr<GameComponent> component) {
   return component->_id;

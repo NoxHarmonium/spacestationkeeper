@@ -12,15 +12,16 @@ GameObjects:
 
     -   name: TestObject
         RenderInfo:
-            localPosition: [0,0,0]
+            localPosition: [-50,-50,45]
             localRotation: [0,0,0,0]
             localScale:    [1,1,1]
         Components:
             -   type: TestComponent
                 text: Test Text 1
-            #-   type: AnimatedSprite
-            #    animationSet: "animations/testanim"
-            #    playOnLoad: true
+            -   type: AnimatedSprite
+                animationSet: "animations/testanim"
+                animationName: test
+                playing: true
 
     -   name: GameGridObject
         RenderInfo:

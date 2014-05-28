@@ -11,18 +11,14 @@
 #include "ComponentDrivenApp.h"
 
 // Constructors/Destructors
-AnimatedSprite::AnimatedSprite() : Sprite() {};
-
-AnimatedSprite::AnimatedSprite(AnimationSetDefRef animationSet) : Sprite() {
-  setAnimationSet(animationSet);
-}
-
-AnimatedSprite::AnimatedSprite(AnimationSetDefRef animationSet,
-                               string animationName)
-    : Sprite() {
-  setAnimationSet(animationSet);
-  setAnimationName(animationName);
-}
+AnimatedSprite::AnimatedSprite() : Sprite() {
+  cout << "!!Constructor: AnimatedSprite::AnimatedSprite()" << endl;
+  serialiseField("animationSet", "AnimationSetDef", "getAnimationSet",
+                 "setAnimationSet");
+  serialiseField("animationName", "string", "getAnimationName",
+                 "setAnimationName");
+  serialiseField("playing", "bool", "getPlaying", "setPlaying", false);
+};
 
 AnimatedSprite::~AnimatedSprite() {}
 
@@ -33,13 +29,14 @@ AnimationSetDefRef AnimatedSprite::getAnimationSet() {
 
 void AnimatedSprite::setAnimationSet(AnimationSetDefRef animationSet) {
   _currentAnimationSet = animationSet;
+  loadAnimation();
 }
 
 string AnimatedSprite::getAnimationName() { return _currentAnimationName; }
 
 void AnimatedSprite::setAnimationName(string animationName) {
   _currentAnimationName = animationName;
-  reset();
+  loadAnimation();
 }
 
 float AnimatedSprite::getFrameRate() { return _frameRate; }
@@ -50,26 +47,15 @@ bool AnimatedSprite::getLoop() { return _loop; }
 
 void AnimatedSprite::setLoop(bool loop) { _loop = loop; }
 
+bool AnimatedSprite::getPlaying() { return _playing; }
+
+void AnimatedSprite::setPlaying(bool playing) { _playing = playing; }
+
 // Methods
 void AnimatedSprite::reset() {
   _currentFrame = 0;
   _playing = false;
   _t = 0;
-  if (_currentAnimationSet != nullptr) {
-    AnimationSetMapRef animMap = _currentAnimationSet->getAsset();
-    string defaultAnim = _currentAnimationSet->getDefaultAnimation();
-    if (animMap->count(_currentAnimationName) == 0) {
-      if (animMap->count(defaultAnim) == 0) {
-        cout << "Warning: Could not load default animation: " + defaultAnim;
-        _currentAnimation = nullptr;
-      }
-      _currentAnimation = (*animMap)[defaultAnim];
-    } else {
-      _currentAnimation = (*animMap)[_currentAnimationName];
-    }
-    _frameRate = _currentAnimation->getRate();
-    _loop = _currentAnimation->getLoop();
-  }
   updateSprite();
 }
 
@@ -80,7 +66,7 @@ void AnimatedSprite::play() {
 
 void AnimatedSprite::stop() { _playing = false; }
 
-void AnimatedSprite::setup() {}
+void AnimatedSprite::setup() { Sprite::setup(); }
 
 void AnimatedSprite::update() {
   if (_playing && _currentAnimation != nullptr) {
@@ -99,6 +85,25 @@ void AnimatedSprite::update() {
 }
 
 void AnimatedSprite::updateSprite() {
-  setSpriteTexture(static_pointer_cast<TextureDef>(_currentAnimation));
+  setSpriteTexture(dynamic_pointer_cast<TextureDef>(_currentAnimation));
   setSpriteFrame(_currentFrame);
+}
+
+void AnimatedSprite::loadAnimation() {
+  if (_currentAnimationSet != nullptr) {
+    AnimationSetMapRef animMap = _currentAnimationSet->getAsset();
+    string defaultAnim = _currentAnimationSet->getDefaultAnimation();
+    if (animMap->count(_currentAnimationName) == 0) {
+      if (animMap->count(defaultAnim) == 0) {
+        cout << "Warning: Could not load default animation: " + defaultAnim;
+        _currentAnimation = nullptr;
+      }
+      _currentAnimation = (*animMap)[defaultAnim];
+    } else {
+      _currentAnimation = (*animMap)[_currentAnimationName];
+    }
+    _frameRate = _currentAnimation->getRate();
+    _loop = _currentAnimation->getLoop();
+  }
+  updateSprite();
 }

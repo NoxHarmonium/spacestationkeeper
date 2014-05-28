@@ -43,7 +43,9 @@ TextureDef::TextureDef(Node node, bool loadFilename)
   this->_frameHeight = frameHeight;
   this->_frameWidth = frameWidth;
   this->_border = border;
-  this->_filename = filename;
+  if (loadFilename) {
+    this->_filename = filename;
+  }
 }
 
 TextureDef::~TextureDef() {};

@@ -37,8 +37,6 @@ template <> struct ClassBinder<AnimatedSprite> {
     luabind::module(
         L)[luabind::class_<AnimatedSprite, Sprite, AnimatedSpriteRef>(name)
                .def(luabind::constructor<>())
-               .def(luabind::constructor<AnimationSetDefRef>())
-               .def(luabind::constructor<AnimationSetDefRef, string>())
                .def("getAnimationSet", &AnimatedSprite::getAnimationSet)
                .def("setAnimationSet", &AnimatedSprite::setAnimationSet)
                .def("getAnimationName", &AnimatedSprite::getAnimationName)
@@ -47,6 +45,8 @@ template <> struct ClassBinder<AnimatedSprite> {
                .def("setFrameRate", &AnimatedSprite::setFrameRate)
                .def("getLoop", &AnimatedSprite::getLoop)
                .def("setLoop", &AnimatedSprite::setLoop)
+               .def("getPlaying", &AnimatedSprite::getPlaying)
+               .def("setPlaying", &AnimatedSprite::setPlaying)
                .def("reset", &AnimatedSprite::reset)
                .def("play", &AnimatedSprite::play)
                .def("stop", &AnimatedSprite::stop)];

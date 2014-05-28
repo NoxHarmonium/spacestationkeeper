@@ -51,8 +51,17 @@ function LoadComponent(componentNode, go)
     -- Second pass to set fields that may depend on ids
     for key, value in pairs(componentNode) do
         if key ~= 'type' and key ~= 'id' then  -- Ignore type and id field
-            local convertedValue = ConvertValue(key, value, comp, go)
-            comp[key] = convertedValue;
+            local convertedValue, matchingField = ConvertValue(key, value, comp, go)
+            if matchingField then
+                -- Skip setting fields that are not registered
+                if matchingField.useAccessors then
+                    -- Special accessor is defined
+                    local setterMethod = comp[matchingField.setterName]
+                    setterMethod(comp,convertedValue)
+                else 
+                    comp[key] = convertedValue;
+                end
+            end
         end
     end
 

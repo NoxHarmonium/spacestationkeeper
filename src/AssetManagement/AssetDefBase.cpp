@@ -43,3 +43,5 @@ AssetType AssetDefBase::getAssetType() {
 void AssetDefBase::setAssetPointer(std::shared_ptr<void> pointer) {
   _assetPointer = pointer;
 }
+
+std::shared_ptr<void> AssetDefBase::getAssetPointer() { return _assetPointer; }

@@ -135,12 +135,13 @@ extern "C" int initLuaModules(lua_State *L) {
   ClassBinder<AxisAlignedBox3f>::Bind("AxisAlignedBox3f", L);
   ClassBinder<BatchedMesh>::Bind("BatchedMesh", L);
   ClassBinder<Sprite>::Bind("Sprite", L);
-  ClassBinder<Sprite>::Bind("AnimatedSprite", L);
+  ClassBinder<AnimatedSprite>::Bind("AnimatedSprite", L);
 
   // Misc
   ClassBinder<EnumHelper>::Bind("EnumHelper", L);
   ClassBinder<Passibility>::Bind("Passibility", L);
   ClassBinder<Utils>::Bind("Utils", L);
+  ClassBinder<SerialisedField>::Bind("SerialisedField", L);
 
   // Asset Management
   ClassBinder<AssetLoaderBase>::Bind("AssetLoaderBase", L);
