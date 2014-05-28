@@ -38,6 +38,14 @@ AnimationSetDef::~AnimationSetDef() {}
 // Getters/Setters
 string AnimationSetDef::getDefaultAnimation() { return _defaultAnimation; }
 
+void AnimationSetDef::setPath(const filesystem::path path) {
+  for (auto &kvp : *getAssetPointer()) {
+    AnimationDefRef anim = kvp.second;
+    anim->setPath(path);
+  }
+  AssetDefBase::setPath(path);
+}
+
 // Methods
 void AnimationSetDef::loadAsset() {}
 

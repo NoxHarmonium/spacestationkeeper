@@ -25,6 +25,7 @@ public:
 
   // Getters/Setters
   string getDefaultAnimation();
+  void setPath(const filesystem::path path) override;
 
   // Methods
   /*! Loads the asset pointed to by this AssetRef object into memory so it can

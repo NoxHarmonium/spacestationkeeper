@@ -39,9 +39,9 @@ public:
   /*! Gets the unique numeric identifier for this asset. */
   int getId();
   /*! Gets the root directory of the asset */
-  filesystem::path getPath();
+  virtual filesystem::path getPath();
   /*! Sets the root directory of the asset */
-  void setPath(const filesystem::path path);
+  virtual void setPath(const filesystem::path path);
   /*! Gets the asset pointed to by this assetref object without a specified
    * type. If the asset is not
    * loaded, LoadAsset() is called automatically. */
@@ -71,6 +71,8 @@ protected:
   bool _shouldLoad = true;
 
   // Getters/Setters
+  /*! Sets the reference to the asset. */
+  std::shared_ptr<void> getAssetPointer();
   /*! Sets the reference to the asset. */
   void setAssetPointer(std::shared_ptr<void> pointer);
 

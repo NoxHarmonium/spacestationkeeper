@@ -37,6 +37,10 @@ public:
   }
 
 protected:
+  /*! Gets the reference to the asset. */
+  virtual std::shared_ptr<T> getAssetPointer() {
+    return static_pointer_cast<T>(AssetDefBase::getAssetPointer());
+  }
   /*! Sets the reference to the asset. */
   virtual void setAssetPointer(std::shared_ptr<T> pointer) {
     AssetDefBase::setAssetPointer(static_pointer_cast<void>(pointer));
