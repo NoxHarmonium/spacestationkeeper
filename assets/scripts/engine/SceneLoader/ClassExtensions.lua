@@ -1,7 +1,7 @@
 -- Extentions to classes to allow better serialisation
 
 function CheckRequiredProperties(instance, className) 
-    local sFields = instance.serialisedFields
+    local sFields = instance:getSerialisedFields()
     for field in sFields do
         LuaDebug.Log('Checking property: ' .. field.name)
         local fieldValue
@@ -23,7 +23,7 @@ function CheckRequiredProperties(instance, className)
 end
 
 function ConvertValue(key, value, instance, go)
-    local sFields = instance.serialisedFields
+    local sFields = instance:getSerialisedFields()
     local matchingField = nil;
     for field in sFields do
         if field.name == key then 
@@ -83,7 +83,7 @@ function GetComponentFromType(go, type)
 
     go:refreshComponentList();
 
-    local components = go.componentList
+    local components = go:getComponentList()
     for comp in components do
         if type == class_info(comp).name then
             return comp

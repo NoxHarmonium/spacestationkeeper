@@ -12,7 +12,7 @@
 
 #include "ClassBinder.h"
 #include "GameObject.h"
-#include <luabind/iterator_policy.hpp>
+#include <luabind/iterator_ptr_policy.hpp>
 
 using namespace luabind;
 
@@ -29,8 +29,8 @@ template <> struct ClassBinder<GameObject> {
                .def("refreshComponentList", &GameObject::refreshComponentList)
                .def("getId", &GameObject::getId)
                .def("setId", &GameObject::setId)
-               .def_readonly("componentList", &GameObject::componentList,
-                             return_stl_iterator)
+               .def("getComponentList", &GameObject::getComponentList,
+                    return_stl_iterator)
            //.def("getRenderer", &GameOb\ject::getRenderer)]; // Depricated for
            // nicer
            // looking code

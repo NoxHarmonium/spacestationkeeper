@@ -15,6 +15,7 @@ GameObject::GameObject() {
   _id = to_string(_uuidGenerator());
   renderer = make_shared<RenderInfo>();
   _bindingManager = BindingManager::Instance();
+  _componentList = make_shared<GameComponentList>();
 }
 
 GameObject::~GameObject() {}
@@ -43,11 +44,11 @@ GameComponentRef GameObject::getComponent(string id) {
 
 void GameObject::refreshComponentList() {
   if (_componentListDirty) {
-    componentList.clear();
+    _componentList->clear();
     // Generate a vector that lua can iterate through because I'm not sure how
     // to get it to support maps yet.
     for (auto &kvp : _componentMap) {
-      componentList.push_back(kvp.second);
+      _componentList->push_back(kvp.second);
     }
     _componentListDirty = false;
   }
@@ -61,6 +62,8 @@ void GameObject::reassignId(GameComponentRef component, string newId) {
   _componentMap.erase(GameComponent::getId(component));
   _componentMap[GameComponent::getId(component)] = component;
 }
+
+GameComponentListRef GameObject::getComponentList() { return _componentList; }
 
 RenderInfoRef GameObject::getRenderer() { return renderer; }
 

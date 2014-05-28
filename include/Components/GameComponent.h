@@ -37,6 +37,8 @@ struct SerialisedField {
 };
 
 typedef std::shared_ptr<SerialisedField> SerialisedFieldRef;
+typedef vector<SerialisedFieldRef> SerialisedFieldList;
+typedef std::shared_ptr<SerialisedFieldList> SerialisedFieldListRef;
 
 //! A game component is a child of an app which has all the app events forwarded
 // to it
@@ -49,9 +51,6 @@ public:
   // Fields
   bool enabled = true;
   GameObject *gameObject = nullptr;
-  // This has to be public and not exposed through a getter because LuaBind
-  // breaks if you return an iterator from a function
-  vector<SerialisedFieldRef> serialisedFields;
 
   // Cinder Event Methods
 
@@ -95,7 +94,7 @@ public:
 
   // Getters/Setters
   //! Gets a list of fields that are marked for auto serialisation.
-  vector<SerialisedFieldRef> getSerialisedFields();
+  SerialisedFieldListRef getSerialisedFields();
 
   // Methods
   //! Mark a field for auto serialisation.
@@ -120,6 +119,7 @@ public:
 private:
   // Fields
   string _id;
+  SerialisedFieldListRef _serialisedFields;
 
   // Static fields
   static boost::uuids::random_generator _uuidGenerator;

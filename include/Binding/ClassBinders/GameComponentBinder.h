@@ -12,7 +12,7 @@
 #include "ClassBinder.h"
 #include "GameComponent.h"
 #include "GameComponentWrapper.h"
-#include <luabind/iterator_policy.hpp>
+#include <luabind/iterator_ptr_policy.hpp>
 
 template <> struct ClassBinder<SerialisedField> {
   // Game component can be inherited from in LUA to make components so it is
@@ -88,8 +88,6 @@ template <> struct ClassBinder<GameComponent> {
                   (void (GameComponent::*)(string, string, string, string,
                                            bool)) &
                       GameComponent::serialiseField)
-             .def_readonly("serialisedFields", &GameComponent::serialisedFields,
-                           luabind::return_stl_iterator)
              .scope[
                luabind::def("getId", &GameComponent::getId),
                luabind::def("setId", &GameComponent::setId)

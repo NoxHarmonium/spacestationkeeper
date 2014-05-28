@@ -19,6 +19,9 @@ using namespace ci::app;
 // Forward Declarations
 class BindingManager;
 
+typedef vector<GameComponentRef> GameComponentList;
+typedef std::shared_ptr<GameComponentList> GameComponentListRef;
+
 class GameObject {
 public:
   // Constructors/Destructors
@@ -27,9 +30,6 @@ public:
 
   // Public Fields
   RenderInfoRef renderer = nullptr;
-  // This has to be public and not exposed through a getter because LuaBind
-  // breaks if you return an iterator from a function
-  vector<GameComponentRef> componentList;
 
   // Methods
   void addComponent(GameComponentRef component);
@@ -37,6 +37,7 @@ public:
   void reassignId(GameComponentRef component, string newId);
   GameComponentRef getComponent(string id);
   void refreshComponentList();
+  GameComponentListRef getComponentList();
 
   // Event Methods
   //! Override to perform any application cleanup before exiting.
@@ -90,6 +91,7 @@ private:
   map<string, GameComponentRef> _componentMap;
   string _id;
   vector<GameComponentRef> _setupQueue;
+  GameComponentListRef _componentList;
 
   BindingManager *_bindingManager = nullptr; // For catching lua exceptions
 

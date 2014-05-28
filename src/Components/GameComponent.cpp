@@ -10,23 +10,27 @@
 #include "GameComponent.h"
 #include <boost/uuid/uuid_io.hpp>
 
-GameComponent::GameComponent() { _id = to_string(_uuidGenerator()); }
+GameComponent::GameComponent() {
+  _id = to_string(_uuidGenerator());
+  _serialisedFields = make_shared<SerialisedFieldList>();
+}
 
 GameComponent::GameComponent(string id) : _id(id) {}
-vector<SerialisedFieldRef> GameComponent::getSerialisedFields() {
-  return serialisedFields;
+
+SerialisedFieldListRef GameComponent::getSerialisedFields() {
+  return _serialisedFields;
 }
 
 void GameComponent::serialiseField(string name, string type) {
   cout << "GameComponent::serialiseField: name: " << name << " type: " << type
        << endl;
-  serialisedFields.push_back(make_shared<SerialisedField>(name, type, true));
+  _serialisedFields->push_back(make_shared<SerialisedField>(name, type, true));
 }
 
 void GameComponent::serialiseField(string name, string type, bool required) {
   cout << "GameComponent::serialiseField: name: " << name << " type: " << type
        << endl;
-  serialisedFields.push_back(
+  _serialisedFields->push_back(
       make_shared<SerialisedField>(name, type, required));
 }
 
@@ -35,7 +39,7 @@ void GameComponent::serialiseField(string name, string type, string getterName,
   cout << "GameComponent::serialiseField: name: " << name << " type: " << type
        << " getterName: " << getterName << " setterName: " << setterName
        << endl;
-  serialisedFields.push_back(
+  _serialisedFields->push_back(
       make_shared<SerialisedField>(name, type, getterName, setterName, true));
 }
 
@@ -44,7 +48,7 @@ void GameComponent::serialiseField(string name, string type, string getterName,
   cout << "GameComponent::serialiseField: name: " << name << " type: " << type
        << " getterName: " << getterName << " setterName: " << setterName
        << endl;
-  serialisedFields.push_back(make_shared<SerialisedField>(
+  _serialisedFields->push_back(make_shared<SerialisedField>(
       name, type, getterName, setterName, required));
 }
 
