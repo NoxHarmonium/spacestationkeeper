@@ -51,7 +51,7 @@ function GridCursor:setup()
 
 end
 
-function GridCursor:update()
+function GridCursor:update(deltaTime)
         
 end
 

@@ -84,7 +84,7 @@ void GameObject::shutdown() {
 }
 
 //! Forwards event to component to perform any once-per-loop computation.
-void GameObject::update() {
+void GameObject::update(float deltaTime) {
 
   // Make sure that new objects get set up properly
   // Setup() could be called when the component is added but it is better for it
@@ -101,7 +101,9 @@ void GameObject::update() {
   for (auto &kvp : getRegisteredComponentsCopy()) {
     GameComponentRef comp = kvp.second;
     if (comp->enabled &&
-        _bindingManager->catchLuaExceptions([comp]() { comp->update(); })) {
+        _bindingManager->catchLuaExceptions([comp, deltaTime]() {
+          comp->update(deltaTime);
+        })) {
       cout << "Disabling component..." << endl;
       comp->enabled = false;
     };

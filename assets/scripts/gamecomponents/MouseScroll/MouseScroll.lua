@@ -29,9 +29,9 @@ function MouseScroll:setup()
 
 end
 
-function MouseScroll:update()
+function MouseScroll:update(deltaTime)
     local mp = self._mousePos;
-    local dt = app_getDeltaTime()
+    local dt = deltaTime
     local ww = app_getWindowWidth()
     local wh = app_getWindowHeight()
     local go = self.gameObject;

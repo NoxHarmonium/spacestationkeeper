@@ -21,8 +21,8 @@ struct GameComponentWrapper : public GameComponent, public luabind::wrap_base {
   virtual void shutdown() {
     call<void>("shutdown");
   };
-  virtual void update() {
-    call<void>("update");
+  virtual void update(float deltaTime) {
+    call<void>("update", deltaTime);
   };
   virtual void draw() {
     call<void>("draw");
@@ -77,8 +77,8 @@ struct GameComponentWrapper : public GameComponent, public luabind::wrap_base {
   static void default_shutdown(GameComponent *ptr) {
     return ptr->GameComponent::shutdown();
   }
-  static void default_update(GameComponent *ptr) {
-    return ptr->GameComponent::update();
+  static void default_update(GameComponent *ptr, float deltaTime) {
+    return ptr->GameComponent::update(deltaTime);
   }
   static void default_draw(GameComponent *ptr) {
     return ptr->GameComponent::draw();

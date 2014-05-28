@@ -30,8 +30,8 @@ struct BotWrapper : public Bot, public luabind::wrap_base {
     call<void>("acceptJob", job);
   };
 
-  virtual void update() override {
-    call<void>("update");
+  virtual void update(float deltaTime) override {
+    call<void>("update", deltaTime);
   };
 };
 

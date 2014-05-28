@@ -65,7 +65,7 @@ void ComponentDrivenApp::update() {
   }
 
   for (auto &comp : getRegisteredGameObjectsCopy()) {
-    comp->update();
+    comp->update(_deltaTime);
   }
 }
 //! Forwards event to component to perform any rendering once-per-loop or in

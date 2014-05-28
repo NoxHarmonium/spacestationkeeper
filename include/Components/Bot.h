@@ -27,7 +27,7 @@ public:
   virtual float getSpeed() = 0;
   virtual bool willAcceptJob(JobRef job) = 0;
   virtual void acceptJob(JobRef job) = 0;
-  virtual void update() override = 0;
+  virtual void update(float deltaTime) override = 0;
 };
 
 typedef std::shared_ptr<Bot> BotRef;

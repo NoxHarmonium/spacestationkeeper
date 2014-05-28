@@ -37,7 +37,7 @@ public:
   void stop();
 
   virtual void setup() override;
-  virtual void update() override;
+  virtual void update(float deltaTime) override;
 
 private:
   // Methods

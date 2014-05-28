@@ -12,7 +12,7 @@
 
 GameCamera::GameCamera() : GameComponent() {}
 
-void GameCamera::update() {
+void GameCamera::update(float deltaTime) {
 
   float w = getWindowWidth();
   float h = getWindowHeight();

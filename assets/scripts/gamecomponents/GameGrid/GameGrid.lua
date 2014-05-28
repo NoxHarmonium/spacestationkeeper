@@ -52,7 +52,7 @@ function GameGrid:setup()
 
 end
 
-function GameGrid:update()
+function GameGrid:update(deltaTime)
         
 end
 

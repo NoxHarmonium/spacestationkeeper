@@ -68,11 +68,13 @@ void AnimatedSprite::stop() { _playing = false; }
 
 void AnimatedSprite::setup() { Sprite::setup(); }
 
-void AnimatedSprite::update() {
+void AnimatedSprite::update(float deltaTime) {
   if (_playing && _currentAnimation != nullptr) {
-    float delta = ComponentDrivenApp::Instance()->getDeltaTime();
-    _t += delta;
+    _t += deltaTime;
     _currentFrame = (int)floor(_t / _frameRate);
+    if (_currentFrame < 0) {
+      cout << "_t: " << _t << " _frameRate: " << _frameRate << endl;
+    }
     if (_currentFrame > _currentAnimation->getFrameEnd()) {
       if (_loop) {
         _currentFrame = 0;

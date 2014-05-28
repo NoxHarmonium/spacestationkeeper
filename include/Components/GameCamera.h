@@ -17,7 +17,7 @@
 class GameCamera : public GameComponent {
 public:
   GameCamera();
-  virtual void update();
+  virtual void update(float deltaTime) override;
 
 private:
   ci::CameraOrtho _camera;

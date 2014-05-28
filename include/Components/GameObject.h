@@ -44,7 +44,7 @@ public:
   virtual void shutdown();
 
   //! Override to perform any once-per-loop computation.
-  virtual void update();
+  virtual void update(float deltaTime);
   //! Override to perform any rendering once-per-loop or in response to
   // OS-prompted requests for refreshes.
   virtual void draw();
