@@ -15,52 +15,52 @@
 struct GameComponentWrapper : public GameComponent, public luabind::wrap_base {
   GameComponentWrapper() : GameComponent() {}
   // Call registers
-  virtual void setup() {
+  virtual void setup() override {
     call<void>("setup");
   };
-  virtual void shutdown() {
+  virtual void shutdown() override {
     call<void>("shutdown");
   };
-  virtual void update(float deltaTime) {
+  virtual void update(float deltaTime) override {
     call<void>("update", deltaTime);
   };
-  virtual void draw() {
+  virtual void draw() override {
     call<void>("draw");
   };
-  virtual void mouseDown(MouseEvent event) {
+  virtual void mouseDown(MouseEvent event) override {
     call<void>("mouseDown", event);
   };
-  virtual void mouseUp(MouseEvent event) {
+  virtual void mouseUp(MouseEvent event) override {
     call<void>("mouseUp", event);
   };
-  virtual void mouseWheel(MouseEvent event) {
+  virtual void mouseWheel(MouseEvent event) override {
     call<void>("mouseWheel", event);
   };
-  virtual void mouseMove(MouseEvent event) {
+  virtual void mouseMove(MouseEvent event) override {
     call<void>("mouseMove", event);
   };
-  virtual void mouseDrag(MouseEvent event) {
+  virtual void mouseDrag(MouseEvent event) override {
     call<void>("mouseDrag", event);
   };
-  virtual void touchesBegan(TouchEvent event) {
+  virtual void touchesBegan(TouchEvent event) override {
     call<void>("touchesBegan", event);
   };
-  virtual void touchesMoved(TouchEvent event) {
+  virtual void touchesMoved(TouchEvent event) override {
     call<void>("touchesMoved", event);
   };
-  virtual void touchesEnded(TouchEvent event) {
+  virtual void touchesEnded(TouchEvent event) override {
     call<void>("touchesEnded", event);
   };
-  virtual void keyDown(KeyEvent event) {
+  virtual void keyDown(KeyEvent event) override {
     call<void>("keyDown", event);
   };
-  virtual void keyUp(KeyEvent event) {
+  virtual void keyUp(KeyEvent event) override {
     call<void>("keyUp", event);
   };
-  virtual void resize() {
+  virtual void resize() override {
     call<void>("resize");
   };
-  virtual void fileDrop(FileDropEvent event) {
+  virtual void fileDrop(FileDropEvent event) override {
     call<void>("fileDrop", event);
   };
   // virtual string getId() {

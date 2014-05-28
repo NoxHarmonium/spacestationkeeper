@@ -26,16 +26,16 @@ public:
 
   // Methods
   /*! Draws the mesh. */
-  virtual void render();
+  virtual void render() override;
   /*! Gets the internal mesh representation of the mesh. */
-  virtual TriMesh *getInternalMesh();
+  virtual TriMesh *getInternalMesh() override;
   /*! Gets the internal mesh representation of the mesh translated according to
    * a transform matrix. */
-  virtual TriMesh *getInternalMesh(Matrix44f transformMatrix);
+  virtual TriMesh *getInternalMesh(Matrix44f transformMatrix) override;
   /*! Gets the bounds of the mesh. */
-  virtual AxisAlignedBox3f getBoundingBox();
+  virtual AxisAlignedBox3f getBoundingBox() override;
   /*! Gets the bounds of the mesh translated according to a transform matrix. */
-  virtual AxisAlignedBox3f getBoundingBox(Matrix44f transformMatrix);
+  virtual AxisAlignedBox3f getBoundingBox(Matrix44f transformMatrix) override;
   /*! Adds a mesh to the batch. */
   virtual void addMesh(BatchInfoRef batchInfo);
   /*! Notifies that the information in a BatchInfo has changed. */

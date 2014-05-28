@@ -34,7 +34,7 @@ public:
   /*! Gets the transform adjusted bounds of this RenderComponent. */
   virtual AxisAlignedBox3f getBounds();
   /*! The draw call that is executed automatically every frame. */
-  void draw();
+  void draw() override;
   /*! Add this RenderComponent to a render batch. */
   void batch(BatchedMeshRef batchedMeshRef);
   /*! Called when the properties of this object have changed and the batch needs
