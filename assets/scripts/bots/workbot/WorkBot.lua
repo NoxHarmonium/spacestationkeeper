@@ -2,8 +2,8 @@
 class 'WorkBot' (Bot)
 
 WorkBot.States = {
-    WAITING_FOR_JOB,
-    
+    WAITING_FOR_JOB = 0,
+    MINING = 1
 }
 
 function WorkBot:__init(homeCoord)
@@ -18,13 +18,13 @@ end
 function WorkBot:getDestination()
     if self._state == WorkBot.States.WAITING_FOR_JOB then
         return self._homeCoord;
-    else 
+    end
     if self._state == WorkBot.States.MINING then
         if not self._job then error('ASSERT FAIL: In mining state without a job.') end
         return self._job:getStartLocation()
     end
 
-
+    error('ASSERT FAIL: Workbot: Invalid State.')
 end
 
 function WorkBot:getSpeed()
@@ -37,4 +37,10 @@ end
 
 function WorkBot:acceptJob(job)
     _self._job = job
+end
+
+function WorkBot:update(deltaTime) 
+
+
+
 end
