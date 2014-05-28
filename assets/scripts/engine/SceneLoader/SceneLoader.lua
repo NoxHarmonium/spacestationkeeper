@@ -15,14 +15,15 @@ function GetString(path)
 end
 
 function LoadRenderer(go, gameObjectNode) 
-    local renderer = go.renderer;
+    local transform = go.renderer.transform;
     local posNode = gameObjectNode.RenderInfo.localPosition
     local rotNode = gameObjectNode.RenderInfo.localRotation
     local sclNode = gameObjectNode.RenderInfo.localScale
 
-    renderer.localPosition = Vec3f(posNode[1], posNode[2], posNode[3])
-    renderer.localRotation = Quatf(rotNode[1], rotNode[2], rotNode[3], rotNode[4])
-    renderer.localScale = Vec3f(sclNode[1], sclNode[2], sclNode[3])
+    transform.localPosition = Vec3f(posNode[1], posNode[2], posNode[3])
+    -- Disabled for now because LuaBind doesn't like it for some reason
+    --transform.localRotation = Quatf(rotNode[1], rotNode[2], rotNode[3], rotNode[4])
+    transform.localScale = Vec3f(sclNode[1], sclNode[2], sclNode[3])
 
 end
 
