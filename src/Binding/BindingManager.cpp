@@ -40,6 +40,7 @@
 #include "JobBinder.h"
 #include "UtilsBinder.h"
 #include "SpriteBinder.h"
+#include "BotBinding.h"
 
 using adopt2 = luabind::detail::policy_cons<luabind::detail::adopt_policy<2>,
                                             luabind::detail::null_type>;
@@ -123,6 +124,7 @@ extern "C" int initLuaModules(lua_State *L) {
   // Classes that can be inherited by LUA
   ClassBinder<GameComponent>::Bind("GameComponent", L);
   ClassBinder<Job>::Bind("Job", L);
+  ClassBinder<Bot>::Bind("Bot", L);
 
   // Rendering Classes
   ClassBinder<GameCamera>::Bind("GameCamera", L);
@@ -142,6 +144,7 @@ extern "C" int initLuaModules(lua_State *L) {
   ClassBinder<Passibility>::Bind("Passibility", L);
   ClassBinder<Utils>::Bind("Utils", L);
   ClassBinder<SerialisedField>::Bind("SerialisedField", L);
+  ClassBinder<BotManager>::Bind("BotManager", L);
 
   // Asset Management
   ClassBinder<AssetLoaderBase>::Bind("AssetLoaderBase", L);

@@ -1,0 +1,7 @@
+--- # Script Def
+id:             143
+type:           Script
+order:          1
+sources:
+    - WorkBot.lua
+    

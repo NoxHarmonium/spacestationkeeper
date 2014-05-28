@@ -43,6 +43,14 @@ struct JobWrapper : public Job, public luabind::wrap_base {
   virtual ResourceAllocation getResourceAllocation() {
     return call<ResourceAllocation>("getResourceAllocation");
   };
+
+  virtual ci::Vec2i getStartLocation() {
+    return call<ci::Vec2i>("getStartLocation");
+  };
+
+  virtual ci::Vec2i getEndLocation() {
+    return call<ci::Vec2i>("getEndLocation");
+  };
 };
 
 #endif

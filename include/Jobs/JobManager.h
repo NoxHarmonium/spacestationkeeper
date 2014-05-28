@@ -26,4 +26,6 @@ private:
   map<JobRef, JobState> _registeredJobs;
 };
 
+typedef std::shared_ptr<JobManager> JobManagerRef;
+
 #endif

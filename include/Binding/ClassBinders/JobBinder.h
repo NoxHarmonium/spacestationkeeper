@@ -28,7 +28,9 @@ template <> struct ClassBinder<Job> {
                .def("update", &Job::update)
                .def("assignResources", &Job::assignResources)
                .def("removeResources", &Job::removeResources)
-               .def("getResourceAllocation", &Job::getResourceAllocation)];
+               .def("getResourceAllocation", &Job::getResourceAllocation)
+               .def("getStartLocation", &Job::getStartLocation)
+               .def("getEndLocation", &Job::getEndLocation)];
   }
 };
 

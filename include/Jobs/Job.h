@@ -12,6 +12,7 @@
 #include "Resource.h"
 
 using namespace std;
+using namespace ci;
 
 typedef map<Resource *, int> ResourceAllocation;
 
@@ -25,6 +26,8 @@ public:
   virtual bool isDone() = 0;
   virtual float getProgress() = 0;
   virtual void update(float deltaTime) = 0;
+  virtual Vec2i getStartLocation() = 0;
+  virtual Vec2i getEndLocation() = 0;
 
   void assignResources(ResourceAllocation allocation);
   void removeResources(ResourceAllocation allocation);

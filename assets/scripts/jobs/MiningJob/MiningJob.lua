@@ -52,3 +52,11 @@ function MiningJob:update(deltaTime)
         self._gameGrid:FixTileFrames(self._coord)
     end
 end
+
+function MiningJob:getStartLocation() 
+    return self._coord
+end
+
+function MiningJob:getEndLocation()
+    return self._coord
+end
