@@ -14,6 +14,10 @@
 struct BotWrapper : public Bot, public luabind::wrap_base {
   BotWrapper() : Bot() {}
   // Call registers
+  virtual Vec2i getCoord() override {
+    return call<Vec2i>("getCoord");
+  };
+
   virtual Vec2i getDestination() override {
     return call<Vec2i>("getDestination");
   };
@@ -22,8 +26,12 @@ struct BotWrapper : public Bot, public luabind::wrap_base {
     return call<float>("getSpeed");
   };
 
+  virtual bool canAcceptJobs() override {
+    return call<bool>("canAcceptJobs");
+  };
+
   virtual bool willAcceptJob(JobRef job) override {
-    return call<bool>("willAcceptJob");
+    return call<bool>("willAcceptJob", job);
   };
 
   virtual void acceptJob(JobRef job) override {

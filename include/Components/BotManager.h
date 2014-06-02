@@ -11,17 +11,19 @@
 
 #include <set>
 #include <memory>
+#include <functional>
 #include "VecComparison.h"
 #include "Bot.h"
 #include "Job.h"
 #include "JobManager.h"
+#include "CoordSearch.h"
 
 using namespace std;
 using namespace ci;
 
 /*! The BotManager is class that helps the autonomous bots coordinate with other
  * bots and navigate. */
-class BotManager {
+class BotManager : public GameComponent {
 public:
   // Constructors/Destructors
   BotManager(JobManagerRef jobManager);
@@ -33,10 +35,23 @@ public:
   void addBot(BotRef bot);
   void removeBot(BotRef bot);
 
+  float distanceTo(Vec2i source, Vec2i destination);
+  float distanceTo(Vec2i source, Vec2i destination, int radius);
+  CoordListRef getPath(Vec2i source, Vec2i destination);
+  CoordListRef getPath(Vec2i source, Vec2i destination, int radius);
+  bool isPassable(Vec2i coord);
+
+  // GameComponent Methods
+  void update(float deltaTime) override;
+
 protected:
+  // Fields
   set<Vec2i, VecComparison> _passableCoords;
   set<BotRef> _bots;
   JobManagerRef _jobManager;
+
+  // Methods
+  std::function<float(Vec2i)> getCostFunction();
 };
 
 typedef std::shared_ptr<BotManager> BotManagerRef;

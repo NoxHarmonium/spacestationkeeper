@@ -7,11 +7,6 @@
 //
 
 #include "ComponentDrivenApp.h"
-#include "GameObject.h"
-#include "yaml-cpp/yaml.h"
-#include "Utils.h"
-#include "GameObject.h"
-#include "ScriptDef.h"
 
 using namespace YAML;
 using namespace boost;
@@ -20,11 +15,54 @@ ComponentDrivenApp::ComponentDrivenApp() {
   assert(_instance == nullptr);
   _instance = this;
   _bindingManager = BindingManager::Instance();
+
+  // Engine game object runs all the engine critical components such as job/bot
+  // managers
+  _engineGameObject = make_shared<GameObject>();
+  registerGameObject(_engineGameObject);
 }
 
 ComponentDrivenApp::~ComponentDrivenApp() {}
 
 ComponentDrivenApp *ComponentDrivenApp::Instance() { return _instance; }
+
+// Get the time in seconds since the last update
+float ComponentDrivenApp::getDeltaTime() { return _deltaTime; }
+
+// Sets the asset loader used by this app
+void ComponentDrivenApp::setAssetLoader(AssetLoaderBase *assetLoader) {
+  _assetLoader = assetLoader;
+}
+// Gets the asset loader used by this app
+AssetLoaderBase *ComponentDrivenApp::getAssetLoader() { return _assetLoader; }
+
+/*! Sets the job manager used by this app. */
+void ComponentDrivenApp::setJobManager(JobManagerRef jobManager) {
+  if (_jobManager != nullptr) {
+    _engineGameObject->removeComponent(
+        dynamic_pointer_cast<GameComponent>(_jobManager));
+  }
+  _jobManager = jobManager;
+  _engineGameObject->addComponent(
+      dynamic_pointer_cast<GameComponent>(_jobManager));
+}
+
+/*! Gets the job manager used by this app. */
+JobManagerRef ComponentDrivenApp::getJobManager() { return _jobManager; }
+
+/*! Sets the bot manager used by this app. */
+void ComponentDrivenApp::setBotManager(BotManagerRef botManager) {
+  if (_botManager != nullptr) {
+    _engineGameObject->removeComponent(
+        dynamic_pointer_cast<GameComponent>(_botManager));
+  }
+  _botManager = botManager;
+  _engineGameObject->addComponent(
+      dynamic_pointer_cast<GameComponent>(_botManager));
+}
+
+/*! Gets the bot manager used by this app. */
+BotManagerRef ComponentDrivenApp::getBotManager() { return _botManager; }
 
 //! Registers a component to receive app events
 void ComponentDrivenApp::registerGameObject(GameObjectRef gameObject) {
@@ -57,12 +95,6 @@ void ComponentDrivenApp::update() {
     _deltaTime = ci::app::getElapsedSeconds() - _lastElapsedTime;
   }
   _lastElapsedTime = ci::app::getElapsedSeconds();
-
-  if (_jobManager != nullptr) {
-    std::shared_ptr<JobManager> jobMan =
-        _jobManager; // Need to make local copy for lambda capture
-    _bindingManager->catchLuaExceptions([jobMan]() { jobMan->update(); });
-  }
 
   for (auto &comp : getRegisteredGameObjectsCopy()) {
     comp->update(_deltaTime);

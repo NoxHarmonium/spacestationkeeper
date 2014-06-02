@@ -10,6 +10,12 @@
 #include "Resource.h"
 #include "Job.h"
 
+void Job::allocateWorker() { _workerCount++; }
+
+void Job::deallocateWorker() { _workerCount--; }
+
+int Job::getWorkerCount() { return _workerCount; }
+
 void Job::assignResources(ResourceAllocation allocation) {
   for (auto &kvp : allocation) {
     _resources[kvp.first] += kvp.second;

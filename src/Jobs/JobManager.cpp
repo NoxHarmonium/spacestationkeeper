@@ -12,7 +12,7 @@
 #include "JobManager.h"
 #include "ComponentDrivenApp.h"
 
-void JobManager::update() {
+void JobManager::update(float deltaTime) {
   map<JobRef, JobState> jobMapCopy = _registeredJobs;
 
   for (auto &kvp : jobMapCopy) {
@@ -28,7 +28,7 @@ void JobManager::update() {
       }
       break;
     case JobState::Running:
-      job->update(ComponentDrivenApp::Instance()->getDeltaTime());
+      job->update(deltaTime);
       if (job->isDone()) {
         cout << "JobManager::update(): Switching running job to finished..."
              << endl;
@@ -59,4 +59,16 @@ void JobManager::cancelJob(JobRef job) {
   if (_registeredJobs.count(job)) {
     _registeredJobs[job] = JobState::Cancelled;
   }
+}
+
+vector<JobRef> JobManager::getPendingJobs() {
+  vector<JobRef> pendingJobs;
+  for (auto &kvp : _registeredJobs) {
+    JobRef job = kvp.first;
+    JobState state = kvp.second;
+    if (state == JobState::Pending) {
+      pendingJobs.push_back(job);
+    }
+  }
+  return pendingJobs;
 }

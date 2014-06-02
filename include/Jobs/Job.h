@@ -29,12 +29,17 @@ public:
   virtual Vec2i getStartLocation() = 0;
   virtual Vec2i getEndLocation() = 0;
 
+  void allocateWorker();
+  void deallocateWorker();
+  int getWorkerCount();
+
   void assignResources(ResourceAllocation allocation);
   void removeResources(ResourceAllocation allocation);
   ResourceAllocation getResourceAllocation();
 
 private:
   ResourceAllocation _resources;
+  int _workerCount = 0;
 };
 
 typedef std::shared_ptr<Job> JobRef;

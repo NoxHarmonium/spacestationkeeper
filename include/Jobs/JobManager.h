@@ -9,18 +9,26 @@
 #ifndef SpaceStationKeeper_JobManager_h
 #define SpaceStationKeeper_JobManager_h
 
+#include "GameComponent.h"
 #include "Job.h"
 
 enum JobState { Pending, Running, Finished, Cancelled };
 
-class JobManager {
+class JobManager : public GameComponent {
 public:
+  // Constructors/Destructors
   JobManager() {};
   ~JobManager() {}
 
-  void update();
+  // Getters/Setters
+  vector<JobRef> getPendingJobs();
+
+  // Methods
   void registerJob(JobRef job);
   void cancelJob(JobRef job);
+
+  // GameComponent Methods
+  virtual void update(float deltaTime) override;
 
 private:
   map<JobRef, JobState> _registeredJobs;

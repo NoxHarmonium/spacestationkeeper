@@ -11,15 +11,16 @@
 
 #include "GameObject.h"
 #include "cinder/app/AppNative.h"
-#include <type_traits>
+#include "GameObject.h"
+#include "yaml-cpp/yaml.h"
+#include "Utils.h"
+#include "ScriptDef.h"
 #include "JobManager.h"
+#include "BotManager.h"
 
 using namespace ci;
 using namespace ci::app;
 using namespace std;
-
-class GameComponent;
-template <typename T> class GameComponentT;
 
 class ComponentDrivenApp : public AppNative {
 
@@ -36,44 +37,29 @@ public:
   //! Get a list of currently registered components
   set<GameObjectRef> getGameObjects();
 
-  template <typename T> vector<GameObjectRef> GetComponentsByType() {
-    vector<GameObjectRef> selectedGos;
-    for (auto &go : _registeredGameObjects) {
-      if (dynamic_cast<T>(go) != nullptr) {
-        selectedGos.push_back(go);
-      }
-    }
-    return selectedGos;
-  }
-
-  template <typename T> std::shared_ptr<T> GetComponentByType() {
-    // TODO: Can I make GetComponentsByType() an iterator and then return the
-    // first value here?
-    for (auto &comp : _registeredGameObjects) {
-      std::shared_ptr<T> compT = dynamic_pointer_cast<T>(comp);
-      if (compT != nullptr) {
-        return compT;
-      }
-    }
-    return nullptr;
-  }
-
   // Get the time in seconds since the last update
-  float getDeltaTime() { return _deltaTime; }
+  float getDeltaTime();
 
+  // TODO: Maybe think of a better way to store these manager classes
+  //      This class should be more generic and not have actual game logic in
+  // it.
   // Sets the asset loader used by this app
-  void setAssetLoader(AssetLoaderBase *assetLoader) {
-    _assetLoader = assetLoader;
-  }
+  void setAssetLoader(AssetLoaderBase *assetLoader);
+
   // Gets the asset loader used by this app
-  AssetLoaderBase *getAssetLoader() { return _assetLoader; }
+  AssetLoaderBase *getAssetLoader();
 
   /*! Sets the job manager used by this app. */
-  void setJobManager(std::shared_ptr<JobManager> jobManager) {
-    _jobManager = jobManager;
-  }
+  void setJobManager(JobManagerRef jobManager);
 
-  std::shared_ptr<JobManager> getJobManager() { return _jobManager; }
+  /*! Gets the job manager used by this app. */
+  JobManagerRef getJobManager();
+
+  /*! Sets the bot manager used by this app. */
+  void setBotManager(BotManagerRef botManager);
+
+  /*! Gets the bot manager used by this app. */
+  BotManagerRef getBotManager();
 
   //! Override to perform any application cleanup before exiting.
   virtual void shutdown();
@@ -111,18 +97,6 @@ public:
   //! Override to receive file-drop events.
   virtual void fileDrop(FileDropEvent event);
 
-  // Templates
-  // TODO: Use enable if (p796) to restrict to storing pointers
-  template <typename T> void setState(string key, T data) {
-    _stateMap[key] = (void *)data;
-  }
-  template <typename T> T getState(string key) {
-    if (_stateMap[key] != nullptr) {
-      return (T)_stateMap[key];
-    }
-    return nullptr;
-  }
-
   // Static Getters/Setters
   static ComponentDrivenApp *Instance();
 
@@ -136,8 +110,10 @@ private:
   float _lastElapsedTime = NAN;
   float _deltaTime = 0.0f;
   AssetLoaderBase *_assetLoader;
-  std::shared_ptr<JobManager> _jobManager;
+  JobManagerRef _jobManager;
+  BotManagerRef _botManager;
   BindingManager *_bindingManager;
+  GameObjectRef _engineGameObject;
 
   // Static Fields
   static ComponentDrivenApp *_instance;

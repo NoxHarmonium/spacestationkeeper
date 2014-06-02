@@ -13,6 +13,9 @@
 #include "Job.h"
 #include "GameComponent.h"
 
+typedef vector<Vec2i> CoordList;
+typedef std::shared_ptr<CoordList> CoordListRef;
+
 using namespace ci;
 
 class Bot : public GameComponent {
@@ -23,8 +26,10 @@ public:
   virtual ~Bot() {}
 
   // Getters/Setters
+  virtual Vec2i getCoord() = 0;
   virtual Vec2i getDestination() = 0;
   virtual float getSpeed() = 0;
+  virtual bool canAcceptJobs() = 0;
   virtual bool willAcceptJob(JobRef job) = 0;
   virtual void acceptJob(JobRef job) = 0;
   virtual void update(float deltaTime) override = 0;

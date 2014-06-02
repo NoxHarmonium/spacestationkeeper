@@ -29,9 +29,16 @@ void SpaceStationKeeperApp::setup() {
   _fileAssetLoader = make_shared<FileAssetLoader>(Utils::getResourcesPath());
   setAssetLoader(dynamic_pointer_cast<AssetLoaderBase>(_fileAssetLoader)
                      .get()); // TODO: Should it be a shared ptr?
-  setJobManager(make_shared<JobManager>());
+
   _bindingManager = BindingManager::Instance();
   _bindingManager->initialiseBindings();
+
+  JobManagerRef jobManager = make_shared<JobManager>();
+  BotManagerRef botManager = make_shared<BotManager>(jobManager);
+
+  setJobManager(jobManager);
+  setBotManager(botManager);    
+
   scanAssetsAndExecuteScripts();
 
   //_gameGrid = new GameGrid();
