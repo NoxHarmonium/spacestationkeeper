@@ -59,21 +59,29 @@ end
 function GameGrid:keyUp(keyEvent)
     -- Filter out every key but m
     -- TODO: Make this key configurable (under confirm action?)
-    LuaDebug.Log(tostring(keyEvent:getCode()))
-    LuaDebug.Log(tostring(keyEvent.KEY_m));
-    if (keyEvent:getCode() ~= KeyEvent.KEY_m) then
-        return
-    end
+    local doMine = keyEvent:getCode() == KeyEvent.KEY_x or keyEvent:getCode() == KeyEvent.KEY_m
+    local doInstant = keyEvent:getCode() == KeyEvent.KEY_x
 
-    local frameWidth = self.defaultTileset:getFrameWidth()
-    local frameHeight = self.defaultTileset:getFrameHeight()
+    if (doMine) then
+       
+        local frameWidth = self.defaultTileset:getFrameWidth()
+        local frameHeight = self.defaultTileset:getFrameHeight()
 
-    for id, tile in pairs(self.selectedTiles) do
-        local tilePos = tile.renderer.transform.localPosition
-        local coord = Vec2i(tilePos.x / frameWidth, tilePos.y / frameHeight)
-        local job = MiningJob(self, coord, self.defaultTileset, self.targetTileset)
-        RegisterJob(job)
-        RemoveGameObject(tile) -- Remove selection gameobject
+        for id, tile in pairs(self.selectedTiles) do
+            local tilePos = tile.renderer.transform.localPosition
+            local coord = Vec2i(tilePos.x / frameWidth, tilePos.y / frameHeight)
+            if doInstant then
+                 -- Instant mine so you can create test maps without bots
+                local sprite = GetComponentFromType(self.tiles[coord.x..coord.y], 'Sprite')
+                sprite:setSpriteTexture(self.targetTileset)
+                self:FixTileFrames(coord)
+            else 
+                -- Create mining job (requires bots)
+                local job = MiningJob(self, coord, self.defaultTileset, self.targetTileset)
+                RegisterJob(job)
+            end
+            RemoveGameObject(tile) -- Remove selection gameobject
+        end
     end
 
     self.selectedTiles = {} -- Deselect all
