@@ -12,6 +12,7 @@
 
 // Constructors/Destructors
 AnimatedSprite::AnimatedSprite() : Sprite() {
+  reset();
   cout << "!!Constructor: AnimatedSprite::AnimatedSprite()" << endl;
   serialiseField("animationSet", "AnimationSetDef", "getAnimationSet",
                  "setAnimationSet");
@@ -72,9 +73,6 @@ void AnimatedSprite::update(float deltaTime) {
   if (_playing && _currentAnimation != nullptr) {
     _t += deltaTime;
     _currentFrame = (int)floor(_t / _frameRate);
-    if (_currentFrame < 0) {
-      cout << "_t: " << _t << " _frameRate: " << _frameRate << endl;
-    }
     if (_currentFrame > _currentAnimation->getFrameEnd()) {
       if (_loop) {
         _currentFrame = 0;
