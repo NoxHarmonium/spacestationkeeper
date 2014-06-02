@@ -1,0 +1,6 @@
+--- # Script Def
+id:             333
+type:           Script
+order:          0
+sources:
+    - Config.lua

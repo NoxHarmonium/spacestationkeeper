@@ -59,18 +59,18 @@ end
 function GameGrid:keyUp(keyEvent)
     -- Filter out every key but m
     -- TODO: Make this key configurable (under confirm action?)
-    local doMine = keyEvent:getCode() == KeyEvent.KEY_x or keyEvent:getCode() == KeyEvent.KEY_m
-    local doInstant = keyEvent:getCode() == KeyEvent.KEY_x
+    local doMine =          keyEvent:getCode() == config['KEY_MineTile'] or 
+                            keyEvent:getCode() == config['KEY_InstantMineTile']
+    local doInstantMine =   keyEvent:getCode() == config['KEY_InstantMineTile']
 
     if (doMine) then
-       
         local frameWidth = self.defaultTileset:getFrameWidth()
         local frameHeight = self.defaultTileset:getFrameHeight()
 
         for id, tile in pairs(self.selectedTiles) do
             local tilePos = tile.renderer.transform.localPosition
             local coord = Vec2i(tilePos.x / frameWidth, tilePos.y / frameHeight)
-            if doInstant then
+            if doInstantMine then
                  -- Instant mine so you can create test maps without bots
                 local sprite = GetComponentFromType(self.tiles[coord.x..coord.y], 'Sprite')
                 sprite:setSpriteTexture(self.targetTileset)
