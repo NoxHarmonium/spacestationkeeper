@@ -12,6 +12,7 @@
 #include "ClassBinder.h"
 #include "Job.h"
 #include "JobWrapper.h"
+#include <iterator_ptr_policy.hpp>
 
 template <> struct ClassBinder<Job> {
   // Game component can be inherited from in LUA to make components so it is
@@ -34,7 +35,9 @@ template <> struct ClassBinder<Job> {
                .def("getEndLocation", &Job::getEndLocation)
                .def("allocateWorker", &Job::allocateWorker)
                .def("deallocateWorker", &Job::deallocateWorker)
-               .def("getWorkerCount", &Job::getWorkerCount)];
+               .def("getWorkerCount", &Job::getWorkerCount)
+               .def("getWorkerSlot", &Job::getWorkerSlot)
+               .def("getMaxWorkers", &Job::getMaxWorkers)];
   }
 };
 

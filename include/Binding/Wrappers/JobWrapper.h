@@ -43,6 +43,14 @@ struct JobWrapper : public Job, public luabind::wrap_base {
   virtual int getRadius() override {
     return call<int>("getRadius");
   };
+
+  virtual Vec2f getWorkerSlot(int workerIndex) override {
+    return call<Vec2f>("getWorkerSlot");
+  }
+
+  virtual int getMaxWorkers() override {
+    return call<int>("getMaxWorkers");
+  };
 };
 
 #endif

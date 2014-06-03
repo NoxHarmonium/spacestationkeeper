@@ -9,10 +9,21 @@
 #include <map>
 #include "Resource.h"
 #include "Job.h"
+#include <stdexcept>
 
-void Job::allocateWorker() { _workerCount++; }
+void Job::allocateWorker() {
+  _workerCount++;
+  if (_workerCount > getMaxWorkers()) {
+    throw runtime_error("Allocated more workers than allowed.");
+  }
+}
 
-void Job::deallocateWorker() { _workerCount--; }
+void Job::deallocateWorker() {
+  _workerCount--;
+  if (_workerCount < 0) {
+    throw runtime_error("Allocated less workers than 0.");
+  }
+}
 
 int Job::getWorkerCount() { return _workerCount; }
 

@@ -22,6 +22,7 @@ template <typename T> struct ClassBinder<Vec2<T>> {
                            .def("length", &Vec2<T>::length)
                            .def("normalize", &Vec2<T>::normalize)
                            .def("distance", &Vec2<T>::distance)
+                           .def("rotate", &Vec2<T>::rotate)
                            // Operators
                            .def(self + Vec2<T>())
                            .def(self - Vec2<T>())
@@ -43,6 +44,7 @@ template <typename T> struct ClassBinder<Vec3<T>> {
                            .def("limit", &Vec3<T>::limit)
                            .def("normalize", &Vec3<T>::normalize)
                            .def("distance", &Vec3<T>::distance)
+                           .def("rotate", &Vec3<T>::rotate)
                            // Operators
                            .def(self + Vec3<T>())
                            .def(self - Vec3<T>())

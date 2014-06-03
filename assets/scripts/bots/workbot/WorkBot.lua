@@ -1,7 +1,7 @@
-local round = require 'round'
-
 -- WorkBot
 class 'WorkBot' (Bot)
+
+local round = require 'round'
 
 function WorkBot:__init(gameGrid, homeCoord)
     Bot.__init(self)
@@ -67,10 +67,11 @@ end
 
 function WorkBot:update(deltaTime) 
     if  self._job then 
+        local t = self.gameObject.renderer.transform
         
         -- MOVING
         if self._state == Bot.MovingToJob or self._state == Bot.WaitingForJob then
-            local t = self.gameObject.renderer.transform
+            
 
             if not self._path then
                 local coords = GetBotManager():getPath(self:getCoord(), self:getDestination(), self._job:getRadius())
@@ -84,24 +85,29 @@ function WorkBot:update(deltaTime)
                 self._targetPoint = table.remove(self._path, 1)
             end
         
-            if self._targetPoint ~= nil then
-               
-                local direction = self._targetPoint - t.localPosition
-                direction:normalize()
-
-        
-              --cout << "targetCoord: " << targetCoord
-               --    << " currentCoord: " << bot->getCoord()
-               --    << " direction: " << direction << endl;
-
-                local v = direction * self:getSpeed()
-                t.localPosition = t.localPosition + Vec3f(v.x, v.y, 0);
-            else
+           
+            if self._targetPoint == nil then
                 if self._state == Bot.MovingToJob then
                     self._path = nil
-                    self._targetPoint = nil
                     self._state = Bot.Working
                     self._job:allocateWorker()
+                    
+                    -- Move to job slot relative to forward
+                    local jobSlotIndex = self._job:getWorkerCount() - 1
+                    local jobSlotPos = self._job:getWorkerSlot(jobSlotIndex)
+                    local texDef = self._gameGrid.defaultTileset
+                    local frameWidth = texDef:getFrameWidth()
+                    local frameHeight = texDef:getFrameHeight()
+                    local dir = self:coordToPos(self._job:getStartLocation()) - t.localPosition
+                    dir:normalize()
+                    local angle = math.atan2(-dir.x, dir.y)
+                    jobSlotPos:rotate(angle)
+
+                    self._targetPoint = t.localPosition + Vec3f(
+                        frameWidth * (jobSlotPos.x / 2),
+                        frameHeight * (jobSlotPos.y / 2),
+                        self._depth
+                        )
                 end
             end
         end
@@ -110,6 +116,23 @@ function WorkBot:update(deltaTime)
             if self._job:isDone() then
                 self._state = Bot.WaitingForJob
             end
+            if t.localPosition:distance(self._targetPoint) < self._elipsis then
+                self._targetPoint = nil
+            end
+        end
+
+        if self._targetPoint ~= nil then
+               
+            local direction = self._targetPoint - t.localPosition
+            direction:normalize()
+
+    
+          --cout << "targetCoord: " << targetCoord
+           --    << " currentCoord: " << bot->getCoord()
+           --    << " direction: " << direction << endl;
+
+            local v = direction * self:getSpeed()
+            t.localPosition = t.localPosition + Vec3f(v.x, v.y, 0);
         end
 
     end

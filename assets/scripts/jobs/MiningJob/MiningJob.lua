@@ -65,3 +65,18 @@ end
 function MiningJob:getRadius() 
     return 1 -- Mining happens on the adjacent tile not on the actual tile that is inaccessible
 end
+
+function MiningJob:getMaxWorkers()
+    return 2
+end
+
+function MiningJob:getWorkerSlot(workerIndex) 
+    if workerIndex == 0 then
+        return Vec2f(-0.7, 0.7)
+    end
+    if workerIndex == 1 then
+        return Vec2f(0.7, 0.7)
+    end
+    error("Invalid worker index: Should be between 0 and " .. tostring(self:getMaxWorkers() - 1))
+
+end
