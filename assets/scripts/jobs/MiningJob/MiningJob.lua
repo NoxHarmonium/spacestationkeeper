@@ -72,10 +72,10 @@ end
 
 function MiningJob:getWorkerSlot(workerIndex) 
     if workerIndex == 0 then
-        return Vec2f(-0.7, 0.7)
+        return Vec2f(-0.6, 0.6)
     end
     if workerIndex == 1 then
-        return Vec2f(0.7, 0.7)
+        return Vec2f(0.6, 0.6)
     end
     error("Invalid worker index: Should be between 0 and " .. tostring(self:getMaxWorkers() - 1))
 
