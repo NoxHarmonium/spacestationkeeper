@@ -14,7 +14,7 @@
 
 namespace luabind { namespace detail {
 
-template <class Iterator>
+template <class Iterator, class Container>
 struct iterator
 {
     static int next(lua_State* L)
@@ -42,32 +42,34 @@ struct iterator
         return 0;
     }
 
-    iterator(Iterator first, Iterator last)
+    iterator(Iterator first, Iterator last, std::shared_ptr<Container> ref)
       : first(first)
-      , last(last)
+      , last(last),
+        ref(ref)
     {}
 
     Iterator first;
     Iterator last;
+   std::shared_ptr<Container> ref; // ref to keep shared_ptr alive
 };
 
-template <class Iterator>
-int make_range(lua_State* L, Iterator first, Iterator last)
+template <class Iterator, class Container>
+int make_range(lua_State* L, Iterator first, Iterator last, std::shared_ptr<Container> c)
 {
-    void* storage = lua_newuserdata(L, sizeof(iterator<Iterator>));
+    void* storage = lua_newuserdata(L, sizeof(iterator<Iterator, Container>));
     lua_newtable(L);
-    lua_pushcclosure(L, iterator<Iterator>::destroy, 0);
+    lua_pushcclosure(L, iterator<Iterator, Container>::destroy, 0);
     lua_setfield(L, -2, "__gc");
     lua_setmetatable(L, -2);
-    lua_pushcclosure(L, iterator<Iterator>::next, 1);
-    new (storage) iterator<Iterator>(first, last);
+    lua_pushcclosure(L, iterator<Iterator, Container>::next, 1);
+    new (storage) iterator<Iterator, Container>(first, last, c);
     return 1;
 }
 
 template <class Container>
   int make_range(lua_State* L, std::shared_ptr<Container> container)
 {
-    return make_range(L, container->begin(), container->end());
+    return make_range(L, container->begin(), container->end(), container);
 }
 
 struct iterator_converter
