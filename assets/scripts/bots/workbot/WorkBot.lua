@@ -55,6 +55,10 @@ end
 
 function WorkBot:acceptJob(job)
     LuaDebug.Log('Accepting job. State == WorkBot.States.MOVING_TO_JOB')
+    if (self._state == Bot.Working) then
+        self._job:deallocateWorker()
+    end
+
     self._job = job
     self._state = Bot.MovingToJob
     self._targetPoint = nil
