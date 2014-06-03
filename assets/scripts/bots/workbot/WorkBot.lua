@@ -65,77 +65,78 @@ function WorkBot:getCurrentJob()
     return self._job;
 end
 
-function WorkBot:update(deltaTime) 
-    if  self._job then 
-        local t = self.gameObject.renderer.transform
-        
-        -- MOVING
-        if self._state == Bot.MovingToJob or self._state == Bot.WaitingForJob then
+function WorkBot:update(deltaTime)  
+    local t = self.gameObject.renderer.transform
+    
+    -- MOVING
+    if self._state == Bot.MovingToJob or self._state == Bot.WaitingForJob then
+        if not self._path then
+            LuaDebug.Log('WorkBot: Finding path to ' .. tostring(self:getDestination()))
+            local radius = 0
+            if self._job then
+                radius = self._job:getRadius()
+            end
+            local coords = GetBotManager():getPath(self:getCoord(), self:getDestination(), radius)
+            self._path = {}
+            for coord in coords do 
+                table.insert(self._path, self:coordToPos(coord))
+            end
+            self._targetPoint = nil
+        end
+
+        if not self._targetPoint or t.localPosition:distance(self._targetPoint) < self._elipsis then
+            self._targetPoint = table.remove(self._path, 1)
+        end
+    
+       
+        if self._targetPoint == nil and self._state == Bot.MovingToJob then
+            LuaDebug.Log('WorkBot: Target point reached. Switching to Working.')
+            self._path = nil
+            self._state = Bot.Working
+            self._job:allocateWorker()
             
+            -- Move to job slot relative to forward
+            local jobSlotIndex = self._job:getWorkerCount() - 1
+            local jobSlotPos = self._job:getWorkerSlot(jobSlotIndex)
+            local texDef = self._gameGrid.defaultTileset
+            local frameWidth = texDef:getFrameWidth()
+            local frameHeight = texDef:getFrameHeight()
+            local dir = self:coordToPos(self._job:getStartLocation()) - t.localPosition
+            dir:normalize()
+            local angle = math.atan2(-dir.x, dir.y)
+            jobSlotPos:rotate(angle)
 
-            if not self._path then
-                local coords = GetBotManager():getPath(self:getCoord(), self:getDestination(), self._job:getRadius())
-                self._path = {}
-                for coord in coords do 
-                    table.insert(self._path, self:coordToPos(coord))
-                end
-            end
-
-            if not self._targetPoint or t.localPosition:distance(self._targetPoint) < self._elipsis then
-                self._targetPoint = table.remove(self._path, 1)
-            end
-        
-           
-            if self._targetPoint == nil then
-                if self._state == Bot.MovingToJob then
-                    self._path = nil
-                    self._state = Bot.Working
-                    self._job:allocateWorker()
-                    
-                    -- Move to job slot relative to forward
-                    local jobSlotIndex = self._job:getWorkerCount() - 1
-                    local jobSlotPos = self._job:getWorkerSlot(jobSlotIndex)
-                    local texDef = self._gameGrid.defaultTileset
-                    local frameWidth = texDef:getFrameWidth()
-                    local frameHeight = texDef:getFrameHeight()
-                    local dir = self:coordToPos(self._job:getStartLocation()) - t.localPosition
-                    dir:normalize()
-                    local angle = math.atan2(-dir.x, dir.y)
-                    jobSlotPos:rotate(angle)
-
-                    self._targetPoint = t.localPosition + Vec3f(
-                        frameWidth * (jobSlotPos.x / 2),
-                        frameHeight * (jobSlotPos.y / 2),
-                        self._depth
-                        )
-                end
-            end
+            self._targetPoint = t.localPosition + Vec3f(
+                frameWidth * (jobSlotPos.x / 2),
+                frameHeight * (jobSlotPos.y / 2),
+                self._depth
+                )
+            
         end
+    end
 
-        if self._state == Bot.Working then
-            if self._job:isDone() then
-                self._state = Bot.WaitingForJob
-            end
-            if t.localPosition:distance(self._targetPoint) < self._elipsis then
-                self._targetPoint = nil
-            end
+    if self._state == Bot.Working then
+        if self._job:isDone() then
+            LuaDebug.Log('WorkBot: Job is finished. Switching to WaitingForJob.')
+            self._state = Bot.WaitingForJob
+            self._job = nil
         end
+        if t.localPosition:distance(self._targetPoint) < self._elipsis then
+            self._targetPoint = nil
+        end
+    end
 
-        if self._targetPoint ~= nil then
-               
-            local direction = self._targetPoint - t.localPosition
-            direction:normalize()
+    if self._targetPoint ~= nil then
+        local direction = self._targetPoint - t.localPosition
+        direction:normalize()
+
+        local v = direction * self:getSpeed()
+        t.localPosition = t.localPosition + Vec3f(v.x, v.y, 0);
+        local angle = math.atan2(direction.x, -direction.y)
+        t.localRotation = Quatf(0,0,angle)
+    end
 
     
-          --cout << "targetCoord: " << targetCoord
-           --    << " currentCoord: " << bot->getCoord()
-           --    << " direction: " << direction << endl;
-
-            local v = direction * self:getSpeed()
-            t.localPosition = t.localPosition + Vec3f(v.x, v.y, 0);
-        end
-
-    end
 end
 
 function WorkBot:coordToPos(coord)
