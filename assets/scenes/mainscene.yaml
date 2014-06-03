@@ -3,7 +3,7 @@ GameObjects:
     -   name: Camera
         RenderInfo:
             localPosition: [0,0,0]
-            localRotation: [0,0,0,0]
+            localRotation: [1,0,0,0]
             localScale:    [1,1,1]
         Components:
             - type: GameCamera
@@ -13,7 +13,7 @@ GameObjects:
     -   name: TestObject
         RenderInfo:
             localPosition: [-50,-50,45]
-            localRotation: [0,0,0,0]
+            localRotation: [1,0,0,0]
             localScale:    [1,1,1]
         Components:
             -   type: TestComponent
@@ -26,7 +26,7 @@ GameObjects:
     -   name: GameGridObject
         RenderInfo:
             localPosition: [0,0,0]
-            localRotation: [0,0,0,0]
+            localRotation: [1,0,0,0]
             localScale:    [1,1,1]
         Components:
             -   type: GameGrid

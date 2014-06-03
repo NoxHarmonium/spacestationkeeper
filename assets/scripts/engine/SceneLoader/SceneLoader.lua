@@ -21,8 +21,7 @@ function LoadRenderer(go, gameObjectNode)
     local sclNode = gameObjectNode.RenderInfo.localScale
 
     transform.localPosition = Vec3f(posNode[1], posNode[2], posNode[3])
-    -- Disabled for now because LuaBind doesn't like it for some reason
-    --transform.localRotation = Quatf(rotNode[1], rotNode[2], rotNode[3], rotNode[4])
+    transform.localRotation = Quatf(rotNode[1], rotNode[2], rotNode[3], rotNode[4])
     transform.localScale = Vec3f(sclNode[1], sclNode[2], sclNode[3])
 
 end

@@ -13,8 +13,11 @@
 
 template <typename T> struct ClassBinder<Quaternion<T>> {
   static void Bind(const char *name, lua_State *L) {
-    luabind::module(L)[luabind::class_<Vec4<T>>(name)
-                           .def(luabind::constructor<T, T, T, T>())];
+    luabind::module(
+        L)[luabind::class_<Quaternion<T>>(name)
+               .def(luabind::constructor<T, T, T, T>())
+               .def(luabind::constructor<T, T, T>())
+               .def(luabind::constructor<const Vec3<T>, const Vec3<T>>())];
 
     // TODO: LOTS OF THINGS
   }
