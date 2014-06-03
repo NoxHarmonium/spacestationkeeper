@@ -16,8 +16,6 @@
 #include "yaml-cpp/yaml.h"
 #include "AssetLoadException.h"
 
-#define OSX_RESOURCE_DIR "../Resources"
-
 using namespace std;
 using namespace YAML;
 using namespace boost;
@@ -26,8 +24,6 @@ using namespace ci;
 class Utils {
 public:
   // Static Methods
-  static filesystem::path getCurrentExecutablePath();
-  static filesystem::path getResourcesPath();
   static BOOL existsIn(std::string sourceString, std::string searchString);
   static std::string strToUpper(std::string inputString);
   static bool isInside(ci::AxisAlignedBox3f bounds, ci::Vec2f point);

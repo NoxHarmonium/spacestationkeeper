@@ -11,40 +11,6 @@
 using namespace boost;
 using namespace ci;
 
-filesystem::path Utils::getCurrentExecutablePath() {
-#if defined __APPLE__ && __MACH__
-  // Thanks: http://stackoverflow.com/a/8149380/1153203
-
-  int ret;
-  pid_t pid;
-  char pathbuf[PROC_PIDPATHINFO_MAXSIZE];
-
-  pid = getpid();
-  ret = proc_pidpath(pid, pathbuf, sizeof(pathbuf));
-  if (ret <= 0) {
-    fprintf(stderr, "PID %d: proc_pidpath ();\n", pid);
-    fprintf(stderr, "    %s\n", strerror(errno));
-    throw std::exception(); // Error getting path
-  } else {
-    return filesystem::path(pathbuf);
-  }
-
-#else
-  // TODO: Implement other OS
-  throw std::exception();
-#endif
-}
-
-filesystem::path Utils::getResourcesPath() {
-#if defined __APPLE__ && __MACH__
-  return getCurrentExecutablePath().parent_path() /
-         filesystem::path(OSX_RESOURCE_DIR);
-#else
-  // TODO: Implement other OS
-  throw std::exception();
-#endif
-}
-
 std::string Utils::strToUpper(std::string inputString) {
   std::string s = std::string(inputString);
   for (auto &c : s)

@@ -210,15 +210,16 @@ extern "C" int initLuaModules(lua_State *L) {
 
   luabind::bind_class_info(L);
 
+  string rPath = ComponentDrivenApp::Instance()->getResourcePath().string();
   // Make sure require path includes are right
   lua_pushstring(L, "package");
   lua_gettable(L, LUA_GLOBALSINDEX);
   lua_pushstring(L, "cpath");
-  lua_pushstring(L, (Utils::getResourcesPath().string() + "/?.so").c_str());
+  lua_pushstring(L, (rPath + "/?.so").c_str());
   lua_settable(L, -3);
 
   // Set path for 'require' lua files
-  setLuaPath(L, Utils::getResourcesPath().string() + "/lua/?.lua");
+  setLuaPath(L, rPath + "/lua/?.lua");
 
   // TODO: Deps
   // Vec3f Matrix44f
