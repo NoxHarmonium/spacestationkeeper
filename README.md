@@ -3,34 +3,51 @@ Space Station Keeper
 
 Overview
 --------
-Working title for a game which will basically be a clone of Dungeon Keeper but on an asteroid. I am working on it mostly to learn c++/graphics programming while traveling (most of the code is written on 10 hour bus trips or in a hostel dorm). I've actually written quite a bit of code which means that I'm either a terrible traveler or an efficient coder. I hope the latter. It is something that might not come fully into fruition but I hope to learn a lot in the process. 
+Working title for a game which will basically be a clone of Dungeon Keeper but on an asteroid. I am working on it mostly to learn c++/graphics programming which is why I didn't use an existing game engine which would have cut the project time significantly. 
 
-I'm using a library called Cinder which is a really solid foundation for a game engine as it handles things like loading PNG files as textures and wraps complex openGL functions in neat wrappers (although you still need to know what it is doing under the hood). 
+The game engine is fully generic and almost ready to be moved into its own separate build target. The foundation of the engine is [Cinder][6] which is a great library for creative coding that abstracts away a lot of the low level problems such as cross platform events and the ability to load a broad array of media formats for textures. It allows full access to low level open GL methods with convenient wrappers so that a game engine can be built on top of it. Game logic is written in Lua with wrappers to game engine functionality and scenes are loaded by deserializing Yaml scene files which are passed into the engine. This means the engine is completely separate from the actual game.
 
-Libraries Used
--------------
-- cinder
-- libyaml-cpp
-- boost
-- cairo? (Planning to use for dynamic UI)
-- lua? (Possibly use for scripting)
+The targeted platforms are Windows and OSX as these are the platforms supported by cinder. iOS is also supported but is low priority. Currently there only a build project for XCode on OSX but the ability to use Windows is in the pipeline. The engine uses no platform dependent functionality so porting should not be a massive undertaking.
 
 Current State
 -------------
-Asset management is implemented and a basic scene graph and render pipeline is implemented. Next step is to introduce jobs. For example currently you can select blocks to mine, the next step is adding a job that mines the blocks and turns them into corridor tiles over time.
+The game is still very premature with only some basic functionality implemented. If you really want to try it out you will need a Mac with Xcode as a cross platform build system isn't implemented yet. Simply check out the repository and the Xcode project should just run as I have included all dependencies in the repository and added relative search paths. 
 
-Game play
---------
-Ideally the formula I am aiming for Dungeon Keeper II + Caesar III + FTL: Faster than light. The player starts off with a big grid of asteroid rock and a docking bay. The player can select the rock they want to mine and robots will mine the selected rock and build empty rooms/corridors. Base facilities can be built which attract certain kinds of workers. For example, miners don't mind sleeping in cheap dormitories where as the high level engineers running base facilities want something nicer. Each base facility has a base level requirement of work but will operate a higher efficiency if extra optional staff are available. For example a fungus farm may produce adequate quality fungus with 5 farmers, but an optional botanist can help the quality improve significantly. Alas you will need a more desirable base to attract these kinds of people. Worker's experience toiling in base facilities accumulate and add to the quality of the product. You have a warehouse where cargo bots deliver the output of your base facilities and also imported deliveries from the cargo bay. Its also where resources required for your base facilities are drawn from (i.e. fuel for the reactor). You can choose the amount of surplus you want to keep in your warehouse, anything over the surplus is exported and imports can supplement your stocks when there is a shortage. When your base becomes successful, other asteroids start to notice and will try to sabotage your base. You can build doors and traps to ensnare wanderers and security centers to investigate worker corruption. You are also able to research technologies to make your base work more efficiently. You are able to fit into the economy any way you like. For example you could start with an asteroid that is rich in metal ores and simply export them, or you could import ores and refine them and export the refined metal. You could even master the whole resource chain and mine, smelt and construct valuable goods all on the same asteroid and would be only one facet of the economy.
+![Screenshot of current state](https://raw.githubusercontent.com/NoxHarmonium/spacestationkeeper/master/README.png)
 
-I am working out the list of base facilities as I go along but I have some examples:
-- Reactor - Provides essential power to the base. Every base facility uses some amount of power, some more than others. The reactor requires a constant supply of fuel to keep going. If there is a power shortage due to over extending the base or something happening to a power plant you can selectively disable parts of the base.
-- Dormitory - Provides a cheap place to stay for workers.
-- Cafeteria - Distributes food to the workers. Better food attracts better workers. 
-- Fungus Farm - Creates the base food source that can be used to create more interesting food. 
-- Mine - Extracts a constant but limited supply of a metal ore from the asteroid (you can uncover veins while hollowing the asteroid). 
-- Refinery - Takes the ore from the mines and refines it into something more useful such as building supplies.
-
-Asset Credits
+Credits
 -------------
-Asteroid Tile set: http://opengameart.org/content/tiled-terrains
+*Libraries*
+- [MIT License][0]
+    - [lua][1]
+    - [luabind][2]
+    - [yaml-cpp][3]
+    - [astar-algorithm-cpp][4]
+
+- [Modified BSD License][5]
+    - [cinder][6]
+
+- [Boost License][7]
+    - [boost][8]
+
+
+*Assets*
+- [Multiple Authors]
+    - Asteroid Tileset: [CC-BY-SA 3.0][9] / [GPL 3.0][10] [Source][11]
+    
+
+
+[0]: http://opensource.org/licenses/MIT/                    "Mit license summary"
+[1]: http://www.lua.org/                                    "Lua website"
+[2]: http://www.rasterbar.com/products/luabind.html         "LuaBind website"
+[3]: https://code.google.com/p/yaml-cpp/                    "yaml-cpp Google Code page"
+[4]: https://github.com/justinhj/astar-algorithm-cpp        "astar-algorithm-cpp GitHub page"
+[5]: http://oss-watch.ac.uk/resources/modbsd                "Modified BSD License summary"
+[6]: http://libcinder.org/                                  "Cinder website"
+[7]: http://www.boost.org/users/license.html                "Boost license summary"
+[8]: http://www.boost.org/                                  "Boost website"
+[9]: http://creativecommons.org/licenses/by-sa/3.0/         "CC-BY-SA 3.0 summary"
+[10]: http://www.gnu.org/licenses/gpl-3.0.html              "GPL 3.0 summary"
+[11]: http://opengameart.org/content/tiled-terrains         "Asteroid tileset source link"
+
+
