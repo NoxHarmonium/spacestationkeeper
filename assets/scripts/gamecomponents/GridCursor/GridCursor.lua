@@ -109,6 +109,8 @@ function GridCursor:mouseUp(event)
 end
 
 function GridCursor:mouseMove(event)
+    if not self._cursorGameObject then return end
+    
     local cursorRenderer = self._cursorGameObject.renderer
     local gridRenderer = self.gameObject.renderer
 
