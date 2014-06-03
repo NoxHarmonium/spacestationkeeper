@@ -1,32 +1,42 @@
 
-#include "SpaceStationKeeperApp.h"
+#include "EngineInit.h"
 #include "AssetLoadException.h"
 #include "ScriptDef.h"
 #include "LuaExecutionException.h"
 #include "NotImplementedException.h"
+#include <vector>
+#include <string>
 
 using namespace ci;
 using namespace ci::app;
 using namespace std;
 using namespace boost;
 
-void SpaceStationKeeperApp::prepareSettings(Settings *settings) {
+void EngineInit::prepareSettings(Settings *settings) {
   // Utils::printOpenGlVersionInfo();
 
   settings->setFrameRate(60);
 }
 
-void SpaceStationKeeperApp::resize() {
+void EngineInit::resize() {
   // setup(); // reset app
   ComponentDrivenApp::resize();
 }
 
-void SpaceStationKeeperApp::setup() {
+void EngineInit::setup() {
   Utils::printOpenGlVersionInfo();
 
-  //_camera = new GameCamera();
+  vector<string> args = getArgs();
+  // if (args.size() == 1) {
+  //  throw runtime_error(
+  //      "The game engine needs an initial scene file as an argument.");
+  //}
+  cout << "args size: " << args.size() << endl;
+  for (string &s : args) {
+    cout << "arg: " << s << endl;
+  }
 
-  _fileAssetLoader = make_shared<FileAssetLoader>(Utils::getResourcesPath());
+  _fileAssetLoader = make_shared<FileAssetLoader>(this->getResourcePath());
   setAssetLoader(dynamic_pointer_cast<AssetLoaderBase>(_fileAssetLoader)
                      .get()); // TODO: Should it be a shared ptr?
 
@@ -37,7 +47,7 @@ void SpaceStationKeeperApp::setup() {
   BotManagerRef botManager = make_shared<BotManager>(jobManager);
 
   setJobManager(jobManager);
-  setBotManager(botManager);    
+  setBotManager(botManager);
 
   scanAssetsAndExecuteScripts();
 
@@ -54,7 +64,7 @@ void SpaceStationKeeperApp::setup() {
   ComponentDrivenApp::setup();
 }
 
-void SpaceStationKeeperApp::draw() {
+void EngineInit::draw() {
   // clear out the window with black
   gl::clear(Color(0, 0, 0), true);
 
@@ -65,7 +75,7 @@ void SpaceStationKeeperApp::draw() {
   ComponentDrivenApp::draw();
 }
 
-void SpaceStationKeeperApp::keyDown(KeyEvent event) {
+void EngineInit::keyDown(KeyEvent event) {
 
   /*if (event.getCode() == KeyEvent::KEY_m) { // TODO: Implement proper control
                                             // system, this is for debugging
@@ -81,12 +91,11 @@ void SpaceStationKeeperApp::keyDown(KeyEvent event) {
   }*/
 }
 
-void SpaceStationKeeperApp::scanAssetsAndExecuteScripts() {
+void EngineInit::scanAssetsAndExecuteScripts() {
   cout << "Checking asset definitions..." << endl;
 
   map<int, vector<ScriptDefRef>> scriptMap;
-  filesystem::path rootPath =
-      Utils::getResourcesPath() / filesystem::path("assets");
+  filesystem::path rootPath = this->getResourcePath("assets");
   for (filesystem::recursive_directory_iterator end, dir(rootPath); dir != end;
        ++dir) {
 
@@ -152,9 +161,9 @@ void SpaceStationKeeperApp::scanAssetsAndExecuteScripts() {
   }
 }
 
-string SpaceStationKeeperApp::getRelativePath(
+string EngineInit::getRelativePath(
     filesystem::path p, filesystem::path root = filesystem::current_path()) {
   return p.string().substr(root.string().length());
 }
 
-CINDER_APP_NATIVE(SpaceStationKeeperApp, RendererGl)
+CINDER_APP_NATIVE(EngineInit, RendererGl)

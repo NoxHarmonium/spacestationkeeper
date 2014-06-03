@@ -20,7 +20,7 @@
 #include "Utils.h"
 #include "BotManager.h"
 
-class SpaceStationKeeperApp : public ComponentDrivenApp {
+class EngineInit : public ComponentDrivenApp {
 
 public:
   void prepareSettings(Settings *settings);
