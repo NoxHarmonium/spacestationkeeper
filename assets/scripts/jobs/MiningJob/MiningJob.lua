@@ -50,6 +50,7 @@ function MiningJob:update(deltaTime)
         sprite:setSpriteTexture(self._postReqTexture)
         --sprite:setup()
         self._gameGrid:FixTileFrames(self._coord)
+        GetBotManager():addCoord(self._coord)
     end
 end
 
@@ -59,4 +60,8 @@ end
 
 function MiningJob:getEndLocation()
     return self._coord
+end
+
+function MiningJob:getRadius() 
+    return 1 -- Mining happens on the adjacent tile not on the actual tile that is inaccessible
 end

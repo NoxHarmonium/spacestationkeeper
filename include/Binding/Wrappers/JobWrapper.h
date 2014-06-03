@@ -39,6 +39,10 @@ struct JobWrapper : public Job, public luabind::wrap_base {
   virtual ci::Vec2i getEndLocation() override {
     return call<ci::Vec2i>("getEndLocation");
   };
+
+  virtual int getRadius() override {
+    return call<int>("getRadius");
+  };
 };
 
 #endif

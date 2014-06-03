@@ -115,3 +115,7 @@ end
 function CancelJob(job) 
     app_cancelJob(job)
 end
+
+function GetBotManager() 
+    return app_getBotManager()
+end

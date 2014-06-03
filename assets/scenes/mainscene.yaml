@@ -33,6 +33,7 @@ GameObjects:
                 id: gameGrid
                 defaultTileset: "tilesets/asteroid"
                 targetTileset: "tilesets/corridor"
+                workBotAnimationSet: "bots/workbot"
                 shader:  "shaders/default"
                 size: [10,10]
                 depth: 1

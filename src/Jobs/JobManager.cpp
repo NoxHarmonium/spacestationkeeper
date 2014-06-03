@@ -61,12 +61,12 @@ void JobManager::cancelJob(JobRef job) {
   }
 }
 
-vector<JobRef> JobManager::getPendingJobs() {
+vector<JobRef> JobManager::getActiveJobs() {
   vector<JobRef> pendingJobs;
   for (auto &kvp : _registeredJobs) {
     JobRef job = kvp.first;
     JobState state = kvp.second;
-    if (state == JobState::Pending) {
+    if (state == JobState::Running) {
       pendingJobs.push_back(job);
     }
   }

@@ -26,13 +26,28 @@ float CoordSearchNode::GoalDistanceEstimate(CoordSearchNode &nodeGoal) {
 bool CoordSearchNode::IsGoal(CoordSearchNode &nodeGoal) {
   // The radius field increases the goal size
   if (_radius > 0) {
+
+    // Sqaure radius // TODO: Make this switchable
+    // for (int x = -_radius; x <= _radius; ++x) {
+    //  for (int y = -_radius; y <= _radius; ++y) {
+    //    if (this->pos == nodeGoal.pos + Vec2i(x, y)) {
+    //      return true;
+    //    }
+    //  }
+    //}
+
+    // Plus radius
     for (int x = -_radius; x <= _radius; ++x) {
-      for (int y = -_radius; y <= _radius; ++y) {
-        if (this->pos == nodeGoal.pos + Vec2i(x, y)) {
-          return true;
-        }
+      if (this->pos == nodeGoal.pos + Vec2i(x, 0)) {
+        return true;
       }
     }
+    for (int y = -_radius; y <= _radius; ++y) {
+      if (this->pos == nodeGoal.pos + Vec2i(0, y)) {
+        return true;
+      }
+    }
+
   } else {
     return this->pos == nodeGoal.pos;
   }
@@ -55,10 +70,13 @@ bool CoordSearchNode::GetSuccessors(AStarSearch<CoordSearchNode> *aStarSearch,
 
   for (int i = 0; i < 4; i++) {
     Vec2i newPos = this->pos + nextPositions[i];
-    if (parent_node != nullptr && newPos != parent_node->pos) {
+    if (parent_node == nullptr || newPos != parent_node->pos) {
 
       if (!isinf(_costFunction(newPos))) {
-        CoordSearchNode newNode = CoordSearchNode(_costFunction, newPos);
+        CoordSearchNode newNode =
+            CoordSearchNode(_costFunction, newPos, _radius);
+        std::cout << "adding successor: " << newNode.pos
+                  << " radius: " << _radius << endl;
         aStarSearch->AddSuccessor(newNode);
       }
     }

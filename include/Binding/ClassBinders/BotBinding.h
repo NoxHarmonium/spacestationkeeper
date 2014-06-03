@@ -32,7 +32,15 @@ template <> struct ClassBinder<Bot> {
                .def("getSpeed", &Bot::getSpeed)
                .def("willAcceptJob", &Bot::willAcceptJob)
                .def("acceptJob", &Bot::acceptJob)
-               .def("update", &Bot::update)];
+               .def("getCurrentJob", &Bot::getCurrentJob)
+               .def("getState", &Bot::getState)
+               .def("setup", &Bot::setup)
+               .def("update", &Bot::update)
+               .enum_("constants")[
+                 value("WaitingForJob", 0),
+                 value("MovingToJob", 1),
+                 value("Working", 2)
+               ]];
   }
 };
 

@@ -17,6 +17,7 @@
 #include "Job.h"
 #include "JobManager.h"
 #include "CoordSearch.h"
+#include "GameObject.h"
 
 using namespace std;
 using namespace ci;
@@ -49,9 +50,13 @@ protected:
   set<Vec2i, VecComparison> _passableCoords;
   set<BotRef> _bots;
   JobManagerRef _jobManager;
+  map<BotRef, CoordListRef> _botPathCache;
 
   // Methods
   std::function<float(Vec2i)> getCostFunction();
+  void assignJobs();
+  void moveBots();
+  bool isSnappedToGrid(Vec3f location);
 };
 
 typedef std::shared_ptr<BotManager> BotManagerRef;

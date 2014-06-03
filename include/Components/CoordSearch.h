@@ -11,11 +11,12 @@
 
 #include <stlastar.h>
 #include <functional>
+#include <list>
 
 using namespace ci;
 
 typedef std::function<float(Vec2i)> CostFunction;
-typedef vector<Vec2i> CoordList;
+typedef list<Vec2i> CoordList;
 typedef std::shared_ptr<CoordList> CoordListRef;
 
 class CoordSearchNode {
@@ -31,7 +32,9 @@ public:
   CoordSearchNode(CostFunction costFunction, Vec2i pos)
       : _costFunction(costFunction), pos(pos) {}
   CoordSearchNode(CostFunction costFunction, Vec2i pos, int radius)
-      : _costFunction(costFunction), pos(pos), _radius(radius) {}
+      : _costFunction(costFunction), pos(pos), _radius(radius) {
+    cout << "Radius: " << radius << endl;
+  }
 
   // AStar Methods
   float GoalDistanceEstimate(CoordSearchNode &nodeGoal);

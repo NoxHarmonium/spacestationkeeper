@@ -15,6 +15,9 @@
 #include <functional>
 #include "Job.h"
 
+class BotManager;
+typedef std::shared_ptr<BotManager> BotManagerRef;
+
 extern "C" { int initLuaModules(lua_State *L); }
 
 // Free functions
@@ -24,6 +27,7 @@ void app_registerGameObject(GameObjectRef gameObject);
 void app_destroyGameObject(GameObjectRef gameObject);
 void app_registerJob(JobRef job);
 void app_cancelJob(JobRef job);
+BotManagerRef app_getBotManager();
 AssetLoaderBase *app_getAssetLoader();
 int setLuaPath(lua_State *L, const std::string path);
 int add_file_and_line(lua_State *L);

@@ -28,6 +28,7 @@ public:
   virtual void update(float deltaTime) = 0;
   virtual Vec2i getStartLocation() = 0;
   virtual Vec2i getEndLocation() = 0;
+  virtual int getRadius() { return 0; }
 
   void allocateWorker();
   void deallocateWorker();

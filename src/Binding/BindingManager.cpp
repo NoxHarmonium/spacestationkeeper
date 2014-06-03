@@ -75,6 +75,10 @@ void app_cancelJob(JobRef job) {
   ComponentDrivenApp::Instance()->getJobManager()->cancelJob(job);
 }
 
+BotManagerRef app_getBotManager() {
+  return ComponentDrivenApp::Instance()->getBotManager();
+}
+
 int setLuaPath(lua_State *L, const std::string path) {
   lua_getglobal(L, "package");
   lua_getfield(L, -1,
@@ -202,6 +206,7 @@ extern "C" int initLuaModules(lua_State *L) {
   module(L)[def("app_getElapsedSeconds", &app_getElapsedSeconds)];
   module(L)[def("app_registerJob", &app_registerJob)];
   module(L)[def("app_cancelJob", &app_cancelJob)];
+  module(L)[def("app_getBotManager", &app_getBotManager)];
 
   luabind::bind_class_info(L);
 

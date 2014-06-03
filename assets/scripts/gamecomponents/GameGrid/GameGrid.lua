@@ -12,8 +12,11 @@ function GameGrid:__init()
     self:serialiseField('shader', 'ShaderDef')
     self:serialiseField('size', 'Vec2i')
     self:serialiseField('depth', 'number')
+    self:serialiseField('workBotAnimationSet', 'AnimationSetDef')
 
     self.selectedTiles = {}
+
+    self._botManager = GetBotManager();
 end
 
 function GameGrid:setup()
@@ -62,11 +65,12 @@ function GameGrid:keyUp(keyEvent)
     local doMine =          keyEvent:getCode() == config['KEY_MineTile'] or 
                             keyEvent:getCode() == config['KEY_InstantMineTile']
     local doInstantMine =   keyEvent:getCode() == config['KEY_InstantMineTile']
+    local doWorkBotSpawn =  keyEvent:getCode() == config['KEY_SpawnWorkBot']
+
+    local frameWidth = self.defaultTileset:getFrameWidth()
+    local frameHeight = self.defaultTileset:getFrameHeight()
 
     if (doMine) then
-        local frameWidth = self.defaultTileset:getFrameWidth()
-        local frameHeight = self.defaultTileset:getFrameHeight()
-
         for id, tile in pairs(self.selectedTiles) do
             local tilePos = tile.renderer.transform.localPosition
             local coord = Vec2i(tilePos.x / frameWidth, tilePos.y / frameHeight)
@@ -75,6 +79,7 @@ function GameGrid:keyUp(keyEvent)
                 local sprite = GetComponentFromType(self.tiles[coord.x..coord.y], 'Sprite')
                 sprite:setSpriteTexture(self.targetTileset)
                 self:FixTileFrames(coord)
+                self._botManager:addCoord(coord)
             else 
                 -- Create mining job (requires bots)
                 local job = MiningJob(self, coord, self.defaultTileset, self.targetTileset)
@@ -82,6 +87,31 @@ function GameGrid:keyUp(keyEvent)
             end
             RemoveGameObject(tile) -- Remove selection gameobject
         end
+    end
+
+    if (doWorkBotSpawn) then
+        for id, tile in pairs(self.selectedTiles) do
+            local tilePos = tile.renderer.transform.localPosition
+            local coord = Vec2i(tilePos.x / frameWidth, tilePos.y / frameHeight)
+            -- TODO: Don't spawn bot onto unpassable tiles (rock)
+            -- TODO: Wrap up this logic in some sort of factory method/etc
+
+            local workBotGo = GameObject()
+            local workBotComp = WorkBot(self, coord)
+            local workBotAnim = AnimatedSprite()
+            LuaDebug.Log('self.workBotAnimationSet == nil: ' .. tostring(self.workBotAnimationSet == nil))
+            LuaDebug.Log('typename: ' .. class_info(self.workBotAnimationSet).name)
+            workBotAnim:setAnimationSet(self.workBotAnimationSet)
+            workBotAnim:setAnimationName('idle')
+
+            workBotGo:addComponent(workBotAnim)
+            workBotGo:addComponent(workBotComp)
+            AddGameObject(workBotGo)
+
+            self._botManager:addBot(workBotComp)
+            RemoveGameObject(tile)
+        end
+
     end
 
     self.selectedTiles = {} -- Deselect all

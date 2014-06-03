@@ -38,6 +38,18 @@ struct BotWrapper : public Bot, public luabind::wrap_base {
     call<void>("acceptJob", job);
   };
 
+  virtual JobRef getCurrentJob() override {
+    return call<JobRef>("getCurrentJob");
+  };
+
+  virtual BotState getState() override {
+    return call<BotState>("getState");
+  };
+
+  virtual void setup() override {
+    call<void>("setup");
+  };
+
   virtual void update(float deltaTime) override {
     call<void>("update", deltaTime);
   };
