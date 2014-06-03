@@ -27,6 +27,9 @@ typedef std::unique_ptr<SpriteCacheEntry> SpriteCacheEntryPtr;
 
 class Sprite : public GameComponent {
 public:
+  // Enums
+  enum PivotPoint { Center, TopLeft };
+
   // Constants
   static const constexpr char *SpriteShader = "shaders/default";
 
@@ -40,6 +43,8 @@ public:
   int getSpriteFrame();
   void setSpriteTexture(TextureDefRef texture);
   void setSpriteFrame(int frame);
+  PivotPoint getPivotPoint();
+  void setPivotPoint(PivotPoint pivotPoint);
 
   // Methods
   virtual void setup() override;
@@ -51,6 +56,7 @@ private:
   TextureDefRef _spriteTexture;
   int _spriteFrame = 0;
   AssetLoaderBase *_assetLoader;
+  PivotPoint _pivotPoint = PivotPoint::Center;
 
   // Static Fields
   static map<TextureDefRef, SpriteCacheEntryPtr> _materialCache;

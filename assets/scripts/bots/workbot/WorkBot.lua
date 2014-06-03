@@ -1,3 +1,5 @@
+local round = require 'round'
+
 -- WorkBot
 class 'WorkBot' (Bot)
 
@@ -131,8 +133,8 @@ function WorkBot:posToCoord(pos)
     local frameHeight = texDef:getFrameHeight()
 
     return Vec2i(
-        math.floor(pos.x  / frameWidth), 
-        math.floor(pos.y  / frameHeight)
+        round(pos.x  / frameWidth), 
+        round(pos.y  / frameHeight)
         )
 
 end

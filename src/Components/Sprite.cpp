@@ -11,6 +11,7 @@
 #include "SimpleMesh.h"
 #include "ComponentDrivenApp.h"
 #include "Material.h"
+#include <stdexcept>
 
 // Constructors/Destructors
 Sprite::Sprite() : GameComponent() {}
@@ -43,6 +44,13 @@ void Sprite::setSpriteFrame(int frame) {
   }
 }
 
+Sprite::PivotPoint Sprite::getPivotPoint() { return _pivotPoint; }
+
+void Sprite::setPivotPoint(Sprite::PivotPoint pivotPoint) {
+  _pivotPoint = pivotPoint;
+  setup();
+}
+
 // Methods
 void Sprite::setup() {
   if (this->gameObject == nullptr) {
@@ -63,8 +71,25 @@ void Sprite::setup() {
       _spriteFrame = 0;
     }
 
-    Rectf dims = Rectf(0, 0, _spriteTexture->getFrameWidth(),
-                       _spriteTexture->getFrameHeight());
+    Rectf dims;
+    switch (_pivotPoint) {
+    case PivotPoint::Center: {
+      float w = _spriteTexture->getFrameWidth() / 2.0f;
+      float h = _spriteTexture->getFrameHeight() / 2.0f;
+
+      dims = Rectf(-w, -h, w, h);
+    } break;
+    case PivotPoint::TopLeft: {
+      float w = _spriteTexture->getFrameWidth();
+      float h = _spriteTexture->getFrameHeight();
+
+      dims = Rectf(0, 0, w, h);
+    } break;
+    default:
+      throw new runtime_error("Invalid PivotPoint.");
+    }
+
+    //
     Rectf uvCoords = _spriteTexture->getFrameUvCoords(_spriteFrame);
 
     renderer->mesh = SimpleMesh::generateQuad(dims, uvCoords);

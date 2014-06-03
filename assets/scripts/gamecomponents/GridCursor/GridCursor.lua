@@ -1,5 +1,7 @@
 -- Cursor Component - Shows a cursor over a grid
 
+local round = require 'round'
+
 -- GameGrid
 class 'GridCursor' (GameComponent)
 
@@ -163,8 +165,8 @@ function GridCursor:transformMousePos(mousePos)
 end
 
 function GridCursor:snapToGrid(mousePos)
-    local x = math.floor(mousePos.x / self._frameWidth) * self._frameWidth
-    local y = math.floor(mousePos.y / self._frameHeight) * self._frameHeight
+    local x = round(mousePos.x / self._frameWidth) * self._frameWidth
+    local y = round(mousePos.y / self._frameHeight) * self._frameHeight
     return Vec2i(x,y)
 end
 
@@ -172,7 +174,9 @@ function GridCursor:rebuildMeshIfNeeded()
     if (self._cursorSize ~= self._oldCursorSize) then
         local renderer = self._cursorGameObject.renderer;
         local mat = renderer.material
-        local dims = Rectf(0, 0, self._cursorSize.x, self._cursorSize.y)
+        local x, y = self._frameWidth / 2, self._frameHeight / 2
+        local x2, y2 = self._cursorSize.x, self._cursorSize.y
+        local dims = Rectf(-x, -y, x2 - x, y2 - y)
         local uvCoords = mat.texture:getFrameUvCoords(self.cursorFrame)
         renderer.mesh = SimpleMesh.generateQuad(dims, uvCoords)
         self._oldCursorSize = self._cursorSize
@@ -208,7 +212,8 @@ end
 
 function GridCursor:setupSelectedGameObject(go, x, y) 
     local renderer = go.renderer
-    local dims = Rectf(0, 0, 1 * self._frameWidth, 1 * self._frameHeight)
+    local x2, y2 = self._frameWidth / 2, self._frameHeight / 2
+    local dims = Rectf(-x2, -y2, x2, y2)
     local uvCoords = self._selectionMat.texture:getFrameUvCoords(self.selectedFrame)
     renderer.mesh = SimpleMesh.generateQuad(dims, uvCoords)
     renderer.material = self._selectionMat 
