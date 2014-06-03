@@ -3,7 +3,7 @@
 function CheckRequiredProperties(instance, className) 
     local sFields = instance:getSerialisedFields()
     for field in sFields do
-        LuaDebug.Log('Checking property: ' .. field.name)
+        --LuaDebug.Log('Checking property: ' .. field.name)
         local fieldValue
         if field.useAccessors then
             local getterMethod = instance[field.getterName]
@@ -47,7 +47,7 @@ function ConvertValue(key, value, instance, go)
         return component, matchingField
     end
 
-    LuaDebug.Log('matchingField.type: ' .. matchingField.type)
+    --LuaDebug.Log('matchingField.type: ' .. matchingField.type)
     if matchingField.type == 'Vec2f' then 
         value = Vec2f(value[1], value[2])
     end

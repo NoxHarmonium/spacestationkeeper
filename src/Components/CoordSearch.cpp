@@ -75,8 +75,8 @@ bool CoordSearchNode::GetSuccessors(AStarSearch<CoordSearchNode> *aStarSearch,
       if (!isinf(_costFunction(newPos))) {
         CoordSearchNode newNode =
             CoordSearchNode(_costFunction, newPos, _radius);
-        std::cout << "adding successor: " << newNode.pos
-                  << " radius: " << _radius << endl;
+        // std::cout << "adding successor: " << newNode.pos
+        //          << " radius: " << _radius << endl;
         aStarSearch->AddSuccessor(newNode);
       }
     }

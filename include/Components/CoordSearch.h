@@ -32,9 +32,7 @@ public:
   CoordSearchNode(CostFunction costFunction, Vec2i pos)
       : _costFunction(costFunction), pos(pos) {}
   CoordSearchNode(CostFunction costFunction, Vec2i pos, int radius)
-      : _costFunction(costFunction), pos(pos), _radius(radius) {
-    cout << "Radius: " << radius << endl;
-  }
+      : _costFunction(costFunction), pos(pos), _radius(radius) {}
 
   // AStar Methods
   float GoalDistanceEstimate(CoordSearchNode &nodeGoal);

@@ -13,7 +13,7 @@
 // Constructors/Destructors
 AnimatedSprite::AnimatedSprite() : Sprite() {
   reset();
-  cout << "!!Constructor: AnimatedSprite::AnimatedSprite()" << endl;
+  // cout << "!!Constructor: AnimatedSprite::AnimatedSprite()" << endl;
   serialiseField("animationSet", "AnimationSetDef", "getAnimationSet",
                  "setAnimationSet");
   serialiseField("animationName", "string", "getAnimationName",

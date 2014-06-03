@@ -63,14 +63,15 @@ void BatchedMesh::addMesh(BatchInfoRef batchInfo) {
 }
 
 void BatchedMesh::invalidate(BatchInfoRef batchInfo) {
-  cout << "BatchedMesh::invalidate(): Invalidating mesh..." << endl;
+  // cout << "BatchedMesh::invalidate(): Invalidating mesh..." << endl;
   MaterialRef oldMaterial = _batchMaterials[batchInfo];
   MaterialRef newMaterial = batchInfo->material;
 
   if (oldMaterial != batchInfo->material) {
-    cout
-        << "BatchedMesh::invalidate(): BatchInfo has new material. Switching..."
-        << endl;
+    // cout
+    //    << "BatchedMesh::invalidate(): BatchInfo has new material.
+    // Switching..."
+    //    << endl;
 
     _dirty[oldMaterial] = true;            // Invalidate old material
     _meshes[oldMaterial].erase(batchInfo); // Switch info to new material layer
@@ -89,8 +90,9 @@ void BatchedMesh::removeMesh(BatchInfoRef batchInfo) {
 }
 
 void BatchedMesh::regenerateVboMesh(MaterialRef material) {
-  cout << "BatchedMesh::regenerateVboMesh(): Regenerating VboMesh for material:"
-       << material << endl;
+  // cout << "BatchedMesh::regenerateVboMesh(): Regenerating VboMesh for
+  // material:"
+  //     << material << endl;
 
   TriMesh combinedMesh;
   vector<Vec3f> vertices;

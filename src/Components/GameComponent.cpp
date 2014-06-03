@@ -22,32 +22,36 @@ SerialisedFieldListRef GameComponent::getSerialisedFields() {
 }
 
 void GameComponent::serialiseField(string name, string type) {
-  cout << "GameComponent::serialiseField: name: " << name << " type: " << type
-       << endl;
+  // cout << "GameComponent::serialiseField: name: " << name << " type: " <<
+  // type
+  //     << endl;
   _serialisedFields->push_back(make_shared<SerialisedField>(name, type, true));
 }
 
 void GameComponent::serialiseField(string name, string type, bool required) {
-  cout << "GameComponent::serialiseField: name: " << name << " type: " << type
-       << endl;
+  // cout << "GameComponent::serialiseField: name: " << name << " type: " <<
+  // type
+  //     << endl;
   _serialisedFields->push_back(
       make_shared<SerialisedField>(name, type, required));
 }
 
 void GameComponent::serialiseField(string name, string type, string getterName,
                                    string setterName) {
-  cout << "GameComponent::serialiseField: name: " << name << " type: " << type
-       << " getterName: " << getterName << " setterName: " << setterName
-       << endl;
+  // cout << "GameComponent::serialiseField: name: " << name << " type: " <<
+  // type
+  //     << " getterName: " << getterName << " setterName: " << setterName
+  //     << endl;
   _serialisedFields->push_back(
       make_shared<SerialisedField>(name, type, getterName, setterName, true));
 }
 
 void GameComponent::serialiseField(string name, string type, string getterName,
                                    string setterName, bool required) {
-  cout << "GameComponent::serialiseField: name: " << name << " type: " << type
-       << " getterName: " << getterName << " setterName: " << setterName
-       << endl;
+  // cout << "GameComponent::serialiseField: name: " << name << " type: " <<
+  // type
+  //     << " getterName: " << getterName << " setterName: " << setterName
+  //     << endl;
   _serialisedFields->push_back(make_shared<SerialisedField>(
       name, type, getterName, setterName, required));
 }
