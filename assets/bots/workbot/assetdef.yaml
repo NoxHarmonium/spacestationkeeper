@@ -2,10 +2,10 @@
 id:             99
 type:           AnimationSet
 subtype:        Texture
-width:          512
-height:         512
-frameHeight:    64
-frameWidth:     64
+width:          128
+height:         128
+frameHeight:    16
+frameWidth:     16
 border:         0
 defaultAnimation: idle
 animations:
@@ -13,7 +13,7 @@ animations:
         filename: idle.png
         frameStart: 0
         frameEnd: 1
-        rate: 15
+        rate: 1
         loop: true
 
 
