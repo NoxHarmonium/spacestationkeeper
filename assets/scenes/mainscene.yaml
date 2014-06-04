@@ -19,8 +19,8 @@ GameObjects:
             -   type: TestComponent
                 text: Test Text 1
             -   type: AnimatedSprite
-                animationSet: "animations/testanim"
-                animationName: test
+                animationSet: "animations/fireburst"
+                animationName: fireburst
                 playing: true
 
     -   name: GameGridObject
@@ -34,6 +34,7 @@ GameObjects:
                 defaultTileset: "tilesets/asteroid"
                 targetTileset: "tilesets/corridor"
                 workBotAnimationSet: "bots/workbot"
+                workBotMiningAnimSet: "animations/fireburst"
                 shader:  "shaders/default"
                 size: [10,10]
                 depth: 1

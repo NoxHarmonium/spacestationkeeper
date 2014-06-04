@@ -33,7 +33,9 @@ Credits
 
 *Assets*
 - Multiple Authors
-    - Asteroid Tileset: [Source][11] Licence:[CC-BY-SA 3.0][9] / [GPL 3.0][10] 
+    - Asteroid Tileset: [Source][11] License:[CC-BY-SA 3.0][9] / [GPL 3.0][10] 
+- Clint Bellanger
+    - Fireball spell animation: [Source][12] License: [CC-BY 3.0][13]
     
 Licence
 -------------
@@ -51,5 +53,7 @@ Licence
 [9]: http://creativecommons.org/licenses/by-sa/3.0/         "CC-BY-SA 3.0 summary"
 [10]: http://www.gnu.org/licenses/gpl-3.0.html              "GPL 3.0 summary"
 [11]: http://opengameart.org/content/tiled-terrains         "Asteroid tileset source link"
+[12]: http://opengameart.org/content/fireball-spell         "Fireball spell animation link"
+[13]: http://creativecommons.org/licenses/by/3.0/           "CC-BY 3.0 summary"
 
 

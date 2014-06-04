@@ -1,0 +1,19 @@
+--- # Texture Def
+id:             666
+type:           AnimationSet
+subtype:        Texture
+width:          256
+height:         256
+frameHeight:    64
+frameWidth:     64
+border:         0
+defaultAnimation: fireburst
+animations:
+    -   name: fireburst
+        filename: fireburst.png
+        frameStart: 0
+        frameEnd: 7
+        rate: 30
+        loop: true
+
+

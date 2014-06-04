@@ -13,6 +13,7 @@ function GameGrid:__init()
     self:serialiseField('size', 'Vec2i')
     self:serialiseField('depth', 'number')
     self:serialiseField('workBotAnimationSet', 'AnimationSetDef')
+    self:serialiseField('workBotMiningAnimSet', 'AnimationSetDef')
 
     self.selectedTiles = {}
 
