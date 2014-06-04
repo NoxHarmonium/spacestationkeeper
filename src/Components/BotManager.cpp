@@ -8,6 +8,8 @@
 
 #include "BotManager.h"
 #include "CoordSearch.h"
+#include "BotBehaviour.h"
+#include <math.h>
 
 BotManager::BotManager(JobManagerRef jobManager) : _jobManager(jobManager) {}
 
@@ -149,4 +151,19 @@ void BotManager::assignJobs() {
   }
 }
 
-void BotManager::moveBots() {}
+void BotManager::moveBots() {
+  for (BotRef bot : _bots) {
+    Vec3f f = Vec3f::zero();
+    for (BotBehaviourRef behaviour : bot->getBehaviours()) {
+      f += behaviour->getForce(bot);
+    }
+    TransformRef t = bot->gameObject->renderer->transform;
+    Vec3f oldPos = t->localPosition;
+    t->localPosition += f;
+    Vec3f dir = (t->localPosition - oldPos).normalized();
+    if (dir.length() > _moveThreshold) {
+      float angle = atan2(dir.x, -dir.y);
+      t->localRotation = Quatf(0.0f, 0.0f, angle);
+    }
+  }
+}

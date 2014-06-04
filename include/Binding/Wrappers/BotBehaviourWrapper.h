@@ -12,9 +12,11 @@
 #include "BotBehaviour.h"
 
 struct BotBehaviourWrapper : public BotBehaviour, public luabind::wrap_base {
+  BotBehaviourWrapper() : BotBehaviour(), luabind::wrap_base() {}
+
   // Call registers
-  virtual Vec3f getForce() override {
-    return call<Vec3f>("getForce");
+  virtual Vec3f getForce(BotRef bot) override {
+    return call<Vec3f>("getForce", bot);
   };
 };
 

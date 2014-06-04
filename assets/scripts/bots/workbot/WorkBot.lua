@@ -83,6 +83,11 @@ function WorkBot:acceptJob(job)
     self._state = Bot.MovingToJob
     self._targetPoint = nil
     self._path = nil
+
+    if self._gotoLocationBehaviour then
+        self:removeBehaviour(self._gotoLocationBehaviour)
+        self._gotoLocationBehaviour = nil
+    end
 end
 
 function WorkBot:getCurrentJob() 
@@ -110,22 +115,35 @@ function WorkBot:update(deltaTime)
 
         if not self._targetPoint or t.localPosition:distance(self._targetPoint) < self._elipsis then
             self._targetPoint = table.remove(self._path, 1)
+            
+            if self._gotoLocationBehaviour then
+                self:removeBehaviour(self._gotoLocationBehaviour)
+                self._gotoLocationBehaviour = nil
+            end
+
+            if self._targetPoint then
+                self._gotoLocationBehaviour = GotoLocationBehaviour(self._targetPoint, self:getSpeed())
+                self:addBehaviour(self._gotoLocationBehaviour)
+            end
         end
-    
-       
+
         if self._targetPoint == nil and self._state == Bot.MovingToJob then
             LuaDebug.Log('WorkBot: Target point reached. Switching to Working.')
             self._path = nil
             self._job:activateWorker()
             self._state = Bot.Working
             self._miningAnimGo.renderer.renderEnabled = true
-            
+
             local sLoc = self:coordToPos(self._job:getStartLocation())
             local dir = sLoc - t.localPosition 
             dir:normalize()
 
             self._targetPoint = sLoc - (dir * self._miningRange)
             LuaDebug.Log("TargetPoint: " .. tostring(self._targetPoint))
+
+            self._gotoLocationBehaviour = GotoLocationBehaviour(self._targetPoint, self:getSpeed())
+            self:addBehaviour(self._gotoLocationBehaviour)
+            
         end
     end
 
@@ -139,21 +157,11 @@ function WorkBot:update(deltaTime)
 
         if self._targetPoint ~= nil and t.localPosition:distance(self._targetPoint) < self._elipsis then
             self._targetPoint = nil
+            self:removeBehaviour(self._gotoLocationBehaviour)
+            self._gotoLocationBehaviour = nil
         end
         
     end
-
-    if self._targetPoint ~= nil then
-        local direction = self._targetPoint - t.localPosition
-        direction:normalize()
-
-        local v = direction * self:getSpeed()
-        t.localPosition = t.localPosition + Vec3f(v.x, v.y, 0);
-        local angle = math.atan2(direction.x, -direction.y)
-        t.localRotation = Quatf(0,0,angle)
-
-    end
-
     
 end
 

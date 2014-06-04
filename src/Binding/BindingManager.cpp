@@ -149,6 +149,7 @@ extern "C" int initLuaModules(lua_State *L) {
   ClassBinder<Utils>::Bind("Utils", L);
   ClassBinder<SerialisedField>::Bind("SerialisedField", L);
   ClassBinder<BotManager>::Bind("BotManager", L);
+  ClassBinder<BotBehaviour>::Bind("BotBehaviour", L);
 
   // Asset Management
   ClassBinder<AssetLoaderBase>::Bind("AssetLoaderBase", L);

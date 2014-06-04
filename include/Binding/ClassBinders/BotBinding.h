@@ -37,6 +37,9 @@ template <> struct ClassBinder<Bot> {
                .def("getState", &Bot::getState)
                .def("setup", &Bot::setup)
                .def("update", &Bot::update)
+               .def("addBehaviour", &Bot::addBehaviour)
+               .def("removeBehaviour", &Bot::removeBehaviour)
+               .def("getBehaviours", &Bot::getBehaviours)
                .enum_("constants")[
                  value("WaitingForJob", 0),
                  value("MovingToJob", 1),
@@ -78,7 +81,9 @@ template <> struct ClassBinder<BotBehaviour> {
   static void Bind(const char *name, lua_State *L) {
     luabind::module(
         L)[luabind::class_<BotBehaviour, BotBehaviourWrapper, BotBehaviourRef>(
-               name).def("getForce", &BotBehaviour::getForce)];
+               name)
+               .def(constructor<>())
+               .def("getForce", &BotBehaviour::getForce)];
   }
 };
 

@@ -51,6 +51,8 @@ protected:
   set<BotRef> _bots;
   JobManagerRef _jobManager;
   map<BotRef, CoordListRef> _botPathCache;
+  float _moveThreshold =
+      0.1f; // Amount the bot has to be moving to be considered moving
 
   // Methods
   std::function<float(Vec2i)> getCostFunction();

@@ -12,7 +12,8 @@
 #include <memory>
 #include "Job.h"
 #include "GameComponent.h"
-#include <list>
+#include <set>
+#include "BotBehaviour.h"
 
 typedef list<Vec2i> CoordList;
 typedef std::shared_ptr<CoordList> CoordListRef;
@@ -39,6 +40,13 @@ public:
   virtual BotState getState() = 0;
   virtual void setup() override = 0;
   virtual void update(float deltaTime) override = 0;
+
+  void addBehaviour(BotBehaviourRef behaviour);
+  void removeBehaviour(BotBehaviourRef behaviour);
+  set<BotBehaviourRef> getBehaviours();
+
+private:
+  set<BotBehaviourRef> _behaviours;
 };
 
 typedef std::shared_ptr<Bot> BotRef;

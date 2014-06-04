@@ -44,6 +44,7 @@
 		9E3AF3F5190DBBC6001007F4 /* RenderInfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E3AF3F3190DBBC6001007F4 /* RenderInfo.cpp */; };
 		9E3BD6C71926B6CD008F9297 /* lua in Resources */ = {isa = PBXBuildFile; fileRef = 9E3BD6C61926B6CD008F9297 /* lua */; };
 		9E619797192D19BB0013CB63 /* AnimationDef.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E619795192D19BB0013CB63 /* AnimationDef.cpp */; };
+		9E6CDAE2193F5404005C9380 /* Bot.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E6CDAE0193F5404005C9380 /* Bot.cpp */; };
 		9E74DA8B1930F57C006B323E /* Sprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E74DA891930F57C006B323E /* Sprite.cpp */; };
 		9E92628F18D48232001AB5D6 /* GameComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E92628E18D48232001AB5D6 /* GameComponent.cpp */; };
 		9E92629218D4EDA0001AB5D6 /* ComponentDrivenApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E92629118D4EDA0001AB5D6 /* ComponentDrivenApp.cpp */; };
@@ -176,6 +177,7 @@
 		9E619795192D19BB0013CB63 /* AnimationDef.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AnimationDef.cpp; sourceTree = "<group>"; };
 		9E6CDADE193F5157005C9380 /* BotBehaviour.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BotBehaviour.h; sourceTree = "<group>"; };
 		9E6CDADF193F51EB005C9380 /* BotBehaviourWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BotBehaviourWrapper.h; sourceTree = "<group>"; };
+		9E6CDAE0193F5404005C9380 /* Bot.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Bot.cpp; sourceTree = "<group>"; };
 		9E72B0E5190C4E3400F9935A /* RenderInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RenderInfo.h; sourceTree = "<group>"; };
 		9E74DA881930F4A8006B323E /* Sprite.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Sprite.h; sourceTree = "<group>"; };
 		9E74DA891930F57C006B323E /* Sprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sprite.cpp; sourceTree = "<group>"; };
@@ -499,6 +501,7 @@
 				9E1B33DA19329A75006C3F8C /* AnimatedSprite.cpp */,
 				9E173FAB19359B7900313618 /* BotManager.cpp */,
 				9E173FB31936AAD000313618 /* CoordSearch.cpp */,
+				9E6CDAE0193F5404005C9380 /* Bot.cpp */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -679,6 +682,7 @@
 				9ED6DF7219106B70002D286C /* TextureDef.cpp in Sources */,
 				9E92628F18D48232001AB5D6 /* GameComponent.cpp in Sources */,
 				9E281738191C5F7D00F5E95C /* LuaDebug.cpp in Sources */,
+				9E6CDAE2193F5404005C9380 /* Bot.cpp in Sources */,
 				9ED6DF771910707A002D286C /* JobManager.cpp in Sources */,
 				9EE7AEEF18E36737008A9C83 /* Utils.cpp in Sources */,
 				9E92629218D4EDA0001AB5D6 /* ComponentDrivenApp.cpp in Sources */,
