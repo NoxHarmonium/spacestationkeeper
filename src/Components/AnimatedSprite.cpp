@@ -72,10 +72,11 @@ void AnimatedSprite::setup() { Sprite::setup(); }
 void AnimatedSprite::update(float deltaTime) {
   if (_playing && _currentAnimation != nullptr) {
     _t += deltaTime;
-    _currentFrame = (int)floor(_t / _frameRate);
+    _currentFrame = (int)floor(_t * (float)_frameRate);
     if (_currentFrame > _currentAnimation->getFrameEnd()) {
       if (_loop) {
         _currentFrame = 0;
+        _t = 0.0f;
       } else {
         stop();
       }
