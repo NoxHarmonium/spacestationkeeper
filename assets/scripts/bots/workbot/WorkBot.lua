@@ -16,6 +16,7 @@ function WorkBot:__init(gameGrid, homeCoord, miningAnimSet)
     self._depth = 30  
     self._elipsis = 1
     self._miningAnimSet = miningAnimSet
+    self._miningRange = 57
 end
 
 function WorkBot:setup()
@@ -119,23 +120,12 @@ function WorkBot:update(deltaTime)
             self._state = Bot.Working
             self._miningAnimGo.renderer.renderEnabled = true
             
-            -- Move to job slot relative to forward
-            local jobSlotIndex = self._job:getActiveWorkers() - 1
-            local jobSlotPos = self._job:getWorkerSlot(jobSlotIndex)
-            local texDef = self._gameGrid.defaultTileset
-            local frameWidth = texDef:getFrameWidth()
-            local frameHeight = texDef:getFrameHeight()
-            local dir = self:coordToPos(self._job:getStartLocation()) - t.localPosition
+            local sLoc = self:coordToPos(self._job:getStartLocation())
+            local dir = sLoc - t.localPosition 
             dir:normalize()
-            local angle = math.atan2(-dir.x, dir.y)
-            jobSlotPos:rotate(angle)
 
-            self._targetPoint = t.localPosition + Vec3f(
-                frameWidth * (jobSlotPos.x / 2),
-                frameHeight * (jobSlotPos.y / 2),
-                self._depth
-                )
-            
+            self._targetPoint = sLoc - (dir * self._miningRange)
+            LuaDebug.Log("TargetPoint: " .. tostring(self._targetPoint))
         end
     end
 
@@ -146,9 +136,11 @@ function WorkBot:update(deltaTime)
             self._miningAnimGo.renderer.renderEnabled = false
             self._job = nil
         end
-        if t.localPosition:distance(self._targetPoint) < self._elipsis then
+
+        if self._targetPoint ~= nil and t.localPosition:distance(self._targetPoint) < self._elipsis then
             self._targetPoint = nil
         end
+        
     end
 
     if self._targetPoint ~= nil then
@@ -159,6 +151,7 @@ function WorkBot:update(deltaTime)
         t.localPosition = t.localPosition + Vec3f(v.x, v.y, 0);
         local angle = math.atan2(direction.x, -direction.y)
         t.localRotation = Quatf(0,0,angle)
+
     end
 
     
