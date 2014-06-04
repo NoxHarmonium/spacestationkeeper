@@ -37,6 +37,8 @@ function WorkBot:setup()
     t.localScale = Vec3f(0.4, 0.4, 0.4)
     AddGameObject(self._miningAnimGo)
     r.renderEnabled = false
+
+    self:addBehaviour(AvoidOtherBotsBehaviour())
 end
 
 function WorkBot:getCoord()

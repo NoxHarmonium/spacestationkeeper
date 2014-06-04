@@ -15,6 +15,7 @@
 #include "BotManager.h"
 #include "BotBehaviourWrapper.h"
 #include <iterator_ptr_policy.hpp>
+#include "luabind/operator.hpp"
 
 // Forward Decs
 class JobManager;
@@ -40,6 +41,7 @@ template <> struct ClassBinder<Bot> {
                .def("addBehaviour", &Bot::addBehaviour)
                .def("removeBehaviour", &Bot::removeBehaviour)
                .def("getBehaviours", &Bot::getBehaviours)
+               .def(self == self)
                .enum_("constants")[
                  value("WaitingForJob", 0),
                  value("MovingToJob", 1),
@@ -70,7 +72,8 @@ template <> struct ClassBinder<BotManager> {
              .def("getPath", (CoordListRef (BotManager::*)(Vec2i, Vec2i, int)) &
                                  BotManager::getPath,
                   return_stl_iterator)
-             .def("isPassable", &BotManager::isPassable)];
+             .def("isPassable", &BotManager::isPassable)
+             .def("getBots", &BotManager::getBots, return_stl_iterator)];
   }
 };
 

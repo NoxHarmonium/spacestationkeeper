@@ -89,6 +89,17 @@ bool BotManager::isPassable(Vec2i coord) {
   return (_passableCoords.count(coord) > 0);
 }
 
+BotListRef BotManager::getBots(Vec3f center, float radius) {
+  BotListRef botList = make_shared<BotList>();
+  for (BotRef bot : _bots) {
+    if (bot->gameObject->renderer->transform->localPosition.distance(center) <
+        radius) {
+      botList->push_back(bot);
+    }
+  }
+  return botList;
+}
+
 void BotManager::update(float deltaTime) {
   assignJobs();
   moveBots();

@@ -51,4 +51,9 @@ private:
 
 typedef std::shared_ptr<Bot> BotRef;
 
+// Needed for Lua to compare instances
+bool operator==(const Bot &a, const Bot &b);
+// Needed for Lua to print address
+std::ostream &operator<<(std::ostream &lhs, const Bot &rhs);
+
 #endif

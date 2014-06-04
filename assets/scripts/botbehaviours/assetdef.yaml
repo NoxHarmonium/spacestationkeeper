@@ -4,3 +4,4 @@ type:           Script
 order:          1
 sources:
     - GotoLocationBehaviour.lua
+    - AvoidOtherBotsBehaviour.lua

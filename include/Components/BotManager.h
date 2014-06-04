@@ -18,9 +18,13 @@
 #include "JobManager.h"
 #include "CoordSearch.h"
 #include "GameObject.h"
+#include <list>
 
 using namespace std;
 using namespace ci;
+
+typedef list<BotRef> BotList;
+typedef std::shared_ptr<BotList> BotListRef;
 
 /*! The BotManager is class that helps the autonomous bots coordinate with other
  * bots and navigate. */
@@ -41,6 +45,7 @@ public:
   CoordListRef getPath(Vec2i source, Vec2i destination);
   CoordListRef getPath(Vec2i source, Vec2i destination, int radius);
   bool isPassable(Vec2i coord);
+  BotListRef getBots(Vec3f center, float radius);
 
   // GameComponent Methods
   void update(float deltaTime) override;
