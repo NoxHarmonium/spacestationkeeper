@@ -98,7 +98,7 @@ function GameGrid:keyUp(keyEvent)
             -- TODO: Wrap up this logic in some sort of factory method/etc
 
             local workBotGo = GameObject()
-            local workBotComp = WorkBot(self, coord)
+            local workBotComp = WorkBot(self, coord, self.workBotMiningAnimSet)
             local workBotAnim = AnimatedSprite()
             LuaDebug.Log('self.workBotAnimationSet == nil: ' .. tostring(self.workBotAnimationSet == nil))
             LuaDebug.Log('typename: ' .. class_info(self.workBotAnimationSet).name)

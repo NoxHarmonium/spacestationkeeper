@@ -2,8 +2,9 @@
 class 'WorkBot' (Bot)
 
 local round = require 'round'
+local pi = 3.14 -- todo: Global constant?
 
-function WorkBot:__init(gameGrid, homeCoord)
+function WorkBot:__init(gameGrid, homeCoord, miningAnimSet)
     Bot.__init(self)
     LuaDebug.Log('WorkBot:__init() called!')
 
@@ -14,11 +15,27 @@ function WorkBot:__init(gameGrid, homeCoord)
     self._coord = homeCoord
     self._depth = 30  
     self._elipsis = 1
+    self._miningAnimSet = miningAnimSet
 end
 
 function WorkBot:setup()
     local renderer = self.gameObject.renderer
     renderer.transform.localPosition = self:coordToPos(self._homeCoord)
+
+    -- Animation Setup
+    self._miningAnimGo = GameObject()
+    self._miningAnimComp = AnimatedSprite()
+    self._miningAnimGo:addComponent(self._miningAnimComp)
+    self._miningAnimComp:setAnimationSet(self._miningAnimSet)
+    self._miningAnimComp:play()
+    local r = self._miningAnimGo.renderer
+    local t = r.transform
+    t.parent = renderer.transform
+    t.localPosition = Vec3f(0, -12, 3)
+    t.localRotation = Quatf(0, 0, -pi/2)
+    t.localScale = Vec3f(0.4, 0.4, 0.4)
+    AddGameObject(self._miningAnimGo)
+    r.renderEnabled = false
 end
 
 function WorkBot:getCoord()
@@ -100,6 +117,7 @@ function WorkBot:update(deltaTime)
             self._path = nil
             self._job:activateWorker()
             self._state = Bot.Working
+            self._miningAnimGo.renderer.renderEnabled = true
             
             -- Move to job slot relative to forward
             local jobSlotIndex = self._job:getActiveWorkers() - 1
@@ -125,6 +143,7 @@ function WorkBot:update(deltaTime)
         if self._job:isDone() then
             LuaDebug.Log('WorkBot: Job is finished. Switching to WaitingForJob.')
             self._state = Bot.WaitingForJob
+            self._miningAnimGo.renderer.renderEnabled = false
             self._job = nil
         end
         if t.localPosition:distance(self._targetPoint) < self._elipsis then
