@@ -114,8 +114,11 @@ void ComponentDrivenApp::draw() {
   // Depth sort the vector
   sort(std::begin(vector), std::end(vector),
        [](GameObjectRef a, GameObjectRef b) {
-    return b->renderer->transform->localPosition.z >
-           a->renderer->transform->localPosition.z;
+    float z0 =
+        a->renderer->transform->getTransformMatrixLocal().getTranslate().z;
+    float z1 =
+        b->renderer->transform->getTransformMatrixLocal().getTranslate().z;
+    return z0 < z1;
   });
 
   // Draw in order
