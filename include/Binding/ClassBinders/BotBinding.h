@@ -13,6 +13,7 @@
 #include "Bot.h"
 #include "BotWrapper.h"
 #include "BotManager.h"
+#include "BotBehaviourWrapper.h"
 #include <iterator_ptr_policy.hpp>
 
 // Forward Decs
@@ -67,6 +68,17 @@ template <> struct ClassBinder<BotManager> {
                                  BotManager::getPath,
                   return_stl_iterator)
              .def("isPassable", &BotManager::isPassable)];
+  }
+};
+
+template <> struct ClassBinder<BotBehaviour> {
+  // Game component can be inherited from in LUA to make components so it is
+  // special and has a wrapper
+
+  static void Bind(const char *name, lua_State *L) {
+    luabind::module(
+        L)[luabind::class_<BotBehaviour, BotBehaviourWrapper, BotBehaviourRef>(
+               name).def("getForce", &BotBehaviour::getForce)];
   }
 };
 

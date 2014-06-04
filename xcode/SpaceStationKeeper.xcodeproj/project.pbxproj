@@ -174,6 +174,8 @@
 		9E5D3B111922DB2F0011FA66 /* JobBinder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JobBinder.h; sourceTree = "<group>"; };
 		9E619794192D18B60013CB63 /* AnimationDef.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnimationDef.h; sourceTree = "<group>"; };
 		9E619795192D19BB0013CB63 /* AnimationDef.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AnimationDef.cpp; sourceTree = "<group>"; };
+		9E6CDADE193F5157005C9380 /* BotBehaviour.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BotBehaviour.h; sourceTree = "<group>"; };
+		9E6CDADF193F51EB005C9380 /* BotBehaviourWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BotBehaviourWrapper.h; sourceTree = "<group>"; };
 		9E72B0E5190C4E3400F9935A /* RenderInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RenderInfo.h; sourceTree = "<group>"; };
 		9E74DA881930F4A8006B323E /* Sprite.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Sprite.h; sourceTree = "<group>"; };
 		9E74DA891930F57C006B323E /* Sprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sprite.cpp; sourceTree = "<group>"; };
@@ -385,6 +387,7 @@
 				9E173FA9193599AF00313618 /* BotManager.h */,
 				9E173FAA19359AC800313618 /* Bot.h */,
 				9E173FB21936A59400313618 /* CoordSearch.h */,
+				9E6CDADE193F5157005C9380 /* BotBehaviour.h */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -476,6 +479,7 @@
 				9E2816E9191AA60400F5E95C /* GameComponentWrapper.h */,
 				9E5D3B101922D8AC0011FA66 /* JobWrapper.h */,
 				9E173FB11936500800313618 /* BotWrapper.h */,
+				9E6CDADF193F51EB005C9380 /* BotBehaviourWrapper.h */,
 			);
 			path = Wrappers;
 			sourceTree = "<group>";
