@@ -35,7 +35,7 @@ function MiningJob:getProgress()
 end
 
 function MiningJob:update(deltaTime)
-    local workPerSecond = self._workUnitPerWorker * self:getWorkerCount() 
+    local workPerSecond = self._workUnitPerWorker * self:getActiveWorkers() 
     local workRate = workPerSecond * deltaTime
     self._workUnitProgress = self._workUnitProgress + workRate
 

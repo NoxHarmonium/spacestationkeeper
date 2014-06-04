@@ -37,6 +37,9 @@ public:
   void allocateWorker();
   void deallocateWorker();
   int getWorkerCount();
+  void activateWorker();
+  void deactivateWorker();
+  int getActiveWorkers();
 
   void assignResources(ResourceAllocation allocation);
   void removeResources(ResourceAllocation allocation);
@@ -45,6 +48,7 @@ public:
 private:
   ResourceAllocation _resources;
   int _workerCount = 0;
+  int _activeWorkerCount = 0;
 };
 
 typedef std::shared_ptr<Job> JobRef;

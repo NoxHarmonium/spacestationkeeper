@@ -37,7 +37,10 @@ template <> struct ClassBinder<Job> {
                .def("deallocateWorker", &Job::deallocateWorker)
                .def("getWorkerCount", &Job::getWorkerCount)
                .def("getWorkerSlot", &Job::getWorkerSlot)
-               .def("getMaxWorkers", &Job::getMaxWorkers)];
+               .def("getMaxWorkers", &Job::getMaxWorkers)
+               .def("activateWorker", &Job::activateWorker)
+               .def("deactivateWorker", &Job::deactivateWorker)
+               .def("getActiveWorkers", &Job::getActiveWorkers)];
   }
 };
 

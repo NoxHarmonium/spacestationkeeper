@@ -21,7 +21,7 @@ public:
   ~JobManager() {}
 
   // Getters/Setters
-  vector<JobRef> getActiveJobs();
+  vector<JobRef> getActiveJobs(bool filterFullJobs);
 
   // Methods
   void registerJob(JobRef job);

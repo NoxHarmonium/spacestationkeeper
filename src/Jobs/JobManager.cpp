@@ -61,12 +61,13 @@ void JobManager::cancelJob(JobRef job) {
   }
 }
 
-vector<JobRef> JobManager::getActiveJobs() {
+vector<JobRef> JobManager::getActiveJobs(bool filterFullJobs) {
   vector<JobRef> pendingJobs;
   for (auto &kvp : _registeredJobs) {
     JobRef job = kvp.first;
     JobState state = kvp.second;
-    if (state == JobState::Running) {
+    if (state == JobState::Running &&
+        (!filterFullJobs || job->getWorkerCount() < job->getMaxWorkers())) {
       pendingJobs.push_back(job);
     }
   }

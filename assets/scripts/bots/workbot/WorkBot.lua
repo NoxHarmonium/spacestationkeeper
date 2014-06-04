@@ -56,10 +56,12 @@ end
 function WorkBot:acceptJob(job)
     LuaDebug.Log('Accepting job. State == WorkBot.States.MOVING_TO_JOB')
     if (self._state == Bot.Working) then
+        self._job:deactivateWorker()
         self._job:deallocateWorker()
     end
 
     self._job = job
+    self._job:allocateWorker()
     self._state = Bot.MovingToJob
     self._targetPoint = nil
     self._path = nil
@@ -96,11 +98,11 @@ function WorkBot:update(deltaTime)
         if self._targetPoint == nil and self._state == Bot.MovingToJob then
             LuaDebug.Log('WorkBot: Target point reached. Switching to Working.')
             self._path = nil
+            self._job:activateWorker()
             self._state = Bot.Working
-            self._job:allocateWorker()
             
             -- Move to job slot relative to forward
-            local jobSlotIndex = self._job:getWorkerCount() - 1
+            local jobSlotIndex = self._job:getActiveWorkers() - 1
             local jobSlotPos = self._job:getWorkerSlot(jobSlotIndex)
             local texDef = self._gameGrid.defaultTileset
             local frameWidth = texDef:getFrameWidth()

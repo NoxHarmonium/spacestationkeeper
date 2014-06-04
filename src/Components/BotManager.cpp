@@ -68,12 +68,13 @@ CoordListRef BotManager::getPath(Vec2i source, Vec2i destination, int radius) {
   bool success = CoordSearch::findPath(source, destination, getCostFunction(),
                                        steps, radius);
   if (!success) {
-    cout << "Cannot find path to destination: (" << source << "-" << destination
-         << ")" << endl;
+    // cout << "Cannot find path to destination: (" << source << "-" <<
+    // destination
+    //     << ")" << endl;
     return nullptr;
   }
-  cout << "BotManager::getPath(" << source << ", " << destination << ", "
-       << radius << "):" << endl;
+  // cout << "BotManager::getPath(" << source << ", " << destination << ", "
+  //     << radius << "):" << endl;
   cout << "--start path--" << endl;
   for (Vec2i &coord : *steps) {
     cout << ", step: " << coord;
@@ -105,7 +106,7 @@ std::function<float(Vec2i)> BotManager::getCostFunction() {
 }
 
 void BotManager::assignJobs() {
-  vector<JobRef> pendingJobs = _jobManager->getActiveJobs();
+  vector<JobRef> pendingJobs = _jobManager->getActiveJobs(true);
 
   vector<std::tuple<float, BotRef, JobRef>> candidateBots;
 
@@ -136,7 +137,8 @@ void BotManager::assignJobs() {
   for (auto &t : candidateBots) {
     BotRef bot = std::get<1>(t);
     JobRef job = std::get<2>(t);
-    if (availableBots.count(bot) > 0) {
+    if (availableBots.count(bot) > 0 &&
+        job->getWorkerCount() < job->getMaxWorkers()) {
       cout << "Bot: " << bot << " acceptJob: " << job << endl;
       bot->acceptJob(job);
       availableBots.erase(bot);

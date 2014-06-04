@@ -41,3 +41,19 @@ void Job::removeResources(ResourceAllocation allocation) {
 }
 
 ResourceAllocation Job::getResourceAllocation() { return _resources; }
+
+void Job::activateWorker() {
+  _activeWorkerCount++;
+  if (_activeWorkerCount > _workerCount) {
+    throw runtime_error(
+        "Activated more workers than are allocated to this job.");
+  }
+}
+void Job::deactivateWorker() {
+  _activeWorkerCount--;
+  if (_activeWorkerCount < 0) {
+    throw runtime_error(
+        "Deactivated more workers than are allocated to this job.");
+  }
+}
+int Job::getActiveWorkers() { return _activeWorkerCount; }
