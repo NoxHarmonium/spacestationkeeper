@@ -9,7 +9,8 @@
 #include "CoordSearch.h"
 
 namespace BlazeEngine {
-namespace Components {
+namespace AI {
+namespace Pathing {
 
 // CoordSearchNode::*
 
@@ -143,6 +144,7 @@ bool CoordSearch::findPath(Vec2i origin, Vec2i goal, CostFunction costFunction,
 
   aStarSearch.EnsureMemoryFreed();
   return success;
+}
 }
 }
 }

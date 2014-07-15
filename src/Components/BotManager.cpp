@@ -27,7 +27,7 @@ void BotManager::addBot(BotRef bot) { _bots.insert(bot); }
 void BotManager::removeBot(BotRef bot) { _bots.erase(bot); }
 
 float BotManager::distanceTo(Vec2i source, Vec2i destination) {
-  CoordListRef path = getPath(source, destination);
+  AI::Pathing::PathRef path = getPath(source, destination);
   if (path == nullptr) {
     cout << "Cannot get distance to destination if path cannot be found!"
          << endl;
@@ -38,7 +38,7 @@ float BotManager::distanceTo(Vec2i source, Vec2i destination) {
 }
 
 float BotManager::distanceTo(Vec2i source, Vec2i destination, int radius) {
-  CoordListRef path = getPath(source, destination, radius);
+  AI::Pathing::PathRef path = getPath(source, destination, radius);
   if (path == nullptr) {
     cout << "Cannot get distance to destination if path cannot be found!"
          << endl;
@@ -48,11 +48,11 @@ float BotManager::distanceTo(Vec2i source, Vec2i destination, int radius) {
   return (float)path->size();
 }
 
-CoordListRef BotManager::getPath(Vec2i source, Vec2i destination) {
-  CoordListRef steps =
-      make_shared<CoordList>(); // Set path radius to width of corridor
-  bool success =
-      CoordSearch::findPath(source, destination, getCostFunction(), steps);
+AI::Pathing::PathRef BotManager::getPath(Vec2i source, Vec2i destination) {
+  AI::Pathing::PathRef steps = make_shared<
+      AI::Pathing::Path<>>(); // Set path radius to width of corridor
+  bool success = AI::Pathing::CoordSearch::findPath(source, destination,
+                                                    getCostFunction(), steps);
   if (!success) {
     cout << "Cannot find path to destination: (" << source << "-" << destination
          << ")" << endl;
@@ -62,18 +62,19 @@ CoordListRef BotManager::getPath(Vec2i source, Vec2i destination) {
   cout << "BotManager::getPath(" << source << ", " << destination
        << "):" << endl;
   cout << "--start path--" << endl;
-  for (Vec2i &coord : *steps) {
+  for (Vec2f &coord : *steps) {
     cout << "step: " << coord;
   }
   cout << endl << "--end path--" << endl;
   return steps;
 }
 
-CoordListRef BotManager::getPath(Vec2i source, Vec2i destination, int radius) {
-  CoordListRef steps =
-      make_shared<CoordList>(); // TODO: Set path radius to width of corridor
-  bool success = CoordSearch::findPath(source, destination, getCostFunction(),
-                                       steps, radius);
+AI::Pathing::PathRef BotManager::getPath(Vec2i source, Vec2i destination,
+                                         int radius) {
+  AI::Pathing::PathRef steps = make_shared<
+      AI::Pathing::Path<>>(); // TODO: Set path radius to width of corridor
+  bool success = AI::Pathing::CoordSearch::findPath(
+      source, destination, getCostFunction(), steps, radius);
   if (!success) {
     // cout << "Cannot find path to destination: (" << source << "-" <<
     // destination
@@ -83,7 +84,7 @@ CoordListRef BotManager::getPath(Vec2i source, Vec2i destination, int radius) {
   // cout << "BotManager::getPath(" << source << ", " << destination << ", "
   //     << radius << "):" << endl;
   cout << "--start path--" << endl;
-  for (Vec2i &coord : *steps) {
+  for (Vec2f &coord : *steps) {
     cout << ", step: " << coord;
   }
   cout << endl << "--end path--" << endl;

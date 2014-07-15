@@ -36,17 +36,19 @@ class Path : public std::list<Vec2<NumericType>> {
   typedef bgm::linestring<PointType> LineString;
 
 public:
-  CoordList() {
-    _cumulativeDistance = {0.0f};
+  Path() {
+    _cumulativeDistance = {0.0};
   }
-  virtual ~CoordList() {}
+  virtual ~Path() {}
 
   void appendCoord(PointType coord) {
     _lineString.push_back(coord);
     int coordCount = _lineString.size();
     if (coordCount > 1) {
       PointType prevCoord = _lineString[coordCount - 1];
-      _cumulativeDistance.push_back(geo::distance(prevCoord, coord));
+      float prevDistance = _cumulativeDistance.back();
+      float cDistance = prevDistance + geo::distance(prevCoord, coord);
+      _cumulativeDistance.push_back(cDistance);
     }
   }
 
@@ -99,10 +101,10 @@ private:
   LineString _lineString;
   vector<NumericType> _cumulativeDistance;
 };
-}
-}
-}
 
 typedef std::shared_ptr<Path<>> PathRef;
+}
+}
+}
 
 #endif

@@ -21,7 +21,6 @@
 		9E0E1E8219048917009EECFD /* BindingManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E0E1E8019048917009EECFD /* BindingManager.cpp */; };
 		9E10054B18EA355F00EC5213 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = 9E10054A18EA355F00EC5213 /* assets */; };
 		9E173FAD19359B7900313618 /* BotManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E173FAB19359B7900313618 /* BotManager.cpp */; };
-		9E173FB51936AAD000313618 /* CoordSearch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E173FB31936AAD000313618 /* CoordSearch.cpp */; };
 		9E1B33DC19329A75006C3F8C /* AnimatedSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E1B33DA19329A75006C3F8C /* AnimatedSprite.cpp */; };
 		9E2816E8191AA1B000F5E95C /* GameObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E2816E6191AA1B000F5E95C /* GameObject.cpp */; };
 		9E2816F1191AA9AC00F5E95C /* liblua.5.1.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E2816EB191AA98000F5E95C /* liblua.5.1.5.dylib */; };
@@ -50,6 +49,7 @@
 		9E6CDAF3194249CC005C9380 /* CoordList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E6CDAF1194249CC005C9380 /* CoordList.cpp */; };
 		9E6CDAF619427ABF005C9380 /* SteeringTarget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E6CDAF419427ABF005C9380 /* SteeringTarget.cpp */; };
 		9E74DA8B1930F57C006B323E /* Sprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E74DA891930F57C006B323E /* Sprite.cpp */; };
+		9E82AC421975D0D500A2A4D5 /* CoordSearch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E82AC411975D0D500A2A4D5 /* CoordSearch.cpp */; };
 		9E92628F18D48232001AB5D6 /* GameComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E92628E18D48232001AB5D6 /* GameComponent.cpp */; };
 		9E92629218D4EDA0001AB5D6 /* ComponentDrivenApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E92629118D4EDA0001AB5D6 /* ComponentDrivenApp.cpp */; };
 		9EA476CA18F7589A00C6BD1D /* EnumHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EA476C818F7589A00C6BD1D /* EnumHelper.cpp */; };
@@ -120,7 +120,6 @@
 		9E173FB019364FA700313618 /* BotBinding.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BotBinding.h; sourceTree = "<group>"; };
 		9E173FB11936500800313618 /* BotWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BotWrapper.h; sourceTree = "<group>"; };
 		9E173FB21936A59400313618 /* CoordSearch.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoordSearch.h; sourceTree = "<group>"; };
-		9E173FB31936AAD000313618 /* CoordSearch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CoordSearch.cpp; sourceTree = "<group>"; };
 		9E1AE48B191E80E10083E6D2 /* BatchedMeshBinder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BatchedMeshBinder.h; sourceTree = "<group>"; };
 		9E1AE48C191EA3E20083E6D2 /* EnumHelperBinder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EnumHelperBinder.h; sourceTree = "<group>"; };
 		9E1AE48D191EB8F00083E6D2 /* UtilsBinder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UtilsBinder.h; sourceTree = "<group>"; };
@@ -195,6 +194,7 @@
 		9E74DA881930F4A8006B323E /* Sprite.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Sprite.h; sourceTree = "<group>"; };
 		9E74DA891930F57C006B323E /* Sprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sprite.cpp; sourceTree = "<group>"; };
 		9E74DA8C1930FB9C006B323E /* SpriteBinder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpriteBinder.h; sourceTree = "<group>"; };
+		9E82AC411975D0D500A2A4D5 /* CoordSearch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CoordSearch.cpp; sourceTree = "<group>"; };
 		9E92628E18D48232001AB5D6 /* GameComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameComponent.cpp; sourceTree = "<group>"; };
 		9E92629118D4EDA0001AB5D6 /* ComponentDrivenApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ComponentDrivenApp.cpp; sourceTree = "<group>"; };
 		9EA476C818F7589A00C6BD1D /* EnumHelper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EnumHelper.cpp; sourceTree = "<group>"; };
@@ -405,7 +405,6 @@
 				9E1B33D91932979D006C3F8C /* AnimatedSprite.h */,
 				9E173FA9193599AF00313618 /* BotManager.h */,
 				9E173FAA19359AC800313618 /* Bot.h */,
-				9E173FB21936A59400313618 /* CoordSearch.h */,
 				9E6CDADE193F5157005C9380 /* BotBehaviour.h */,
 			);
 			path = Components;
@@ -527,6 +526,7 @@
 		9E6CDAE619423DAE005C9380 /* AI */ = {
 			isa = PBXGroup;
 			children = (
+				9E82AC401975D0B300A2A4D5 /* Pathing */,
 				9E6CDAE719423DB9005C9380 /* Steering */,
 			);
 			path = AI;
@@ -543,6 +543,14 @@
 			path = Steering;
 			sourceTree = "<group>";
 		};
+		9E82AC401975D0B300A2A4D5 /* Pathing */ = {
+			isa = PBXGroup;
+			children = (
+				9E82AC411975D0D500A2A4D5 /* CoordSearch.cpp */,
+			);
+			path = Pathing;
+			sourceTree = "<group>";
+		};
 		9E92628C18D47F87001AB5D6 /* Components */ = {
 			isa = PBXGroup;
 			children = (
@@ -557,7 +565,6 @@
 				9E74DA891930F57C006B323E /* Sprite.cpp */,
 				9E1B33DA19329A75006C3F8C /* AnimatedSprite.cpp */,
 				9E173FAB19359B7900313618 /* BotManager.cpp */,
-				9E173FB31936AAD000313618 /* CoordSearch.cpp */,
 				9E6CDAE0193F5404005C9380 /* Bot.cpp */,
 			);
 			path = Components;
@@ -573,6 +580,7 @@
 		9EB0C88F1945F741008F72D0 /* Pathing */ = {
 			isa = PBXGroup;
 			children = (
+				9E173FB21936A59400313618 /* CoordSearch.h */,
 				9E6CDAF01942489B005C9380 /* Path.h */,
 				9EB0C8901945F780008F72D0 /* GameGraph.h */,
 			);
@@ -738,6 +746,7 @@
 				9EDF4D021929659E0051DCE3 /* TileDef.cpp in Sources */,
 				9E173FAD19359B7900313618 /* BotManager.cpp in Sources */,
 				9E0E1E8219048917009EECFD /* BindingManager.cpp in Sources */,
+				9E82AC421975D0D500A2A4D5 /* CoordSearch.cpp in Sources */,
 				9E6CDAEA19423DDC005C9380 /* SteeringBehaviour.cpp in Sources */,
 				9E36F88619180E8F0098B3C0 /* Transform.cpp in Sources */,
 				9EB951ED19152837003B5FED /* AssetDefBase.cpp in Sources */,
@@ -757,7 +766,6 @@
 				9E92629218D4EDA0001AB5D6 /* ComponentDrivenApp.cpp in Sources */,
 				9EEE83E218E8FAEB006F2B49 /* FileAssetLoader.cpp in Sources */,
 				9ED6DF6A190F58BC002D286C /* Job.cpp in Sources */,
-				9E173FB51936AAD000313618 /* CoordSearch.cpp in Sources */,
 				9E6CDAF3194249CC005C9380 /* CoordList.cpp in Sources */,
 				9E3AF3F5190DBBC6001007F4 /* RenderInfo.cpp in Sources */,
 				9E2816E8191AA1B000F5E95C /* GameObject.cpp in Sources */,

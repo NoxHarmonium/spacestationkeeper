@@ -66,25 +66,27 @@ template <> struct ClassBinder<BotManager> {
   // special and has a wrapper
 
   static void Bind(const char *name, lua_State *L) {
-    luabind::module(L)
-        [luabind::class_<BotManager, BotManagerRef>(name)
-             .def(luabind::constructor<JobManagerRef>())
-             .def("addCoord", &BotManager::addCoord)
-             .def("removeCoord", &BotManager::removeCoord)
-             .def("addBot", &BotManager::addBot)
-             .def("removeBot", &BotManager::removeBot)
-             .def("distanceTo", (float (BotManager::*)(Vec2i, Vec2i)) &
-                                    BotManager::distanceTo)
-             .def("distanceTo", (float (BotManager::*)(Vec2i, Vec2i, int)) &
-                                    BotManager::distanceTo)
-             .def("getPath", (CoordListRef (BotManager::*)(Vec2i, Vec2i)) &
-                                 BotManager::getPath,
-                  return_stl_iterator)
-             .def("getPath", (CoordListRef (BotManager::*)(Vec2i, Vec2i, int)) &
-                                 BotManager::getPath,
-                  return_stl_iterator)
-             .def("isPassable", &BotManager::isPassable)
-             .def("getBots", &BotManager::getBots, return_stl_iterator)];
+    luabind::module(
+        L)[luabind::class_<BotManager, BotManagerRef>(name)
+               .def(luabind::constructor<JobManagerRef>())
+               .def("addCoord", &BotManager::addCoord)
+               .def("removeCoord", &BotManager::removeCoord)
+               .def("addBot", &BotManager::addBot)
+               .def("removeBot", &BotManager::removeBot)
+               .def("distanceTo", (float (BotManager::*)(Vec2i, Vec2i)) &
+                                      BotManager::distanceTo)
+               .def("distanceTo", (float (BotManager::*)(Vec2i, Vec2i, int)) &
+                                      BotManager::distanceTo)
+               .def("getPath",
+                    (AI::Pathing::PathRef (BotManager::*)(Vec2i, Vec2i)) &
+                        BotManager::getPath,
+                    return_stl_iterator)
+               .def("getPath",
+                    (AI::Pathing::PathRef (BotManager::*)(Vec2i, Vec2i, int)) &
+                        BotManager::getPath,
+                    return_stl_iterator)
+               .def("isPassable", &BotManager::isPassable)
+               .def("getBots", &BotManager::getBots, return_stl_iterator)];
   }
 };
 

@@ -17,6 +17,7 @@
 #include "Job.h"
 #include "JobManager.h"
 #include "CoordSearch.h"
+#include "Path.h"
 #include "GameObject.h"
 #include <list>
 
@@ -45,8 +46,8 @@ public:
 
   float distanceTo(Vec2i source, Vec2i destination);
   float distanceTo(Vec2i source, Vec2i destination, int radius);
-  CoordListRef getPath(Vec2i source, Vec2i destination);
-  CoordListRef getPath(Vec2i source, Vec2i destination, int radius);
+  AI::Pathing::PathRef getPath(Vec2i source, Vec2i destination);
+  AI::Pathing::PathRef getPath(Vec2i source, Vec2i destination, int radius);
   bool isPassable(Vec2i coord);
   BotListRef getBots(Vec3f center, float radius);
 
@@ -58,7 +59,7 @@ protected:
   set<Vec2i, VecComparison> _passableCoords;
   set<BotRef> _bots;
   JobManagerRef _jobManager;
-  map<BotRef, CoordListRef> _botPathCache;
+  map<BotRef, AI::Pathing::PathRef> _botPathCache;
   float _moveThreshold =
       0.1f; // Amount the bot has to be moving to be considered moving
 

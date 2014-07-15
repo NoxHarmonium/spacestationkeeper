@@ -11,13 +11,15 @@
 
 #include <stlastar.h>
 #include <functional>
+#include "Path.h"
 
 namespace BlazeEngine {
-namespace Components {
+namespace AI {
+namespace Pathing {
 
 using namespace ci;
 
-typedef std::list<Vec2i> CoordList;
+typedef Path<float> CoordList;
 typedef std::shared_ptr<CoordList> CoordListRef;
 typedef std::function<float(Vec2i)> CostFunction;
 
@@ -59,6 +61,7 @@ public:
   static bool findPath(Vec2i origin, Vec2i goal, CostFunction costFunction,
                        CoordListRef steps, int radius);
 };
+}
 }
 }
 #endif
