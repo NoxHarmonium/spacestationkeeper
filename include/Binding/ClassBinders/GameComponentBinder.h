@@ -14,6 +14,12 @@
 #include "GameComponentWrapper.h"
 #include <luabind/iterator_ptr_policy.hpp>
 
+namespace BlazeEngine {
+namespace Binding {
+namespace ClassBinders {
+
+using namespace BlazeEngine::Binding::Wrappers;
+
 template <> struct ClassBinder<SerialisedField> {
   // Game component can be inherited from in LUA to make components so it is
   // special and has a wrapper
@@ -94,6 +100,9 @@ template <> struct ClassBinder<GameComponent> {
              ]];
   }
 };
+}
+}
+}
 /*
 template <> struct ClassBinder<vector<GameComponentRef>> {
   static void Bind(const char *name, lua_State *L) {

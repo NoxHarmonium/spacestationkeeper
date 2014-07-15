@@ -14,6 +14,9 @@
 #include "cinder/gl/gl.h"
 #include "Transform.h"
 
+namespace BlazeEngine {
+namespace Components {
+
 class GameCamera : public GameComponent {
 public:
   GameCamera();
@@ -22,5 +25,7 @@ public:
 private:
   ci::CameraOrtho _camera;
 };
+}
+}
 
 #endif /* defined(__SpaceStationKeeper__Camera__) */

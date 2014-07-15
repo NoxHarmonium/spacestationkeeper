@@ -12,6 +12,11 @@
 #include "GameComponent.h"
 #include "Job.h"
 
+namespace BlazeEngine {
+namespace Jobs {
+
+using namespace BlazeEngine::Components;
+
 enum JobState { Pending, Running, Finished, Cancelled };
 
 class JobManager : public GameComponent {
@@ -35,5 +40,7 @@ private:
 };
 
 typedef std::shared_ptr<JobManager> JobManagerRef;
+}
+}
 
 #endif

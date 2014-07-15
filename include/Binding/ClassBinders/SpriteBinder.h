@@ -13,6 +13,10 @@
 #include "Sprite.h"
 #include "AnimatedSprite.h"
 
+namespace BlazeEngine {
+namespace Binding {
+namespace ClassBinders {
+
 template <> struct ClassBinder<Sprite> {
   // Game component can be inherited from in LUA to make components so it is
   // special and has a wrapper
@@ -52,5 +56,8 @@ template <> struct ClassBinder<AnimatedSprite> {
                .def("stop", &AnimatedSprite::stop)];
   }
 };
+}
+}
+}
 
 #endif

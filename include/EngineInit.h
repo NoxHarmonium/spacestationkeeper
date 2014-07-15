@@ -20,6 +20,8 @@
 #include "Utils.h"
 #include "BotManager.h"
 
+namespace BlazeEngine {
+
 class EngineInit : public ComponentDrivenApp {
 
 public:
@@ -40,5 +42,6 @@ private:
   BindingManager *_bindingManager;
   std::shared_ptr<FileAssetLoader> _fileAssetLoader;
 };
+}
 
 #endif

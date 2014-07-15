@@ -11,6 +11,9 @@
 #include "BotBehaviour.h"
 #include <math.h>
 
+namespace BlazeEngine {
+namespace Components {
+
 BotManager::BotManager(JobManagerRef jobManager) : _jobManager(jobManager) {}
 
 BotManager::~BotManager() {}
@@ -46,7 +49,8 @@ float BotManager::distanceTo(Vec2i source, Vec2i destination, int radius) {
 }
 
 CoordListRef BotManager::getPath(Vec2i source, Vec2i destination) {
-  CoordListRef steps = make_shared<CoordList>();
+  CoordListRef steps =
+      make_shared<CoordList>(); // Set path radius to width of corridor
   bool success =
       CoordSearch::findPath(source, destination, getCostFunction(), steps);
   if (!success) {
@@ -66,7 +70,8 @@ CoordListRef BotManager::getPath(Vec2i source, Vec2i destination) {
 }
 
 CoordListRef BotManager::getPath(Vec2i source, Vec2i destination, int radius) {
-  CoordListRef steps = make_shared<CoordList>();
+  CoordListRef steps =
+      make_shared<CoordList>(); // TODO: Set path radius to width of corridor
   bool success = CoordSearch::findPath(source, destination, getCostFunction(),
                                        steps, radius);
   if (!success) {
@@ -177,4 +182,6 @@ void BotManager::moveBots() {
       t->localRotation = Quatf(0.0f, 0.0f, angle);
     }
   }
+}
+}
 }

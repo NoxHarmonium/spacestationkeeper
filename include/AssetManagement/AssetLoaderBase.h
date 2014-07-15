@@ -14,6 +14,9 @@
 #include "AssetType.h"
 #include "filesystem.hpp"
 
+namespace BlazeEngine {
+namespace AssetManagement {
+
 using namespace std;
 using namespace boost;
 
@@ -54,5 +57,7 @@ private:
   /*! Maps asset types and assetRef strings to assetRefs. */
   map<string, AssetDefBaseRef> _assetMap;
 };
+}
+}
 
 #endif /* defined(__SpaceStationKeeper__AssetLoaderBase__) */

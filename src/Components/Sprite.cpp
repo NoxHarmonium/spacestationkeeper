@@ -13,6 +13,9 @@
 #include "Material.h"
 #include <stdexcept>
 
+namespace BlazeEngine {
+namespace Components {
+
 // Constructors/Destructors
 Sprite::Sprite() : GameComponent() {}
 
@@ -136,3 +139,5 @@ void Sprite::releaseCache() {
 // Static Fields
 
 map<TextureDefRef, SpriteCacheEntryPtr> Sprite::_materialCache;
+}
+}

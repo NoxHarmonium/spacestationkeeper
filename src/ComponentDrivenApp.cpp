@@ -8,6 +8,8 @@
 
 #include "ComponentDrivenApp.h"
 
+namespace BlazeEngine {
+
 using namespace YAML;
 using namespace boost;
 
@@ -209,3 +211,4 @@ set<GameObjectRef> ComponentDrivenApp::getRegisteredGameObjectsCopy() {
 }
 
 ComponentDrivenApp *ComponentDrivenApp::_instance = nullptr;
+}

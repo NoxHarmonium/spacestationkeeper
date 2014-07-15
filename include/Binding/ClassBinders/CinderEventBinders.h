@@ -11,6 +11,10 @@
 
 #include "ClassBinder.h"
 
+namespace BlazeEngine {
+namespace Binding {
+namespace ClassBinders {
+
 using namespace ci::app;
 using namespace luabind;
 
@@ -189,5 +193,8 @@ template <> struct ClassBinder<KeyEvent> {
                ]];
   }
 };
+}
+}
+}
 
 #endif

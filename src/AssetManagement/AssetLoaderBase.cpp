@@ -8,6 +8,9 @@
 
 #include "AssetLoaderBase.h"
 
+namespace BlazeEngine {
+namespace AssetManagement {
+
 // Methods
 
 AssetDefBaseRef AssetLoaderBase::loadAsset(string assetRef) {
@@ -37,4 +40,6 @@ void AssetLoaderBase::saveLoadedAsset(string assetRef,
 void AssetLoaderBase::clearLoadedAsset(string assetRef) {
 
   _assetMap.erase(assetRef);
+}
+}
 }

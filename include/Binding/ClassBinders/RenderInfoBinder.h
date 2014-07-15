@@ -9,6 +9,10 @@
 #ifndef SpaceStationKeeper_RenderInfoBinder_h
 #define SpaceStationKeeper_RenderInfoBinder_h
 
+namespace BlazeEngine {
+namespace Binding {
+namespace ClassBinders {
+
 template <> struct ClassBinder<RenderInfo> {
   static void Bind(const char *name, lua_State *L) {
     luabind::module(
@@ -24,5 +28,8 @@ template <> struct ClassBinder<RenderInfo> {
                .def("invalidateBatch", &RenderInfo::invalidateBatch)];
   }
 };
+}
+}
+}
 
 #endif

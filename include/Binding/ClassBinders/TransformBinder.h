@@ -13,20 +13,31 @@
 #include "Transform.h"
 #include "FixStdSharedPtrBind.h"
 
-template <> struct ClassBinder<Transform> {
+namespace BlazeEngine {
+namespace Binding {
+namespace ClassBinders {
+
+namespace Components = BlazeEngine::Components;
+
+template <> struct ClassBinder<Components::Transform> {
   static void Bind(const char *name, lua_State *L) {
-    luabind::module(
-        L)[luabind::class_<Transform, TransformRef>(name)
-               .def(luabind::constructor<>())
-               .def("getTransformMatrixLocal",
-                    &Transform::getTransformMatrixLocal)
-               .def("getTransformMatrixWorld",
-                    &Transform::getTransformMatrixWorld)
-               .def_readwrite("localPosition", &Transform::localPosition)
-               .def_readwrite("localRotation", &Transform::localRotation)
-               .def_readwrite("localScale", &Transform::localScale)
-               .def_readwrite("parent", &Transform::parent)];
+    luabind::module(L)
+        [luabind::class_<Components::Transform, Components::TransformRef>(name)
+             .def(luabind::constructor<>())
+             .def("getTransformMatrixLocal",
+                  &Components::Transform::getTransformMatrixLocal)
+             .def("getTransformMatrixWorld",
+                  &Components::Transform::getTransformMatrixWorld)
+             .def_readwrite("localPosition",
+                            &Components::Transform::localPosition)
+             .def_readwrite("localRotation",
+                            &Components::Transform::localRotation)
+             .def_readwrite("localScale", &Components::Transform::localScale)
+             .def_readwrite("parent", &Components::Transform::parent)];
   }
 };
+}
+}
+}
 
 #endif

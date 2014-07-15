@@ -9,8 +9,12 @@
 #include "BatchedMesh.h"
 #include "NotImplementedException.h"
 
+namespace BlazeEngine {
+namespace Components {
+
 using namespace ci;
 using namespace std;
+using namespace BlazeEngine::Exceptions;
 
 // Constructors/Destructors
 BatchedMesh::BatchedMesh() {}
@@ -132,4 +136,6 @@ void BatchedMesh::regenerateVboMesh(MaterialRef material) {
   for (auto &kvp : _materialBounds) {
     _bounds.include(kvp.second);
   }
+}
+}
 }

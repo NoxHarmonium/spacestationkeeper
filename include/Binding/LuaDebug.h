@@ -12,9 +12,14 @@
 #include <string>
 #include <iostream>
 
+namespace BlazeEngine {
+namespace Binding {
+
 class LuaDebug {
 public:
   static void Log(const std::string &message);
 };
+}
+}
 
 #endif

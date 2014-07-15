@@ -11,13 +11,15 @@
 
 #include <stlastar.h>
 #include <functional>
-#include <list>
+
+namespace BlazeEngine {
+namespace Components {
 
 using namespace ci;
 
-typedef std::function<float(Vec2i)> CostFunction;
-typedef list<Vec2i> CoordList;
+typedef std::list<Vec2i> CoordList;
 typedef std::shared_ptr<CoordList> CoordListRef;
+typedef std::function<float(Vec2i)> CostFunction;
 
 class CoordSearchNode {
 public:
@@ -57,5 +59,6 @@ public:
   static bool findPath(Vec2i origin, Vec2i goal, CostFunction costFunction,
                        CoordListRef steps, int radius);
 };
-
+}
+}
 #endif

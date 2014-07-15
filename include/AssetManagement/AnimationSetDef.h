@@ -13,6 +13,9 @@
 #include "AssetDefBaseT.h"
 #include "AnimationDef.h"
 
+namespace BlazeEngine {
+namespace AssetManagement {
+
 // Type defs
 typedef map<string, AnimationDefRef> AnimationSetMap;
 typedef std::shared_ptr<AnimationSetMap> AnimationSetMapRef;
@@ -54,5 +57,7 @@ typedef std::shared_ptr<AnimationSetDef> AnimationSetDefRef;
 template <> struct GetAssetType<AnimationSetDef> {
   static const AssetType value = AssetType::AnimationSet;
 };
+}
+}
 
 #endif

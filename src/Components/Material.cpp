@@ -8,6 +8,9 @@
 
 #include "Material.h"
 
+namespace BlazeEngine {
+namespace Components {
+
 Material::Material() {
   brightness = 1.0f;
   baseColor = ColorAf(1.0f, 1.0f, 1.0f, 1.0f);
@@ -50,4 +53,6 @@ void Material::unbind() {
 bool operator==(const Material &a, const Material &b) {
   // cout << a.shader << " == " << b.shader << endl;
   return &a == &b;
+}
+}
 }

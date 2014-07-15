@@ -11,6 +11,11 @@
 
 #include "EnumHelper.h"
 
+namespace BlazeEngine {
+namespace DataStructures {
+
+using namespace BlazeEngine::Misc;
+
 class Passibility : public EnumHelper {
 public:
   Passibility() : EnumHelper() {}
@@ -24,5 +29,7 @@ public:
     Unused = 1 << 4
   };
 };
+}
+}
 
 #endif

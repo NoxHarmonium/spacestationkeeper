@@ -16,6 +16,9 @@
 #include "AssetLoaderBase.h"
 #include "Material.h"
 
+namespace BlazeEngine {
+namespace Components {
+
 struct SpriteCacheEntry {
   SpriteCacheEntry(MaterialRef mat) : material(mat), useCount(1) {}
 
@@ -67,5 +70,7 @@ private:
 };
 
 typedef std::shared_ptr<Sprite> SpriteRef;
+}
+}
 
 #endif

@@ -15,6 +15,10 @@
 #include "ShaderDef.h"
 #include "AnimationSetDef.h"
 
+namespace BlazeEngine {
+namespace Binding {
+namespace ClassBinders {
+
 template <> struct ClassBinder<AssetLoaderBase> {
   static void Bind(const char *name, lua_State *L) {
     luabind::module(L)
@@ -33,5 +37,8 @@ template <> struct ClassBinder<AssetLoaderBase> {
              .def("unloadAsset", &AssetLoaderBase::unloadAsset)];
   }
 };
+}
+}
+}
 
 #endif

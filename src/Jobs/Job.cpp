@@ -11,6 +11,9 @@
 #include "Job.h"
 #include <stdexcept>
 
+namespace BlazeEngine {
+namespace Jobs {
+
 void Job::allocateWorker() {
   _workerCount++;
   if (_workerCount > getMaxWorkers()) {
@@ -57,3 +60,5 @@ void Job::deactivateWorker() {
   }
 }
 int Job::getActiveWorkers() { return _activeWorkerCount; }
+}
+}

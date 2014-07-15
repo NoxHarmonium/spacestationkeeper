@@ -14,10 +14,18 @@
 #include "RenderInfo.h"
 #include "BindingManager.h"
 
-using namespace ci::app;
-
+namespace BlazeEngine {
+namespace Binding {
 // Forward Declarations
 class BindingManager;
+}
+}
+
+namespace BlazeEngine {
+namespace Components {
+
+using namespace ci::app;
+using namespace BlazeEngine::Binding;
 
 typedef vector<GameComponentRef> GameComponentList;
 typedef std::shared_ptr<GameComponentList> GameComponentListRef;
@@ -100,5 +108,7 @@ private:
 };
 
 typedef std::shared_ptr<GameObject> GameObjectRef;
+}
+}
 
 #endif

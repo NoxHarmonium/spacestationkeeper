@@ -16,10 +16,21 @@
 #include "BotBehaviourWrapper.h"
 #include <iterator_ptr_policy.hpp>
 #include "luabind/operator.hpp"
+#include "JobManager.h"
 
+namespace BlazeEngine {
+namespace Jobs {
 // Forward Decs
 class JobManager;
 typedef std::shared_ptr<JobManager> JobManagerRef;
+}
+}
+
+namespace BlazeEngine {
+namespace Binding {
+namespace ClassBinders {
+
+using namespace BlazeEngine::Binding::Wrappers;
 
 template <> struct ClassBinder<Bot> {
   // Game component can be inherited from in LUA to make components so it is
@@ -89,5 +100,8 @@ template <> struct ClassBinder<BotBehaviour> {
                .def("getForce", &BotBehaviour::getForce)];
   }
 };
+}
+}
+}
 
 #endif

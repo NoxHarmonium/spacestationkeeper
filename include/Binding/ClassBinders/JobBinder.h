@@ -14,6 +14,12 @@
 #include "JobWrapper.h"
 #include <iterator_ptr_policy.hpp>
 
+namespace BlazeEngine {
+namespace Binding {
+namespace ClassBinders {
+
+using namespace BlazeEngine::Binding::Wrappers;
+
 template <> struct ClassBinder<Job> {
   // Game component can be inherited from in LUA to make components so it is
   // special and has a wrapper
@@ -43,5 +49,8 @@ template <> struct ClassBinder<Job> {
                .def("getActiveWorkers", &Job::getActiveWorkers)];
   }
 };
+}
+}
+}
 
 #endif

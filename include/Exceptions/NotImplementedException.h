@@ -11,6 +11,9 @@
 
 #include <stdexcept>
 
+namespace BlazeEngine {
+namespace Exceptions {
+
 class NotImplementedException : public runtime_error {
 public:
   // Constructors/Destructors
@@ -18,5 +21,7 @@ public:
       : runtime_error("This method has not been implemented yet.") {};
   ~NotImplementedException() {};
 };
+}
+}
 
 #endif

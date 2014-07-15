@@ -16,6 +16,9 @@
 #include "BatchedMesh.h"
 #include "BatchInfo.h"
 
+namespace BlazeEngine {
+namespace Components {
+
 // TODO: Rename to renderer
 class RenderInfo : public GameComponent {
 public:
@@ -76,5 +79,7 @@ private:
 };
 
 typedef std::shared_ptr<RenderInfo> RenderInfoRef;
+}
+}
 
 #endif

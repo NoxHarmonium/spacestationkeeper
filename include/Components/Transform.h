@@ -9,6 +9,9 @@
 #ifndef SpaceStationKeeper_Transform_h
 #define SpaceStationKeeper_Transform_h
 
+namespace BlazeEngine {
+namespace Components {
+
 using namespace ci;
 
 class Transform {
@@ -26,6 +29,9 @@ public:
   Vec3f localScale = Vec3f(1.0f, 1.0f, 1.0f);
   std::shared_ptr<Transform> parent = nullptr;
 
+  // Helper Methods
+  Vec3f getDirection();
+
 private:
   // Methods
   void recursiveApplyTransformMatrix(Transform *transform,
@@ -33,5 +39,7 @@ private:
 };
 
 typedef std::shared_ptr<Transform> TransformRef;
+}
+}
 
 #endif

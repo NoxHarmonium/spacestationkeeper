@@ -11,6 +11,9 @@
 
 #include "TextureDef.h"
 
+namespace BlazeEngine {
+namespace AssetManagement {
+
 using namespace std;
 
 class AnimationDef : public TextureDef {
@@ -61,5 +64,7 @@ typedef std::shared_ptr<AnimationDef> AnimationDefRef;
 template <> struct GetAssetType<AnimationDef> {
   static const AssetType value = AssetType::Animation;
 };
+}
+}
 
 #endif

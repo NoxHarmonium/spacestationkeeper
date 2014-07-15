@@ -10,6 +10,9 @@
 #include <math.h>
 #include "ComponentDrivenApp.h"
 
+namespace BlazeEngine {
+namespace Components {
+
 // Constructors/Destructors
 AnimatedSprite::AnimatedSprite() : Sprite() {
   reset();
@@ -107,4 +110,6 @@ void AnimatedSprite::loadAnimation() {
     _loop = _currentAnimation->getLoop();
   }
   updateSprite();
+}
+}
 }

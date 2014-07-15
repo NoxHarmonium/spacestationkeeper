@@ -15,8 +15,19 @@
 #include <functional>
 #include "Job.h"
 
+namespace BlazeEngine {
+namespace Components {
+// Forward Decs
 class BotManager;
 typedef std::shared_ptr<BotManager> BotManagerRef;
+}
+}
+
+namespace BlazeEngine {
+namespace Binding {
+
+using namespace BlazeEngine::Components;
+using namespace BlazeEngine::Jobs;
 
 extern "C" { int initLuaModules(lua_State *L); }
 
@@ -51,5 +62,7 @@ private:
   lua_State *L;
   bool _bound = false;
 };
+}
+}
 
 #endif /* defined(__SpaceStationKeeper__LuaBridge__) */

@@ -12,16 +12,26 @@
 #include "ClassBinder.h"
 #include "BaseMesh.h"
 
-template <> struct ClassBinder<BaseMesh> {
+namespace BlazeEngine {
+namespace Binding {
+namespace ClassBinders {
+
+namespace Components = BlazeEngine::Components;
+
+template <> struct ClassBinder<Components::BaseMesh> {
   static void Bind(const char *name, lua_State *L) {
     luabind::module(
-        L)[luabind::class_<BaseMesh, BaseMeshRef>(name)
-               .def("getBoundingBox", (AxisAlignedBox3f (BaseMesh::*)(void)) &
-                                          BaseMesh::getBoundingBox)
+        L)[luabind::class_<Components::BaseMesh, Components::BaseMeshRef>(name)
                .def("getBoundingBox",
-                    (AxisAlignedBox3f (BaseMesh::*)(Matrix44f)) &
-                        BaseMesh::getBoundingBox)];
+                    (AxisAlignedBox3f (Components::BaseMesh::*)(void)) &
+                        Components::BaseMesh::getBoundingBox)
+               .def("getBoundingBox",
+                    (AxisAlignedBox3f (Components::BaseMesh::*)(Matrix44f)) &
+                        Components::BaseMesh::getBoundingBox)];
   }
 };
+}
+}
+}
 
 #endif

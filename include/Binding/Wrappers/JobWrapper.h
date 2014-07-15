@@ -9,6 +9,10 @@
 #ifndef SpaceStationKeeper_JobWrapper_h
 #define SpaceStationKeeper_JobWrapper_h
 
+namespace BlazeEngine {
+namespace Binding {
+namespace Wrappers {
+
 struct JobWrapper : public Job, public luabind::wrap_base {
   JobWrapper() : Job() {}
   // Call registers
@@ -52,5 +56,7 @@ struct JobWrapper : public Job, public luabind::wrap_base {
     return call<int>("getMaxWorkers");
   };
 };
-
+}
+}
+}
 #endif

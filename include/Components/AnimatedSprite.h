@@ -13,6 +13,9 @@
 #include "AnimationDef.h"
 #include "AnimationSetDef.h"
 
+namespace BlazeEngine {
+namespace Components {
+
 class AnimatedSprite : public Sprite {
 public:
   // Constructors/Destructors
@@ -56,5 +59,7 @@ private:
 };
 
 typedef std::shared_ptr<AnimatedSprite> AnimatedSpriteRef;
+}
+}
 
 #endif

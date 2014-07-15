@@ -8,6 +8,9 @@
 
 #include "Bot.h"
 
+namespace BlazeEngine {
+namespace Components {
+
 // Methods
 
 void Bot::addBehaviour(BotBehaviourRef behaviour) {
@@ -30,4 +33,6 @@ bool operator==(const Bot &a, const Bot &b) { return &a == &b; }
 std::ostream &operator<<(std::ostream &lhs, const Bot &rhs) {
   lhs << &rhs;
   return lhs;
+}
+}
 }

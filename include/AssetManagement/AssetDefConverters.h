@@ -25,6 +25,10 @@
 namespace YAML {
 using namespace std;
 using namespace ci;
+using namespace BlazeEngine::AssetManagement;
+using namespace BlazeEngine::Exceptions;
+using namespace BlazeEngine::DataStructures;
+using namespace BlazeEngine::Misc;
 
 template <> struct convert<AssetType> {
 

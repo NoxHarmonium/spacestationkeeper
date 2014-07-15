@@ -17,6 +17,10 @@
 #include "AnimationSetDef.h"
 #include "luabind/operator.hpp"
 
+namespace BlazeEngine {
+namespace Binding {
+namespace ClassBinders {
+
 template <> struct ClassBinder<AssetDefBase> {
   static void Bind(const char *name, lua_State *L) {
     luabind::module(L)[luabind::class_<AssetDefBase, AssetDefBaseRef>(name)
@@ -172,5 +176,7 @@ template <> struct ClassBinder<ShaderDef> {
                .def("unloadAsset", &AssetDefBase::unloadAsset)];
   }
 };
-
+}
+}
+}
 #endif

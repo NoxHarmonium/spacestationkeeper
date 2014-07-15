@@ -8,7 +8,12 @@
 
 #include "Transform.h"
 
+namespace BlazeEngine {
+namespace Components {
+
 using namespace ci;
+
+Vec3f Transform::getDirection() { return Vec3f::one() * localRotation; }
 
 Matrix44f Transform::getTransformMatrixLocal() {
   Matrix44f tMatrix;
@@ -32,4 +37,6 @@ void Transform::recursiveApplyTransformMatrix(Transform *transform,
     //                transform->localRotation.getAngle());
     tMatrix->scale(transform->localScale);
   }
+}
+}
 }

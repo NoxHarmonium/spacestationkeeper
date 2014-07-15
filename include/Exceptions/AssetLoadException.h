@@ -12,6 +12,9 @@
 #include <stdexcept>
 #include <iostream>
 
+namespace BlazeEngine {
+namespace Exceptions {
+
 using namespace std;
 
 class AssetLoadException : public runtime_error {
@@ -165,5 +168,7 @@ private:
   const exception *_innerException = nullptr;
   char *_exceptionMessage = nullptr;
 };
+}
+}
 
 #endif

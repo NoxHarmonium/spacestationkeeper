@@ -11,10 +11,15 @@
 
 using namespace ci;
 
+namespace BlazeEngine {
+namespace Misc {
+
 struct VecComparison {
   bool operator()(const Vec2i &lhs, const Vec2i &rhs) const {
     return std::tie(lhs.x, lhs.y) < std::tie(rhs.x, rhs.y);
   }
 };
+}
+}
 
 #endif

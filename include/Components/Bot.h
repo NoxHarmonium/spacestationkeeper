@@ -15,10 +15,11 @@
 #include <set>
 #include "BotBehaviour.h"
 
-typedef list<Vec2i> CoordList;
-typedef std::shared_ptr<CoordList> CoordListRef;
+namespace BlazeEngine {
+namespace Components {
 
 using namespace ci;
+using namespace BlazeEngine::Jobs;
 
 class Bot : public GameComponent {
 
@@ -55,5 +56,7 @@ typedef std::shared_ptr<Bot> BotRef;
 bool operator==(const Bot &a, const Bot &b);
 // Needed for Lua to print address
 std::ostream &operator<<(std::ostream &lhs, const Bot &rhs);
+}
+}
 
 #endif

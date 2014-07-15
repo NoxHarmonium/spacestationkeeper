@@ -11,6 +11,9 @@
 
 #include <boost/uuid/random_generator.hpp>
 
+namespace BlazeEngine {
+namespace Components {
+
 using namespace ci;
 using namespace ci::app;
 using namespace std;
@@ -126,5 +129,7 @@ private:
 };
 
 typedef std::shared_ptr<GameComponent> GameComponentRef;
+}
+}
 
 #endif

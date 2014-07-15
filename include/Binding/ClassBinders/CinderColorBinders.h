@@ -9,6 +9,10 @@
 #ifndef SpaceStationKeeper_CinderColorBinders_h
 #define SpaceStationKeeper_CinderColorBinders_h
 
+namespace BlazeEngine {
+namespace Binding {
+namespace ClassBinders {
+
 template <typename T> struct ClassBinder<ColorT<T>> {
   static void Bind(const char *name, lua_State *L) {
     luabind::module(L)[luabind::class_<ColorT<T>>(name)
@@ -33,5 +37,8 @@ template <typename T> struct ClassBinder<ColorAT<T>> {
     // TODO: Operators?
   }
 };
+}
+}
+}
 
 #endif

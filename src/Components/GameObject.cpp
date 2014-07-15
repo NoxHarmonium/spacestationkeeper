@@ -10,6 +10,11 @@
 #include <stdexcept>
 #include <boost/uuid/uuid_io.hpp>
 
+namespace BlazeEngine {
+namespace Components {
+
+using namespace BlazeEngine::Binding;
+
 // Constructors/Destructors
 GameObject::GameObject() {
   _id = to_string(_uuidGenerator());
@@ -291,3 +296,5 @@ void GameObject::checkIdValidity(string id) {
 
 boost::uuids::random_generator GameObject::_uuidGenerator =
     boost::uuids::random_generator();
+}
+}

@@ -16,6 +16,11 @@
 #include "cinder/gl/Texture.h"
 #include "cinder/gl/GlslProg.h"
 
+namespace BlazeEngine {
+namespace Components {
+
+using namespace BlazeEngine::AssetManagement;
+
 class Material {
 public:
   // Methods
@@ -39,5 +44,7 @@ typedef std::shared_ptr<Material> MaterialRef;
 // Override to compare on values so that batcher can batch materials together
 // more efficiently
 bool operator==(const Material &a, const Material &b);
+}
+}
 
 #endif

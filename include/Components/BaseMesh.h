@@ -12,6 +12,9 @@
 #include "cinder/gl/gl.h"
 #include "cinder/TriMesh.h"
 
+namespace BlazeEngine {
+namespace Components {
+
 using namespace ci;
 /*! The base class for meshes rendered by a RenderComponent. */
 class BaseMesh {
@@ -35,5 +38,7 @@ public:
 };
 
 typedef std::shared_ptr<BaseMesh> BaseMeshRef;
+}
+}
 
 #endif

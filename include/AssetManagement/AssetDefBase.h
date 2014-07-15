@@ -16,6 +16,9 @@
 
 #define ASSETDEF_FILE "assetdef.yaml"
 
+namespace BlazeEngine {
+namespace AssetManagement {
+
 using namespace std;
 using namespace YAML;
 using namespace boost;
@@ -88,5 +91,6 @@ typedef std::shared_ptr<AssetDefBase> AssetDefBaseRef;
 template <typename T> struct GetAssetType {
   static const AssetType value = AssetType::Unknown;
 };
-
+}
+}
 #endif

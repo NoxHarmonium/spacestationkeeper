@@ -12,6 +12,9 @@
 #include "LuaBindDeps.h"
 #include <stdexcept>
 
+namespace BlazeEngine {
+namespace Binding {
+namespace ClassBinders {
 // Specialise this template to create binders
 
 template <typename... T> struct ClassBinder {
@@ -20,5 +23,8 @@ template <typename... T> struct ClassBinder {
     // luabind::module(L)[luabind::class_<T...>(name)];
   }
 };
+}
+}
+}
 
 #endif

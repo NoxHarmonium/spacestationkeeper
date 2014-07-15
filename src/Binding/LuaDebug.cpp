@@ -8,8 +8,13 @@
 
 #include "LuaDebug.h"
 
+namespace BlazeEngine {
+namespace Binding {
+
 using namespace std;
 
 void LuaDebug::Log(const std::string &message) {
   cout << "[LUA] " << message << endl;
+}
+}
 }

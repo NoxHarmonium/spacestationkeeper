@@ -12,6 +12,10 @@
 #include "ClassBinder.h"
 #include "Utils.h"
 
+namespace BlazeEngine {
+namespace Binding {
+namespace ClassBinders {
+
 template <> struct ClassBinder<Utils> {
   static void Bind(const char *name, lua_State *L) {
     luabind::module(
@@ -26,5 +30,8 @@ template <> struct ClassBinder<Utils> {
     // MORE!
   }
 };
+}
+}
+}
 
 #endif

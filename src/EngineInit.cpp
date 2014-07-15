@@ -7,10 +7,18 @@
 #include <vector>
 #include <string>
 
-using namespace ci;
 using namespace ci::app;
+
+namespace BlazeEngine {
+
 using namespace std;
 using namespace boost;
+using namespace BlazeEngine::AssetManagement;
+using namespace BlazeEngine::Exceptions;
+using namespace BlazeEngine::DataStructures;
+using namespace BlazeEngine::Misc;
+using namespace BlazeEngine::Binding;
+using namespace BlazeEngine::Jobs;
 
 void EngineInit::prepareSettings(Settings *settings) {
   // Utils::printOpenGlVersionInfo();
@@ -165,5 +173,6 @@ string EngineInit::getRelativePath(
     filesystem::path p, filesystem::path root = filesystem::current_path()) {
   return p.string().substr(root.string().length());
 }
+}
 
-CINDER_APP_NATIVE(EngineInit, RendererGl)
+CINDER_APP_NATIVE(BlazeEngine::EngineInit, RendererGl)

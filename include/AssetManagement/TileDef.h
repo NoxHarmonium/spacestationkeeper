@@ -11,7 +11,11 @@
 
 #include "TextureDef.h"
 
+namespace BlazeEngine {
+namespace AssetManagement {
+
 using namespace std;
+using namespace BlazeEngine::DataStructures;
 
 class TileDef : public TextureDef {
 public:
@@ -58,5 +62,7 @@ typedef std::shared_ptr<TileDef> TileDefRef;
 template <> struct GetAssetType<TileDef> {
   static const AssetType value = AssetType::Texture;
 };
+}
+}
 
 #endif

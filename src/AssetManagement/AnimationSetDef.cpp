@@ -9,6 +9,11 @@
 #include "AnimationSetDef.h"
 #include "Utils.h"
 
+namespace BlazeEngine {
+namespace AssetManagement {
+
+using namespace BlazeEngine::Misc;
+
 // Constructors/Destructors
 AnimationSetDef::AnimationSetDef(Node node)
     : AssetDefBaseT<AnimationSetMap>(-1) {
@@ -54,4 +59,6 @@ void AnimationSetDef::unloadAsset() {}
 // Static Methods
 std::shared_ptr<AnimationSetDef> AnimationSetDef::FromYamlNode(Node node) {
   return make_shared<AnimationSetDef>(node);
+}
+}
 }

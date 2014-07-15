@@ -14,6 +14,9 @@
 #include <unordered_set>
 #include <type_traits>
 
+namespace BlazeEngine {
+namespace Misc {
+
 class EnumHelper {
 
 public:
@@ -31,5 +34,7 @@ public:
 private:
   int _internalValue = 0;
 };
+}
+}
 
 #endif /* defined(__SpaceStationKeeper__EnumHelper__) */

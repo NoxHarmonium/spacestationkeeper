@@ -9,6 +9,9 @@
 #include "TileDef.h"
 #include "AssetDefConverters.h"
 
+namespace BlazeEngine {
+namespace AssetManagement {
+
 TileDef::TileDef(Node node) : TextureDef(node) {
   bool canWalk;
 
@@ -71,4 +74,6 @@ bool TileDef::getIsAnimated() { return false; }
 
 std::shared_ptr<TileDef> TileDef::FromYamlNode(YAML::Node node) {
   return make_shared<TileDef>(node);
+}
+}
 }

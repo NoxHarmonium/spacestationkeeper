@@ -12,6 +12,10 @@
 #include "ClassBinder.h"
 #include "EnumHelper.h"
 
+namespace BlazeEngine {
+namespace Binding {
+namespace ClassBinders {
+
 template <> struct ClassBinder<EnumHelper> {
   static void Bind(const char *name, lua_State *L) {
     luabind::module(
@@ -47,5 +51,8 @@ template <> struct ClassBinder<Passibility> {
     // TODO All the methods and stuff
   }
 };
+}
+}
+}
 
 #endif

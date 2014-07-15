@@ -8,6 +8,9 @@
 
 #include "AssetType.h"
 
+namespace BlazeEngine {
+namespace AssetManagement {
+
 ostream &operator<<(ostream &os, const AssetType &assetType) {
   switch (assetType) {
   case AssetType::Unknown:
@@ -34,4 +37,6 @@ ostream &operator<<(ostream &os, const AssetType &assetType) {
   }
 
   return os;
+}
+}
 }

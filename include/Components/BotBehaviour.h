@@ -11,6 +11,9 @@
 
 #include <memory>
 
+namespace BlazeEngine {
+namespace Components {
+
 // Forward Decs
 class Bot;
 typedef std::shared_ptr<Bot> BotRef;
@@ -26,5 +29,7 @@ public:
 };
 
 typedef std::shared_ptr<BotBehaviour> BotBehaviourRef;
+}
+}
 
 #endif

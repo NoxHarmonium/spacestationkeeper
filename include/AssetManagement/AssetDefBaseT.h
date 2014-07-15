@@ -11,6 +11,9 @@
 
 #include "AssetDefBase.h"
 
+namespace BlazeEngine {
+namespace AssetManagement {
+
 //
 // Interface
 //
@@ -56,5 +59,6 @@ AssetDefBaseT<T>::AssetDefBaseT(int id)
     : AssetDefBase(id) {}
 
 template <typename T> AssetDefBaseT<T>::~AssetDefBaseT() {}
-
+}
+}
 #endif

@@ -10,6 +10,9 @@
 #include <math.h>
 #include "ComponentDrivenApp.h"
 
+namespace BlazeEngine {
+namespace Components {
+
 GameCamera::GameCamera() : GameComponent() {}
 
 void GameCamera::update(float deltaTime) {
@@ -30,4 +33,6 @@ void GameCamera::update(float deltaTime) {
   ci::gl::translate(scaleOffset);
   ci::gl::scale(transform->localScale);
   ci::gl::translate(-scaleOffset);
+}
+}
 }

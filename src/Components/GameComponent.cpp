@@ -10,6 +10,9 @@
 #include "GameComponent.h"
 #include <boost/uuid/uuid_io.hpp>
 
+namespace BlazeEngine {
+namespace Components {
+
 GameComponent::GameComponent() {
   _id = to_string(_uuidGenerator());
   _serialisedFields = make_shared<SerialisedFieldList>();
@@ -69,3 +72,5 @@ void GameComponent::setId(std::shared_ptr<GameComponent> component, string id) {
 
 boost::uuids::random_generator GameComponent::_uuidGenerator =
     boost::uuids::random_generator();
+}
+}

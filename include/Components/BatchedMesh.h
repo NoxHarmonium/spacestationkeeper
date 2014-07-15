@@ -15,8 +15,12 @@
 #ifndef SpaceStationKeeper_BatchedMesh_h
 #define SpaceStationKeeper_BatchedMesh_h
 
+namespace BlazeEngine {
+namespace Components {
+
 using namespace ci;
 using namespace std;
+using namespace BlazeEngine::DataStructures;
 
 class BatchedMesh : public BaseMesh {
 public:
@@ -69,5 +73,7 @@ private:
 };
 
 typedef std::shared_ptr<BatchedMesh> BatchedMeshRef;
+}
+}
 
 #endif

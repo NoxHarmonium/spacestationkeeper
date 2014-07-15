@@ -14,6 +14,10 @@
 #include "GameObject.h"
 #include <luabind/iterator_ptr_policy.hpp>
 
+namespace BlazeEngine {
+namespace Binding {
+namespace ClassBinders {
+
 using namespace luabind;
 
 template <> struct ClassBinder<GameObject> {
@@ -37,5 +41,7 @@ template <> struct ClassBinder<GameObject> {
     ];
   }
 };
-
+}
+}
+}
 #endif

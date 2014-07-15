@@ -14,6 +14,9 @@
 #include "cinder/TriMesh.h"
 #include <iostream>
 
+namespace BlazeEngine {
+namespace Components {
+
 using namespace ci;
 
 class SimpleMesh : public BaseMesh {
@@ -49,5 +52,7 @@ private:
 };
 
 typedef std::shared_ptr<SimpleMesh> SimpleMeshRef;
+}
+}
 
 #endif

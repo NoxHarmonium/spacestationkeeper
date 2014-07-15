@@ -8,6 +8,9 @@
 
 #include "EnumHelper.h"
 
+namespace BlazeEngine {
+namespace Misc {
+
 EnumHelper::EnumHelper() {}
 
 void EnumHelper::setFlag(int value) { _internalValue |= value; }
@@ -18,4 +21,6 @@ int EnumHelper::getInternalValue() { return _internalValue; }
 std::ostream &operator<<(std::ostream &out, EnumHelper &helper) {
   out << std::dec << "(0x" << std::hex << helper._internalValue << ") ";
   return out;
+}
+}
 }

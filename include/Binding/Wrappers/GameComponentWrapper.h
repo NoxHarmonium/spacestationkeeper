@@ -12,6 +12,10 @@
 #include "GameComponent.h"
 #include "LuaBindDeps.h"
 
+namespace BlazeEngine {
+namespace Binding {
+namespace Wrappers {
+
 struct GameComponentWrapper : public GameComponent, public luabind::wrap_base {
   GameComponentWrapper() : GameComponent() {}
   // Call registers
@@ -126,5 +130,8 @@ struct GameComponentWrapper : public GameComponent, public luabind::wrap_base {
   //  return ptr->GameComponent::setId(id);
   //}
 };
+}
+}
+}
 
 #endif

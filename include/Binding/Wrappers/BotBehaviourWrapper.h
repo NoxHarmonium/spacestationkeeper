@@ -11,6 +11,10 @@
 
 #include "BotBehaviour.h"
 
+namespace BlazeEngine {
+namespace Binding {
+namespace Wrappers {
+
 struct BotBehaviourWrapper : public BotBehaviour, public luabind::wrap_base {
   BotBehaviourWrapper() : BotBehaviour(), luabind::wrap_base() {}
 
@@ -19,5 +23,8 @@ struct BotBehaviourWrapper : public BotBehaviour, public luabind::wrap_base {
     return call<Vec3f>("getForce", bot);
   };
 };
+}
+}
+}
 
 #endif

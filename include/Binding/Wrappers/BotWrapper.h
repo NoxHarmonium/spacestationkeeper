@@ -11,6 +11,10 @@
 
 #include "Bot.h"
 
+namespace BlazeEngine {
+namespace Binding {
+namespace Wrappers {
+
 struct BotWrapper : public Bot, public luabind::wrap_base {
   BotWrapper() : Bot() {}
   // Call registers
@@ -54,5 +58,8 @@ struct BotWrapper : public Bot, public luabind::wrap_base {
     call<void>("update", deltaTime);
   };
 };
+}
+}
+}
 
 #endif

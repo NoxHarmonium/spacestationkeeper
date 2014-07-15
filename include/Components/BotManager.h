@@ -20,6 +20,9 @@
 #include "GameObject.h"
 #include <list>
 
+namespace BlazeEngine {
+namespace Components {
+
 using namespace std;
 using namespace ci;
 
@@ -67,5 +70,7 @@ protected:
 };
 
 typedef std::shared_ptr<BotManager> BotManagerRef;
+}
+}
 
 #endif

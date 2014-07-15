@@ -42,6 +42,12 @@
 #include "SpriteBinder.h"
 #include "BotBinding.h"
 
+namespace BlazeEngine {
+namespace Binding {
+
+using namespace BlazeEngine::Binding::Wrappers;
+using namespace BlazeEngine::Binding::ClassBinders;
+
 using adopt2 = luabind::detail::policy_cons<luabind::detail::adopt_policy<2>,
                                             luabind::detail::null_type>;
 
@@ -133,10 +139,10 @@ extern "C" int initLuaModules(lua_State *L) {
   // Rendering Classes
   ClassBinder<GameCamera>::Bind("GameCamera", L);
   ClassBinder<GameObject>::Bind("GameObject", L);
-  ClassBinder<Transform>::Bind("Transform", L);
-  ClassBinder<BaseMesh>::Bind("BaseMesh", L);
+  ClassBinder<BlazeEngine::Components::Transform>::Bind("Transform", L);
+  ClassBinder<BlazeEngine::Components::BaseMesh>::Bind("BaseMesh", L);
   ClassBinder<SimpleMesh>::Bind("SimpleMesh", L);
-  ClassBinder<Material>::Bind("Material", L);
+  ClassBinder<BlazeEngine::Components::Material>::Bind("Material", L);
   ClassBinder<RenderInfo>::Bind("RenderInfo", L);
   ClassBinder<AxisAlignedBox3f>::Bind("AxisAlignedBox3f", L);
   ClassBinder<BatchedMesh>::Bind("BatchedMesh", L);
@@ -273,3 +279,5 @@ BindingManager *BindingManager::Instance() {
 }
 
 BindingManager *BindingManager::_instance = nullptr;
+}
+}

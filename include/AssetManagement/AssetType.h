@@ -21,6 +21,9 @@ using namespace std;
 #define ASSET_ANIMATION "Animation"
 #define ASSET_UNKNOWN "Unknown"
 
+namespace BlazeEngine {
+namespace AssetManagement {
+
 /*! A enum of all the known asset types. */
 enum AssetType {
   Unknown,
@@ -33,5 +36,7 @@ enum AssetType {
 };
 
 ostream &operator<<(ostream &os, const AssetType &assetType);
+}
+}
 
 #endif

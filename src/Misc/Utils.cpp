@@ -8,6 +8,9 @@
 
 #include "Utils.h"
 
+namespace BlazeEngine {
+namespace Misc {
+
 using namespace boost;
 using namespace ci;
 
@@ -82,4 +85,6 @@ bool Utils::getChildNode(YAML::Node *childNode, Node node, string key,
     }
   }
   return true;
+}
+}
 }

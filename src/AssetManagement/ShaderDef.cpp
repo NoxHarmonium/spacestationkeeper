@@ -10,7 +10,12 @@
 #include "AssetLoadException.h"
 #include "Utils.h"
 
+namespace BlazeEngine {
+namespace AssetManagement {
+
 using namespace YAML;
+using namespace BlazeEngine::Exceptions;
+using namespace BlazeEngine::Misc;
 
 // Constructors/Destructors
 
@@ -140,4 +145,6 @@ std::shared_ptr<ShaderDef> ShaderDef::FromYamlNode(YAML::Node node) {
   ShaderDef *shaderDef = new ShaderDef(id, _filenameMap);
 
   return ShaderDefRef(shaderDef);
+}
+}
 }

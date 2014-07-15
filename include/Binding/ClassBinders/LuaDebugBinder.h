@@ -12,6 +12,10 @@
 #include "ClassBinder.h"
 #include "LuaDebug.h"
 
+namespace BlazeEngine {
+namespace Binding {
+namespace ClassBinders {
+
 template <> struct ClassBinder<LuaDebug> {
   static void Bind(const char *name, lua_State *L) {
     luabind::module(L)[luabind::class_<LuaDebug>(name)
@@ -19,5 +23,8 @@ template <> struct ClassBinder<LuaDebug> {
                            .scope[luabind::def("Log", &LuaDebug::Log)]];
   }
 };
+}
+}
+}
 
 #endif

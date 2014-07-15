@@ -12,6 +12,9 @@
 #include "JobManager.h"
 #include "ComponentDrivenApp.h"
 
+namespace BlazeEngine {
+namespace Jobs {
+
 void JobManager::update(float deltaTime) {
   map<JobRef, JobState> jobMapCopy = _registeredJobs;
 
@@ -72,4 +75,6 @@ vector<JobRef> JobManager::getActiveJobs(bool filterFullJobs) {
     }
   }
   return pendingJobs;
+}
+}
 }

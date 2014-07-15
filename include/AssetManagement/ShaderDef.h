@@ -19,6 +19,9 @@
 #define SHADER_VERTEX "Vertex"
 #define SHADER_GEOMETERY "Geometery"
 
+namespace BlazeEngine {
+namespace AssetManagement {
+
 using namespace ci;
 
 /*!
@@ -96,5 +99,7 @@ typedef std::shared_ptr<ShaderDef> ShaderDefRef;
 template <> struct GetAssetType<ShaderDef> {
   static const AssetType value = AssetType::Shader;
 };
+}
+}
 
 #endif

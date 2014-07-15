@@ -9,6 +9,12 @@
 #include "AnimationDef.h"
 #include "Utils.h"
 
+namespace BlazeEngine {
+namespace AssetManagement {
+
+using namespace BlazeEngine::Misc;
+using namespace BlazeEngine::Exceptions;
+
 // Constructors/Destructors
 AnimationDef::AnimationDef(Node node, string animationName)
     : TextureDef(node, false) {
@@ -75,4 +81,6 @@ bool AnimationDef::getIsAnimated() { return true; }
 std::shared_ptr<AnimationDef> AnimationDef::FromYamlNode(Node node,
                                                          string animationName) {
   return make_shared<AnimationDef>(node, animationName);
+}
+}
 }

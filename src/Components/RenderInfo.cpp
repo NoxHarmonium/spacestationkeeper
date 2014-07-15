@@ -9,6 +9,9 @@
 #include "RenderInfo.h"
 #include <stdexcept>
 
+namespace BlazeEngine {
+namespace Components {
+
 RenderInfo::RenderInfo() : GameComponent() {
   transform = make_shared<Transform>();
 }
@@ -117,4 +120,6 @@ RenderInfo *RenderInfo::clone() {
   rClone->material = MaterialRef(new Material{*this->material});
 
   return rClone;
+}
+}
 }

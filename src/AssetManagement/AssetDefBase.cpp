@@ -8,6 +8,9 @@
 
 #include "AssetDefBase.h"
 
+namespace BlazeEngine {
+namespace AssetManagement {
+
 using namespace boost;
 
 // Constructors/Destructors
@@ -45,3 +48,5 @@ void AssetDefBase::setAssetPointer(std::shared_ptr<void> pointer) {
 }
 
 std::shared_ptr<void> AssetDefBase::getAssetPointer() { return _assetPointer; }
+}
+}

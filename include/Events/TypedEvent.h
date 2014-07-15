@@ -14,6 +14,9 @@
 
 using namespace std;
 
+namespace BlazeEngine {
+namespace Events {
+
 // Enums
 /*! Determines whether an event is transient or continuous. */
 enum class EventType {
@@ -94,5 +97,7 @@ private:
    */
   int _currentEventId = 0;
 };
+}
+}
 
 #endif

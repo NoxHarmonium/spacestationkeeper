@@ -45,6 +45,10 @@
 		9E3BD6C71926B6CD008F9297 /* lua in Resources */ = {isa = PBXBuildFile; fileRef = 9E3BD6C61926B6CD008F9297 /* lua */; };
 		9E619797192D19BB0013CB63 /* AnimationDef.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E619795192D19BB0013CB63 /* AnimationDef.cpp */; };
 		9E6CDAE2193F5404005C9380 /* Bot.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E6CDAE0193F5404005C9380 /* Bot.cpp */; };
+		9E6CDAEA19423DDC005C9380 /* SteeringBehaviour.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E6CDAE819423DDC005C9380 /* SteeringBehaviour.cpp */; };
+		9E6CDAEF19424261005C9380 /* StayOnPathBehaviour.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E6CDAED19424261005C9380 /* StayOnPathBehaviour.cpp */; };
+		9E6CDAF3194249CC005C9380 /* CoordList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E6CDAF1194249CC005C9380 /* CoordList.cpp */; };
+		9E6CDAF619427ABF005C9380 /* SteeringTarget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E6CDAF419427ABF005C9380 /* SteeringTarget.cpp */; };
 		9E74DA8B1930F57C006B323E /* Sprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E74DA891930F57C006B323E /* Sprite.cpp */; };
 		9E92628F18D48232001AB5D6 /* GameComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E92628E18D48232001AB5D6 /* GameComponent.cpp */; };
 		9E92629218D4EDA0001AB5D6 /* ComponentDrivenApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E92629118D4EDA0001AB5D6 /* ComponentDrivenApp.cpp */; };
@@ -178,6 +182,15 @@
 		9E6CDADE193F5157005C9380 /* BotBehaviour.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BotBehaviour.h; sourceTree = "<group>"; };
 		9E6CDADF193F51EB005C9380 /* BotBehaviourWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BotBehaviourWrapper.h; sourceTree = "<group>"; };
 		9E6CDAE0193F5404005C9380 /* Bot.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Bot.cpp; sourceTree = "<group>"; };
+		9E6CDAE419423C7C005C9380 /* SteeringBehaviour.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SteeringBehaviour.h; sourceTree = "<group>"; };
+		9E6CDAE819423DDC005C9380 /* SteeringBehaviour.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SteeringBehaviour.cpp; sourceTree = "<group>"; };
+		9E6CDAEB19423F2B005C9380 /* StayOnPathBehaviour.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StayOnPathBehaviour.h; sourceTree = "<group>"; };
+		9E6CDAEC19423F5C005C9380 /* SteeringTarget.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SteeringTarget.h; sourceTree = "<group>"; };
+		9E6CDAED19424261005C9380 /* StayOnPathBehaviour.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StayOnPathBehaviour.cpp; sourceTree = "<group>"; };
+		9E6CDAF01942489B005C9380 /* Path.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Path.h; sourceTree = "<group>"; };
+		9E6CDAF1194249CC005C9380 /* CoordList.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CoordList.cpp; sourceTree = "<group>"; };
+		9E6CDAF419427ABF005C9380 /* SteeringTarget.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SteeringTarget.cpp; sourceTree = "<group>"; };
+		9E6CDAF719427B3D005C9380 /* Neighbourhood.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Neighbourhood.h; sourceTree = "<group>"; };
 		9E72B0E5190C4E3400F9935A /* RenderInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RenderInfo.h; sourceTree = "<group>"; };
 		9E74DA881930F4A8006B323E /* Sprite.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Sprite.h; sourceTree = "<group>"; };
 		9E74DA891930F57C006B323E /* Sprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sprite.cpp; sourceTree = "<group>"; };
@@ -187,6 +200,8 @@
 		9EA476C818F7589A00C6BD1D /* EnumHelper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EnumHelper.cpp; sourceTree = "<group>"; };
 		9EA476CB18F8ABC300C6BD1D /* AssetLoaderBase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AssetLoaderBase.cpp; sourceTree = "<group>"; };
 		9EA476D518F9FEFA00C6BD1D /* SimpleMesh.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SimpleMesh.cpp; sourceTree = "<group>"; };
+		9EB0C8901945F780008F72D0 /* GameGraph.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameGraph.h; sourceTree = "<group>"; };
+		9EB0C89219461C50008F72D0 /* VectorTraits.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VectorTraits.h; sourceTree = "<group>"; };
 		9EB951EB19152837003B5FED /* AssetDefBase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AssetDefBase.cpp; sourceTree = "<group>"; };
 		9EB951F01915311E003B5FED /* AssetLoadException.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AssetLoadException.h; sourceTree = "<group>"; };
 		9EB951F2191709E7003B5FED /* AssetDefBaseT.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AssetDefBaseT.h; sourceTree = "<group>"; };
@@ -244,6 +259,7 @@
 		080E96DDFE201D6D7F000001 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				9E6CDAE619423DAE005C9380 /* AI */,
 				9E92629118D4EDA0001AB5D6 /* ComponentDrivenApp.cpp */,
 				48844111FF804C239BF69347 /* EngineInit.cpp */,
 				9EEE83DB18E8F8CB006F2B49 /* AssetManagement */,
@@ -251,7 +267,7 @@
 				9E92628C18D47F87001AB5D6 /* Components */,
 				9E92629518D4F915001AB5D6 /* DataStructures */,
 				9ED6DF67190F58A9002D286C /* Jobs */,
-				9EE7AED718E2FC9E008A9C83 /* Utils */,
+				9EE7AED718E2FC9E008A9C83 /* Misc */,
 			);
 			name = Source;
 			path = ../src;
@@ -336,6 +352,7 @@
 		9E0E1E1D190488C5009EECFD /* Include */ = {
 			isa = PBXGroup;
 			children = (
+				9E6CDAE319423C41005C9380 /* AI */,
 				9E238FD31919D34B00F642A5 /* Events */,
 				9EB951EE19152FFF003B5FED /* Exceptions */,
 				9E0E1E28190488C5009EECFD /* ComponentDrivenApp.h */,
@@ -347,7 +364,7 @@
 				9E0E1E34190488C5009EECFD /* DataStructures */,
 				9ED6DF62190F5639002D286C /* Jobs */,
 				9ED6DF64190F571B002D286C /* Resources */,
-				9E0E1E7C190488C5009EECFD /* Utils */,
+				9E0E1E7C190488C5009EECFD /* Misc */,
 			);
 			name = Include;
 			path = ../include;
@@ -403,14 +420,14 @@
 			path = DataStructures;
 			sourceTree = "<group>";
 		};
-		9E0E1E7C190488C5009EECFD /* Utils */ = {
+		9E0E1E7C190488C5009EECFD /* Misc */ = {
 			isa = PBXGroup;
 			children = (
 				9E0E1E7D190488C5009EECFD /* EnumHelper.h */,
 				9E0E1E7E190488C5009EECFD /* Utils.h */,
 				9E173FAF1935AADA00313618 /* VecComparison.h */,
 			);
-			path = Utils;
+			path = Misc;
 			sourceTree = "<group>";
 		};
 		9E0E1E7F190488EE009EECFD /* Binding */ = {
@@ -486,6 +503,46 @@
 			path = Wrappers;
 			sourceTree = "<group>";
 		};
+		9E6CDAE319423C41005C9380 /* AI */ = {
+			isa = PBXGroup;
+			children = (
+				9EB0C88F1945F741008F72D0 /* Pathing */,
+				9E6CDAE519423D29005C9380 /* Steering */,
+				9EB0C89219461C50008F72D0 /* VectorTraits.h */,
+			);
+			path = AI;
+			sourceTree = "<group>";
+		};
+		9E6CDAE519423D29005C9380 /* Steering */ = {
+			isa = PBXGroup;
+			children = (
+				9E6CDAE419423C7C005C9380 /* SteeringBehaviour.h */,
+				9E6CDAEB19423F2B005C9380 /* StayOnPathBehaviour.h */,
+				9E6CDAEC19423F5C005C9380 /* SteeringTarget.h */,
+				9E6CDAF719427B3D005C9380 /* Neighbourhood.h */,
+			);
+			path = Steering;
+			sourceTree = "<group>";
+		};
+		9E6CDAE619423DAE005C9380 /* AI */ = {
+			isa = PBXGroup;
+			children = (
+				9E6CDAE719423DB9005C9380 /* Steering */,
+			);
+			path = AI;
+			sourceTree = "<group>";
+		};
+		9E6CDAE719423DB9005C9380 /* Steering */ = {
+			isa = PBXGroup;
+			children = (
+				9E6CDAE819423DDC005C9380 /* SteeringBehaviour.cpp */,
+				9E6CDAED19424261005C9380 /* StayOnPathBehaviour.cpp */,
+				9E6CDAF1194249CC005C9380 /* CoordList.cpp */,
+				9E6CDAF419427ABF005C9380 /* SteeringTarget.cpp */,
+			);
+			path = Steering;
+			sourceTree = "<group>";
+		};
 		9E92628C18D47F87001AB5D6 /* Components */ = {
 			isa = PBXGroup;
 			children = (
@@ -511,6 +568,15 @@
 			children = (
 			);
 			path = DataStructures;
+			sourceTree = "<group>";
+		};
+		9EB0C88F1945F741008F72D0 /* Pathing */ = {
+			isa = PBXGroup;
+			children = (
+				9E6CDAF01942489B005C9380 /* Path.h */,
+				9EB0C8901945F780008F72D0 /* GameGraph.h */,
+			);
+			path = Pathing;
 			sourceTree = "<group>";
 		};
 		9EB951EE19152FFF003B5FED /* Exceptions */ = {
@@ -549,13 +615,13 @@
 			path = Jobs;
 			sourceTree = "<group>";
 		};
-		9EE7AED718E2FC9E008A9C83 /* Utils */ = {
+		9EE7AED718E2FC9E008A9C83 /* Misc */ = {
 			isa = PBXGroup;
 			children = (
 				9EE7AEED18E36737008A9C83 /* Utils.cpp */,
 				9EA476C818F7589A00C6BD1D /* EnumHelper.cpp */,
 			);
-			path = Utils;
+			path = Misc;
 			sourceTree = "<group>";
 		};
 		9EEE83DB18E8F8CB006F2B49 /* AssetManagement */ = {
@@ -672,10 +738,12 @@
 				9EDF4D021929659E0051DCE3 /* TileDef.cpp in Sources */,
 				9E173FAD19359B7900313618 /* BotManager.cpp in Sources */,
 				9E0E1E8219048917009EECFD /* BindingManager.cpp in Sources */,
+				9E6CDAEA19423DDC005C9380 /* SteeringBehaviour.cpp in Sources */,
 				9E36F88619180E8F0098B3C0 /* Transform.cpp in Sources */,
 				9EB951ED19152837003B5FED /* AssetDefBase.cpp in Sources */,
 				9EE7AED618E2F262008A9C83 /* GameCamera.cpp in Sources */,
 				9EA476CA18F7589A00C6BD1D /* EnumHelper.cpp in Sources */,
+				9E6CDAF619427ABF005C9380 /* SteeringTarget.cpp in Sources */,
 				9EA476D618F9FEFA00C6BD1D /* SimpleMesh.cpp in Sources */,
 				9E619797192D19BB0013CB63 /* AnimationDef.cpp in Sources */,
 				9EA476CC18F8ABC300C6BD1D /* AssetLoaderBase.cpp in Sources */,
@@ -684,11 +752,13 @@
 				9E281738191C5F7D00F5E95C /* LuaDebug.cpp in Sources */,
 				9E6CDAE2193F5404005C9380 /* Bot.cpp in Sources */,
 				9ED6DF771910707A002D286C /* JobManager.cpp in Sources */,
+				9E6CDAEF19424261005C9380 /* StayOnPathBehaviour.cpp in Sources */,
 				9EE7AEEF18E36737008A9C83 /* Utils.cpp in Sources */,
 				9E92629218D4EDA0001AB5D6 /* ComponentDrivenApp.cpp in Sources */,
 				9EEE83E218E8FAEB006F2B49 /* FileAssetLoader.cpp in Sources */,
 				9ED6DF6A190F58BC002D286C /* Job.cpp in Sources */,
 				9E173FB51936AAD000313618 /* CoordSearch.cpp in Sources */,
+				9E6CDAF3194249CC005C9380 /* CoordList.cpp in Sources */,
 				9E3AF3F5190DBBC6001007F4 /* RenderInfo.cpp in Sources */,
 				9E2816E8191AA1B000F5E95C /* GameObject.cpp in Sources */,
 			);

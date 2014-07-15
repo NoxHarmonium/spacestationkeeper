@@ -13,6 +13,9 @@
 #include <vector>
 #include <memory>
 
+namespace BlazeEngine {
+namespace Jobs {
+
 using namespace std;
 using namespace ci;
 
@@ -52,5 +55,7 @@ private:
 };
 
 typedef std::shared_ptr<Job> JobRef;
+}
+}
 
 #endif

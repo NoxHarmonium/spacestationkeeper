@@ -12,10 +12,17 @@
 #include "ClassBinder.h"
 #include "BatchedMesh.h"
 
+namespace BlazeEngine {
+namespace Binding {
+namespace ClassBinders {
+
+namespace Components = BlazeEngine::Components;
+
 template <> struct ClassBinder<BatchedMesh> {
   static void Bind(const char *name, lua_State *L) {
     luabind::module(L)
-        [luabind::class_<BatchedMesh, BaseMesh, BatchedMeshRef>(name)
+        [luabind::class_<BatchedMesh, Components::BaseMesh, BatchedMeshRef>(
+             name)
              .def(constructor<>())
              .def("getBoundingBox", (AxisAlignedBox3f (BatchedMesh::*)(void)) &
                                         BatchedMesh::getBoundingBox)
@@ -25,5 +32,8 @@ template <> struct ClassBinder<BatchedMesh> {
              .def("addMesh", &BatchedMesh::addMesh)];
   }
 };
+}
+}
+}
 
 #endif

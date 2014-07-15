@@ -11,6 +11,9 @@
 
 #include "AssetLoaderBase.h"
 
+namespace BlazeEngine {
+namespace AssetManagement {
+
 using namespace boost;
 
 class FileAssetLoader : public AssetLoaderBase {
@@ -36,5 +39,7 @@ private:
    * are references relatively from). */
   filesystem::path _assetRoot;
 };
+}
+}
 
 #endif /* defined(__SpaceStationKeeper__FileAssetLoader__) */

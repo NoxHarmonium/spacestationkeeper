@@ -18,9 +18,14 @@
 #include "JobManager.h"
 #include "BotManager.h"
 
+namespace BlazeEngine {
+
 using namespace ci;
 using namespace ci::app;
 using namespace std;
+using namespace BlazeEngine::Components;
+using namespace BlazeEngine::AssetManagement;
+using namespace BlazeEngine::Binding;
 
 class ComponentDrivenApp : public AppNative {
 
@@ -118,5 +123,6 @@ private:
   // Static Fields
   static ComponentDrivenApp *_instance;
 };
+}
 
 #endif

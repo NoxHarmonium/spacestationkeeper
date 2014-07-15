@@ -12,6 +12,10 @@
 #include "ClassBinder.h"
 #include "luabind/operator.hpp"
 
+namespace BlazeEngine {
+namespace Binding {
+namespace ClassBinders {
+
 template <typename T> struct ClassBinder<Vec2<T>> {
   static void Bind(const char *name, lua_State *L) {
     luabind::module(L)[luabind::class_<Vec2<T>>(name)
@@ -77,5 +81,8 @@ template <typename T> struct ClassBinder<Vec4<T>> {
                            .def(tostring(self))];
   }
 };
+}
+}
+}
 
 #endif

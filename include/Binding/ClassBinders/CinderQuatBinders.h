@@ -11,6 +11,10 @@
 
 #include "ClassBinder.h"
 
+namespace BlazeEngine {
+namespace Binding {
+namespace ClassBinders {
+
 template <typename T> struct ClassBinder<Quaternion<T>> {
   static void Bind(const char *name, lua_State *L) {
     luabind::module(
@@ -22,5 +26,8 @@ template <typename T> struct ClassBinder<Quaternion<T>> {
     // TODO: LOTS OF THINGS
   }
 };
+}
+}
+}
 
 #endif

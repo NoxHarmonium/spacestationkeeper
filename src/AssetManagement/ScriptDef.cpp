@@ -11,10 +11,14 @@
 #include "Utils.h"
 #include <memory>
 
+namespace BlazeEngine {
+namespace AssetManagement {
+
 using namespace std;
 using namespace ci;
 using namespace ci::app;
 using namespace boost;
+using namespace BlazeEngine::Misc;
 
 ScriptDef::ScriptDef(int id, int order, vector<string> filenames)
     : _filenames(filenames), _order(order), AssetDefBaseT<vector<string>>(id) {}
@@ -59,4 +63,6 @@ std::shared_ptr<ScriptDef> ScriptDef::FromYamlNode(YAML::Node node) {
   ScriptDef *scriptDef = new ScriptDef(id, order, filenames);
 
   return ScriptDefRef(scriptDef);
+}
+}
 }

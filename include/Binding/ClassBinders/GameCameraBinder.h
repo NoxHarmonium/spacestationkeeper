@@ -12,11 +12,18 @@
 #include "ClassBinder.h"
 #include "GameCamera.h"
 
+namespace BlazeEngine {
+namespace Binding {
+namespace ClassBinders {
+
 template <> struct ClassBinder<GameCamera> {
   static void Bind(const char *name, lua_State *L) {
     luabind::module(L)[luabind::class_<GameCamera, GameComponent>(name)
                            .def(luabind::constructor<>())];
   }
 };
+}
+}
+}
 
 #endif

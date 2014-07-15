@@ -9,6 +9,9 @@
 #include "SimpleMesh.h"
 #include <memory>
 
+namespace BlazeEngine {
+namespace Components {
+
 using namespace ci;
 using namespace std;
 
@@ -75,4 +78,6 @@ BaseMeshRef SimpleMesh::generateQuad(Rectf dimensions,
   SimpleMeshRef meshWrapper = make_shared<SimpleMesh>(mesh);
   meshWrapper->_bounds = mesh.calcBoundingBox();
   return dynamic_pointer_cast<BaseMesh>(meshWrapper);
+}
+}
 }

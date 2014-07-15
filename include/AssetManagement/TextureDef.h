@@ -21,6 +21,9 @@
 #define TEXTURE_SIMPLE "Simple"
 #define TEXTURE_ANIMATION "Animation"
 
+namespace BlazeEngine {
+namespace AssetManagement {
+
 using namespace std;
 using namespace ci;
 using namespace YAML;
@@ -103,5 +106,6 @@ typedef std::shared_ptr<TextureDef> TextureDefRef;
 template <> struct GetAssetType<TextureDef> {
   static const AssetType value = AssetType::Texture;
 };
-
+}
+}
 #endif

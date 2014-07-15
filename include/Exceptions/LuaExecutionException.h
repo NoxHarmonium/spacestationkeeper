@@ -11,11 +11,16 @@
 
 #include <stdexcept>
 
+namespace BlazeEngine {
+namespace Exceptions {
+
 class LuaExecutionException : public runtime_error {
 public:
   LuaExecutionException(string message)
       : runtime_error("An error occurred executing a LUA script: " + message) {}
   ~LuaExecutionException() {};
 };
+}
+}
 
 #endif

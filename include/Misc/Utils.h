@@ -16,10 +16,14 @@
 #include "yaml-cpp/yaml.h"
 #include "AssetLoadException.h"
 
+namespace BlazeEngine {
+namespace Misc {
+
 using namespace std;
 using namespace YAML;
 using namespace boost;
 using namespace ci;
+using namespace BlazeEngine::Exceptions;
 
 class Utils {
 public:
@@ -65,5 +69,7 @@ public:
     return true;
   }
 };
+}
+}
 
 #endif /* defined(__SpaceStationKeeper__Utils__) */

@@ -17,6 +17,9 @@
 #include "AnimationDef.h"
 #include "AnimationSetDef.h"
 
+namespace BlazeEngine {
+namespace AssetManagement {
+
 using namespace std;
 using namespace boost;
 
@@ -146,4 +149,6 @@ AssetDefBaseRef FileAssetLoader::loadAsset(string assetRef) {
 
 void FileAssetLoader::unloadAsset(AssetDefBaseRef asset) {
   clearLoadedAsset(asset->getAssetRef());
+}
+}
 }

@@ -12,6 +12,9 @@
 #include "yaml-cpp/yaml.h"
 #include "AssetDefBaseT.h"
 
+namespace BlazeEngine {
+namespace AssetManagement {
+
 using namespace ci;
 
 /*! Encapsulates a LUA script. */
@@ -64,5 +67,7 @@ typedef std::shared_ptr<ScriptDef> ScriptDefRef;
 template <> struct GetAssetType<ScriptDef> {
   static const AssetType value = AssetType::Script;
 };
+}
+}
 
 #endif

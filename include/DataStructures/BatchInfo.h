@@ -11,6 +11,9 @@
 
 #include <memory>
 
+namespace BlazeEngine {
+namespace DataStructures {
+
 // Forward decs
 class Material;
 class BaseMesh;
@@ -24,11 +27,13 @@ public:
   BatchInfo() {};
   ~BatchInfo() {};
 
-  MaterialRef material;
-  BaseMeshRef mesh;
-  TransformRef transform;
+  BlazeEngine::Components::MaterialRef material;
+  BlazeEngine::Components::BaseMeshRef mesh;
+  BlazeEngine::Components::TransformRef transform;
 };
 
 typedef std::shared_ptr<BatchInfo> BatchInfoRef;
+}
+}
 
 #endif

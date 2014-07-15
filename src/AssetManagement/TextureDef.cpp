@@ -10,8 +10,12 @@
 #include <stdexcept>
 #include "Utils.h"
 
+namespace BlazeEngine {
+namespace AssetManagement {
+
 using namespace std;
 using namespace YAML;
+using namespace BlazeEngine::Misc;
 
 // Constructors/Destructors
 
@@ -129,4 +133,6 @@ bool operator==(const TextureDef &a, const TextureDef &b) { return &a == &b; }
 std::ostream &operator<<(std::ostream &lhs, const TextureDef &rhs) {
   lhs << &rhs;
   return lhs;
+}
+}
 }

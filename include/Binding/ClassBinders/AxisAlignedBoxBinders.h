@@ -11,6 +11,10 @@
 
 #include "ClassBinder.h"
 
+namespace BlazeEngine {
+namespace Binding {
+namespace ClassBinders {
+
 template <> struct ClassBinder<AxisAlignedBox3f> {
   static void Bind(const char *name, lua_State *L) {
     luabind::module(L)[luabind::class_<AxisAlignedBox3f>(name)
@@ -25,5 +29,8 @@ template <> struct ClassBinder<AxisAlignedBox3f> {
                            .def("transformed", &AxisAlignedBox3f::transformed)];
   }
 };
+}
+}
+}
 
 #endif
