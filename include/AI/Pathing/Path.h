@@ -10,7 +10,8 @@
 #define SpaceStationKeeper_Path_h
 
 #include <list>
-#include <boost/numeric/conversion/bounds.hpp>
+#include <vector>
+#include "NotImplementedException.h"
 
 #include <boost/geometry.hpp>
 #include <boost/geometry/geometries/linestring.hpp>
@@ -18,6 +19,9 @@
 #include <boost/geometry/algorithms/distance.hpp>
 #include <boost/geometry/algorithms/intersection.hpp>
 #include "VectorTraits.h"
+
+#define _USE_MATH_DEFINES
+#include <math.h>
 
 using namespace ci;
 
@@ -76,30 +80,58 @@ public:
       return 0.0f;
     }
 
-    NumericType minD = boost::numeric::bounds<NumericType>::highest();
+    NumericType minD = std::numeric_limits<NumericType>::max();
     PointType lastPoint;
     PointType closestPoint;
+    PointType closestPointDir;
+    float pathLength = -1.0f;
+    int index = 0;
 
     for (PointType &p : _lineString) {
-      PointType dir = p - lastPoint;
-      dir.normalize();
-
       float d = geo::comparable_distance(p, targetPoint);
 
-      if (d < minD) {
+      Vec2f targetDir = (targetPoint - p).normalized();
+
+      if (index > 0 && d < minD) {
         minD = d;
         closestPoint = p;
+
+        PointType pathDir = p - lastPoint;
+        pathDir.normalize();
+
+        float angleBtwn =
+            M_PI - atan2(targetDir.y - targetDir.y, pathDir.x - pathDir.x);
+
+        bool sameDir = angleBtwn < (M_PI / 2.0);
+
+        if (sameDir) {
+          pathLength = _cumulativeDistance[index] + d;
+        } else {
+          pathLength = _cumulativeDistance[index] - d;
+        }
+
+        index++;
       }
       lastPoint = p;
     }
+
+    return pathLength;
   }
-  bool pointIsInsidePath(PointType point) {}
-  std::list<PointType> getClosestNCoords(PointType point, int n) {}
+
+  bool pointIsInsidePath(PointType point) {
+    throw Exceptions::NotImplementedException();
+  }
+
+  std::list<PointType> getClosestNCoords(PointType point, int n) {
+    throw Exceptions::NotImplementedException();
+  }
+
+  float getTotalDistance() { return _cumulativeDistance.back(); }
 
 private:
   NumericType _radius;
   LineString _lineString;
-  vector<NumericType> _cumulativeDistance;
+  std::vector<NumericType> _cumulativeDistance;
 };
 
 typedef std::shared_ptr<Path<>> PathRef;
