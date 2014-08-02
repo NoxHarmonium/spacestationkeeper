@@ -25,7 +25,7 @@ SteeringTargetRef SteeringBehaviour::getTarget() { return _target; }
 int SteeringBehaviour::getResolution() { return _resolution; }
 
 // Methods
-void SteeringBehaviour::fillContextSlots(float contextSlots[]) {
+void SteeringBehaviour::fillContextSlots(ContextSlots &contextSlots) {
   float anglePerSlot = 360 / (float)_resolution;
   int contextTypeCount = 2;
   ContextType contextTypes[] = {ContextType::Interest, ContextType::Danger};

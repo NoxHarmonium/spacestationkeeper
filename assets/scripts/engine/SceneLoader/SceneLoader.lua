@@ -89,7 +89,7 @@ function LoadScene(path)
         for key, componentNode in pairs(gameObjectNode.Components) do
             local comp = LoadComponent(componentNode, go)
             if (comp) then
-                go:addComponent(comp)
+                GameObject.addComponent(go, comp)
             end
         end
         AddGameObject(go)

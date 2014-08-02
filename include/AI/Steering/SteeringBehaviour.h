@@ -15,6 +15,16 @@ namespace BlazeEngine {
 namespace AI {
 namespace Steering {
 
+// Forward Decs
+class SteeringTarget;
+typedef std::shared_ptr<SteeringTarget> SteeringTargetRef;
+class SteeringBehaviour;
+typedef std::shared_ptr<SteeringBehaviour> SteeringBehaviourRef;
+
+// Typedefs
+typedef float ContextSlotType;
+typedef std::unique_ptr<ContextSlotType[]> ContextSlots;
+
 // Based on
 // http://andrewfray.wordpress.com/2013/03/26/context-behaviours-know-how-to-share/
 class SteeringBehaviour {
@@ -30,10 +40,10 @@ public:
   int getResolution();
 
   // Methods
-  void fillContextSlots(float contextSlots[]);
+  void fillContextSlots(ContextSlots &contextSlots);
 
   // Abstract Methods
-  virtual float getContextValue(const float angle,
+  virtual float getContextValue(const ContextSlotType angle,
                                 const ContextType contextType);
 
 private:
@@ -41,6 +51,8 @@ private:
   int _resolution;
   SteeringTargetRef _target;
 };
+
+typedef std::shared_ptr<SteeringBehaviour> SteeringBehaviourRef;
 }
 }
 }

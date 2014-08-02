@@ -41,12 +41,12 @@ AssetLoaderBase *ComponentDrivenApp::getAssetLoader() { return _assetLoader; }
 /*! Sets the job manager used by this app. */
 void ComponentDrivenApp::setJobManager(JobManagerRef jobManager) {
   if (_jobManager != nullptr) {
-    _engineGameObject->removeComponent(
-        dynamic_pointer_cast<GameComponent>(_jobManager));
+    GameObject::removeComponent(
+        _engineGameObject, dynamic_pointer_cast<GameComponent>(_jobManager));
   }
   _jobManager = jobManager;
-  _engineGameObject->addComponent(
-      dynamic_pointer_cast<GameComponent>(_jobManager));
+  GameObject::addComponent(_engineGameObject,
+                           dynamic_pointer_cast<GameComponent>(_jobManager));
 }
 
 /*! Gets the job manager used by this app. */
@@ -55,12 +55,12 @@ JobManagerRef ComponentDrivenApp::getJobManager() { return _jobManager; }
 /*! Sets the bot manager used by this app. */
 void ComponentDrivenApp::setBotManager(BotManagerRef botManager) {
   if (_botManager != nullptr) {
-    _engineGameObject->removeComponent(
-        dynamic_pointer_cast<GameComponent>(_botManager));
+    GameObject::removeComponent(
+        _engineGameObject, dynamic_pointer_cast<GameComponent>(_botManager));
   }
   _botManager = botManager;
-  _engineGameObject->addComponent(
-      dynamic_pointer_cast<GameComponent>(_botManager));
+  GameObject::addComponent(_engineGameObject,
+                           dynamic_pointer_cast<GameComponent>(_botManager));
 }
 
 /*! Gets the bot manager used by this app. */

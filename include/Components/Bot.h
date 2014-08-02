@@ -12,23 +12,26 @@
 #include <memory>
 #include "Job.h"
 #include "GameComponent.h"
+#include "GameObject.h"
 #include <set>
 #include "BotBehaviour.h"
+#include "SteeringTarget.h"
 
 namespace BlazeEngine {
 namespace Components {
 
 using namespace ci;
 using namespace BlazeEngine::Jobs;
+using namespace AI::Steering;
 
-class Bot : public GameComponent {
+class Bot : public GameComponent, public SteeringTarget {
 
 public:
   enum BotState { WaitingForJob = 0, MovingToJob = 1, Working = 2 };
 
   // Constructors/Destructors
-  Bot() {}
-  virtual ~Bot() {}
+  Bot();
+  virtual ~Bot();
 
   // Getters/Setters
   virtual Vec2i getCoord() = 0;
@@ -45,6 +48,8 @@ public:
   void addBehaviour(BotBehaviourRef behaviour);
   void removeBehaviour(BotBehaviourRef behaviour);
   set<BotBehaviourRef> getBehaviours();
+
+  RenderableRef getRenderableRef() override;
 
 private:
   set<BotBehaviourRef> _behaviours;

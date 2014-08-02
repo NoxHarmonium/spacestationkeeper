@@ -53,7 +53,7 @@ public:
 
   // Fields
   bool enabled = true;
-  GameObject *gameObject = nullptr;
+  GameObjectRef gameObject = nullptr;
 
   // Cinder Event Methods
 

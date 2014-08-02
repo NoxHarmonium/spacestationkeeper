@@ -105,8 +105,8 @@ function GameGrid:keyUp(keyEvent)
             workBotAnim:setAnimationSet(self.workBotAnimationSet)
             workBotAnim:setAnimationName('idle')
 
-            workBotGo:addComponent(workBotAnim)
-            workBotGo:addComponent(workBotComp)
+            GameObject.addComponent(workBotGo, workBotAnim)
+            GameObject.addComponent(workBotGo, workBotComp)
             AddGameObject(workBotGo)
 
             self._botManager:addBot(workBotComp)
@@ -122,7 +122,7 @@ function GameGrid:SetupTile(tile, passibility, texture)
     
     local texFrame = texture:getFrameFromPassibility(passibility)
     local sprite = Sprite(texture, texFrame)
-    tile:addComponent(sprite)
+    GameObject.addComponent(tile, sprite)
    
 end
 

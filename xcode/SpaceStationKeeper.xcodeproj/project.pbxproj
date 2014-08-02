@@ -195,11 +195,14 @@
 		9E74DA891930F57C006B323E /* Sprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sprite.cpp; sourceTree = "<group>"; };
 		9E74DA8C1930FB9C006B323E /* SpriteBinder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpriteBinder.h; sourceTree = "<group>"; };
 		9E82AC411975D0D500A2A4D5 /* CoordSearch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CoordSearch.cpp; sourceTree = "<group>"; };
+		9E848B2F1986D4960005FE32 /* SteeringTargetBinder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SteeringTargetBinder.h; sourceTree = "<group>"; };
+		9E848B301986D85E0005FE32 /* NeighbourhoodBinder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NeighbourhoodBinder.h; sourceTree = "<group>"; };
 		9E92628E18D48232001AB5D6 /* GameComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameComponent.cpp; sourceTree = "<group>"; };
 		9E92629118D4EDA0001AB5D6 /* ComponentDrivenApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ComponentDrivenApp.cpp; sourceTree = "<group>"; };
 		9EA476C818F7589A00C6BD1D /* EnumHelper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EnumHelper.cpp; sourceTree = "<group>"; };
 		9EA476CB18F8ABC300C6BD1D /* AssetLoaderBase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AssetLoaderBase.cpp; sourceTree = "<group>"; };
 		9EA476D518F9FEFA00C6BD1D /* SimpleMesh.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SimpleMesh.cpp; sourceTree = "<group>"; };
+		9EA69073198C6EC90030447E /* Renderable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Renderable.h; sourceTree = "<group>"; };
 		9EB0C8901945F780008F72D0 /* GameGraph.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameGraph.h; sourceTree = "<group>"; };
 		9EB0C89219461C50008F72D0 /* VectorTraits.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VectorTraits.h; sourceTree = "<group>"; };
 		9EB951EB19152837003B5FED /* AssetDefBase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AssetDefBase.cpp; sourceTree = "<group>"; };
@@ -406,6 +409,7 @@
 				9E173FA9193599AF00313618 /* BotManager.h */,
 				9E173FAA19359AC800313618 /* Bot.h */,
 				9E6CDADE193F5157005C9380 /* BotBehaviour.h */,
+				9EA69073198C6EC90030447E /* Renderable.h */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -463,6 +467,7 @@
 		9E281719191BB84000F5E95C /* ClassBinders */ = {
 			isa = PBXGroup;
 			children = (
+				9E848B2E1986D4700005FE32 /* Steering */,
 				9E28171C191BB8D000F5E95C /* CinderEventBinders.h */,
 				9E28171D191BBAB900F5E95C /* GameObjectBinder.h */,
 				9E28171E191BBB3B00F5E95C /* TransformBinder.h */,
@@ -549,6 +554,15 @@
 				9E82AC411975D0D500A2A4D5 /* CoordSearch.cpp */,
 			);
 			path = Pathing;
+			sourceTree = "<group>";
+		};
+		9E848B2E1986D4700005FE32 /* Steering */ = {
+			isa = PBXGroup;
+			children = (
+				9E848B2F1986D4960005FE32 /* SteeringTargetBinder.h */,
+				9E848B301986D85E0005FE32 /* NeighbourhoodBinder.h */,
+			);
+			path = Steering;
 			sourceTree = "<group>";
 		};
 		9E92628C18D47F87001AB5D6 /* Components */ = {

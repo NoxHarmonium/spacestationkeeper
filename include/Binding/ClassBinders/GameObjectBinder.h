@@ -26,8 +26,8 @@ template <> struct ClassBinder<GameObject> {
         L)[luabind::class_<GameObject, GameObjectRef>(name)
                .def(luabind::constructor<>())
                .def_readonly("renderer", &GameObject::renderer)
-               .def("addComponent", &GameObject::addComponent)
-               .def("removeComponent", &GameObject::removeComponent)
+               // .def("addComponent", &GameObject::addComponent)
+               // .def("removeComponent", &GameObject::removeComponent)
                .def("getComponent", &GameObject::getComponent)
                .def("reassignId", &GameObject::reassignId)
                .def("refreshComponentList", &GameObject::refreshComponentList)
@@ -35,6 +35,11 @@ template <> struct ClassBinder<GameObject> {
                .def("setId", &GameObject::setId)
                .def("getComponentList", &GameObject::getComponentList,
                     return_stl_iterator)
+               .scope[
+                 // Static methods
+                 def("addComponent", &GameObject::addComponent),
+                 def("removeComponent", &GameObject::removeComponent)
+               ]
            //.def("getRenderer", &GameOb\ject::getRenderer)]; // Depricated for
            // nicer
            // looking code

@@ -26,7 +26,7 @@ function WorkBot:setup()
     -- Animation Setup
     self._miningAnimGo = GameObject()
     self._miningAnimComp = AnimatedSprite()
-    self._miningAnimGo:addComponent(self._miningAnimComp)
+    GameObject.addComponent(self._miningAnimGo, self._miningAnimComp)
     self._miningAnimComp:setAnimationSet(self._miningAnimSet)
     self._miningAnimComp:play()
     local r = self._miningAnimGo.renderer

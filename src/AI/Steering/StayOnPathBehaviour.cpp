@@ -7,6 +7,7 @@
 //
 
 #include "StayOnPathBehaviour.h"
+#include <math.h>
 
 namespace BlazeEngine {
 namespace AI {
@@ -14,8 +15,9 @@ namespace Steering {
 
 // Constructor/Destructor
 StayOnPathBehaviour::StayOnPathBehaviour(SteeringTargetRef steeringTarget,
-                                         int resoulution, float predictionTime)
-    : SteeringBehaviour(steeringTarget, resoulution),
+                                         int resoulution, Pathing::PathRef path,
+                                         float predictionTime)
+    : SteeringBehaviour(steeringTarget, resoulution), _path(path),
       _predictionTime(predictionTime) {}
 
 StayOnPathBehaviour::~StayOnPathBehaviour() {}
@@ -23,15 +25,26 @@ StayOnPathBehaviour::~StayOnPathBehaviour() {}
 float StayOnPathBehaviour::getContextValue(const float angle,
                                            const ContextType contextType) {
   SteeringTargetRef target = getTarget();
-  NeighbourhoodRef n = target->getNeighbourhood();
+  // NeighbourhoodRef n = target->getNeighbourhood();
   switch (contextType) {
   case ContextType::Interest: {
-    target->predictFuturePosition(_predictionTime);
+    Components::TransformRef t = target->getTransformRef();
+    Vec3f dir = Vec3f(sinf(angle) * _predictionTime,
+                      cosf(angle) * _predictionTime, 0.0f);
+    Vec3f projectedPos = t->localPosition + dir;
+
+    // See how far projected point is down path
+    float pathDistance =
+        _path->getPathDistanceFromPoint(Vec2f(projectedPos.x, projectedPos.y));
+
+    // Normalise 0.0-1.0
+    return pathDistance / _path->getTotalDistance();
 
     break;
   }
   case ContextType::Danger: {
     // Stay on path doesn't detect danger
+    return 0.0f;
     break;
   }
   default:

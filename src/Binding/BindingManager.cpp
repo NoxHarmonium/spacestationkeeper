@@ -42,6 +42,9 @@
 #include "SpriteBinder.h"
 #include "BotBinding.h"
 
+#include "SteeringTargetBinder.h"
+#include "NeighbourhoodBinder.h"
+
 namespace BlazeEngine {
 namespace Binding {
 
@@ -199,6 +202,9 @@ extern "C" int initLuaModules(lua_State *L) {
 
   ClassBinder<Rectf>::Bind("Rectf", L);
   ClassBinder<Rectd>::Bind("Rectd", L);
+
+  ClassBinder<AI::Steering::SteeringTarget>::Bind("SteeringTarget", L);
+  ClassBinder<NeighbourhoodT>::Bind("Neighbourhood", L);
 
   // Containers
   // ClassBinder<vector<GameComponentRef>>::Bind("Vector_GameComponent", L);

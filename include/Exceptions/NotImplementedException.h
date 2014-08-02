@@ -14,7 +14,7 @@
 namespace BlazeEngine {
 namespace Exceptions {
 
-class NotImplementedException : public runtime_error {
+class NotImplementedException : public std::runtime_error {
 public:
   // Constructors/Destructors
   NotImplementedException()

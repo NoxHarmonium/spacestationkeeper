@@ -15,9 +15,7 @@ namespace Pathing {
 
 #include <set>
 #include <list>
-
 #include <boost/graph/adjacency_list.hpp>
-  
 
 template <typename CoordinateType> class GameGraph {
 

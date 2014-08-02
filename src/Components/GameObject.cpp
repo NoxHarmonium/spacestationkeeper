@@ -25,21 +25,6 @@ GameObject::GameObject() {
 
 GameObject::~GameObject() {}
 
-void GameObject::addComponent(GameComponentRef component) {
-  string id = GameComponent::getId(component);
-  checkIdValidity(id);
-  _componentMap[id] = component;
-  component->gameObject = this; // TODO: Encapsulate more? i.e. setGameObject()?
-  _componentListDirty = true;
-  _setupQueue.push_back(component);
-}
-
-void GameObject::removeComponent(GameComponentRef component) {
-  _componentMap.erase(GameComponent::getId(component));
-  component->gameObject = nullptr; // End null reference
-  _componentListDirty = true;
-}
-
 GameComponentRef GameObject::getComponent(string id) {
   if (_componentMap.count(id) == 0) {
     throw runtime_error("No component found for id: " + id);
@@ -296,5 +281,23 @@ void GameObject::checkIdValidity(string id) {
 
 boost::uuids::random_generator GameObject::_uuidGenerator =
     boost::uuids::random_generator();
+
+void GameObject::addComponent(GameObjectRef gameObject,
+                              GameComponentRef component) {
+  string id = GameComponent::getId(component);
+  gameObject->checkIdValidity(id);
+  gameObject->_componentMap[id] = component;
+  component->gameObject =
+      gameObject; // TODO: Encapsulate more? i.e. setGameObject()?
+  gameObject->_componentListDirty = true;
+  gameObject->_setupQueue.push_back(component);
+}
+
+void GameObject::removeComponent(GameObjectRef gameObject,
+                                 GameComponentRef component) {
+  gameObject->_componentMap.erase(GameComponent::getId(component));
+  component->gameObject = nullptr; // End null reference
+  gameObject->_componentListDirty = true;
+}
 }
 }

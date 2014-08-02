@@ -9,6 +9,8 @@
 #include "BotManager.h"
 #include "CoordSearch.h"
 #include "BotBehaviour.h"
+#include "Neighbourhood.h"
+
 #include <math.h>
 
 namespace BlazeEngine {
@@ -112,7 +114,7 @@ void BotManager::update(float deltaTime) {
 }
 
 std::function<float(Vec2i)> BotManager::getCostFunction() {
-  set<Vec2i, VecComparison> *reference = &_passableCoords;
+  std::set<Vec2i, VecComparison> *reference = &_passableCoords;
   // Passable tile is 0/ Unpassable = infinity
   // TODO: More complex cost function (if needed)
   // Corridors lest cost than rooms?
@@ -151,7 +153,7 @@ void BotManager::assignJobs() {
     return std::get<0>(a) < std::get<0>(b);
   });
 
-  set<BotRef> availableBots = set<BotRef>(_bots);
+  std::set<BotRef> availableBots = std::set<BotRef>(_bots);
 
   for (auto &t : candidateBots) {
     BotRef bot = std::get<1>(t);

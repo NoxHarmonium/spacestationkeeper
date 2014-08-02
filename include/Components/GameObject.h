@@ -11,8 +11,8 @@
 
 #include <map>
 #include "GameComponent.h"
-#include "RenderInfo.h"
 #include "BindingManager.h"
+#include "Renderable.h"
 
 namespace BlazeEngine {
 namespace Binding {
@@ -30,18 +30,13 @@ using namespace BlazeEngine::Binding;
 typedef vector<GameComponentRef> GameComponentList;
 typedef std::shared_ptr<GameComponentList> GameComponentListRef;
 
-class GameObject {
+class GameObject : public Renderable {
 public:
   // Constructors/Destructors
   GameObject();
   ~GameObject();
 
-  // Public Fields
-  RenderInfoRef renderer = nullptr;
-
   // Methods
-  void addComponent(GameComponentRef component);
-  void removeComponent(GameComponentRef component);
   void reassignId(GameComponentRef component, string newId);
   GameComponentRef getComponent(string id);
   void refreshComponentList();
@@ -88,6 +83,15 @@ public:
   virtual RenderInfoRef getRenderer(); // Depricated
   string getId();
   void setId(string id);
+
+  // These are static because an object can't get a reference to it's own
+  // shared_ptr object with the 'this' keyword.
+  // TODO: Make this more intutive, users will not expect this to be a static
+  // method at all. There has to be a way.
+  static void addComponent(GameObjectRef gameObject,
+                           GameComponentRef component);
+  static void removeComponent(GameObjectRef gameObject,
+                              GameComponentRef component);
 
 private:
   // Methods

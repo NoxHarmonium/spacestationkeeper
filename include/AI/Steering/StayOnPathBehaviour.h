@@ -10,6 +10,7 @@
 #define SpaceStationKeeper_StayOnPathBehaviour_h
 
 #include "SteeringBehaviour.h"
+#include "Path.h"
 
 namespace BlazeEngine {
 namespace AI {
@@ -19,15 +20,16 @@ class StayOnPathBehaviour : public SteeringBehaviour {
 public:
   // Constructor/Destructor
   StayOnPathBehaviour(SteeringTargetRef steeringTarget, int resoulution,
-                      float predictionTime = 1.0f);
+                      Pathing::PathRef path, float predictionTime = 1.0f);
   virtual ~StayOnPathBehaviour();
 
   // Virtual Methods
-  virtual float getContextValue(const float angle,
+  virtual float getContextValue(const ContextSlotType angle,
                                 const ContextType contextType) override;
 
 private:
   float _predictionTime;
+  Pathing::PathRef _path;
 };
 }
 }
